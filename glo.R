@@ -6,13 +6,16 @@ library(dplyr)
 rackCorners <- function(pts, dataset, treenames, diams, x, y){
   pts$id <- rownames(pts)
   ntrees = length(treenames)
+ 
   for(i in 1:ntrees){#i=1
+    if(is.na(diams[1])){diam = NA}else{
+    diam = pts[,diams[i]]}
     pts0 = data.frame(
       dataset = dataset,
       id = pts$id,
       treeseq = i,
       tname = pts[,treenames[i]],
-      diam = pts[,diams[i]],
+      diam = diam,
       x=pts[,x],
       y=pts[,y]
     )
@@ -20,6 +23,8 @@ rackCorners <- function(pts, dataset, treenames, diams, x, y){
   }
   return(pts1)
 }
+
+pts <- st_read('data/msb-paleon.3.0/OH_PLS_Witness_Trees/OH_PLS_Witness_Trees.shp')
 
 pts <- read.csv('data/msb-paleon.32.0/PLS_Wisconsin_trees_Level0_v1.0.csv')
 treenames <- c("SP1","SP2","SP3","SP4")
@@ -73,4 +78,25 @@ pts.NMI <- rackCorners(pts, dataset, treenames, diams, x, y)
 
 pts <- rbind(pts.WI,pts.IL,pts.IN,pts.NMI,pts.SMI,pts.SEMI)
 pts.geo <- st_as_sf(pts, coords=c(x='x', y='y'), crs=3175)
+
+pts.sf <- st_read('data/msb-paleon.3.0/OH_PLS_Witness_Trees/OH_PLS_Witness_Trees.shp')
+pts <- mutate(pts.sf, x=st_coordinates(pts.sf)[,1],y=st_coordinates(pts.sf)[,2]) |> st_drop_geometry()
+treenames <- c("SP1","SP2","SP3","SP4")
+diams <- NA
+dataset='OH'
+x = 'x'
+y = 'y'
+pts.OH <- rackCorners(pts, dataset, treenames, diams, x, y)
+pts.OH <- st_as_sf(pts.OH, coords=c(x='x', y='y'), crs=crs(pts.sf))
+pts.OH <- st_transform(pts.OH,crs=crs(pts.geo))
+
+pts.geo <- rbind(pts.geo, pts.OH) |> unique()
+
+
 write_sf(pts.geo,'gis/trees.shp')
+
+
+notree <-  subset(pts.geo, grepl('no.tree', tolower(tname))| ((tname %in% '' | is.na(tname) ) & treeseq %in% 1))
+plot(vect(notree))
+
+write_sf(notree,'gis/notree.shp')
