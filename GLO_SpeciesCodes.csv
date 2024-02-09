@@ -1,0 +1,2569 @@
+﻿Code,Description,Taxon,Domain
+BA, B ash,, Brown ash
+CH, B cherry,, Blk cherry
+LO, B oak,, Blk oak
+BW, B walnut,, Blk walnut
+BU, B??????nut,, White walnut
+FI, Balsam fir,, Fir
+LI, Bass,, Linden
+ cherry-leaved, bot,,  
+CO, Cotton,,Poplar
+CR, Crab,,Other hardwood
+HA, H??????berry,,Hackberry
+HI, Hick,, H??????ory
+HM, House,,No tree
+SU, Hrd maple,, Rock maple
+XB, ie irregular township,,No data
+XA, ie pages missing from notebook,,No data
+IR, Iron,, I??????wood
+JO, J oak Jk oak,, Yellow oak
+JP, Jack pine,, J pine
+RP, N pine,, Yellow pine
+RM, R maple,,Maple
+RO, R oak,,Oak
+RA, Red ash,,Ash
+JU, Red cedar,,Cedar/juniper
+BD, rock (large stone used as a witness tree),,No tree
+OW, roze willow,,Willow
+SO, S oak,,Oak
+UO, Shrub oak,,Oak
+WE, W elm,,Elm
+WM, W maple,, Wht maple
+WO, W oak,, Wht oak
+wo, W oak,, Wht oak
+WP, W pine Wht pine,,Pine
+wp, W pine Wht pine,,Pine
+WS, W spruce,, Wht spruce
+WT, W thorn,,Other hardwood
+WU, Water beach,,Ironwood
+ White birch, Wht birch,,WB
+YB, Y birch,,Birch
+yb, Y birch,,Birch
+ybrc, Y birch,,Birch
+"	AL","	Alder",Alnus,Nmich
+"	AP","	Apple",Malus,Nmich
+"	AH","	Ash",Fraxinus,Nmich
+"	AS","	Aspen",Populus,Nmich
+"	BG","	Balm of Gilead",Populus balsamifera,Nmich
+"	BF","	Balsam Fir",Abies,Nmich
+"	LI","	Basswood",Tilia,Nmich
+"	BE","	Beech",Fagus,Nmich
+"	BI","	Birch",Betula,Nmich
+"	BA","	Black Ash",Fraxinus nigra,Nmich
+"	BB","	Black Birch",Betula lenta,Nmich
+"	BM","	Black Gum",Nyssa,Nmich
+"	BL","	Blue Beech",Carpinus,Nmich
+"	BX","	Boxelder",Acer negundo,Nmich
+"	BD","	Boxwood",Acer negundo,Nmich
+"	BO","	Bur Oak",Quercus macrocarpa,Nmich
+"	BU","	Butternut",Juglans cinerea,Nmich
+"	BT","	Buttonwood",Platanus,Nmich
+"	CE","	Cedar",Cuppressaceae,Nmich
+"	CH","	Cherry",Prunus,Nmich
+"	CO","	Cottonwood",Populus deltoides,Nmich
+"	CR","	Crab Apple",Malus,Nmich
+"	DA","	Dead Ash",Dead,Nmich
+"	DB","	Dead Birch",Dead,Nmich
+"	DK","	Dead Black Ash",Dead,Nmich
+"	DC","	Dead Cedar",Dead,Nmich
+"	DF","	Dead Fir",Dead,Nmich
+"	DH","	Dead Hemlock",Dead,Nmich
+"	DM","	Dead Maple",Dead,Nmich
+"	DP","	Dead Pine",Dead,Nmich
+"	DR","	Dead Red Pine",Dead,Nmich
+"	DU","	Dead Sugar",Dead,Nmich
+"	DT","	Dead Tamarack",Dead,Nmich
+"	DW","	Dogwood",Cornus,Nmich
+"	EL","	Elm",Ulmus,Nmich
+"	GB","	Gooseberry",Other,Nmich
+"	HA","	Hackberry",Celtis,Nmich
+"	HE","	Hemlock",Tsuga,Nmich
+"	HI","	Hickory",Carya,Nmich
+"	XX","	Indeterminable",Other,Nmich
+"	IW","	Ironwood",Betulaceae,Nmich
+"	JP","	Jack Pine",Pinus banksiana,Nmich
+"	PS","	Jack Pine",Pinus banksiana,Nmich
+"	MA","	Maple",Acer,Nmich
+"	OA","	Oak",Quercus,Nmich
+"	JO","	Pin Oak",Quercus,Nmich
+"	PI","	Pine",Pinus,Nmich
+"	PL","	Plum",Other,Nmich
+"	SM","	Red Maple",Acer rubrum,Nmich
+"	RO","	Red Oak",Quercus rubra,Nmich
+"	RP","	Red Pine",Pinus resinosa,Nmich
+"	SA","	Sassafras",Sassafras,Nmich
+"	UO","	Scrub Oak",Quercus,Nmich
+"	SP","	Spruce",Picea,Nmich
+"	SU","	Sugar Maple",Acer saccharinum,Nmich
+"	SY","	Sycamore",Platanus,Nmich
+"	TA","	Tamarack",Larix,Nmich
+"	TH","	Thorn",Crataegus,Nmich
+"	WA","	White Ash",Fraxinus americana,Nmich
+"	WB","	White Birch",Betula papyfera,Nmich
+"	WC","	White Cedar",Thuja,Nmich
+"	WO","	White Oak",Quercus alba,Nmich
+"	WP","	White Pine",Pinus strobus,Nmich
+"	WI","	Willow",Salix,Nmich
+"	YB","	Yellow Birch",Betula alleghaniensis,Nmich
+ aldar,Alder,,Alder
+ald,Alder,Alnus,Southern MI v1.6
+Alder,Alder,Alnus,Indiana v2.0
+Alder,Alder,Alnus,OH - vernacular from OH471 towns
+Alder,Alder,Alnus,Upper Midwest
+b alder,Alder,,Indiana v2.0
+B alder,Alder,,Indiana v2.0
+LL,Alder,,Upper Midwest
+,Alder,,Northeast (1372)
+,Alder,,OH (471)
+AA,Ash,Fraxinus,Upper Midwest
+AH,Ash,Fraxinus,Upper Midwest
+ash,Ash,,Illinois v2.0
+Ash,Ash,,Illinois v2.0
+ash,Ash,,Indiana v2.0
+Ash,Ash,,Indiana v2.0
+Ash,Ash,,Southern MI v1.6
+ASH,Ash,,Southern MI v1.6
+ash,Ash,,Southern MI v1.6
+ash,Ash,,Southern MI_Detroit_ND_v1.0
+Ash,Ash,,Southern MI_Detroit_ND_v1.0
+Ash,Ash,,Upper Midwest
+ash bush,Ash,,Indiana v2.0
+Ashes,Ash,,Old Conversion Errors
+Ashs,Ash,,Eastern Townships
+ASHS,Ash,,OH471_wiki
+ASHS_N_11_,Ash,,Northeast1372_wiki
+b ash,Ash,,Illinois v2.0
+b ash,Ash,,Indiana v2.0
+B ash,Ash,,Indiana v2.0
+B Ash,Ash,,Indiana v2.0
+b ash,Ash,,Southern MI_Detroit_ND_v1.0
+B ash,Ash,,Southern MI_Detroit_ND_v1.0
+B Ash,Ash,,Southern MI_Detroit_ND_v1.0
+b. ash,Ash,,Illinois v2.0
+b. ash,Ash,,Indiana v2.0
+B. ash,Ash,,Indiana v2.0
+B. Ash,Ash,,Indiana v2.0
+B. ash,Ash,,Southern MI_Detroit_ND_v1.0
+B. Ash,Ash,,Southern MI_Detroit_ND_v1.0
+B.Ash,Ash,,Indiana v2.0
+b.ash,Ash,,Southern MI v1.6
+ba,Ash,,Southern MI v1.6
+BASH,Ash,,Southern MI v1.6
+bash,Ash,,Southern MI v1.6
+bash,Ash,,Upper Midwest
+bk ash,Ash,,Indiana v2.0
+bl ash,Ash,,Indiana v2.0
+Bl Ash,Ash,,Indiana v2.0
+bl ash,Ash,,Southern MI v1.6
+Bl. Ash,Ash,,Indiana v2.0
+bl.ash,Ash,,Southern MI v1.6
+black ash,Ash,,Illinois v2.0
+black ash,Ash,,Indiana v2.0
+Black ash,Ash,,Indiana v2.0
+Black Ash,Ash,,Indiana v2.0
+blash,Ash,,Southern MI v1.6
+blk ash,Ash,,Indiana v2.0
+Blk ash,Ash,,Indiana v2.0
+Blk Ash,Ash,,Indiana v2.0
+blk. ash,Ash,,Indiana v2.0
+Blk. Ash,Ash,,Indiana v2.0
+blue ash,Ash,,Illinois v2.0
+blue ash,Ash,,Indiana v2.0
+Blue ash,Ash,,Indiana v2.0
+Blue Ash,Ash,,Indiana v2.0
+blue ash,Ash,,Southern MI_Detroit_ND_v1.0
+Blue Ash Sapling,Ash,,Indiana v2.0
+blus ash,Ash,,Southern MI v1.6
+double ash,Ash,,Southern MI_Detroit_ND_v1.0
+forked ash,Ash,,Illinois v2.0
+g ash,Ash,,Indiana v2.0
+G ash,Ash,,Indiana v2.0
+G Ash,Ash,,Indiana v2.0
+g. ash,Ash,,Indiana v2.0
+G. ash,Ash,,Indiana v2.0
+G. Ash,Ash,,Indiana v2.0
+gray ash,Ash,,Indiana v2.0
+Gray ash,Ash,,Indiana v2.0
+Gray Ash,Ash,,Indiana v2.0
+gray-ash,Ash,,Indiana v2.0
+grey ash,Ash,,Indiana v2.0
+Grey ash,Ash,,Indiana v2.0
+Grey Ash,Ash,,Indiana v2.0
+GY,Ash,,Upper Midwest
+North b ash,Ash,,Indiana v2.0
+r. ash,Ash,,Illinois v2.0
+rash,Ash,,Southern MI v1.6
+red ash,Ash,,Illinois v2.0
+red ash,Ash,,Indiana v2.0
+s ash,Ash,,Illinois v2.0
+s ash,Ash,,Indiana v2.0
+S ash,Ash,,Indiana v2.0
+S Ash,Ash,,Indiana v2.0
+s. ash,Ash,,Indiana v2.0
+S. Ash,Ash,,Indiana v2.0
+SA,Ash,,Upper Midwest
+swamp ash,Ash,,Illinois v2.0
+swamp ash,Ash,,Indiana v2.0
+Swamp ash,Ash,,Indiana v2.0
+Swamp Ash,Ash,,Indiana v2.0
+swash,Ash,,Southern MI v1.6
+swp ash,Ash,,Indiana v2.0
+Swp ash,Ash,,Indiana v2.0
+Swp Ash,Ash,,Indiana v2.0
+swp. ash,Ash,,Indiana v2.0
+Swp. Ash,Ash,,Indiana v2.0
+UA,Ash,,Upper Midwest
+w ash,Ash,,Illinois v2.0
+w ash,Ash,,Indiana v2.0
+W ash,Ash,,Indiana v2.0
+W Ash,Ash,,Indiana v2.0
+w ash,Ash,,Southern MI_Detroit_ND_v1.0
+W Ash,Ash,,Southern MI_Detroit_ND_v1.0
+w. ash,Ash,,Illinois v2.0
+w. ash,Ash,,Indiana v2.0
+W. ash,Ash,,Indiana v2.0
+W. Ash,Ash,,Indiana v2.0
+w. ash,Ash,,Southern MI_Detroit_ND_v1.0
+W. ash,Ash,,Southern MI_Detroit_ND_v1.0
+w.ash,Ash,,Southern MI v1.6
+WA,Ash,,Upper Midwest
+WASH,Ash,,Southern MI v1.6
+wash,Ash,,Southern MI v1.6
+wash,Ash,,Upper Midwest
+Water Ash,Ash,,Indiana v2.0
+waterash,Ash,,Southern MI v1.6
+wh ash,Ash,,Illinois v2.0
+wh ash,Ash,,Indiana v2.0
+Wh ash,Ash,,Indiana v2.0
+Wh Ash,Ash,,Indiana v2.0
+white ash,Ash,,Illinois v2.0
+white ash,Ash,,Indiana v2.0
+White ash,Ash,,Indiana v2.0
+White Ash,Ash,,Indiana v2.0
+y ash,Ash,,Indiana v2.0
+Y ash,Ash,,Indiana v2.0
+Y Ash,Ash,,Indiana v2.0
+,Ash,,Northeast (1372)
+,Ash,,Northeast (1372)
+,Ash,,Northeast (1372)
+,Ash,,Northeast (1372)
+,Ash,,Northeast (1372)
+,Ash,,Northeast (1372)
+,Ash,,OH - vernacular from OH471 towns
+,Ash,,OH - vernacular from OH471 towns
+,Ash,,OH - vernacular from OH471 towns
+,Ash,,OH - vernacular from OH471 towns
+,Ash,,OH - vernacular from OH471 towns
+,Ash,,OH (471)
+,Ash,,OH (471)
+,Ash,,OH (471)
+,Ash,,OH (471)
+,Ash,,OH (471)
+CHAMAE_IS,Atlantic white cedar,,OH471_wiki
+CHAMAE_IS_,Atlantic white cedar,,Northeast1372_wiki
+Chamaeis,Atlantic white cedar,,Eastern Townships
+,Atlantic white cedar,,Northeast (1372)
+cypress,Bald cypress,,Illinois v2.0
+cypress tree,Bald cypress,,Illinois v2.0
+siprus,Bald cypress,,Illinois v2.0
+BAS,Basswood,,Southern MI v1.6
+bass,Basswood,,Southern MI v1.6
+BASS,Basswood,,Southern MI v1.6
+Bass ,Basswood,,OH - vernacular from OH471 towns
+Basswood,Basswood,,Eastern Townships
+basswood,Basswood,,Indiana v2.0
+BASSWOOD,Basswood,,OH471_wiki
+basswood,Basswood,,Southern MI_Detroit_ND_v1.0
+Basswood,Basswood,,Upper Midwest
+Basswood ,Basswood,,OH - vernacular from OH471 towns
+BASSWOOD_N,Basswood,,Northeast1372_wiki
+BP,Basswood,,Upper Midwest
+double lin tree,Basswood,,Illinois v2.0
+forked lynn,Basswood,,Illinois v2.0
+forked lynn,Basswood,,Indiana v2.0
+lin,Basswood,,Illinois v2.0
+lin,Basswood,,Southern MI v1.6
+lin tree,Basswood,,Illinois v2.0
+Lind,Basswood,,OH - vernacular from OH471 towns
+lind,Basswood,,Southern MI_Detroit_ND_v1.0
+linden,Basswood,,Illinois v2.0
+Linden ,Basswood,,OH - vernacular from OH471 towns
+linn,Basswood,,Illinois v2.0
+linn,Basswood,,Indiana v2.0
+Linn,Basswood,,OH - vernacular from OH471 towns
+linn,Basswood,,Southern MI_Detroit_ND_v1.0
+ly,Basswood,,Illinois v2.0
+lyme,Basswood,,Illinois v2.0
+Lyme,Basswood,,Indiana v2.0
+lyn,Basswood,,Illinois v2.0
+LYN,Basswood,,Southern MI v1.6
+lyn,Basswood,,Southern MI v1.6
+lyn,Basswood,,Upper Midwest
+lynn,Basswood,,Illinois v2.0
+lynn,Basswood,,Indiana v2.0
+Lynn,Basswood,,Indiana v2.0
+lynn,Basswood,,Southern MI_Detroit_ND_v1.0
+Lynn,Basswood,,Southern MI_Detroit_ND_v1.0
+Lynn ,Basswood,,OH - vernacular from OH471 towns
+lynn tree,Basswood,,Illinois v2.0
+lynn tree,Basswood,,Indiana v2.0
+lynne,Basswood,,Indiana v2.0
+Lynne,Basswood,,Southern MI_Detroit_ND_v1.0
+Lynntree,Basswood,,Indiana v2.0
+lynnwood,Basswood,,Indiana v2.0
+red lin,Basswood,,Indiana v2.0
+s lynn,Basswood,,Indiana v2.0
+,Basswood,,Northeast (1372)
+,Basswood,,Northeast (1372)
+,Basswood,,Northeast (1372)
+,Basswood,,Northeast (1372)
+,Basswood,,OH (471)
+,Basswood,,OH (471)
+,Basswood,,OH (471)
+ B birch,BB,,Black birch
+Bastard Beech,Beech,,Indiana v2.0
+BCH,Beech,,Southern MI v1.6
+bch,Beech,,Southern MI v1.6
+BCH,Beech,,Upper Midwest
+bch,Beech,,Upper Midwest
+BE,Beech,,Upper Midwest
+beach,Beech,,Illinois v2.0
+Bech,Beech,,Indiana v2.0
+Beech,Beech,,Eastern Townships
+beech,Beech,,Illinois v2.0
+beech,Beech,,Indiana v2.0
+Beech,Beech,,Indiana v2.0
+BEECH,Beech,,OH471_wiki
+beech,Beech,,Southern MI v1.6
+beech,Beech,,Southern MI_Detroit_ND_v1.0
+Beech,Beech,,Southern MI_Detroit_ND_v1.0
+Beech,Beech,,Upper Midwest
+beech (double),Beech,,Indiana v2.0
+Beech sapling,Beech,,Indiana v2.0
+Beech Sapling,Beech,,Indiana v2.0
+beech sapling,Beech,,Indiana v2.0
+beech stump,Beech,,Indiana v2.0
+beech tree,Beech,,Indiana v2.0
+BEECH_N_11,Beech,,Northeast1372_wiki
+beeh,Beech,,Indiana v2.0
+bgh,Beech,,Southern MI v1.6
+Black Beech,Beech,,Indiana v2.0
+double beech,Beech,,Indiana v2.0
+forked beech,Beech,,Indiana v2.0
+Forked Beech,Beech,,Indiana v2.0
+Ground Beech,Beech,,Indiana v2.0
+Red Beech,Beech,,Indiana v2.0
+s beech,Beech,,Indiana v2.0
+S Beech,Beech,,Indiana v2.0
+Stooping beech,Beech,,Indiana v2.0
+swamp beech,Beech,,Indiana v2.0
+Swamp Beech,Beech,,Indiana v2.0
+swp beech,Beech,,Indiana v2.0
+Swp Beech,Beech,,Indiana v2.0
+Wh Beech,Beech,,Indiana v2.0
+White Beech,Beech,,Indiana v2.0
+,Beech,,Northeast (1372)
+,Beech,,OH - vernacular from OH471 towns
+,Beech,,OH (471)
+bastard birch,Birch,,Indiana v2.0
+BI,Birch,,Upper Midwest
+birch,Birch,,Illinois v2.0
+birch,Birch,,Indiana v2.0
+Birch,Birch,,Indiana v2.0
+Birch,Birch,,OH - vernacular from OH471 towns
+birch,Birch,,Southern MI_Detroit_ND_v1.0
+Birch,Birch,,Upper Midwest
+Birches,Birch,,Eastern Townships
+BIRCHES,Birch,,OH471_wiki
+BIRCHES_N_,Birch,,Northeast1372_wiki
+br,Birch,,Southern MI v1.6
+Brc,Birch,,Southern MI v1.6
+BRC,Birch,,Southern MI v1.6
+brc,Birch,,Southern MI v1.6
+brc,Birch,,Upper Midwest
+brch,Birch,,Southern MI v1.6
+BRCH,Birch,,Southern MI v1.6
+brch,Birch,,Upper Midwest
+buch,Birch,,Southern MI v1.6
+burch,Birch,,Illinois v2.0
+Burch,Birch,,OH - vernacular from OH471 towns
+UB,Birch,,Upper Midwest
+w birch,Birch,,Indiana v2.0
+w. birch,Birch,,Indiana v2.0
+water birch,Birch,,Illinois v2.0
+Water Birch,Birch,,Indiana v2.0
+wb,Birch,,Southern MI v1.6
+WB,Birch,,Southern MI v1.6
+wb,Birch,,Upper Midwest
+wbrc,Birch,,Southern MI v1.6
+wbrc,Birch,,Upper Midwest
+wbrch,Birch,,Southern MI v1.6
+WY,Birch,,Upper Midwest
+y birch,Birch,,Indiana v2.0
+y.brc,Birch,,Southern MI v1.6
+YB,Birch,,Southern MI v1.6
+yb,Birch,,Southern MI v1.6
+ybrc,Birch,,Southern MI v1.6
+ybrch,Birch,,Southern MI v1.6
+ybrcm,Birch,,Southern MI v1.6
+yellow birch,Birch,,Indiana v2.0
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,Northeast (1372)
+,Birch,,OH (471)
+b gum,Black gum,,Illinois v2.0
+b gum,Black gum,,Indiana v2.0
+B gum,Black gum,,Indiana v2.0
+B Gum,Black gum,,Indiana v2.0
+B Gum Stump,Black gum,,Indiana v2.0
+b. gum,Black gum,,Illinois v2.0
+b. gum,Black gum,,Indiana v2.0
+B. Gum,Black gum,,Indiana v2.0
+Bl Gum,Black gum,,Indiana v2.0
+black gum,Black gum,,Illinois v2.0
+black gum,Black gum,,Indiana v2.0
+Black Gum,Black gum,,Indiana v2.0
+blk gum,Black gum,,Illinois v2.0
+blk gum,Black gum,,Indiana v2.0
+Blk Gum,Black gum,,Indiana v2.0
+BM,Black gum,,Upper Midwest
+Nyssa,Black gum,,Eastern Townships
+NYSSA,Black gum,,OH471_wiki
+NYSSA_N_10,Black gum,,Northeast1372_wiki
+pep,Black gum,,Southern MI v1.6
+PEP,Black gum,,Southern MI v1.6
+Peperage,Black gum,,OH - vernacular from OH471 towns
+Pepper   ,Black gum,,OH - vernacular from OH471 towns
+Pepperage,Black gum,,Indiana v2.0
+Pepperage,Black gum,,OH - vernacular from OH471 towns
+pepperidge,Black gum,,Indiana v2.0
+pepr,Black gum,,Southern MI v1.6
+peprage or b gum,Black gum,,Indiana v2.0
+Piperage,Black gum,,OH - vernacular from OH471 towns
+,Black gum,,Northeast (1372)
+,Black gum,,Northeast (1372)
+,Black gum,,Northeast (1372)
+,Black gum,,Northeast (1372)
+,Black gum,,Northeast (1372)
+,Black gum,,OH - vernacular from OH471 towns
+,Black gum,,OH (471)
+gum,Black gum/sweet gum,,Illinois v2.0
+gum,Black gum/sweet gum,,Indiana v2.0
+Gum,Black gum/sweet gum,,Indiana v2.0
+gum,Black gum/sweet gum,,Southern MI v1.6
+gum,Black gum/sweet gum,,Southern MI_Detroit_ND_v1.0
+Gum,Black gum/sweet gum,,Southern MI_Detroit_ND_v1.0
+Gum,Black gum/sweet gum,,Upper Midwest
+gumb,Black gum/sweet gum,,Illinois v2.0
+W Gum,Black gum/sweet gum,,Indiana v2.0
+White Gum,Black gum/sweet gum,,Indiana v2.0
+,Black gum/sweet gum,,Northeast (1372)
+,Black gum/sweet gum,,OH - vernacular from OH471 towns
+,Black gum/sweet gum,,OH (471)
+,Black gum/sweet gum,,OH (471)
+b eye,Buckeye,,Illinois v2.0
+b. eye,Buckeye,,Illinois v2.0
+buc-eye,Buckeye,,Illinois v2.0
+buck,Buckeye,,Indiana v2.0
+buck,Buckeye,,Southern MI v1.6
+buck eye,Buckeye,,Illinois v2.0
+Buck eye,Buckeye,,Indiana v2.0
+Buckey,Buckeye,,Indiana v2.0
+buckeye,Buckeye,,Illinois v2.0
+buckeye,Buckeye,,Indiana v2.0
+Buckeye,Buckeye,,Indiana v2.0
+BUCKEYE,Buckeye,,OH471_wiki
+buckeye,Buckeye,,Southern MI_Detroit_ND_v1.0
+Buckeye sapling,Buckeye,,Indiana v2.0
+BY,Buckeye,,Upper Midwest
+,Buckeye,,Northeast (1372)
+,Buckeye,,OH - vernacular from OH471 towns
+,Buckeye,,OH - vernacular from OH471 towns
+,Buckeye,,OH (471)
+CE,Cedar/juniper,,Upper Midwest
+CED,Cedar/juniper,,Southern MI v1.6
+ced,Cedar/juniper,,Southern MI v1.6
+CED,Cedar/juniper,,Upper Midwest
+ced,Cedar/juniper,,Upper Midwest
+Cedar,Cedar/juniper,,Eastern Townships
+cedar,Cedar/juniper,,Illinois v2.0
+cedar,Cedar/juniper,,Indiana v2.0
+Cedar,Cedar/juniper,,Indiana v2.0
+Cedar,Cedar/juniper,,OH - vernacular from OH471 towns
+CEDAR,Cedar/juniper,,OH471_wiki
+cedar,Cedar/juniper,,Southern MI v1.6
+Cedar,Cedar/juniper,,Upper Midwest
+CEDAR_N_11,Cedar/juniper,,Northeast1372_wiki
+crd,Cedar/juniper,,Southern MI v1.6
+r cedar,Cedar/juniper,,Indiana v2.0
+WC,Cedar/juniper,,Upper Midwest
+,Cedar/juniper,,Northeast (1372)
+,Cedar/juniper,,Northeast (1372)
+,Cedar/juniper,,Northeast (1372)
+,Cedar/juniper,,OH - vernacular from OH471 towns
+,Cedar/juniper,,OH (471)
+,Cedar/juniper,,OH (471)
+b ch,Cherry,,Southern MI v1.6
+b cherry,Cherry,,Illinois v2.0
+B Cherry,Cherry,,Indiana v2.0
+BCHER,Cherry,,Southern MI v1.6
+bcher,Cherry,,Southern MI v1.6
+black cherry,Cherry,,Illinois v2.0
+black cherry,Cherry,,Indiana v2.0
+chcr,Cherry,,Southern MI v1.6
+CHER,Cherry,,Southern MI v1.6
+cher,Cherry,,Southern MI v1.6
+Cherries,Cherry,,Eastern Townships
+CHERRIES,Cherry,,OH471_wiki
+CHERRIES_N,Cherry,,Northeast1372_wiki
+cherritree,Cherry,,Illinois v2.0
+cherritree,Cherry,,Southern MI_Detroit_ND_v1.0
+cherry,Cherry,,Illinois v2.0
+cherry,Cherry,,Indiana v2.0
+Cherry,Cherry,,Indiana v2.0
+cherry,Cherry,,Southern MI_Detroit_ND_v1.0
+Cherry,Cherry,,Southern MI_Detroit_ND_v1.0
+Cherry,Cherry,,Upper Midwest
+Cherry bush,Cherry,,Indiana v2.0
+cherry tree,Cherry,,Illinois v2.0
+cherry tree,Cherry,,Indiana v2.0
+Cherry tree,Cherry,,Indiana v2.0
+Cherry Tree,Cherry,,Indiana v2.0
+cherry tree,Cherry,,Southern MI_Detroit_ND_v1.0
+cherrytree,Cherry,,Illinois v2.0
+cherrytree,Cherry,,Indiana v2.0
+Cherrytree,Cherry,,Indiana v2.0
+cherrytree,Cherry,,Southern MI_Detroit_ND_v1.0
+chery,Cherry,,Indiana v2.0
+chirry tree,Cherry,,Illinois v2.0
+chry,Cherry,,Southern MI v1.6
+forked cherry,Cherry,,Indiana v2.0
+RC,Cherry,,Upper Midwest
+s. cherry,Cherry,,Illinois v2.0
+s. cherry,Cherry,,Indiana v2.0
+w cherry,Cherry,,Indiana v2.0
+W Cherry,Cherry,,Indiana v2.0
+wild cherry,Cherry,,Illinois v2.0
+wild cherry,Cherry,,Indiana v2.0
+Wild Cherry,Cherry,,Indiana v2.0
+,Cherry,,Northeast (1372)
+,Cherry,,Northeast (1372)
+,Cherry,,Northeast (1372)
+,Cherry,,Northeast (1372)
+,Cherry,,OH - vernacular from OH471 towns
+,Cherry,,OH - vernacular from OH471 towns
+,Cherry,,OH (471)
+,Cherry,,OH (471)
+chesnut,Chestnut,,Indiana v2.0
+Chesnut,Chestnut,,Indiana v2.0
+Chesnut,Chestnut,,Southern MI_Detroit_ND_v1.0
+Chest,Chestnut,,Indiana v2.0
+chest,Chestnut,,Southern MI v1.6
+Chest.,Chestnut,,Indiana v2.0
+Chestnut,Chestnut,,Eastern Townships
+chestnut,Chestnut,,Indiana v2.0
+Chestnut,Chestnut,,Indiana v2.0
+CHESTNUT,Chestnut,,OH471_wiki
+CHESTNUT_N,Chestnut,,Northeast1372_wiki
+,Chestnut,,Northeast (1372)
+,Chestnut,,OH - vernacular from OH471 towns
+,Chestnut,,OH (471)
+d wood,Dogwood,,Illinois v2.0
+d. wood,Dogwood,,Illinois v2.0
+DG,Dogwood,,Upper Midwest
+dgw,Dogwood,,Illinois v2.0
+dgwd,Dogwood,,Illinois v2.0
+dgwood,Dogwood,,Illinois v2.0
+dog,Dogwood,,Southern MI v1.6
+dog wood,Dogwood,,Indiana v2.0
+Dogd.,Dogwood,,Southern MI_Detroit_ND_v1.0
+dogg,Dogwood,,Southern MI v1.6
+dogw,Dogwood,,Illinois v2.0
+dogw,Dogwood,,Indiana v2.0
+dogw,Dogwood,,Southern MI v1.6
+Dogw,Dogwood,,Southern MI v1.6
+dogw.,Dogwood,,Indiana v2.0
+Dogw.,Dogwood,,Indiana v2.0
+dogwd,Dogwood,,Illinois v2.0
+dogwd,Dogwood,,Indiana v2.0
+dogwD,Dogwood,,Indiana v2.0
+Dogwd,Dogwood,,Indiana v2.0
+dogwod,Dogwood,,Illinois v2.0
+dogwod,Dogwood,,Indiana v2.0
+dogwood,Dogwood,,Illinois v2.0
+dogwood,Dogwood,,Indiana v2.0
+Dogwood,Dogwood,,Indiana v2.0
+DOGWOOD,Dogwood,,OH471_wiki
+dogwood,Dogwood,,Southern MI_Detroit_ND_v1.0
+Dogwood,Dogwood,,Upper Midwest
+dog-wood,Dogwood,,Indiana v2.0
+DW,Dogwood,,Upper Midwest
+dwd,Dogwood,,Illinois v2.0
+dwood,Dogwood,,Illinois v2.0
+,Dogwood,,Northeast (1372)
+,Dogwood,,OH - vernacular from OH471 towns
+,Dogwood,,OH (471)
+AE,Elm,Ulmus,Upper Midwest
+allim,Elm,,Illinois v2.0
+allum,Elm,,Indiana v2.0
+Allum,Elm,,Indiana v2.0
+b elm,Elm,,Indiana v2.0
+bitter elm,Elm,,Indiana v2.0
+Bitter Elm,Elm,,Indiana v2.0
+blm,Elm,,Southern MI v1.6
+EL,Elm,,Upper Midwest
+elleim,Elm,,Illinois v2.0
+ellem,Elm,,Illinois v2.0
+ellim,Elm,,Illinois v2.0
+ellum,Elm,,Illinois v2.0
+elm,Elm,,Illinois v2.0
+Elm,Elm,,Illinois v2.0
+elm,Elm,,Indiana v2.0
+Elm,Elm,,Indiana v2.0
+Elm,Elm,,Southern MI v1.6
+ELM,Elm,,Southern MI v1.6
+elm,Elm,,Southern MI v1.6
+elm,Elm,,Southern MI_Detroit_ND_v1.0
+Elm,Elm,,Southern MI_Detroit_ND_v1.0
+Elm,Elm,,Upper Midwest
+elm,Elm,,Upper Midwest
+elm bush,Elm,,Indiana v2.0
+elm sapling,Elm,,Illinois v2.0
+elm tree,Elm,,Illinois v2.0
+elmn,Elm,,Illinois v2.0
+Elms,Elm,,Eastern Townships
+ELMS,Elm,,OH471_wiki
+ELMS_N_10_,Elm,,Northeast1372_wiki
+eln,Elm,,Southern MI v1.6
+em,Elm,,Southern MI v1.6
+ES,Elm,,Upper Midwest
+fkd elm,Elm,,Indiana v2.0
+forked Elm,Elm,,Indiana v2.0
+Forked Elm,Elm,,Indiana v2.0
+h elm,Elm,,Indiana v2.0
+H elm,Elm,,Indiana v2.0
+H. Elm,Elm,,Indiana v2.0
+Hic Elm,Elm,,Indiana v2.0
+hick elm,Elm,,Indiana v2.0
+hickory elm,Elm,,Indiana v2.0
+hicky elm,Elm,,Indiana v2.0
+Hicky Elm,Elm,,Indiana v2.0
+hicky-elm,Elm,,Indiana v2.0
+LE,Elm,,Upper Midwest
+r elm,Elm,,Illinois v2.0
+r elm,Elm,,Indiana v2.0
+R elm,Elm,,Indiana v2.0
+R Elm,Elm,,Indiana v2.0
+r. elm,Elm,,Illinois v2.0
+r. elm,Elm,,Indiana v2.0
+R. Elm,Elm,,Indiana v2.0
+r.elm,Elm,,Southern MI v1.6
+RE,Elm,,Upper Midwest
+red elm,Elm,,Illinois v2.0
+red elm,Elm,,Indiana v2.0
+Red elm,Elm,,Indiana v2.0
+Red Elm,Elm,,Indiana v2.0
+relm,Elm,,Southern MI v1.6
+RK,Elm,,Upper Midwest
+rlm,Elm,,Southern MI v1.6
+s elm,Elm,,Illinois v2.0
+s elm,Elm,,Indiana v2.0
+S Elm,Elm,,Indiana v2.0
+s. elm,Elm,,Illinois v2.0
+s. elm,Elm,,Indiana v2.0
+S. Elm,Elm,,Indiana v2.0
+SE,Elm,,Upper Midwest
+slippery elm,Elm,,Illinois v2.0
+slippery elm,Elm,,Indiana v2.0
+Slippery Elm,Elm,,Indiana v2.0
+swamp elm,Elm,,Illinois v2.0
+swp elm,Elm,,Illinois v2.0
+swp elm,Elm,,Indiana v2.0
+Swp Elm,Elm,,Indiana v2.0
+Swp. Elm,Elm,,Indiana v2.0
+w elm,Elm,,Illinois v2.0
+w elm,Elm,,Indiana v2.0
+W elm,Elm,,Indiana v2.0
+W Elm,Elm,,Indiana v2.0
+w. elm,Elm,,Indiana v2.0
+W. Elm,Elm,,Indiana v2.0
+wh elm,Elm,,Indiana v2.0
+Wh Elm,Elm,,Indiana v2.0
+Whi Elm,Elm,,Indiana v2.0
+white elm,Elm,,Illinois v2.0
+white elm,Elm,,Indiana v2.0
+White Elm,Elm,,Indiana v2.0
+,Elm,,Northeast (1372)
+,Elm,,Northeast (1372)
+,Elm,,Northeast (1372)
+,Elm,,Northeast (1372)
+,Elm,,OH - vernacular from OH471 towns
+,Elm,,OH - vernacular from OH471 towns
+,Elm,,OH - vernacular from OH471 towns
+,Elm,,OH - vernacular from OH471 towns
+,Elm,,OH (471)
+,Elm,,OH (471)
+,Elm,,OH (471)
+,Elm,,OH (471)
+bals,Fir,,Southern MI v1.6
+BF,Fir,,Upper Midwest
+Fir,Fir,,Eastern Townships
+FIR,Fir,,OH471_wiki
+FIR,Fir,,Southern MI v1.6
+fir,Fir,,Southern MI v1.6
+Fir,Fir,,Upper Midwest
+fir,Fir,,Upper Midwest
+FIR_N_11_7,Fir,,Northeast1372_wiki
+,Fir,,Northeast (1372)
+hack,Hackberry,,Illinois v2.0
+hack,Hackberry,,Indiana v2.0
+hack,Hackberry,,Southern MI v1.6
+HACK,Hackberry,,Southern MI v1.6
+hack berry,Hackberry,,Illinois v2.0
+hack berry tree,Hackberry,,Illinois v2.0
+hack bery,Hackberry,,Illinois v2.0
+hack bush,Hackberry,,Indiana v2.0
+HACKBERRIE,Hackberry,,OH471_wiki
+hackberry,Hackberry,,Illinois v2.0
+hackberry,Hackberry,,Indiana v2.0
+Hackberry,Hackberry,,Indiana v2.0
+Hackberry,Hackberry,,Upper Midwest
+hackberry tree,Hackberry,,Illinois v2.0
+hackbery,Hackberry,,Illinois v2.0
+Hackbery,Hackberry,,Indiana v2.0
+hackbry,Hackberry,,Illinois v2.0
+hackby,Hackberry,,Illinois v2.0
+hby,Hackberry,,Illinois v2.0
+,Hackberry,,OH - vernacular from OH471 towns
+,Hackberry,,OH (471)
+hcm,Hemlock,,Southern MI v1.6
+HE,Hemlock,,Upper Midwest
+heem,Hemlock,,Southern MI v1.6
+Hem,Hemlock,,Southern MI v1.6
+HEM,Hemlock,,Southern MI v1.6
+hem,Hemlock,,Southern MI v1.6
+hem,Hemlock,,Upper Midwest
+HEM,Hemlock,,Upper Midwest
+Hemlock,Hemlock,,Eastern Townships
+hemlock,Hemlock,,Indiana v2.0
+HEMLOCK,Hemlock,,OH471_wiki
+Hemlock,Hemlock,,Upper Midwest
+HEMLOCK_N_,Hemlock,,Northeast1372_wiki
+her,Hemlock,,Southern MI v1.6
+HM,Hemlock,,Southern MI v1.6
+,Hemlock,,Northeast (1372)
+,Hemlock,,Northeast (1372)
+,Hemlock,,OH - vernacular from OH471 towns
+,Hemlock,,OH (471)
+b hickory,Hickory,,Illinois v2.0
+B Hickory,Hickory,,Indiana v2.0
+b hicky,Hickory,,Indiana v2.0
+b. hickory,Hickory,,Illinois v2.0
+b. hicky,Hickory,,Indiana v2.0
+Bitternut,Hickory,,OH - vernacular from OH471 towns
+black hickory,Hickory,,Illinois v2.0
+blk hickory,Hickory,,Illinois v2.0
+blk hickory,Hickory,,Indiana v2.0
+blk hicky,Hickory,,Indiana v2.0
+double hickory,Hickory,,Illinois v2.0
+Fkd Hickory,Hickory,,Indiana v2.0
+forked hickory,Hickory,,Illinois v2.0
+h,Hickory,,Illinois v2.0
+H,Hickory,,Southern MI v1.6
+hck,Hickory,,Southern MI v1.6
+HCK,Hickory,,Southern MI v1.6
+hcko,Hickory,,Illinois v2.0
+hcok,Hickory,,Illinois v2.0
+hcy,Hickory,,Illinois v2.0
+Heicky,Hickory,,Indiana v2.0
+hey,Hickory,,Southern MI v1.6
+hic,Hickory,,Illinois v2.0
+hic,Hickory,,Southern MI_Detroit_ND_v1.0
+Hic,Hickory,,Southern MI_Detroit_ND_v1.0
+hick,Hickory,,Illinois v2.0
+hick,Hickory,,Indiana v2.0
+Hick,Hickory,,Indiana v2.0
+HICK,Hickory,,Southern MI v1.6
+hick,Hickory,,Southern MI v1.6
+hick,Hickory,,Southern MI_Detroit_ND_v1.0
+hickery,Hickory,,Illinois v2.0
+hickey,Hickory,,Illinois v2.0
+hickiry,Hickory,,Illinois v2.0
+hickoey,Hickory,,Illinois v2.0
+Hickories,Hickory,,Eastern Townships
+HICKORIES,Hickory,,OH471_wiki
+HICKORIES_,Hickory,,Northeast1372_wiki
+hickory,Hickory,,Illinois v2.0
+Hickory,Hickory,,Illinois v2.0
+Hickory,Hickory,,Illinois v2.0
+hickory,Hickory,,Indiana v2.0
+Hickory,Hickory,,Indiana v2.0
+HIckory,Hickory,,Indiana v2.0
+hickory,Hickory,,Southern MI_Detroit_ND_v1.0
+Hickory,Hickory,,Southern MI_Detroit_ND_v1.0
+Hickory,Hickory,,Upper Midwest
+hickory bush,Hickory,,Illinois v2.0
+hickory sapling,Hickory,,Illinois v2.0
+Hickory sapling,Hickory,,Indiana v2.0
+hickoy,Hickory,,Illinois v2.0
+hickr,Hickory,,Illinois v2.0
+hickroy,Hickory,,Illinois v2.0
+hickroy,Hickory,,Indiana v2.0
+hickry,Hickory,,Illinois v2.0
+hickry,Hickory,,Indiana v2.0
+hickry,Hickory,,Southern MI_Detroit_ND_v1.0
+hicky,Hickory,,Illinois v2.0
+hicky,Hickory,,Indiana v2.0
+Hicky,Hickory,,Indiana v2.0
+hicky,Hickory,,Southern MI_Detroit_ND_v1.0
+Hicky,Hickory,,Southern MI_Detroit_ND_v1.0
+Hicky.,Hickory,,Southern MI_Detroit_ND_v1.0
+hicory,Hickory,,Illinois v2.0
+hicory,Hickory,,Indiana v2.0
+hicory,Hickory,,Southern MI_Detroit_ND_v1.0
+hicy,Hickory,,Illinois v2.0
+hik,Hickory,,Indiana v2.0
+HIK,Hickory,,Southern MI v1.6
+hikery,Hickory,,Illinois v2.0
+hikory,Hickory,,Illinois v2.0
+hiky,Hickory,,Illinois v2.0
+hiy,Hickory,,Illinois v2.0
+hkry,Hickory,,Illinois v2.0
+hky,Hickory,,Illinois v2.0
+hky,Hickory,,Southern MI v1.6
+HKY,Hickory,,Southern MI v1.6
+hky.,Hickory,,Illinois v2.0
+h-symbol,Hickory,,Illinois v2.0
+hy,Hickory,,Illinois v2.0
+Hy,Hickory,,Southern MI_Detroit_ND_v1.0
+Hy.,Hickory,,Southern MI_Detroit_ND_v1.0
+IT,Hickory,,Upper Midwest
+LH,Hickory,,Upper Midwest
+r hickory,Hickory,,Illinois v2.0
+Red Hickory,Hickory,,Indiana v2.0
+s. hickory,Hickory,,Illinois v2.0
+scaly bark hickory,Hickory,,Illinois v2.0
+scruby hickory,Hickory,,Illinois v2.0
+sealy bark hickory,Hickory,,Illinois v2.0
+shell bark hickory,Hickory,,Illinois v2.0
+shellbark hickory,Hickory,,Illinois v2.0
+Three small white hickories,Hickory,,Indiana v2.0
+w hickory,Hickory,,Indiana v2.0
+W hickory,Hickory,,Indiana v2.0
+W Hickory,Hickory,,Indiana v2.0
+w hicky,Hickory,,Indiana v2.0
+w hky,Hickory,,Illinois v2.0
+W. Hickory,Hickory,,Indiana v2.0
+W. Hicky,Hickory,,Indiana v2.0
+white hickory,Hickory,,Illinois v2.0
+White hickory,Hickory,,OH - vernacular from OH471 towns
+WK,Hickory,,Upper Midwest
+,Hickory,,Northeast (1372)
+,Hickory,,Northeast (1372)
+,Hickory,,Northeast (1372)
+,Hickory,,Northeast (1372)
+,Hickory,,OH - vernacular from OH471 towns
+,Hickory,,OH (471)
+,Hickory,,OH (471)
+b beech,Ironwood,,Indiana v2.0
+BL,Ironwood,,Upper Midwest
+bl.bch,Ironwood,,Southern MI v1.6
+blbch,Ironwood,,Southern MI v1.6
+blue beech,Ironwood,,Indiana v2.0
+Blue beech,Ironwood,,Indiana v2.0
+Blue Beech,Ironwood,,Indiana v2.0
+Blue beech,Ironwood,,OH - vernacular from OH471 towns
+forked ironwood,Ironwood,,Indiana v2.0
+h beam,Ironwood,,Indiana v2.0
+Hardbeam,Ironwood,,OH - vernacular from OH471 towns
+hardhack,Ironwood,,Illinois v2.0
+Hardhack,Ironwood,,OH - vernacular from OH471 towns
+HB,Ironwood,,Upper Midwest
+HO,Ironwood,,Upper Midwest
+hop,Ironwood,,Southern MI v1.6
+horn,Ironwood,,Indiana v2.0
+horn beam,Ironwood,,Illinois v2.0
+horn beam,Ironwood,,Indiana v2.0
+Horn beam,Ironwood,,Indiana v2.0
+hornb,Ironwood,,Southern MI v1.6
+hornbeam,Ironwood,,Illinois v2.0
+hornbeam,Ironwood,,Indiana v2.0
+Hornbeam,Ironwood,,Indiana v2.0
+Hornbeam,Ironwood,,OH - vernacular from OH471 towns
+hornbeam,Ironwood,,Southern MI_Detroit_ND_v1.0
+hrm,Ironwood,,Southern MI v1.6
+Irnwd,Ironwood,,Indiana v2.0
+iron,Ironwood,,Indiana v2.0
+IRON,Ironwood,,Southern MI v1.6
+iron,Ironwood,,Southern MI v1.6
+iron,Ironwood,,Southern MI_Detroit_ND_v1.0
+iron wood,Ironwood,,Illinois v2.0
+iron wood,Ironwood,,Indiana v2.0
+Iron wood,Ironwood,,Indiana v2.0
+iron.wood,Ironwood,,Southern MI_Detroit_ND_v1.0
+irond,Ironwood,,Indiana v2.0
+Irond,Ironwood,,Indiana v2.0
+IronD,Ironwood,,Indiana v2.0
+irond,Ironwood,,Southern MI_Detroit_ND_v1.0
+Irond,Ironwood,,Southern MI_Detroit_ND_v1.0
+Irond.,Ironwood,,Southern MI_Detroit_ND_v1.0
+ironw,Ironwood,,Indiana v2.0
+Ironw,Ironwood,,Indiana v2.0
+ironwd,Ironwood,,Illinois v2.0
+ironwd,Ironwood,,Indiana v2.0
+ironwD,Ironwood,,Indiana v2.0
+Ironwd,Ironwood,,Indiana v2.0
+IronwD,Ironwood,,Indiana v2.0
+ironwd,Ironwood,,Southern MI_Detroit_ND_v1.0
+Ironwd,Ironwood,,Southern MI_Detroit_ND_v1.0
+ironwd.,Ironwood,,Indiana v2.0
+ironwod,Ironwood,,Indiana v2.0
+Ironwod,Ironwood,,Indiana v2.0
+ironwood,Ironwood,,Illinois v2.0
+ironwood,Ironwood,,Indiana v2.0
+Ironwood,Ironwood,,Indiana v2.0
+Ironwood,Ironwood,,OH - vernacular from OH471 towns
+ironwood,Ironwood,,Southern MI v1.6
+ironwood,Ironwood,,Southern MI_Detroit_ND_v1.0
+Ironwood,Ironwood,,Southern MI_Detroit_ND_v1.0
+Ironwood,Ironwood,,Upper Midwest
+iron-wood,Ironwood,,Illinois v2.0
+Ironwood sapling,Ironwood,,Indiana v2.0
+Ironwoods,Ironwood,,Eastern Townships
+IRONWOODS,Ironwood,,OH471_wiki
+IRONWOODS_,Ironwood,,Northeast1372_wiki
+Irowd,Ironwood,,Southern MI_Detroit_ND_v1.0
+IW,Ironwood,,Upper Midwest
+lever wood,Ironwood,,Southern MI v1.6
+w beech,Ironwood,,Illinois v2.0
+w beech,Ironwood,,Indiana v2.0
+W beech,Ironwood,,Indiana v2.0
+W Beech,Ironwood,,Indiana v2.0
+w. beech,Ironwood,,Illinois v2.0
+w. beech,Ironwood,,Indiana v2.0
+W. Beech,Ironwood,,Indiana v2.0
+water beech,Ironwood,,Illinois v2.0
+water beech,Ironwood,,Indiana v2.0
+Water Beech,Ironwood,,Indiana v2.0
+water beech,Ironwood,,Southern MI v1.6
+waterbeech,Ironwood,,Indiana v2.0
+Waterbeech,Ironwood,,Indiana v2.0
+White Ironwood,Ironwood,,Indiana v2.0
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,Northeast (1372)
+,Ironwood,,OH (471)
+,Ironwood,,OH (471)
+,Ironwood,,OH (471)
+,Ironwood,,OH (471)
+,Ironwood,,OH (471)
+b locust,Locust,,Illinois v2.0
+black locust,Locust,,Indiana v2.0
+h locus,Locust,,Illinois v2.0
+h locust,Locust,,Illinois v2.0
+h locust,Locust,,Indiana v2.0
+H locust,Locust,,Indiana v2.0
+H Locust,Locust,,Indiana v2.0
+h. locus,Locust,,Illinois v2.0
+h. locust,Locust,,Illinois v2.0
+h. locust,Locust,,Indiana v2.0
+H. Locust,Locust,,Indiana v2.0
+hon locust,Locust,,Indiana v2.0
+Hon. Locust,Locust,,Indiana v2.0
+honey locis,Locust,,Illinois v2.0
+honey locus,Locust,,Illinois v2.0
+Honey Locus,Locust,,Indiana v2.0
+honey locust,Locust,,Illinois v2.0
+honey locust,Locust,,Indiana v2.0
+Honey locust,Locust,,Indiana v2.0
+Honey Locust,Locust,,Indiana v2.0
+honeylocust,Locust,,Illinois v2.0
+honey-locust,Locust,,Illinois v2.0
+hony locust,Locust,,Illinois v2.0
+locas,Locust,,Illinois v2.0
+locu,Locust,,Illinois v2.0
+locus,Locust,,Illinois v2.0
+Locust,Locust,,Eastern Townships
+locust,Locust,,Illinois v2.0
+locust,Locust,,Indiana v2.0
+Locust,Locust,,Indiana v2.0
+locust,Locust,,Southern MI v1.6
+Locust,Locust,,Southern MI_Detroit_ND_v1.0
+locust tree,Locust,,Illinois v2.0
+red locust,Locust,,Indiana v2.0
+Red Locust,Locust,,Indiana v2.0
+yel. locust,Locust,,Illinois v2.0
+,Locust,,Northeast (1372)
+,Locust,,OH - vernacular from OH471 towns
+,Locust,,OH - vernacular from OH471 towns
+,Locust,,OH - vernacular from OH471 towns
+,Locust,,OH (471)
+,Locust,,OH (471)
+,Locust,,OH (471)
+another maple,Maple,,Illinois v2.0
+b elder,Maple,,Illinois v2.0
+b elder,Maple,,Indiana v2.0
+box,Maple,,Southern MI v1.6
+box alder,Maple,,Illinois v2.0
+box elder,Maple,,Illinois v2.0
+Box elder,Maple,,Indiana v2.0
+Box Elder,Maple,,Indiana v2.0
+box elder,Maple,,Indiana v2.0
+Box elder maple,Maple,,OH - vernacular from OH471 towns
+boxelder,Maple,,Illinois v2.0
+boxelder,Maple,,Indiana v2.0
+Boxelder,Maple,,Indiana v2.0
+Boxelder,Maple,,OH - vernacular from OH471 towns
+boxwd,Maple,,Southern MI v1.6
+boxwood,Maple,,Indiana v2.0
+Boxwood,Maple,,Indiana v2.0
+BX,Maple,,Upper Midwest
+bxwd,Maple,,Southern MI v1.6
+Double maple,Maple,,Indiana v2.0
+elder,Maple,,Illinois v2.0
+Elder,Maple,,Indiana v2.0
+forked maple,Maple,,Illinois v2.0
+Forked maple,Maple,,Indiana v2.0
+Forked Maple,Maple,,Indiana v2.0
+hard maple,Maple,,Illinois v2.0
+Hard maple,Maple,,OH - vernacular from OH471 towns
+LM,Maple,,Upper Midwest
+MA,Maple,,Upper Midwest
+MAP,Maple,,Southern MI v1.6
+map,Maple,,Southern MI v1.6
+map,Maple,,Upper Midwest
+mapel,Maple,,Illinois v2.0
+Mapl,Maple,,Southern MI v1.6
+MAPL,Maple,,Southern MI v1.6
+mapl,Maple,,Southern MI v1.6
+mapl,Maple,,Upper Midwest
+maple,Maple,,Illinois v2.0
+maple,Maple,,Indiana v2.0
+Maple,Maple,,Indiana v2.0
+maple,Maple,,Southern MI v1.6
+maple,Maple,,Southern MI_Detroit_ND_v1.0
+Maple,Maple,,Southern MI_Detroit_ND_v1.0
+Maple,Maple,,Upper Midwest
+Maples,Maple,,Eastern Townships
+MAPLES,Maple,,OH471_wiki
+MAPLES_N_1,Maple,,Northeast1372_wiki
+mapo,Maple,,Illinois v2.0
+mapole,Maple,,Illinois v2.0
+mayple,Maple,,Illinois v2.0
+maypole,Maple,,Illinois v2.0
+Maypole,Maple,,Indiana v2.0
+maypoll,Maple,,Illinois v2.0
+mmapl,Maple,,Southern MI v1.6
+rm,Maple,,Southern MI v1.6
+RV,Maple,,Upper Midwest
+s maple,Maple,,Illinois v2.0
+s maple,Maple,,Indiana v2.0
+s. maple,Maple,,Illinois v2.0
+s. maple,Maple,,Indiana v2.0
+S. Maple,Maple,,Indiana v2.0
+shugar,Maple,,Illinois v2.0
+shugar,Maple,,Southern MI_Detroit_ND_v1.0
+shugar tree,Maple,,Illinois v2.0
+shugartree,Maple,,Illinois v2.0
+shugurtree,Maple,,Illinois v2.0
+SL,Maple,,Upper Midwest
+sm,Maple,,Southern MI v1.6
+SM,Maple,,Southern MI v1.6
+SM,Maple,,Upper Midwest
+sm,Maple,,Upper Midwest
+SMAPL,Maple,,Southern MI v1.6
+smapl,Maple,,Southern MI v1.6
+sn,Maple,,Southern MI v1.6
+soft maple,Maple,,Illinois v2.0
+soft maple,Maple,,Indiana v2.0
+Soft Maple,Maple,,Indiana v2.0
+Soft maple,Maple,,OH - vernacular from OH471 towns
+SR,Maple,,Upper Midwest
+sug,Maple,,Illinois v2.0
+sug,Maple,,Indiana v2.0
+Sug,Maple,,Indiana v2.0
+sug,Maple,,Southern MI_Detroit_ND_v1.0
+Sug,Maple,,Southern MI_Detroit_ND_v1.0
+sug maple,Maple,,Illinois v2.0
+sug tree,Maple,,Illinois v2.0
+sug tree,Maple,,Indiana v2.0
+Sug tree,Maple,,Indiana v2.0
+Sug Tree,Maple,,Indiana v2.0
+sug tree,Maple,,Southern MI_Detroit_ND_v1.0
+Sug.,Maple,,Indiana v2.0
+sug. tree,Maple,,Illinois v2.0
+sugar,Maple,,Illinois v2.0
+sugar,Maple,,Indiana v2.0
+Sugar,Maple,,Indiana v2.0
+Sugar,Maple,,Indiana v2.0
+sugar,Maple,,Southern MI_Detroit_ND_v1.0
+Sugar,Maple,,Southern MI_Detroit_ND_v1.0
+Sugar ,Maple,,OH - vernacular from OH471 towns
+sugar maple,Maple,,Illinois v2.0
+sugar maple,Maple,,Indiana v2.0
+Sugar Maple,Maple,,Indiana v2.0
+sugar tree,Maple,,Illinois v2.0
+sugar tree,Maple,,Indiana v2.0
+Sugar tree,Maple,,Indiana v2.0
+Sugar Tree,Maple,,Indiana v2.0
+sugar tree,Maple,,Southern MI_Detroit_ND_v1.0
+Sugar Tree,Maple,,Southern MI_Detroit_ND_v1.0
+Sugar tree   ,Maple,,OH - vernacular from OH471 towns
+sugartree,Maple,,Illinois v2.0
+sugartree,Maple,,Indiana v2.0
+Sugartree,Maple,,Indiana v2.0
+Sugatree,Maple,,Indiana v2.0
+sugr,Maple,,Illinois v2.0
+sugr,Maple,,Indiana v2.0
+Sugr,Maple,,Indiana v2.0
+sugr,Maple,,Southern MI_Detroit_ND_v1.0
+Sugr,Maple,,Southern MI_Detroit_ND_v1.0
+sugrs,Maple,,Southern MI_Detroit_ND_v1.0
+sugtree,Maple,,Illinois v2.0
+swamp maple,Maple,,Southern MI_Detroit_ND_v1.0
+swp maple,Maple,,Indiana v2.0
+w maple,Maple,,Illinois v2.0
+w maple,Maple,,Indiana v2.0
+W Maple,Maple,,Indiana v2.0
+W. Maple,Maple,,Indiana v2.0
+w.mapl,Maple,,Southern MI v1.6
+white maple,Maple,,Indiana v2.0
+white sugar tree,Maple,,Illinois v2.0
+wm,Maple,,Southern MI v1.6
+wmap,Maple,,Southern MI v1.6
+wmapl,Maple,,Southern MI v1.6
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,Northeast (1372)
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH - vernacular from OH471 towns
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+,Maple,,OH (471)
+DA,Missing,,Upper Midwest
+DB,Missing,,Upper Midwest
+DC,Missing,,Upper Midwest
+DF,Missing,,Upper Midwest
+DH,Missing,,Upper Midwest
+DI,Missing,,Upper Midwest
+DK,Missing,,Upper Midwest
+DM,Missing,,Upper Midwest
+DR,Missing,,Upper Midwest
+DS,Missing,,Upper Midwest
+DT,Missing,,Upper Midwest
+DU,Missing,,Upper Midwest
+XX,Missing,,Upper Midwest
+mul,Mulberry,,Illinois v2.0
+mul,Mulberry,,Southern MI v1.6
+MULBERRIES,Mulberry,,OH471_wiki
+mulberry,Mulberry,,Illinois v2.0
+mulberry,Mulberry,,Indiana v2.0
+Mulberry,Mulberry,,Indiana v2.0
+mulberry tree,Mulberry,,Illinois v2.0
+mulbery,Mulberry,,Illinois v2.0
+mulbury,Mulberry,,Illinois v2.0
+mulby,Mulberry,,Illinois v2.0
+Mullberry,Mulberry,,Eastern Townships
+mullberry,Mulberry,,Indiana v2.0
+W. Mulberry,Mulberry,,Indiana v2.0
+,Mulberry,,Northeast (1372)
+,Mulberry,,OH - vernacular from OH471 towns
+,Mulberry,,OH (471)
+no data,No data,,Illinois v2.0
+No data,No data,,Illinois v2.0
+no data,No data,,Indiana v2.0
+No data,No data,,Indiana v2.0
+No data,No data,,Southern MI_Detroit_ND_v1.0
+XC,No data,,Upper Midwest
+MD,No tree,,Upper Midwest
+ML,No tree,,Upper Midwest
+NL,No tree,,Upper Midwest
+NO,No tree,,Upper Midwest
+no tree,No tree,,Illinois v2.0
+No tree,No tree,,Illinois v2.0
+no tree,No tree,,Indiana v2.0
+No tree,No tree,,Indiana v2.0
+No tree,No tree,,Southern MI_Detroit_ND_v1.0
+NonTree,No tree,,Upper Midwest
+PT,No tree,,Upper Midwest
+wet,No tree,,Illinois v2.0
+Wet,No tree,,Indiana v2.0
+Wet,No tree,,Southern MI_Detroit_ND_v1.0
+b jack,Oak,,Illinois v2.0
+b jack,Oak,,Indiana v2.0
+B jack,Oak,,Indiana v2.0
+B Jack,Oak,,Indiana v2.0
+b jack bush,Oak,,Illinois v2.0
+b jack oak,Oak,,Illinois v2.0
+b jak,Oak,,Illinois v2.0
+b o,Oak,,Illinois v2.0
+b o,Oak,,Indiana v2.0
+B O,Oak,,Southern MI_Detroit_ND_v1.0
+b oa,Oak,,Illinois v2.0
+b oak,Oak,,Illinois v2.0
+B oak,Oak,,Indiana v2.0
+B Oak,Oak,,Indiana v2.0
+B OAK,Oak,,Indiana v2.0
+b oak,Oak,,Indiana v2.0
+b oak,Oak,,Southern MI_Detroit_ND_v1.0
+B oak,Oak,,Southern MI_Detroit_ND_v1.0
+b oak bush,Oak,,Illinois v2.0
+b oak bush,Oak,,Indiana v2.0
+b oak sapling,Oak,,Illinois v2.0
+b ok,Oak,,Illinois v2.0
+b ok,Oak,,Indiana v2.0
+B Ok,Oak,,Indiana v2.0
+b oke,Oak,,Illinois v2.0
+b. jack,Oak,,Illinois v2.0
+b. jack,Oak,,Indiana v2.0
+B. Jack,Oak,,Indiana v2.0
+b. o,Oak,,Illinois v2.0
+B. O,Oak,,Indiana v2.0
+b. o.,Oak,,Illinois v2.0
+B. O.,Oak,,Indiana v2.0
+B. O.,Oak,,Southern MI_Detroit_ND_v1.0
+b. oak,Oak,,Illinois v2.0
+b. oak,Oak,,Indiana v2.0
+B. oak,Oak,,Indiana v2.0
+B. Oak,Oak,,Indiana v2.0
+b. oak bush,Oak,,Illinois v2.0
+b.o,Oak,,Illinois v2.0
+B.O,Oak,,Southern MI_Detroit_ND_v1.0
+b.o.,Oak,,Illinois v2.0
+B.O.,Oak,,Southern MI_Detroit_ND_v1.0
+b.oak,Oak,,Indiana v2.0
+B.Oak,Oak,,Indiana v2.0
+bj,Oak,,Illinois v2.0
+bj oak,Oak,,Illinois v2.0
+BJack,Oak,,Indiana v2.0
+BK,Oak,,Upper Midwest
+bk o,Oak,,Illinois v2.0
+bk oak,Oak,,Illinois v2.0
+bk oak,Oak,,Indiana v2.0
+bl jack,Oak,,Indiana v2.0
+Bl Jack,Oak,,Indiana v2.0
+bl jack oak,Oak,,Illinois v2.0
+bl oak,Oak,,Illinois v2.0
+bl oak,Oak,,Indiana v2.0
+Bl oak,Oak,,Indiana v2.0
+Bl Oak,Oak,,Indiana v2.0
+bl ok,Oak,,Indiana v2.0
+Bl Ok,Oak,,Indiana v2.0
+bl. oak,Oak,,Indiana v2.0
+Bl. oak,Oak,,Indiana v2.0
+Bl. Oak,Oak,,Indiana v2.0
+black jack,Oak,,Illinois v2.0
+black jack,Oak,,Indiana v2.0
+Black Jack,Oak,,Indiana v2.0
+black o,Oak,,Illinois v2.0
+black o.,Oak,,Illinois v2.0
+black oak,Oak,,Illinois v2.0
+black oak,Oak,,Indiana v2.0
+black Oak,Oak,,Indiana v2.0
+Black oak,Oak,,Indiana v2.0
+Black Oak,Oak,,Indiana v2.0
+black oak stump,Oak,,Illinois v2.0
+Black Oak Tree,Oak,,Indiana v2.0
+black ok,Oak,,Indiana v2.0
+black or red oak,Oak,,Illinois v2.0
+black or yellow oak,Oak,,Indiana v2.0
+blackjack,Oak,,Illinois v2.0
+Blackjack,Oak,,OH - vernacular from OH471 towns
+Blackjack oak,Oak,,OH - vernacular from OH471 towns
+blak oak,Oak,,Illinois v2.0
+blck oak,Oak,,Illinois v2.0
+blk jack,Oak,,Illinois v2.0
+blk jack,Oak,,Indiana v2.0
+blk o,Oak,,Illinois v2.0
+blk O,Oak,,Indiana v2.0
+blk oak,Oak,,Illinois v2.0
+blk oak,Oak,,Indiana v2.0
+Blk oak,Oak,,Indiana v2.0
+Blk Oak,Oak,,Indiana v2.0
+blk. jack,Oak,,Illinois v2.0
+blk. oak,Oak,,Illinois v2.0
+Blk. Oak,Oak,,Indiana v2.0
+bo,Oak,,Illinois v2.0
+BO,Oak,,Southern MI v1.6
+bo,Oak,,Southern MI v1.6
+bo,Oak,,Southern MI_Detroit_ND_v1.0
+Bo,Oak,,Southern MI_Detroit_ND_v1.0
+BO,Oak,,Southern MI_Detroit_ND_v1.0
+BO,Oak,,Upper Midwest
+bo,Oak,,Upper Midwest
+bo bush,Oak,,Illinois v2.0
+bo.,Oak,,Illinois v2.0
+bo/ro,Oak,,Southern MI v1.6
+boak,Oak,,Illinois v2.0
+boak,Oak,,Indiana v2.0
+br oak,Oak,,Illinois v2.0
+br oak,Oak,,Indiana v2.0
+Br oak,Oak,,Indiana v2.0
+Br Oak,Oak,,Indiana v2.0
+br. oak,Oak,,Indiana v2.0
+Br. Oak,Oak,,Indiana v2.0
+bu[r] oak,Oak,,Illinois v2.0
+bur,Oak,,Illinois v2.0
+bur,Oak,,Southern MI v1.6
+BUR,Oak,,Southern MI v1.6
+bur o,Oak,,Illinois v2.0
+bur oak,Oak,,Illinois v2.0
+bur oak,Oak,,Indiana v2.0
+Bur Oak,Oak,,Indiana v2.0
+Bur oak,Oak,,OH - vernacular from OH471 towns
+Bur. O.,Oak,,Indiana v2.0
+buro,Oak,,Southern MI v1.6
+BURO,Oak,,Southern MI v1.6
+burr,Oak,,Illinois v2.0
+burr  oak,Oak,,Illinois v2.0
+burr o,Oak,,Illinois v2.0
+burr o,Oak,,Indiana v2.0
+burr o.,Oak,,Illinois v2.0
+Burr O.,Oak,,Indiana v2.0
+burr o.,Oak,,Indiana v2.0
+burr oak,Oak,,Illinois v2.0
+burr oak,Oak,,Indiana v2.0
+burr Oak,Oak,,Indiana v2.0
+Burr oak,Oak,,Indiana v2.0
+Burr Oak,Oak,,Indiana v2.0
+Burr oak,Oak,,OH - vernacular from OH471 towns
+burr oke,Oak,,Illinois v2.0
+burroak,Oak,,Indiana v2.0
+c oak,Oak,,Illinois v2.0
+C oak,Oak,,Indiana v2.0
+C Oak,Oak,,Indiana v2.0
+C. Oak,Oak,,Indiana v2.0
+ches oak,Oak,,Indiana v2.0
+Ches Oak,Oak,,Indiana v2.0
+ches. oak,Oak,,Indiana v2.0
+Ches. Oak,Oak,,Indiana v2.0
+chesn oak,Oak,,Illinois v2.0
+chesnut oak,Oak,,Illinois v2.0
+chesnut oak,Oak,,Indiana v2.0
+Chesnut Oak,Oak,,Indiana v2.0
+chest oak,Oak,,Indiana v2.0
+Chest. Oak,Oak,,Indiana v2.0
+chestnut oak,Oak,,Indiana v2.0
+Chestnut Oak,Oak,,Indiana v2.0
+cup oak,Oak,,Illinois v2.0
+dbl br oak,Oak,,Indiana v2.0
+dblwo,Oak,,Southern MI v1.6
+Dead white oak,Oak,,Indiana v2.0
+double b jack,Oak,,Illinois v2.0
+double b oak,Oak,,Illinois v2.0
+double black oak,Oak,,Illinois v2.0
+double bo,Oak,,Southern MI_Detroit_ND_v1.0
+Double BO,Oak,,Southern MI_Detroit_ND_v1.0
+Double br oak,Oak,,Indiana v2.0
+double bur oak,Oak,,Illinois v2.0
+double burr oak,Oak,,Illinois v2.0
+double oak,Oak,,Illinois v2.0
+Double P oak,Oak,,Indiana v2.0
+double pin oak,Oak,,Illinois v2.0
+double r oak,Oak,,Indiana v2.0
+double w oak,Oak,,Illinois v2.0
+double w oak,Oak,,Indiana v2.0
+Double W oak,Oak,,Indiana v2.0
+Double W. Oak,Oak,,Indiana v2.0
+double white oak,Oak,,Illinois v2.0
+double wo,Oak,,Illinois v2.0
+double wo,Oak,,Southern MI_Detroit_ND_v1.0
+double y oak,Oak,,Indiana v2.0
+dry r oak,Oak,,Indiana v2.0
+dry w oak,Oak,,Indiana v2.0
+Fkd B. Oak,Oak,,Indiana v2.0
+fkd w oak,Oak,,Indiana v2.0
+Fkd W oak,Oak,,Indiana v2.0
+Fked W Oak,Oak,,Indiana v2.0
+forked b oak,Oak,,Illinois v2.0
+forked b oak,Oak,,Indiana v2.0
+forked bl oak,Oak,,Indiana v2.0
+forked black oak,Oak,,Illinois v2.0
+forked bo,Oak,,Illinois v2.0
+forked bur oak,Oak,,Illinois v2.0
+forked burr oak,Oak,,Illinois v2.0
+forked pin oak,Oak,,Illinois v2.0
+forked r oak,Oak,,Indiana v2.0
+forked r. oak,Oak,,Indiana v2.0
+forked w oak,Oak,,Illinois v2.0
+forked white oak,Oak,,Illinois v2.0
+forked wo,Oak,,Illinois v2.0
+g oak,Oak,,Illinois v2.0
+g oak,Oak,,Indiana v2.0
+j oak,Oak,,Illinois v2.0
+j oak,Oak,,Indiana v2.0
+J oak,Oak,,Indiana v2.0
+J Oak,Oak,,Indiana v2.0
+J. Oak,Oak,,Indiana v2.0
+J? oak,Oak,,Indiana v2.0
+jack,Oak,,Illinois v2.0
+jack,Oak,,Southern MI v1.6
+jack o,Oak,,Illinois v2.0
+jack oak,Oak,,Illinois v2.0
+jack oak,Oak,,Indiana v2.0
+jack Oak,Oak,,Indiana v2.0
+Jack oak,Oak,,Indiana v2.0
+Jack Oak,Oak,,Indiana v2.0
+JACK OAK,Oak,,Indiana v2.0
+Jack oak,Oak,,OH - vernacular from OH471 towns
+jack oak,Oak,,Southern MI v1.6
+jk oak,Oak,,Southern MI v1.6
+jk. oak,Oak,,Southern MI_Detroit_ND_v1.0
+jo,Oak,,Illinois v2.0
+LJ,Oak,,Upper Midwest
+lonely p oak,Oak,,Illinois v2.0
+m oak,Oak,,Illinois v2.0
+o,Oak,,Southern MI v1.6
+o cup oak,Oak,,Illinois v2.0
+o oak,Oak,,Illinois v2.0
+o. cup oak,Oak,,Illinois v2.0
+o. oak,Oak,,Illinois v2.0
+OA,Oak,,Upper Midwest
+oak,Oak,,Illinois v2.0
+oak,Oak,,Indiana v2.0
+Oak,Oak,,Indiana v2.0
+OAK,Oak,,Indiana v2.0
+OAK,Oak,,Southern MI v1.6
+oak,Oak,,Southern MI v1.6
+Oak,Oak,,Upper Midwest
+oak,Oak,,Upper Midwest
+Oaks,Oak,,Eastern Townships
+OAKS,Oak,,OH471_wiki
+OAKS_N_12_,Oak,,Northeast1372_wiki
+ocd,Oak,,Southern MI v1.6
+ocp oak,Oak,,Illinois v2.0
+ocup oak,Oak,,Illinois v2.0
+ok,Oak,,Illinois v2.0
+ord,Oak,,Southern MI v1.6
+over cup,Oak,,Illinois v2.0
+over cup oak,Oak,,Illinois v2.0
+overcup,Oak,,Illinois v2.0
+overcup o,Oak,,Illinois v2.0
+overcup oak,Oak,,Illinois v2.0
+p o,Oak,,Illinois v2.0
+p oak,Oak,,Illinois v2.0
+p oak,Oak,,Indiana v2.0
+P oak,Oak,,Indiana v2.0
+P Oak,Oak,,Indiana v2.0
+p. oak,Oak,,Illinois v2.0
+P. Oak,Oak,,Indiana v2.0
+p.o,Oak,,Illinois v2.0
+p.o.,Oak,,Illinois v2.0
+p.oak,Oak,,Indiana v2.0
+pin,Oak,,Illinois v2.0
+pin,Oak,,Southern MI v1.6
+pin o,Oak,,Illinois v2.0
+pin o.,Oak,,Illinois v2.0
+pin oak,Oak,,Illinois v2.0
+pin oak,Oak,,Indiana v2.0
+Pin oak,Oak,,Indiana v2.0
+Pin Oak,Oak,,Indiana v2.0
+pin oak,Oak,,Southern MI v1.6
+pin ok,Oak,,Illinois v2.0
+pin or r oak,Oak,,Indiana v2.0
+pino,Oak,,Southern MI v1.6
+pinoak,Oak,,Indiana v2.0
+PK,Oak,,Upper Midwest
+po,Oak,,Illinois v2.0
+po.,Oak,,Illinois v2.0
+post,Oak,,Illinois v2.0
+post o,Oak,,Illinois v2.0
+post o.,Oak,,Illinois v2.0
+post oak,Oak,,Illinois v2.0
+post oak,Oak,,Indiana v2.0
+Post Oak,Oak,,Indiana v2.0
+post ok,Oak,,Illinois v2.0
+post oke,Oak,,Illinois v2.0
+Post W. Oak,Oak,,Indiana v2.0
+r o,Oak,,Illinois v2.0
+R O,Oak,,Southern MI_Detroit_ND_v1.0
+r oack,Oak,,Illinois v2.0
+r oak,Oak,,Illinois v2.0
+r oak,Oak,,Indiana v2.0
+R oak,Oak,,Indiana v2.0
+R Oak,Oak,,Indiana v2.0
+r oak,Oak,,Southern MI_Detroit_ND_v1.0
+R Oak,Oak,,Southern MI_Detroit_ND_v1.0
+r ok,Oak,,Illinois v2.0
+r or b oak,Oak,,Illinois v2.0
+r. oak,Oak,,Illinois v2.0
+r. oak,Oak,,Indiana v2.0
+R. oak,Oak,,Indiana v2.0
+R. Oak,Oak,,Indiana v2.0
+r.o.,Oak,,Illinois v2.0
+R.O.,Oak,,Southern MI_Detroit_ND_v1.0
+rd oak,Oak,,Illinois v2.0
+rd oak,Oak,,Indiana v2.0
+red o,Oak,,Illinois v2.0
+red o,Oak,,Indiana v2.0
+red o,Oak,,Southern MI_Detroit_ND_v1.0
+red o.,Oak,,Illinois v2.0
+red oak,Oak,,Illinois v2.0
+red oak,Oak,,Indiana v2.0
+Red oak,Oak,,Indiana v2.0
+Red Oak,Oak,,Indiana v2.0
+red ok,Oak,,Illinois v2.0
+red ok,Oak,,Indiana v2.0
+red ok,Oak,,Southern MI_Detroit_ND_v1.0
+red pin oak,Oak,,Illinois v2.0
+red. oak,Oak,,Illinois v2.0
+ro,Oak,,Illinois v2.0
+RO,Oak,,Southern MI v1.6
+ro,Oak,,Southern MI v1.6
+ro,Oak,,Southern MI_Detroit_ND_v1.0
+RO,Oak,,Southern MI_Detroit_ND_v1.0
+ro oak,Oak,,Illinois v2.0
+ro: oak,Oak,,Illinois v2.0
+roak,Oak,,Illinois v2.0
+s oak,Oak,,Illinois v2.0
+s oak,Oak,,Indiana v2.0
+S oak,Oak,,Indiana v2.0
+S Oak,Oak,,Indiana v2.0
+s. oak,Oak,,Illinois v2.0
+s. oak,Oak,,Indiana v2.0
+S. oak,Oak,,Indiana v2.0
+S. Oak,Oak,,Indiana v2.0
+s.o.,Oak,,Illinois v2.0
+s.oak,Oak,,Indiana v2.0
+s___ oak,Oak,,Indiana v2.0
+sand oak,Oak,,Indiana v2.0
+scrub oak,Oak,,Illinois v2.0
+scrub oak,Oak,,Indiana v2.0
+Scrub oak,Oak,,Indiana v2.0
+scrub oak,Oak,,Southern MI v1.6
+scrubb oak,Oak,,Illinois v2.0
+scrubby oak,Oak,,Illinois v2.0
+scrubby wh oak,Oak,,Indiana v2.0
+shrub oak,Oak,,Indiana v2.0
+so,Oak,,Illinois v2.0
+soak,Oak,,Southern MI v1.6
+Solitary Oak,Oak,,Indiana v2.0
+sp oak,Oak,,Illinois v2.0
+sp oak,Oak,,Indiana v2.0
+Sp oak,Oak,,Indiana v2.0
+Sp Oak,Oak,,Indiana v2.0
+SP Oak,Oak,,Indiana v2.0
+sp. oak,Oak,,Illinois v2.0
+sp. oak,Oak,,Indiana v2.0
+Sp. Oak,Oak,,Indiana v2.0
+spa oak,Oak,,Indiana v2.0
+span o,Oak,,Illinois v2.0
+span oak,Oak,,Illinois v2.0
+span oak,Oak,,Indiana v2.0
+Span oak,Oak,,Indiana v2.0
+Span Oak,Oak,,Indiana v2.0
+span. oak,Oak,,Illinois v2.0
+span. oak,Oak,,Indiana v2.0
+Span. oak,Oak,,Indiana v2.0
+Span. Oak,Oak,,Indiana v2.0
+spanis oak,Oak,,Illinois v2.0
+spanish o,Oak,,Illinois v2.0
+spanish oak,Oak,,Illinois v2.0
+spanish oak,Oak,,Indiana v2.0
+Spanish Oak,Oak,,Indiana v2.0
+span-oak,Oak,,Illinois v2.0
+sph o,Oak,,Illinois v2.0
+sph oak,Oak,,Indiana v2.0
+Sph Oak,Oak,,Indiana v2.0
+spn o,Oak,,Illinois v2.0
+spn. oak,Oak,,Indiana v2.0
+SW,Oak,,Upper Midwest
+swamp black oak,Oak,,Illinois v2.0
+swamp oak,Oak,,Illinois v2.0
+swamp oak,Oak,,Indiana v2.0
+Swamp Oak,Oak,,Indiana v2.0
+swamp oak,Oak,,Southern MI_Detroit_ND_v1.0
+Swamp Oak,Oak,,Southern MI_Detroit_ND_v1.0
+swamp w oak,Oak,,Illinois v2.0
+Swamp white oak,Oak,,OH - vernacular from OH471 towns
+swampo,Oak,,Southern MI v1.6
+sweet oak,Oak,,Indiana v2.0
+swo,Oak,,Southern MI v1.6
+SWO,Oak,,Southern MI v1.6
+swp oak,Oak,,Indiana v2.0
+Swp oak,Oak,,Indiana v2.0
+Swp Oak,Oak,,Indiana v2.0
+Swp. Oak,Oak,,Indiana v2.0
+TO,Oak,,Upper Midwest
+turkey oak,Oak,,Illinois v2.0
+w  o,Oak,,Illinois v2.0
+w (slightly covered by finger) oak,Oak,,Illinois v2.0
+w o,Oak,,Illinois v2.0
+w o,Oak,,Indiana v2.0
+W O,Oak,,Indiana v2.0
+W O,Oak,,Southern MI_Detroit_ND_v1.0
+w o.,Oak,,Illinois v2.0
+W O.,Oak,,Southern MI_Detroit_ND_v1.0
+w oak,Oak,,Illinois v2.0
+w oak,Oak,,Indiana v2.0
+W oak,Oak,,Indiana v2.0
+W Oak,Oak,,Indiana v2.0
+W OAK,Oak,,Indiana v2.0
+w oak,Oak,,Southern MI_Detroit_ND_v1.0
+W oak,Oak,,Southern MI_Detroit_ND_v1.0
+W Oak,Oak,,Southern MI_Detroit_ND_v1.0
+W Oak stump,Oak,,Indiana v2.0
+w oaks,Oak,,Illinois v2.0
+w ok,Oak,,Illinois v2.0
+W ok,Oak,,Illinois v2.0
+w ok,Oak,,Indiana v2.0
+w oke,Oak,,Illinois v2.0
+W. O,Oak,,Southern MI_Detroit_ND_v1.0
+w. o.,Oak,,Illinois v2.0
+W. O.,Oak,,Indiana v2.0
+W. O.,Oak,,Southern MI_Detroit_ND_v1.0
+w. oak,Oak,,Illinois v2.0
+w. oak,Oak,,Indiana v2.0
+W. oak,Oak,,Indiana v2.0
+W. Oak,Oak,,Indiana v2.0
+W. Oak,Oak,,Southern MI_Detroit_ND_v1.0
+w.o,Oak,,Illinois v2.0
+w.o,Oak,,Southern MI_Detroit_ND_v1.0
+W.O,Oak,,Southern MI_Detroit_ND_v1.0
+w.o.,Oak,,Illinois v2.0
+W.O.,Oak,,Indiana v2.0
+w.o.,Oak,,Southern MI_Detroit_ND_v1.0
+W.o.,Oak,,Southern MI_Detroit_ND_v1.0
+W.O.,Oak,,Southern MI_Detroit_ND_v1.0
+W.Oak,Oak,,Indiana v2.0
+w0,Oak,,Southern MI v1.6
+water oak,Oak,,Illinois v2.0
+water oak,Oak,,Indiana v2.0
+wh oak,Oak,,Indiana v2.0
+Wh oak,Oak,,Indiana v2.0
+Wh Oak,Oak,,Indiana v2.0
+wh ok,Oak,,Indiana v2.0
+wh. o,Oak,,Indiana v2.0
+wh. oak,Oak,,Illinois v2.0
+wh. oak,Oak,,Indiana v2.0
+Wh. Oak,Oak,,Indiana v2.0
+whi oak,Oak,,Illinois v2.0
+whit oak,Oak,,Illinois v2.0
+white,Oak,,Southern MI v1.6
+white o,Oak,,Illinois v2.0
+white o,Oak,,Indiana v2.0
+White O,Oak,,Indiana v2.0
+white o,Oak,,Southern MI_Detroit_ND_v1.0
+white o.,Oak,,Illinois v2.0
+white oak,Oak,,Illinois v2.0
+White Oak,Oak,,Illinois v2.0
+white oak,Oak,,Indiana v2.0
+White oak,Oak,,Indiana v2.0
+White Oak,Oak,,Indiana v2.0
+whoak,Oak,,Illinois v2.0
+wht o,Oak,,Indiana v2.0
+willow oak,Oak,,Illinois v2.0
+wo,Oak,,Illinois v2.0
+wo,Oak,,Indiana v2.0
+WO,Oak,,Indiana v2.0
+WO,Oak,,Southern MI v1.6
+wo,Oak,,Southern MI v1.6
+wo,Oak,,Southern MI_Detroit_ND_v1.0
+Wo,Oak,,Southern MI_Detroit_ND_v1.0
+WO,Oak,,Southern MI_Detroit_ND_v1.0
+wo.,Oak,,Illinois v2.0
+woak,Oak,,Illinois v2.0
+woak,Oak,,Southern MI v1.6
+wok,Oak,,Illinois v2.0
+y oak,Oak,,Indiana v2.0
+Y oak,Oak,,Indiana v2.0
+Y Oak,Oak,,Indiana v2.0
+y. oak,Oak,,Indiana v2.0
+Y. Oak,Oak,,Indiana v2.0
+yellow oak,Oak,,Illinois v2.0
+yellow oak,Oak,,Indiana v2.0
+Yellow Oak,Oak,,Indiana v2.0
+yo,Oak,,Southern MI v1.6
+YO,Oak,,Southern MI v1.6
+yoak,Oak,,Southern MI v1.6
+yohk,Oak,,Southern MI v1.6
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,Northeast (1372)
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH - vernacular from OH471 towns
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+,Oak,,OH (471)
+ blue ash,other ash,,Ash
+AP,Other hardwood,,Upper Midwest
+appl,Other hardwood,,Southern MI v1.6
+apple tree,Other hardwood,,Illinois v2.0
+B Haw,Other hardwood,,Indiana v2.0
+b haw,Other hardwood,,Indiana v2.0
+Bay,Other hardwood,,Eastern Townships
+BC,Other hardwood,,Upper Midwest
+Bear oak,Other hardwood,,OH - vernacular from OH471 towns
+Black haw,Other hardwood,,OH - vernacular from OH471 towns
+Bot oak,Other hardwood,,OH - vernacular from OH471 towns
+box elm,Other hardwood,,Indiana v2.0
+buckhorn,Other hardwood,,Indiana v2.0
+Catalpa,Other hardwood,,Eastern Townships
+Cherry-leaved oak,Other hardwood,,OH - vernacular from OH471 towns
+coffee,Other hardwood,,Illinois v2.0
+coffee bean,Other hardwood,,Illinois v2.0
+coffee nut,Other hardwood,,Illinois v2.0
+coffee nut,Other hardwood,,Indiana v2.0
+Coffee nut,Other hardwood,,Indiana v2.0
+Coffee Nut,Other hardwood,,Indiana v2.0
+coffee tree,Other hardwood,,Indiana v2.0
+Coffee tree,Other hardwood,,Indiana v2.0
+Coffee tree,Other hardwood,,OH - vernacular from OH471 towns
+coffeenut,Other hardwood,,Illinois v2.0
+coffeenut,Other hardwood,,Indiana v2.0
+Coffeenut,Other hardwood,,Indiana v2.0
+Coffeenut,Other hardwood,,OH - vernacular from OH471 towns
+Coffeetree,Other hardwood,,Indiana v2.0
+coffenut,Other hardwood,,Illinois v2.0
+crab,Other hardwood,,Illinois v2.0
+crab aple,Other hardwood,,Indiana v2.0
+crab app,Other hardwood,,Illinois v2.0
+crab apple,Other hardwood,,Illinois v2.0
+crab apple,Other hardwood,,Indiana v2.0
+crab apple tree,Other hardwood,,Illinois v2.0
+crab apple tree,Other hardwood,,Indiana v2.0
+crab tree,Other hardwood,,Illinois v2.0
+crabapple,Other hardwood,,Illinois v2.0
+crabapple,Other hardwood,,Indiana v2.0
+Crabapple,Other hardwood,,Indiana v2.0
+crabapple tree,Other hardwood,,Indiana v2.0
+crabbtree,Other hardwood,,Illinois v2.0
+cucumber,Other hardwood,,Illinois v2.0
+Cucumber,Other hardwood,,OH - vernacular from OH471 towns
+Elm and beech twisted together,Other hardwood,,Indiana v2.0
+Hardwood undif.,Other hardwood,,Upper Midwest
+haw,Other hardwood,,Illinois v2.0
+haw,Other hardwood,,Indiana v2.0
+Haw,Other hardwood,,Indiana v2.0
+haw bush,Other hardwood,,Indiana v2.0
+haw tree,Other hardwood,,Illinois v2.0
+haw tree,Other hardwood,,Indiana v2.0
+hawbush,Other hardwood,,Indiana v2.0
+Hawbush,Other hardwood,,Indiana v2.0
+hawthorn,Other hardwood,,Illinois v2.0
+hawthorn,Other hardwood,,Indiana v2.0
+Hawthorn,Other hardwood,,Indiana v2.0
+hazel,Other hardwood,,Southern MI v1.6
+hazl,Other hardwood,,Southern MI v1.6
+HF,Other hardwood,,Upper Midwest
+HL,Other hardwood,,Upper Midwest
+Holly,Other hardwood,,Eastern Townships
+hoop ash,Other hardwood,,Illinois v2.0
+hoop ash,Other hardwood,,Indiana v2.0
+Hoop ash,Other hardwood,,Indiana v2.0
+Hoop Ash,Other hardwood,,Indiana v2.0
+Hoop ash,Other hardwood,,OH - vernacular from OH471 towns
+hoop ash,Other hardwood,,Southern MI_Detroit_ND_v1.0
+hoopash,Other hardwood,,Illinois v2.0
+hoopwood,Other hardwood,,Illinois v2.0
+hoopwood,Other hardwood,,Indiana v2.0
+Hoopwood,Other hardwood,,Indiana v2.0
+HT,Other hardwood,,Upper Midwest
+HW,Other hardwood,,Upper Midwest
+iron wood birch,Other hardwood,,Illinois v2.0
+KentuckyCoffee,Other hardwood,,Eastern Townships
+LA,Other hardwood,,Upper Midwest
+Leather wood,Other hardwood,,OH - vernacular from OH471 towns
+Magnolia,Other hardwood,,Eastern Townships
+MAGNOLIA,Other hardwood,,OH471_wiki
+MAGNOLIA_N,Other hardwood,,Northeast1372_wiki
+mahogany,Other hardwood,,Indiana v2.0
+MH,Other hardwood,,Upper Midwest
+MT,Other hardwood,,Upper Midwest
+nine bark,Other hardwood,,Indiana v2.0
+Ninebark,Other hardwood,,OH - vernacular from OH471 towns
+Other,Other hardwood,,Eastern Townships
+OTHER,Other hardwood,,OH471_wiki
+OTHER_N_12,Other hardwood,,Northeast1372_wiki
+p ash,Other hardwood,,Indiana v2.0
+P. ash,Other hardwood,,Indiana v2.0
+p.ash,Other hardwood,,Indiana v2.0
+PA,Other hardwood,,Upper Midwest
+parsimon,Other hardwood,,Indiana v2.0
+paw paw,Other hardwood,,Illinois v2.0
+paw paw,Other hardwood,,Indiana v2.0
+Paw paw,Other hardwood,,Indiana v2.0
+PawPaw,Other hardwood,,Eastern Townships
+pawpaw,Other hardwood,,Indiana v2.0
+Pawpaw,Other hardwood,,Indiana v2.0
+Pawpaw,Other hardwood,,OH - vernacular from OH471 towns
+peach tree,Other hardwood,,Illinois v2.0
+pecan,Other hardwood,,Illinois v2.0
+pecan,Other hardwood,,Indiana v2.0
+Pecan,Other hardwood,,Indiana v2.0
+pecon,Other hardwood,,Illinois v2.0
+pecon,Other hardwood,,Indiana v2.0
+percimmon,Other hardwood,,Indiana v2.0
+percimon,Other hardwood,,Illinois v2.0
+persemon,Other hardwood,,Illinois v2.0
+persimin,Other hardwood,,Illinois v2.0
+persimmen,Other hardwood,,Illinois v2.0
+Persimmon,Other hardwood,,Eastern Townships
+persimmon,Other hardwood,,Illinois v2.0
+persimmon,Other hardwood,,Indiana v2.0
+Persimmon,Other hardwood,,Indiana v2.0
+persimon,Other hardwood,,Illinois v2.0
+persimon,Other hardwood,,Indiana v2.0
+persimon tree,Other hardwood,,Illinois v2.0
+persinamon,Other hardwood,,Illinois v2.0
+persinomon,Other hardwood,,Illinois v2.0
+picann,Other hardwood,,Illinois v2.0
+piecan,Other hardwood,,Illinois v2.0
+pigeon oak,Other hardwood,,Indiana v2.0
+Pigeon oak,Other hardwood,,OH - vernacular from OH471 towns
+pissimon,Other hardwood,,Illinois v2.0
+PL,Other hardwood,,Upper Midwest
+plum,Other hardwood,,Illinois v2.0
+plum,Other hardwood,,Indiana v2.0
+Plum,Other hardwood,,Indiana v2.0
+plum,Other hardwood,,Southern MI v1.6
+plum bush,Other hardwood,,Indiana v2.0
+Plum Bush,Other hardwood,,Indiana v2.0
+plum tree,Other hardwood,,Indiana v2.0
+plum tree,Other hardwood,,Southern MI_Detroit_ND_v1.0
+plumb,Other hardwood,,Illinois v2.0
+plumb,Other hardwood,,Indiana v2.0
+Plumb,Other hardwood,,Indiana v2.0
+plumb bush,Other hardwood,,Illinois v2.0
+plumb bush,Other hardwood,,Indiana v2.0
+Plumb Bush,Other hardwood,,Indiana v2.0
+plumb tree,Other hardwood,,Illinois v2.0
+plumb tree,Other hardwood,,Indiana v2.0
+plumbtree,Other hardwood,,Indiana v2.0
+plumbush,Other hardwood,,Indiana v2.0
+Plumbush,Other hardwood,,Indiana v2.0
+pocon,Other hardwood,,Illinois v2.0
+possimmon,Other hardwood,,Illinois v2.0
+possimon,Other hardwood,,Illinois v2.0
+presimen,Other hardwood,,Illinois v2.0
+Q ash,Other hardwood,,Indiana v2.0
+Q. ash,Other hardwood,,Indiana v2.0
+quack apple,Other hardwood,,Southern MI v1.6
+quaking ash,Other hardwood,,Indiana v2.0
+Quaking ash,Other hardwood,,Indiana v2.0
+Quaking Ash,Other hardwood,,Indiana v2.0
+r bd,Other hardwood,,Illinois v2.0
+r bud,Other hardwood,,Illinois v2.0
+R Bud,Other hardwood,,Indiana v2.0
+r haw,Other hardwood,,Indiana v2.0
+R haw,Other hardwood,,Indiana v2.0
+r. bud,Other hardwood,,Illinois v2.0
+r. haw,Other hardwood,,Indiana v2.0
+R. Haw,Other hardwood,,Indiana v2.0
+rbud,Other hardwood,,Southern MI v1.6
+rd bud,Other hardwood,,Illinois v2.0
+red bud,Other hardwood,,Illinois v2.0
+red bud,Other hardwood,,Indiana v2.0
+Red bud,Other hardwood,,Indiana v2.0
+Red Bud,Other hardwood,,Indiana v2.0
+Red bud,Other hardwood,,OH - vernacular from OH471 towns
+red haw,Other hardwood,,Illinois v2.0
+red haw,Other hardwood,,Indiana v2.0
+Red haw,Other hardwood,,Indiana v2.0
+Red Haw,Other hardwood,,Indiana v2.0
+Red Haw tree,Other hardwood,,Southern MI_Detroit_ND_v1.0
+Red Hawthorn,Other hardwood,,Indiana v2.0
+Redbud,Other hardwood,,Eastern Townships
+redbud,Other hardwood,,Illinois v2.0
+redbud,Other hardwood,,Indiana v2.0
+Redbud,Other hardwood,,Indiana v2.0
+red-bud,Other hardwood,,Indiana v2.0
+RH,Other hardwood,,Upper Midwest
+Rose.Tree,Other hardwood,,Upper Midwest
+safafrafs,Other hardwood,,Indiana v2.0
+safrfras,Other hardwood,,Illinois v2.0
+safsafras,Other hardwood,,Illinois v2.0
+safsafras,Other hardwood,,Indiana v2.0
+Safsafras,Other hardwood,,Indiana v2.0
+Safsafras,Other hardwood,,Southern MI_Detroit_ND_v1.0
+safsafrass,Other hardwood,,Illinois v2.0
+Sapafas,Other hardwood,,Indiana v2.0
+Sapafrap,Other hardwood,,Indiana v2.0
+sapafras,Other hardwood,,Indiana v2.0
+Sapafras,Other hardwood,,Indiana v2.0
+Sapapap,Other hardwood,,Indiana v2.0
+sapapas,Other hardwood,,Indiana v2.0
+sapapras,Other hardwood,,Indiana v2.0
+sas,Other hardwood,,Southern MI v1.6
+sasafras,Other hardwood,,Illinois v2.0
+sasafras,Other hardwood,,Indiana v2.0
+Sasafras,Other hardwood,,Indiana v2.0
+sasafras,Other hardwood,,Southern MI_Detroit_ND_v1.0
+sasafrass,Other hardwood,,Illinois v2.0
+sasafrass,Other hardwood,,Indiana v2.0
+sasasfras,Other hardwood,,Illinois v2.0
+sasfras,Other hardwood,,Illinois v2.0
+sasfras,Other hardwood,,Indiana v2.0
+sass,Other hardwood,,Illinois v2.0
+sassafra,Other hardwood,,Illinois v2.0
+sassafras,Other hardwood,,Illinois v2.0
+sassafras,Other hardwood,,Indiana v2.0
+Sassafras,Other hardwood,,Indiana v2.0
+sassafras,Other hardwood,,Southern MI_Detroit_ND_v1.0
+sassafras tree,Other hardwood,,Illinois v2.0
+sassafrass,Other hardwood,,Illinois v2.0
+sassafrass,Other hardwood,,Indiana v2.0
+Sassafrass,Other hardwood,,Indiana v2.0
+sassfrass,Other hardwood,,Illinois v2.0
+Sassfrass,Other hardwood,,Indiana v2.0
+Service,Other hardwood,,OH - vernacular from OH471 towns
+Service Bush,Other hardwood,,Indiana v2.0
+Service tree,Other hardwood,,OH - vernacular from OH471 towns
+Serviceberry,Other hardwood,,OH - vernacular from OH471 towns
+servicebrry,Other hardwood,,Illinois v2.0
+shad,Other hardwood,,Upper Midwest
+simin,Other hardwood,,Illinois v2.0
+simmon,Other hardwood,,Illinois v2.0
+simmon tree,Other hardwood,,Illinois v2.0
+Sinkwood,Other hardwood,,OH - vernacular from OH471 towns
+Sourwood,Other hardwood,,Eastern Townships
+Spice wood,Other hardwood,,OH - vernacular from OH471 towns
+Sugar oak,Other hardwood,,OH - vernacular from OH471 towns
+Sumach,Other hardwood,,OH - vernacular from OH471 towns
+Sumack,Other hardwood,,Indiana v2.0
+Sweet Thorn,Other hardwood,,Indiana v2.0
+TH,Other hardwood,,Upper Midwest
+thorn,Other hardwood,,Illinois v2.0
+thorn,Other hardwood,,Indiana v2.0
+Thorn,Other hardwood,,Indiana v2.0
+thorn,Other hardwood,,Southern MI v1.6
+THORN,Other hardwood,,Southern MI v1.6
+thorn bush,Other hardwood,,Indiana v2.0
+thorn plum,Other hardwood,,Illinois v2.0
+thorn tree,Other hardwood,,Illinois v2.0
+Thornbrush,Other hardwood,,Indiana v2.0
+thornbush,Other hardwood,,Illinois v2.0
+thornbush,Other hardwood,,Indiana v2.0
+thorny tree,Other hardwood,,Illinois v2.0
+TN,Other hardwood,,Upper Midwest
+w haw,Other hardwood,,Indiana v2.0
+W haw,Other hardwood,,Indiana v2.0
+w thorn,Other hardwood,,Illinois v2.0
+w thorn,Other hardwood,,Indiana v2.0
+W Thorn,Other hardwood,,Indiana v2.0
+w. thorn,Other hardwood,,Indiana v2.0
+W. Thorn,Other hardwood,,Indiana v2.0
+WH,Other hardwood,,Upper Midwest
+white haw,Other hardwood,,Indiana v2.0
+White serviceberry,Other hardwood,,OH - vernacular from OH471 towns
+white thorn,Other hardwood,,Illinois v2.0
+white thorn,Other hardwood,,Indiana v2.0
+White Thorn,Other hardwood,,Indiana v2.0
+white thorn bush,Other hardwood,,Illinois v2.0
+YC,Other hardwood,,Upper Midwest
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,Northeast (1372)
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH - vernacular from OH471 towns
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+,Other hardwood,,OH (471)
+cyn,Pine,,Southern MI v1.6
+cyp,Pine,,Southern MI v1.6
+dead pine,Pine,,Southern MI v1.6
+DP,Pine,,Upper Midwest
+GP,Pine,,Upper Midwest
+HP,Pine,,Upper Midwest
+n pine,Pine,,Upper Midwest
+np,Pine,,Upper Midwest
+p,Pine,,Southern MI v1.6
+P,Pine,,Southern MI v1.6
+PI,Pine,,Upper Midwest
+pine,Pine,,Illinois v2.0
+pine,Pine,,Indiana v2.0
+Pine,Pine,,Indiana v2.0
+pine,Pine,,Southern MI v1.6
+Pine,Pine,,Upper Midwest
+pine,Pine,,Upper Midwest
+Pines,Pine,,Eastern Townships
+PINES,Pine,,OH471_wiki
+PINES_N_11,Pine,,Northeast1372_wiki
+Pitch Pine,Pine,,Indiana v2.0
+pitch pine,Pine,,Southern MI v1.6
+PN,Pine,,Upper Midwest
+PP,Pine,,Upper Midwest
+PS,Pine,,Upper Midwest
+QP,Pine,,Upper Midwest
+SC,Pine,,Upper Midwest
+SZ,Pine,,Upper Midwest
+TP,Pine,,Upper Midwest
+UP,Pine,,Upper Midwest
+w pine,Pine,,Indiana v2.0
+WP,Pine,,Southern MI v1.6
+wp,Pine,,Southern MI v1.6
+y pine,Pine,,Indiana v2.0
+Y pine,Pine,,Indiana v2.0
+Yellow Pine,Pine,,Indiana v2.0
+yp,Pine,,Southern MI v1.6
+YP,Pine,,Southern MI v1.6
+YP,Pine,,Upper Midwest
+yp,Pine,,Upper Midwest
+ypine,Pine,,Southern MI v1.6
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,Northeast (1372)
+,Pine,,OH - vernacular from OH471 towns
+,Pine,,OH - vernacular from OH471 towns
+,Pine,,OH - vernacular from OH471 towns
+,Pine,,OH (471)
+,Pine,,OH (471)
+,Pine,,OH (471)
+apsen,Poplar,,Indiana v2.0
+AS,Poplar,,Upper Midwest
+asg,Poplar,,Southern MI v1.6
+asp,Poplar,,Illinois v2.0
+Asp,Poplar,,OH - vernacular from OH471 towns
+ASP,Poplar,,Southern MI v1.6
+asp,Poplar,,Southern MI v1.6
+asp,Poplar,,Upper Midwest
+ASP,Poplar,,Upper Midwest
+aspan,Poplar,,Southern MI_Detroit_ND_v1.0
+aspen,Poplar,,Illinois v2.0
+aspen,Poplar,,Indiana v2.0
+Aspen,Poplar,,Indiana v2.0
+Aspen,Poplar,,OH - vernacular from OH471 towns
+aspen,Poplar,,Southern MI v1.6
+aspen,Poplar,,Southern MI_Detroit_ND_v1.0
+aspen or quaking asp,Poplar,,Indiana v2.0
+aspentree,Poplar,,Indiana v2.0
+aspin,Poplar,,Illinois v2.0
+aspin,Poplar,,Indiana v2.0
+Aspin,Poplar,,Indiana v2.0
+Aspin,Poplar,,OH - vernacular from OH471 towns
+aspin,Poplar,,Southern MI_Detroit_ND_v1.0
+Aspin,Poplar,,Southern MI_Detroit_ND_v1.0
+BG,Poplar,,Upper Midwest
+bpop,Poplar,,Upper Midwest
+cot,Poplar,,Southern MI v1.6
+cotenwood,Poplar,,Illinois v2.0
+coten-wood,Poplar,,Illinois v2.0
+COTN,Poplar,,Southern MI v1.6
+cotn,Poplar,,Southern MI v1.6
+coton wood,Poplar,,Illinois v2.0
+cotonwood,Poplar,,Illinois v2.0
+cottenwood,Poplar,,Illinois v2.0
+cotton,Poplar,,Illinois v2.0
+cotton,Poplar,,Indiana v2.0
+cotton,Poplar,,Southern MI v1.6
+cotton,Poplar,,Southern MI_Detroit_ND_v1.0
+cotton tree,Poplar,,Illinois v2.0
+Cotton tree,Poplar,,Indiana v2.0
+cotton tree,Poplar,,Southern MI_Detroit_ND_v1.0
+Cotton Tree,Poplar,,Southern MI_Detroit_ND_v1.0
+cotton wood,Poplar,,Illinois v2.0
+cotton wood,Poplar,,Southern MI_Detroit_ND_v1.0
+cotton wood tree,Poplar,,Illinois v2.0
+cottond,Poplar,,Indiana v2.0
+Cottond,Poplar,,Southern MI_Detroit_ND_v1.0
+Cottond.,Poplar,,Southern MI_Detroit_ND_v1.0
+Cottontree,Poplar,,Indiana v2.0
+cottonw,Poplar,,Indiana v2.0
+cottonwd,Poplar,,Indiana v2.0
+cottonwood,Poplar,,Illinois v2.0
+cottonwood,Poplar,,Indiana v2.0
+Cottonwood,Poplar,,Indiana v2.0
+cottonwood,Poplar,,Southern MI_Detroit_ND_v1.0
+Cottonwood,Poplar,,Southern MI_Detroit_ND_v1.0
+Cottowd,Poplar,,Indiana v2.0
+popple,Poplar,,Illinois v2.0
+q.asp,Poplar,,Southern MI v1.6
+qasp,Poplar,,Southern MI v1.6
+quakeing asp,Poplar,,Illinois v2.0
+quaking asp,Poplar,,Illinois v2.0
+quaking asp,Poplar,,Indiana v2.0
+Quaking Asp,Poplar,,Indiana v2.0
+quaking aspen,Poplar,,Indiana v2.0
+WJ,Poplar,,Upper Midwest
+,Poplar,,Northeast (1372)
+,Poplar,,Northeast (1372)
+,Poplar,,Northeast (1372)
+,Poplar,,Northeast (1372)
+,Poplar,,Northeast (1372)
+,Poplar,,Northeast (1372)
+,Poplar,,OH - vernacular from OH471 towns
+,Poplar,,OH (471)
+,Poplar,,OH (471)
+Black poplar,Poplar/tulip poplar,,Indiana v2.0
+North poplar,Poplar/tulip poplar,,Indiana v2.0
+pop,Poplar/tulip poplar,,Indiana v2.0
+POP,Poplar/tulip poplar,,Southern MI v1.6
+pop,Poplar/tulip poplar,,Southern MI v1.6
+Popl,Poplar/tulip poplar,,Indiana v2.0
+popl,Poplar/tulip poplar,,Southern MI v1.6
+POPL,Poplar/tulip poplar,,Southern MI v1.6
+poplar,Poplar/tulip poplar,,Illinois v2.0
+poplar,Poplar/tulip poplar,,Indiana v2.0
+Poplar,Poplar/tulip poplar,,Indiana v2.0
+poplar,Poplar/tulip poplar,,Southern MI v1.6
+poplar,Poplar/tulip poplar,,Southern MI_Detroit_ND_v1.0
+Poplar,Poplar/tulip poplar,,Southern MI_Detroit_ND_v1.0
+Poplar,Poplar/tulip poplar,,Upper Midwest
+Poplars,Poplar/tulip poplar,,Eastern Townships
+POPLARS,Poplar/tulip poplar,,OH471_wiki
+POPLARS_N_,Poplar/tulip poplar,,Northeast1372_wiki
+popler,Poplar/tulip poplar,,Illinois v2.0
+Poplr,Poplar/tulip poplar,,Southern MI_Detroit_ND_v1.0
+popplar,Poplar/tulip poplar,,Illinois v2.0
+Popr,Poplar/tulip poplar,,Indiana v2.0
+popular,Poplar/tulip poplar,,Indiana v2.0
+popular,Poplar/tulip poplar,,Southern MI v1.6
+w poplar,Poplar/tulip poplar,,Illinois v2.0
+,Poplar/tulip poplar,,Northeast (1372)
+,Poplar/tulip poplar,,OH (471)
+,Poplar/tulip poplar,,OH (471)
+BS,Spruce,,Upper Midwest
+MS,Spruce,,Upper Midwest
+sp,Spruce,,Southern MI v1.6
+SP,Spruce,,Southern MI v1.6
+SP,Spruce,,Upper Midwest
+sp,Spruce,,Upper Midwest
+spr,Spruce,,Southern MI v1.6
+SPR,Spruce,,Southern MI v1.6
+spr,Spruce,,Upper Midwest
+SPR,Spruce,,Upper Midwest
+spruce,Spruce,,Southern MI v1.6
+Spruce,Spruce,,Upper Midwest
+Spruces,Spruce,,Eastern Townships
+SPRUCES,Spruce,,OH471_wiki
+SPRUCES_N_,Spruce,,Northeast1372_wiki
+,Spruce,,Northeast (1372)
+,Spruce,,Northeast (1372)
+,Spruce,,Northeast (1372)
+,Spruce or Tamarack,,Northeast (1372)
+s gum,Sweet gum,,Illinois v2.0
+s gum,Sweet gum,,Indiana v2.0
+S Gum,Sweet gum,,Indiana v2.0
+s. gum,Sweet gum,,Illinois v2.0
+S. Gum,Sweet gum,,Indiana v2.0
+sw gum,Sweet gum,,Illinois v2.0
+sweet gum,Sweet gum,,Illinois v2.0
+sweet gum,Sweet gum,,Indiana v2.0
+Sweet Gum,Sweet gum,,Indiana v2.0
+SweetGum,Sweet gum,,Eastern Townships
+Swt Gum,Sweet gum,,Indiana v2.0
+swt. gum,Sweet gum,,Indiana v2.0
+,Sweet gum,,OH - vernacular from OH471 towns
+,Sweet gum,,OH (471)
+BT,Sycamore,,Upper Midwest
+button wood,Sycamore,,Illinois v2.0
+Buttonwood,Sycamore,,Eastern Townships
+buttonwood,Sycamore,,Illinois v2.0
+buttonwood,Sycamore,,Indiana v2.0
+BUTTONWOOD,Sycamore,,Northeast1372_wiki
+BUTTONWOOD,Sycamore,,OH471_wiki
+sicamore,Sycamore,,Illinois v2.0
+sickamore,Sycamore,,Illinois v2.0
+SY,Sycamore,,Upper Midwest
+SYC,Sycamore,,Southern MI v1.6
+syc,Sycamore,,Southern MI v1.6
+syc,Sycamore,,Southern MI_Detroit_ND_v1.0
+Syc,Sycamore,,Southern MI_Detroit_ND_v1.0
+syc.,Sycamore,,Illinois v2.0
+Syc.,Sycamore,,Southern MI_Detroit_ND_v1.0
+sycam,Sycamore,,Illinois v2.0
+sycamore,Sycamore,,Illinois v2.0
+sycamore,Sycamore,,Indiana v2.0
+Sycamore,Sycamore,,Indiana v2.0
+sycamore,Sycamore,,Southern MI_Detroit_ND_v1.0
+Sycamore,Sycamore,,Southern MI_Detroit_ND_v1.0
+Sycamore,Sycamore,,Upper Midwest
+sychamore,Sycamore,,Illinois v2.0
+sychimore,Sycamore,,Southern MI_Detroit_ND_v1.0
+syck,Sycamore,,Illinois v2.0
+syckamor,Sycamore,,Illinois v2.0
+syckamore,Sycamore,,Illinois v2.0
+syckomory,Sycamore,,Illinois v2.0
+sycmore,Sycamore,,Southern MI_Detroit_ND_v1.0
+Sycr.,Sycamore,,Southern MI_Detroit_ND_v1.0
+YS,Sycamore,,Upper Midwest
+,Sycamore,,Northeast (1372)
+,Sycamore,,Northeast (1372)
+,Sycamore,,Northeast (1372)
+,Sycamore,,OH - vernacular from OH471 towns
+,Sycamore,,OH - vernacular from OH471 towns
+,Sycamore,,OH (471)
+,Sycamore,,OH (471)
+cypress,Tamarack,,Southern MI v1.6
+Cypress,Tamarack,,Southern MI_Detroit_ND_v1.0
+cyprus,Tamarack,,Southern MI_Detroit_ND_v1.0
+dead tam hump,Tamarack,,Indiana v2.0
+Swp. Tamarack,Tamarack,,Indiana v2.0
+ta,Tamarack,,Tamarack
+TA,Tamarack,,Upper Midwest
+tam,Tamarack,,Indiana v2.0
+Tam,Tamarack,,Southern MI v1.6
+TAM,Tamarack,,Southern MI v1.6
+tam,Tamarack,,Southern MI v1.6
+tam,Tamarack,,Upper Midwest
+TAM,Tamarack,,Upper Midwest
+tamarac,Tamarack,,Indiana v2.0
+Tamarac,Tamarack,,Indiana v2.0
+Tamarack,Tamarack,,Eastern Townships
+tamarack,Tamarack,,Indiana v2.0
+Tamarack,Tamarack,,Indiana v2.0
+TAMARACK,Tamarack,,OH471_wiki
+tamarack,Tamarack,,Southern MI_Detroit_ND_v1.0
+Tamarack,Tamarack,,Upper Midwest
+TAMARACK_N,Tamarack,,Northeast1372_wiki
+tamarak,Tamarack,,Indiana v2.0
+tamerac,Tamarack,,Indiana v2.0
+Tamerac,Tamarack,,Indiana v2.0
+tamerach,Tamarack,,Indiana v2.0
+tamerack,Tamarack,,Indiana v2.0
+Tamerack,Tamarack,,Indiana v2.0
+tamerack,Tamarack,,Southern MI_Detroit_ND_v1.0
+tamk,Tamarack,,Indiana v2.0
+tamK,Tamarack,,Indiana v2.0
+Tamk,Tamarack,,Indiana v2.0
+TamK,Tamarack,,Indiana v2.0
+TAmk,Tamarack,,Indiana v2.0
+tamk,Tamarack,,Southern MI_Detroit_ND_v1.0
+,Tamarack,,Northeast (1372)
+,Tamarack,,Northeast (1372)
+LIRIODENDR,Tulip poplar,,Northeast1372_wiki
+LIRIODENDR,Tulip poplar,,OH471_wiki
+Liriodendron,Tulip poplar,,Eastern Townships
+Tulip poplar,Tulip poplar,,OH - vernacular from OH471 towns
+Tulip poplar,Tulip poplar,,Upper Midwest
+w wood,Tulip poplar,,Illinois v2.0
+w wood,Tulip poplar,,Indiana v2.0
+W Wood,Tulip poplar,,Indiana v2.0
+w. wood,Tulip poplar,,Illinois v2.0
+w. wood,Tulip poplar,,Indiana v2.0
+W. Wood,Tulip poplar,,Indiana v2.0
+W.wood,Tulip poplar,,Indiana v2.0
+white wood,Tulip poplar,,Indiana v2.0
+whitewood,Tulip poplar,,Indiana v2.0
+Whitewood,Tulip poplar,,Indiana v2.0
+whitewood,Tulip poplar,,Southern MI_Detroit_ND_v1.0
+wtwd,Tulip poplar,,Southern MI v1.6
+WTWD,Tulip poplar,,Southern MI v1.6
+ww,Tulip poplar,,Southern MI v1.6
+WW,Tulip poplar,,Southern MI v1.6
+WW,Tulip poplar,,Upper Midwest
+,Tulip poplar,,Northeast (1372)
+,Tulip poplar,,Northeast (1372)
+0,Unknown tree,,Upper Midwest
+9999,Unknown tree,,Southern MI v1.6
+9999,Unknown tree,,Upper Midwest
+88888,Unknown tree,,Illinois v2.0
+88888,Unknown tree,,Indiana v2.0
+88888,Unknown tree,,Southern MI_Detroit_ND_v1.0
+99999,Unknown tree,,Illinois v2.0
+99999,Unknown tree,,Indiana v2.0
+AM,Unknown tree,,Upper Midwest
+b,Unknown tree,,Illinois v2.0
+b,Unknown tree,,Indiana v2.0
+B,Unknown tree,,Indiana v2.0
+b,Unknown tree,,Southern MI_Detroit_ND_v1.0
+b 88888,Unknown tree,,Illinois v2.0
+B 99999,Unknown tree,,Indiana v2.0
+B G,Unknown tree,,Indiana v2.0
+b.,Unknown tree,,Indiana v2.0
+B. tree,Unknown tree,,Indiana v2.0
+black,Unknown tree,,Illinois v2.0
+black,Unknown tree,,Indiana v2.0
+black 88888,Unknown tree,,Illinois v2.0
+black 99999,Unknown tree,,Indiana v2.0
+bottom tree,Unknown tree,,Illinois v2.0
+creek,Unknown tree,,Southern MI v1.6
+E,Unknown tree,,Indiana v2.0
+GB,Unknown tree,,Upper Midwest
+h sours,Unknown tree,,Illinois v2.0
+h. saures,Unknown tree,,Illinois v2.0
+hon sours,Unknown tree,,Illinois v2.0
+Packawn,Unknown tree,,Indiana v2.0
+precon,Unknown tree,,Illinois v2.0
+Precon,Unknown tree,,Indiana v2.0
+red,Unknown tree,,Illinois v2.0
+s tree,Unknown tree,,Illinois v2.0
+sc. species,Unknown tree,,Illinois v2.0
+Scrub,Unknown tree,,Indiana v2.0
+THORN?,Unknown tree,,Southern MI v1.6
+tree,Unknown tree,,Illinois v2.0
+w,Unknown tree,,Illinois v2.0
+w,Unknown tree,,Indiana v2.0
+W,Unknown tree,,Indiana v2.0
+w,Unknown tree,,Southern MI v1.6
+w (99999),Unknown tree,,Illinois v2.0
+W ____,Unknown tree,,Indiana v2.0
+w 88888,Unknown tree,,Illinois v2.0
+w 99999,Unknown tree,,Illinois v2.0
+w 99999,Unknown tree,,Indiana v2.0
+w.,Unknown tree,,Illinois v2.0
+W.,Unknown tree,,Indiana v2.0
+w. (88888),Unknown tree,,Illinois v2.0
+wd,Unknown tree,,Southern MI v1.6
+WD,Unknown tree,,Upper Midwest
+whaz,Unknown tree,,Southern MI v1.6
+white,Unknown tree,,Illinois v2.0
+White ___,Unknown tree,,Indiana v2.0
+white 99999,Unknown tree,,Indiana v2.0
+zron,Unknown tree,,Upper Midwest
+b wal,Walnut,,Illinois v2.0
+b waln,Walnut,,Southern MI v1.6
+b walnut,Walnut,,Illinois v2.0
+b walnut,Walnut,,Indiana v2.0
+B walnut,Walnut,,Indiana v2.0
+B Walnut,Walnut,,Indiana v2.0
+b walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+B Walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+b walt,Walnut,,Illinois v2.0
+b walt,Walnut,,Southern MI_Detroit_ND_v1.0
+B walt,Walnut,,Southern MI_Detroit_ND_v1.0
+B Walt,Walnut,,Southern MI_Detroit_ND_v1.0
+b watt,Walnut,,Illinois v2.0
+b. walnut,Walnut,,Illinois v2.0
+b. walnut,Walnut,,Indiana v2.0
+B. Walnut,Walnut,,Indiana v2.0
+B. walt,Walnut,,Southern MI_Detroit_ND_v1.0
+B. Walt.,Walnut,,Southern MI_Detroit_ND_v1.0
+b.waln,Walnut,,Southern MI v1.6
+balnut,Walnut,,Illinois v2.0
+bk walnut,Walnut,,Indiana v2.0
+bl walnut,Walnut,,Illinois v2.0
+bl walnut,Walnut,,Indiana v2.0
+Bl Walnut,Walnut,,Indiana v2.0
+Bl. Walnut,Walnut,,Indiana v2.0
+black walnut,Walnut,,Illinois v2.0
+black walnut,Walnut,,Indiana v2.0
+Black walnut,Walnut,,Indiana v2.0
+Black Walnut,Walnut,,Indiana v2.0
+Black walt.,Walnut,,Southern MI_Detroit_ND_v1.0
+blk walnut,Walnut,,Illinois v2.0
+blk walnut,Walnut,,Indiana v2.0
+Blk Walnut,Walnut,,Indiana v2.0
+blwaln,Walnut,,Southern MI v1.6
+but,Walnut,,Southern MI v1.6
+BUT,Walnut,,Southern MI v1.6
+Butnut,Walnut,,OH - vernacular from OH471 towns
+butter nut,Walnut,,Illinois v2.0
+butternut,Walnut,,Illinois v2.0
+butternut,Walnut,,Indiana v2.0
+Butternut,Walnut,,Indiana v2.0
+butternut,Walnut,,Southern MI_Detroit_ND_v1.0
+Butternut,Walnut,,Southern MI_Detroit_ND_v1.0
+bw,Walnut,,Illinois v2.0
+BW,Walnut,,Southern MI v1.6
+bwal,Walnut,,Southern MI v1.6
+BWALN,Walnut,,Southern MI v1.6
+bwaln,Walnut,,Southern MI v1.6
+bwalnut,Walnut,,Illinois v2.0
+forked B Walnut,Walnut,,Indiana v2.0
+Juglans,Walnut,,Eastern Townships
+JUGLANS_,Walnut,,OH471_wiki
+JUGLANS__N,Walnut,,Northeast1372_wiki
+w walnt,Walnut,,Illinois v2.0
+w walnut,Walnut,,Illinois v2.0
+w walnut,Walnut,,Indiana v2.0
+W walnut,Walnut,,Indiana v2.0
+W Walnut,Walnut,,Indiana v2.0
+w walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+W Walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+W Walt,Walnut,,Indiana v2.0
+w. nut,Walnut,,Illinois v2.0
+w. walnut,Walnut,,Illinois v2.0
+w. walnut,Walnut,,Indiana v2.0
+W. walnut,Walnut,,Indiana v2.0
+W. Walnut,Walnut,,Indiana v2.0
+W. Walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+W.waln,Walnut,,Southern MI v1.6
+w.waln,Walnut,,Southern MI v1.6
+wal,Walnut,,Southern MI v1.6
+waln,Walnut,,Southern MI v1.6
+walnut,Walnut,,Illinois v2.0
+walnut,Walnut,,Indiana v2.0
+Walnut,Walnut,,Indiana v2.0
+walnut,Walnut,,Southern MI v1.6
+walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+Walnut,Walnut,,Southern MI_Detroit_ND_v1.0
+Walnut,Walnut,,Upper Midwest
+Walnut bush,Walnut,,Indiana v2.0
+walt,Walnut,,Illinois v2.0
+watt,Walnut,,Southern MI_Detroit_ND_v1.0
+wh walnut,Walnut,,Indiana v2.0
+Wh walnut,Walnut,,Indiana v2.0
+Wh. Walnut,Walnut,,Indiana v2.0
+white walnut,Walnut,,Illinois v2.0
+white walnut,Walnut,,Indiana v2.0
+White Walnut,Walnut,,Indiana v2.0
+WWAL,Walnut,,Southern MI v1.6
+wwal,Walnut,,Southern MI v1.6
+wwalm,Walnut,,Southern MI v1.6
+wwaln,Walnut,,Southern MI v1.6
+wwrln,Walnut,,Southern MI v1.6
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,Northeast (1372)
+,Walnut,,OH - vernacular from OH471 towns
+,Walnut,,OH - vernacular from OH471 towns
+,Walnut,,OH - vernacular from OH471 towns
+,Walnut,,OH - vernacular from OH471 towns
+,Walnut,,OH (471)
+,Walnut,,OH (471)
+,Walnut,,OH (471)
+,Walnut,,OH (471)
+,Walnut,,OH (471)
+,Walnut,,OH (471)
+QQ,Water,,Upper Midwest
+SG,Water,,Upper Midwest
+swamp,Water,,Southern MI v1.6
+water,Water,,Illinois v2.0
+Water,Water,,Illinois v2.0
+water,Water,,Indiana v2.0
+Water,Water,,Indiana v2.0
+Water,Water,,Southern MI_Detroit_ND_v1.0
+KW,Willow,,Upper Midwest
+red willow,Willow,,Indiana v2.0
+Red willow,Willow,,Indiana v2.0
+RW,Willow,,Upper Midwest
+Small Willow,Willow,,Indiana v2.0
+swamp willow,Willow,,Illinois v2.0
+swamp willow,Willow,,Indiana v2.0
+Swamp Willow,Willow,,Indiana v2.0
+Water Willow,Willow,,Indiana v2.0
+WI,Willow,,Upper Midwest
+WIL,Willow,,Southern MI v1.6
+wil,Willow,,Southern MI v1.6
+willow,Willow,,Illinois v2.0
+willow,Willow,,Indiana v2.0
+Willow,Willow,,Indiana v2.0
+WIllow,Willow,,Indiana v2.0
+WILLOW,Willow,,Indiana v2.0
+willow,Willow,,Southern MI v1.6
+willow,Willow,,Southern MI_Detroit_ND_v1.0
+Willow,Willow,,Southern MI_Detroit_ND_v1.0
+Willow,Willow,,Upper Midwest
+Willow thicket,Willow,,Indiana v2.0
+WV,Willow,,Upper Midwest
+YW,Willow,,Upper Midwest
+,Willow,,Northeast (1372)
+,Willow,,OH - vernacular from OH471 towns
+,Willow,,OH (471)
+ remon,,,Ironwood
