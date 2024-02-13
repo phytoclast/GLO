@@ -14,7 +14,7 @@ rackCorners <- function(pts, dataset, treenames, diams, dists, x, y){
       distz = pts[,dists[i]]}
     pts0 = data.frame(
       dataset = dataset,
-      id = pts$id,
+      id = NA,
       treeseq = i,
       tname = pts[,treenames[i]],
       diam = diam,
@@ -24,6 +24,7 @@ rackCorners <- function(pts, dataset, treenames, diams, dists, x, y){
     )
     if(i==1){pts1=pts0}else{pts1=rbind(pts1,pts0)}
   }
+  pts1 <- mutate(pts1, id = paste(x,y))
   return(pts1)
 }
 
@@ -37,7 +38,7 @@ y = 'y_alb'
 pts.WI <- rackCorners(pts, dataset, treenames, diams, dists, x, y)
 
 pts <- read.csv('data/msb-paleon.27.0/PLS_Indiana_trees_Level0_v1.0.csv')
-treenames <- c("L3_tree1","L3_tree2","L3_tree3","L3_tree4")
+treenames <- c("L1_tree1","L1_tree2","L1_tree3","L1_tree4")
 diams <- c("diameter","diameter2","diameter3","diameter4")
 dists <- c("chainstree","chainstree2","chainstree3","chainstree4")
 dataset='IN'
@@ -46,7 +47,7 @@ y = 'y'
 pts.IN <-  rackCorners(pts, dataset, treenames, diams, dists, x, y)
 
 pts <- read.csv('data/msb-paleon.28.0/PLS_Illinois_trees_Level0_v1.0.csv')
-treenames <- c("L3_tree1","L3_tree2","L3_tree3","L3_tree4")
+treenames <- c("L1_tree1","L1_tree2","L1_tree3","L1_tree4")
 diams <- c("diameter","diameter2","diameter3","diameter4")
 dists <- c("chainstree","chainstree2","chainstree3","chainstree4")
 dataset='IL'
@@ -55,7 +56,7 @@ y = 'y'
 pts.IL <-  rackCorners(pts, dataset, treenames, diams, dists, x, y)
 
 pts <- read.csv('data/msb-paleon.29.0/PLS_SoutheasternMichigan_trees_Level0_v1.0.csv')
-treenames <- c("L3_tree1","L3_tree2","L3_tree3","L3_tree4")
+treenames <- c("L1_tree1","L1_tree2","L1_tree3","L1_tree4")
 diams <- c("diameter","diameter2","diameter3","diameter4")
 dists <- c("chainstree","chainstree2","chainstree3","chainstree4")
 dataset='SEMI'
@@ -99,10 +100,17 @@ pts.OH <- st_as_sf(pts.OH, coords=c(x='x', y='y'), crs=crs(pts.sf))
 pts.OH <- st_transform(pts.OH,crs=crs(pts.geo))
 
 pts.geo <- rbind(pts.geo, pts.OH) |> unique()
+
 pts.geo1 <- pts.geo |> mutate(dists=ifelse(is.na(tname) | dists %in% c(8888, 9999, 99999, 88888), NA, dists), dists=dists/100*66*0.3048, diam=diam*2.54) |> subset(!(is.na(tname)  & !treeseq %in% 1))
 
 df <- unique(st_drop_geometry(subset(pts.geo1, select=c(dataset,tname))))
+
+treelookup <- read.csv('treelookups1.csv') |> unique()
+pts.geo1 <- pts.geo1 |> left_join(treelookup, by=join_by(dataset==dataset, tname==tname), multiple='first')
+pts.geo1 <- pts.geo1 |> mutate(istree = ifelse((is.na(tname) | tname %in% '' | tolower(tname) %in% c(0,'no tree')) | Level2 %in% 'no tree',0,1))
+pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(howmanytrees = sum(istree), mdist = sum(dists)) |> ungroup() |> mutate(mdist = mdist/(howmanytrees+0.0001))
 # write.csv(df, 'treelookups.csv', row.names = F)
+saveRDS(pts.geo1, 'points/pts.geo1.RDS')
 write_sf(pts.geo1,'gis/trees.shp')
 
 notree <-  subset(pts.geo, grepl('no.tree', tolower(tname))| ((tname %in% '' | is.na(tname) ) & treeseq %in% 1))
