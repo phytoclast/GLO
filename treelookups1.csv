@@ -1,625 +1,1681 @@
-dataset,tname,desc,domain,Level2,Species
-NMI,BF,Fir,Upper Midwest,Abies,Abies
-NMI,FI, Balsam fir, Fir,Abies,Abies
-NMI,fir,Fir,Eastern Townships,Abies,Abies
-SMI,bals,Fir,Southern MI v1.6,Abies,Abies
-SMI,fir,Fir,Eastern Townships,Abies,Abies
-SMI,FIR,Fir,Eastern Townships,Abies,Abies
-WI,FI, Balsam fir, Fir,Abies,Abies
-IL,Maple,Maple,Illinois v2.0,Acer,Acer
-IN,Maple,Maple,Illinois v2.0,Acer,Acer
-NMI,MA,Maple,Upper Midwest,Acer,Acer
-NMI,map,Maple,Southern MI v1.6,Acer,Acer
-NMI,mapl,Maple,Southern MI v1.6,Acer,Acer
-NMI,SM,Maple,Southern MI v1.6,Acer,Acer
-NMI,sm,Maple,Southern MI v1.6,Acer,Acer
-OH,maple,Maple,Illinois v2.0,Acer,Acer
-OH,soft maple,Maple,Illinois v2.0,Acer,Acer
-OH,white maple,Maple,Indiana v2.0,Acer,Acer
-SEMI,Maple,Maple,Illinois v2.0,Acer,Acer
-SMI,MAP,Maple,Southern MI v1.6,Acer,Acer
-SMI,map,Maple,Southern MI v1.6,Acer,Acer
-SMI,MAPL,Maple,Southern MI v1.6,Acer,Acer
-SMI,mapl,Maple,Southern MI v1.6,Acer,Acer
-SMI,Mapl,Maple,Southern MI v1.6,Acer,Acer
-SMI,maple,Maple,Illinois v2.0,Acer,Acer
-SMI,SM,Maple,Southern MI v1.6,Acer,Acer
-SMI,sm,Maple,Southern MI v1.6,Acer,Acer
-SMI,SMAPL,Maple,Southern MI v1.6,Acer,Acer
-SMI,smapl,Maple,Southern MI v1.6,Acer,Acer
-SMI,sn,Maple,Southern MI v1.6,Acer,Acer
-SMI,w.mapl,Maple,Southern MI v1.6,Acer,Acer
-SMI,wm, W maple, Wht maple,Acer,Acer
-SMI,wmap,Maple,Southern MI v1.6,Acer,Acer
-SMI,wmapl,Maple,Southern MI v1.6,Acer,Acer
-WI,LM,Maple,Upper Midwest,Acer,Acer
-WI,MA,Maple,Upper Midwest,Acer,Acer
-WI,RV,Maple,Upper Midwest,Acer,Acer
-WI,SL,Maple,Upper Midwest,Acer,Acer
-WI,SM,Maple,Southern MI v1.6,Acer,Acer
-WI,SR,Maple,Upper Midwest,Acer,Acer
-WI,WM, W maple, Wht maple,Acer,Acer
-NMI,BX,Maple,Upper Midwest,Acer,Acer negundo
-OH,box elder,Maple,Illinois v2.0,Acer,Acer negundo
-OH,box elder maple,Maple,OH - vernacular from OH471 towns,Acer,Acer negundo
-SMI,box,Maple,Southern MI v1.6,Acer,Acer negundo
-SMI,boxwd,Maple,Southern MI v1.6,Acer,Acer negundo
-SMI,bxwd,Maple,Southern MI v1.6,Acer,Acer negundo
-WI,BX,Maple,Upper Midwest,Acer,Acer negundo
-NMI,RM, R maple,Maple,Acer,Acer rubra
-SMI,rm, R maple,Maple,Acer,Acer rubra
-WI,RM, R maple,Maple,Acer,Acer rubra
-OH,silver maple,,,Acer,Acer saccharinum
-NMI,SU, Hrd maple, Rock maple,Acer,Acer saccharum
-OH,sugar,Maple,Illinois v2.0,Acer,Acer saccharum
-OH,sugar maple,Maple,Illinois v2.0,Acer,Acer saccharum
-WI,SU, Hrd maple, Rock maple,Acer,Acer saccharum
-IL,Buckeye,Buckeye,Illinois v2.0,Aesculus,Aesculus
-IN,Buckeye,Buckeye,Illinois v2.0,Aesculus,Aesculus
-OH,buckeye,Buckeye,Illinois v2.0,Aesculus,Aesculus
-SEMI,Buckeye,Buckeye,Illinois v2.0,Aesculus,Aesculus
-SMI,buck,Buckeye,Indiana v2.0,Aesculus,Aesculus
-IN,Alder,Alder,Indiana v2.0,Alnus,Alnus
-NMI,AL,,,Alnus,Alnus
-SMI,ald,Alder,Southern MI v1.6,Alnus,Alnus
-WI,AL,,,Alnus,Alnus
-WI,LL,Alder,Upper Midwest,Alnus,Alnus
-NMI,shad,Other hardwood,Upper Midwest,Amelanchier,Amelanchier
-OH,serviceberry,Other hardwood,OH - vernacular from OH471 towns,Amelanchier,Amelanchier
-WI,UB,Birch,Upper Midwest,Belula,Belula
-IL,Birch,Birch,Illinois v2.0,Betula,Betula
-IN,Birch,Birch,Illinois v2.0,Betula,Betula
-NMI,BB,,,Betula,Betula
-NMI,BI,Birch,Upper Midwest,Betula,Betula
-NMI,Birch,Birch,Illinois v2.0,Betula,Betula
-NMI,brc,Birch,Southern MI v1.6,Betula,Betula
-OH,birch,Birch,Illinois v2.0,Betula,Betula
-SEMI,Birch,Birch,Illinois v2.0,Betula,Betula
-SMI,br,Birch,Southern MI v1.6,Betula,Betula
-SMI,brc,Birch,Southern MI v1.6,Betula,Betula
-SMI,Brc,Birch,Southern MI v1.6,Betula,Betula
-SMI,BRC,Birch,Southern MI v1.6,Betula,Betula
-SMI,BRCH,Birch,Southern MI v1.6,Betula,Betula
-SMI,brch,Birch,Southern MI v1.6,Betula,Betula
-SMI,buch,Birch,Southern MI v1.6,Betula,Betula
-WI,BB,,,Betula,Betula
-WI,BI,Birch,Upper Midwest,Betula,Betula
-WI,WY,Birch,Upper Midwest,Betula,Betula
-NMI,YB, Y birch,Birch,Betula,Betula alleghaniensis
-NMI,ybrc, Y birch,Birch,Betula,Betula alleghaniensis
-SMI,y.brc,Birch,Southern MI v1.6,Betula,Betula alleghaniensis
-SMI,YB, Y birch,Birch,Betula,Betula alleghaniensis
-SMI,yb, Y birch,Birch,Betula,Betula alleghaniensis
-SMI,ybrc, Y birch,Birch,Betula,Betula alleghaniensis
-SMI,ybrch,Birch,Southern MI v1.6,Betula,Betula alleghaniensis
-SMI,ybrcm,Birch,Southern MI v1.6,Betula,Betula alleghaniensis
-WI,YB, Y birch,Birch,Betula,Betula alleghaniensis
-NMI,WB,Birch,Southern MI v1.6,Betula,Betula papyrifera
-NMI,wb,Birch,Southern MI v1.6,Betula,Betula papyrifera
-NMI,wbrc,Birch,Southern MI v1.6,Betula,Betula papyrifera
-SMI,WB,Birch,Southern MI v1.6,Betula,Betula papyrifera
-SMI,wb,Birch,Southern MI v1.6,Betula,Betula papyrifera
-SMI,wbrc,Birch,Southern MI v1.6,Betula,Betula papyrifera
-SMI,wbrch,Birch,Southern MI v1.6,Betula,Betula papyrifera
-WI,WB,Birch,Southern MI v1.6,Betula,Betula papyrifera
-IL,Hickory,Hickory,Illinois v2.0,Carya,Carya
-IN,Hickory,Hickory,Illinois v2.0,Carya,Carya
-NMI,HI, Hick, H??????ory,Carya,Carya
-OH,hickory,Hickory,Illinois v2.0,Carya,Carya
-SEMI,Hickory,Hickory,Illinois v2.0,Carya,Carya
-SMI,H,Hickory,Illinois v2.0,Carya,Carya
-SMI,hck,Hickory,Southern MI v1.6,Carya,Carya
-SMI,HCK,Hickory,Southern MI v1.6,Carya,Carya
-SMI,HICK,Hickory,Illinois v2.0,Carya,Carya
-SMI,hick,Hickory,Illinois v2.0,Carya,Carya
-SMI,HIK,Hickory,Indiana v2.0,Carya,Carya
-SMI,hky,Hickory,Illinois v2.0,Carya,Carya
-WI,HI, Hick, H??????ory,Carya,Carya
-WI,IT,Hickory,Upper Midwest,Carya,Carya
-WI,LH,Hickory,Upper Midwest,Carya,Carya
-WI,WK,Hickory,Upper Midwest,Carya,Carya
-OH,bitternut,Hickory,OH - vernacular from OH471 towns,Carya,Carya cordiformis
-IN,Chestnut,Chestnut,Eastern Townships,Castanea,Castanea
-OH,chestnut,Chestnut,Eastern Townships,Castanea,Castanea
-SEMI,Chestnut,Chestnut,Eastern Townships,Castanea,Castanea
-IL,Hackberry,Hackberry,Illinois v2.0,Celtis,Celtis
-IN,Hackberry,Hackberry,Illinois v2.0,Celtis,Celtis
-NMI,HA, H??????berry,Hackberry,Celtis,Celtis
-OH,hackberry,Hackberry,Illinois v2.0,Celtis,Celtis
-SMI,hack,Hackberry,Illinois v2.0,Celtis,Celtis
-SMI,HACK,Hackberry,Illinois v2.0,Celtis,Celtis
-WI,HA, H??????berry,Hackberry,Celtis,Celtis
-OH,red bud,Other hardwood,Illinois v2.0,Cercis,Cercis
-SMI,rbud,Other hardwood,Southern MI v1.6,Cercis,Cercis
-IL,Dogwood,Dogwood,Illinois v2.0,Cornus,Cornus
-IN,Dogwood,Dogwood,Illinois v2.0,Cornus,Cornus
-OH,dogwood,Dogwood,Illinois v2.0,Cornus,Cornus
-SEMI,Dogwood,Dogwood,Illinois v2.0,Cornus,Cornus
-SMI,dog,Dogwood,Southern MI v1.6,Cornus,Cornus
-SMI,dogg,Dogwood,Southern MI v1.6,Cornus,Cornus
-SMI,Dogw,Dogwood,Illinois v2.0,Cornus,Cornus
-SMI,dogw,Dogwood,Illinois v2.0,Cornus,Cornus
-WI,DG,Dogwood,Upper Midwest,Cornus,Cornus
-NMI,TH,Other hardwood,Upper Midwest,Crataegus,Crataegus
-SMI,THORN,Other hardwood,Illinois v2.0,Crataegus,Crataegus
-SMI,thorn,Other hardwood,Illinois v2.0,Crataegus,Crataegus
-SMI,THORN?,Unknown tree,Southern MI v1.6,Crataegus,Crataegus
-WI,TH,Other hardwood,Upper Midwest,Crataegus,Crataegus
-WI,TN,Other hardwood,Upper Midwest,Crataegus,Crataegus
-WI,WT, W thorn,Other hardwood,Crataegus,Crataegus
-WI,JU, Red cedar,Cedar/juniper,Cupressaceae,Juniperus virginiana
-IL,Cedar/juniper,,,Cupressaceae,JuniThuja
-IN,Cedar/juniper,,,Cupressaceae,JuniThuja
-NMI,CE,Cedar/juniper,Upper Midwest,Cupressaceae,JuniThuja
-NMI,ced,Cedar/juniper,Southern MI v1.6,Cupressaceae,JuniThuja
-NMI,CED,Cedar/juniper,Southern MI v1.6,Cupressaceae,JuniThuja
-OH,cedar,Cedar/juniper,Eastern Townships,Cupressaceae,JuniThuja
-SMI,CED,Cedar/juniper,Southern MI v1.6,Cupressaceae,JuniThuja
-SMI,ced,Cedar/juniper,Southern MI v1.6,Cupressaceae,JuniThuja
-SMI,cedar,Cedar/juniper,Eastern Townships,Cupressaceae,JuniThuja
-SMI,crd,Cedar/juniper,Southern MI v1.6,Cupressaceae,JuniThuja
-WI,CE,Cedar/juniper,Upper Midwest,Cupressaceae,JuniThuja
-NMI,DF,Missing,Upper Midwest,dead,dead
-NMI,DH,Missing,Upper Midwest,dead,dead
-NMI,DI,Missing,Upper Midwest,dead,dead
-NMI,DK,Missing,Upper Midwest,dead,dead
-NMI,DM,Missing,Upper Midwest,dead,dead
-NMI,DP,Pine,Upper Midwest,dead,dead
-NMI,DR,Missing,Upper Midwest,dead,dead
-NMI,DS,Missing,Upper Midwest,dead,dead
-NMI,DT,Missing,Upper Midwest,dead,dead
-NMI,DU,Missing,Upper Midwest,dead,dead
-NMI,DW,Dogwood,Upper Midwest,dead,dead
-SMI,dead pine,Pine,Southern MI v1.6,dead,dead
-WI,DP,Pine,Upper Midwest,dead,dead
-OH,persimmon,Other hardwood,Eastern Townships,Diospyros,Diospyros
-IL,Beech,Beech,Eastern Townships,Fagus,Fagus
-IN,Beech,Beech,Eastern Townships,Fagus,Fagus
-NMI,bch,Beech,Southern MI v1.6,Fagus,Fagus
-NMI,BCH,Beech,Southern MI v1.6,Fagus,Fagus
-NMI,BE,Beech,Upper Midwest,Fagus,Fagus
-OH,beech,Beech,Eastern Townships,Fagus,Fagus
-SEMI,Beech,Beech,Eastern Townships,Fagus,Fagus
-SMI,BCH,Beech,Southern MI v1.6,Fagus,Fagus
-SMI,bch,Beech,Southern MI v1.6,Fagus,Fagus
-WI,BE,Beech,Upper Midwest,Fagus,Fagus
-IL,Ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-IN,Ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-NMI,AH,Ash,Upper Midwest,Fraxinus,Fraxinus
-NMI,SA,Ash,Upper Midwest,Fraxinus,Fraxinus
-OH,swamp ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-SEMI,Ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-SMI,ASH,Ash,Illinois v2.0,Fraxinus,Fraxinus
-SMI,ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-SMI,Ash,Ash,Illinois v2.0,Fraxinus,Fraxinus
-SMI,b.ash,Ash,Indiana v2.0,Fraxinus,Fraxinus
-SMI,bl ash,Ash,Indiana v2.0,Fraxinus,Fraxinus
-SMI,swash,Ash,Southern MI v1.6,Fraxinus,Fraxinus
-SMI,waterash,Ash,Southern MI v1.6,Fraxinus,Fraxinus
-WI,AA,Ash,Upper Midwest,Fraxinus,Fraxinus
-WI,AH,Ash,Upper Midwest,Fraxinus,Fraxinus
-WI,GY,Ash,Upper Midwest,Fraxinus,Fraxinus
-WI,SA,Ash,Upper Midwest,Fraxinus,Fraxinus
-WI,UA,Ash,Upper Midwest,Fraxinus,Fraxinus
-NMI,WA,Ash,Upper Midwest,Fraxinus,Fraxinus americana
-NMI,wash,Ash,Southern MI v1.6,Fraxinus,Fraxinus americana
-OH,white ash,Ash,Illinois v2.0,Fraxinus,Fraxinus americana
-SMI,w.ash,Ash,Southern MI v1.6,Fraxinus,Fraxinus americana
-SMI,WASH,Ash,Southern MI v1.6,Fraxinus,Fraxinus americana
-SMI,wash,Ash,Southern MI v1.6,Fraxinus,Fraxinus americana
-WI,WA,Ash,Upper Midwest,Fraxinus,Fraxinus americana
-NMI,BA, B ash, Brown ash,Fraxinus,Fraxinus nigra
-NMI,bash,Ash,Southern MI v1.6,Fraxinus,Fraxinus nigra
-OH,black ash,Ash,Illinois v2.0,Fraxinus,Fraxinus nigra
-SMI,ba, B ash, Brown ash,Fraxinus,Fraxinus nigra
-SMI,BASH,Ash,Southern MI v1.6,Fraxinus,Fraxinus nigra
-SMI,bash,Ash,Southern MI v1.6,Fraxinus,Fraxinus nigra
-SMI,bl.ash,Ash,Southern MI v1.6,Fraxinus,Fraxinus nigra
-SMI,blash,Ash,Southern MI v1.6,Fraxinus,Fraxinus nigra
-WI,BA, B ash, Brown ash,Fraxinus,Fraxinus nigra
-NMI,RA, Red ash,Ash,Fraxinus,Fraxinus pennsylvanica
-WI,RA, Red ash,Ash,Fraxinus,Fraxinus pennsylvanica
-OH,blue ash,Ash,Illinois v2.0,Fraxinus,Fraxinus quadrangulata
-SMI,blus ash,Ash,Southern MI v1.6,Fraxinus,Fraxinus quadrangulata
-OH,coffeetree,Other hardwood,Indiana v2.0,Gymnocladus,Gymnocladus
-IL,Walnut,Walnut,Illinois v2.0,Juglans,Juglans
-IN,Walnut,Walnut,Illinois v2.0,Juglans,Juglans
-OH,walnut,Walnut,Illinois v2.0,Juglans,Juglans
-SEMI,Walnut,Walnut,Illinois v2.0,Juglans,Juglans
-SMI,wal,Walnut,Southern MI v1.6,Juglans,Juglans
-SMI,waln,Walnut,Southern MI v1.6,Juglans,Juglans
-SMI,walnut,Walnut,Illinois v2.0,Juglans,Juglans
-NMI,BU, B??????nut, White walnut,Juglans,Juglans cinerea
-OH,white walnut,Walnut,Illinois v2.0,Juglans,Juglans cinerea
-SMI,w.waln,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,W.waln,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,wwal,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,WWAL,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,wwalm,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,wwaln,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-SMI,wwrln,Walnut,Southern MI v1.6,Juglans,Juglans cinerea
-WI,BU, B??????nut, White walnut,Juglans,Juglans cinerea
-NMI,BW, B walnut, Blk walnut,Juglans,Juglans nigra
-OH,black walnut,Walnut,Illinois v2.0,Juglans,Juglans nigra
-SMI,b.waln,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,blwaln,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,but,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,BUT,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,BW, B walnut, Blk walnut,Juglans,Juglans nigra
-SMI,bwal,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,BWALN,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-SMI,bwaln,Walnut,Southern MI v1.6,Juglans,Juglans nigra
-WI,BW, B walnut, Blk walnut,Juglans,Juglans nigra
-IN,Tamarack,Tamarack,Eastern Townships,Larix,Larix
-NMI,TA,Tamarack,Tamarack,Larix,Larix
-NMI,tam,Tamarack,Indiana v2.0,Larix,Larix
-NMI,TAM,Tamarack,Indiana v2.0,Larix,Larix
-SEMI,Tamarack,Tamarack,Eastern Townships,Larix,Larix
-SMI,"ta,",,,Larix,Larix
-SMI,tam,Tamarack,Indiana v2.0,Larix,Larix
-SMI,TAM,Tamarack,Indiana v2.0,Larix,Larix
-SMI,Tam,Tamarack,Indiana v2.0,Larix,Larix
-WI,TA,Tamarack,Tamarack,Larix,Larix
-IL,Sweet gum,Sweet gum,Illinois v2.0,Liquidambar,Liquidambar
-IN,Sweet gum,Sweet gum,Illinois v2.0,Liquidambar,Liquidambar
-WI,CR, Crab,Other hardwood,Malus,Malus
-IL,Mulberry,Mulberry,Illinois v2.0,Morus,Morus
-IN,Mulberry,Mulberry,Illinois v2.0,Morus,Morus
-OH,mulberry,Mulberry,Illinois v2.0,Morus,Morus
-SMI,mul,Mulberry,Illinois v2.0,Morus,Morus
-IL,No data,No data,Illinois v2.0,no data,no data
-IN,No data,No data,Illinois v2.0,no data,no data
-SEMI,No data,No data,Illinois v2.0,no data,no data
-WI,XC,No data,Upper Midwest,no data,no data
-IL,No tree,No tree,Illinois v2.0,no tree,no tree
-IL,Water,Water,Illinois v2.0,no tree,no tree
-IN,No tree,No tree,Illinois v2.0,no tree,no tree
-IN,Water,Water,Illinois v2.0,no tree,no tree
-NMI,NO,No tree,Upper Midwest,no tree,no tree
-OH,no tree,No tree,Illinois v2.0,no tree,no tree
-SEMI,No tree,No tree,Illinois v2.0,no tree,no tree
-SEMI,Water,Water,Illinois v2.0,no tree,no tree
-SEMI,Wet,No tree,Illinois v2.0,no tree,no tree
-WI,MD,No tree,Upper Midwest,no tree,no tree
-WI,ML,No tree,Upper Midwest,no tree,no tree
-WI,NL,No tree,Upper Midwest,no tree,no tree
-WI,NO,No tree,Upper Midwest,no tree,no tree
-WI,PT,No tree,Upper Midwest,no tree,no tree
-WI,QQ,Water,Upper Midwest,no tree,no tree
-WI,SG,Water,Upper Midwest,no tree,no tree
-IL,Black gum,Black gum,Illinois v2.0,NyssaLiquidambar,Nyssa
-IN,Black gum,Black gum,Illinois v2.0,NyssaLiquidambar,Nyssa
-NMI,BM,Black gum,Upper Midwest,NyssaLiquidambar,Nyssa
-OH,black gum,Black gum,Illinois v2.0,NyssaLiquidambar,Nyssa
-OH,pepperidge,Black gum,Indiana v2.0,NyssaLiquidambar,Nyssa
-SEMI,Black gum/sweet gum,,,NyssaLiquidambar,Nyssa
-SMI,gum,Black gum/sweet gum,Illinois v2.0,NyssaLiquidambar,Nyssa
-SMI,PEP,Black gum,Southern MI v1.6,NyssaLiquidambar,Nyssa
-SMI,pep,Black gum,Southern MI v1.6,NyssaLiquidambar,Nyssa
-SMI,pepr,Black gum,Southern MI v1.6,NyssaLiquidambar,Nyssa
-IL,Black gum/sweet gum,,,NyssaLiquidambar,NyssaLiquidambar
-IN,Black gum/sweet gum,,,NyssaLiquidambar,NyssaLiquidambar
-OH,gum,Black gum/sweet gum,Illinois v2.0,NyssaLiquidambar,NyssaLiquidambar
-SMI,bl.bch,Ironwood,Southern MI v1.6,OstryaCarpinus,Carpinus
-SMI,water beech,Ironwood,Illinois v2.0,OstryaCarpinus,Carpinus
-WI,WU, Water beach,Ironwood,OstryaCarpinus,Carpinus
-SMI,hop,Ironwood,Southern MI v1.6,OstryaCarpinus,Ostrya
-IL,Ironwood,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-IN,Ironwood,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-NMI,BL,Ironwood,Upper Midwest,OstryaCarpinus,OstryaCarpinus
-NMI,IR, Iron, I??????wood,OstryaCarpinus,OstryaCarpinus
-NMI,IW,Ironwood,Upper Midwest,OstryaCarpinus,OstryaCarpinus
-OH,hornbeam,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-OH,ironwood,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-SEMI,Ironwood,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-SMI,hornb,Ironwood,Southern MI v1.6,OstryaCarpinus,OstryaCarpinus
-SMI,hrm,Ironwood,Southern MI v1.6,OstryaCarpinus,OstryaCarpinus
-SMI,IRON,Ironwood,Indiana v2.0,OstryaCarpinus,OstryaCarpinus
-SMI,iron,Ironwood,Indiana v2.0,OstryaCarpinus,OstryaCarpinus
-SMI,ironwood,Ironwood,Illinois v2.0,OstryaCarpinus,OstryaCarpinus
-SMI,lever wood,Ironwood,Southern MI v1.6,OstryaCarpinus,OstryaCarpinus
-WI,BL,Ironwood,Upper Midwest,OstryaCarpinus,OstryaCarpinus
-WI,HO,Ironwood,Upper Midwest,OstryaCarpinus,OstryaCarpinus
-WI,IR, Iron, I??????wood,OstryaCarpinus,OstryaCarpinus
-NMI,PL,Other hardwood,Upper Midwest,other hardwood,other hardwood
-OH,hoop ash,Other hardwood,Illinois v2.0,other hardwood,other hardwood
-SMI,appl,Other hardwood,Southern MI v1.6,other hardwood,other hardwood
-SMI,hazel,Other hardwood,Southern MI v1.6,other hardwood,other hardwood
-SMI,plum,Other hardwood,Illinois v2.0,other hardwood,other hardwood
-SMI,quack apple,Other hardwood,Southern MI v1.6,other hardwood,other hardwood
-WI,AP,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,BC,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,HF,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,HL,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,HW,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,LA,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,MT,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,PA,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,PL,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,RH,Other hardwood,Upper Midwest,other hardwood,other hardwood
-WI,YC,Other hardwood,Upper Midwest,other hardwood,other hardwood
-OH,sourwood,Other hardwood,Eastern Townships,Oxydendrum,Oxydendrum
-NMI,SP,Spruce,Southern MI v1.6,Picea,Picea
-NMI,sp,Spruce,Southern MI v1.6,Picea,Picea
-NMI,spr,Spruce,Southern MI v1.6,Picea,Picea
-NMI,SPR,Spruce,Southern MI v1.6,Picea,Picea
-SMI,SP,Spruce,Southern MI v1.6,Picea,Picea
-SMI,sp,Spruce,Southern MI v1.6,Picea,Picea
-SMI,SPR,Spruce,Southern MI v1.6,Picea,Picea
-SMI,spr,Spruce,Southern MI v1.6,Picea,Picea
-SMI,spruce,Spruce,Southern MI v1.6,Picea,Picea
-WI,SP,Spruce,Southern MI v1.6,Picea,Picea
-WI,WS, W spruce, Wht spruce,Picea glauca,Picea glauca
-NMI,BS,Spruce,Upper Midwest,Picea mariana,Picea mariana
-IL,Pine,Pine,Illinois v2.0,Pinus,Pinus
-IN,Pine,Pine,Illinois v2.0,Pinus,Pinus
-NMI,n pine,Pine,Upper Midwest,Pinus,Pinus
-NMI,np,Pine,Upper Midwest,Pinus,Pinus
-NMI,PI,Pine,Upper Midwest,Pinus,Pinus
-NMI,Pine,Pine,Illinois v2.0,Pinus,Pinus
-NMI,pine,Pine,Illinois v2.0,Pinus,Pinus
-NMI,PS,Pine,Upper Midwest,Pinus,Pinus
-NMI,YP,Pine,Southern MI v1.6,Pinus,Pinus
-NMI,yp,Pine,Southern MI v1.6,Pinus,Pinus
-OH,pine,Pine,Illinois v2.0,Pinus,Pinus
-OH,pitch pine,Pine,Indiana v2.0,Pinus,Pinus
-SMI,p,Pine,Southern MI v1.6,Pinus,Pinus
-SMI,P,Pine,Southern MI v1.6,Pinus,Pinus
-SMI,pine,Pine,Illinois v2.0,Pinus,Pinus
-SMI,pitch pine,Pine,Indiana v2.0,Pinus,Pinus
-SMI,YP,Pine,Southern MI v1.6,Pinus,Pinus
-SMI,yp,Pine,Southern MI v1.6,Pinus,Pinus
-SMI,ypine,Pine,Southern MI v1.6,Pinus,Pinus
-WI,GP,Pine,Upper Midwest,Pinus,Pinus
-WI,HP,Pine,Upper Midwest,Pinus,Pinus
-WI,PI,Pine,Upper Midwest,Pinus,Pinus
-WI,PN,Pine,Upper Midwest,Pinus,Pinus
-WI,PP,Pine,Upper Midwest,Pinus,Pinus
-WI,PS,Pine,Upper Midwest,Pinus,Pinus
-WI,QP,Pine,Upper Midwest,Pinus,Pinus
-WI,SC,Pine,Upper Midwest,Pinus,Pinus
-WI,SZ,Pine,Upper Midwest,Pinus,Pinus
-WI,TP,Pine,Upper Midwest,Pinus,Pinus
-WI,YP,Pine,Southern MI v1.6,Pinus,Pinus
-NMI,JP, Jack pine, J pine,Pinus,Pinus banksiana
-SMI,cyn,Pine,Southern MI v1.6,Pinus,Pinus banksiana
-SMI,cyp,Pine,Southern MI v1.6,Pinus,Pinus banksiana
-WI,JP, Jack pine, J pine,Pinus,Pinus banksiana
-NMI,RP, N pine, Yellow pine,Pinus,Pinus resinosa
-WI,RP, N pine, Yellow pine,Pinus,Pinus resinosa
-NMI,WP, W pine Wht pine,Pine,Pinus,Pinus strobus
-NMI,wp, W pine Wht pine,Pine,Pinus,Pinus strobus
-SMI,WP, W pine Wht pine,Pine,Pinus,Pinus strobus
-SMI,wp, W pine Wht pine,Pine,Pinus,Pinus strobus
-WI,WP, W pine Wht pine,Pine,Pinus,Pinus strobus
-IL,Sycamore,Sycamore,Illinois v2.0,Platanus,Platanus
-IN,Sycamore,Sycamore,Illinois v2.0,Platanus,Platanus
-NMI,SY,Sycamore,Upper Midwest,Platanus,Platanus
-OH,sycamore,Sycamore,Illinois v2.0,Platanus,Platanus
-SEMI,Sycamore,Sycamore,Illinois v2.0,Platanus,Platanus
-SMI,SYC,Sycamore,Southern MI v1.6,Platanus,Platanus
-SMI,syc,Sycamore,Southern MI v1.6,Platanus,Platanus
-WI,YS,Sycamore,Upper Midwest,Platanus,Platanus
-IL,Tulip poplar,Tulip poplar,OH - vernacular from OH471 towns,PopLirio,Liriodendron
-IN,Tulip poplar,Tulip poplar,OH - vernacular from OH471 towns,PopLirio,Liriodendron
-SEMI,Tulip poplar,Tulip poplar,OH - vernacular from OH471 towns,PopLirio,Liriodendron
-SMI,wtwd,Tulip poplar,Southern MI v1.6,PopLirio,Liriodendron
-SMI,WTWD,Tulip poplar,Southern MI v1.6,PopLirio,Liriodendron
-SMI,ww,Tulip poplar,Southern MI v1.6,PopLirio,Liriodendron
-SMI,WW,Tulip poplar,Southern MI v1.6,PopLirio,Liriodendron
-WI,WW,Tulip poplar,Southern MI v1.6,PopLirio,Liriodendron
-IL,Poplar,Poplar/tulip poplar,Illinois v2.0,PopLirio,PopLirio
-IL,Poplar/tulip poplar,,,PopLirio,PopLirio
-IN,Poplar,Poplar/tulip poplar,Illinois v2.0,PopLirio,PopLirio
-IN,Poplar/tulip poplar,,,PopLirio,PopLirio
-OH,poplar,Poplar/tulip poplar,Illinois v2.0,PopLirio,PopLirio
-SEMI,Poplar,Poplar/tulip poplar,Illinois v2.0,PopLirio,PopLirio
-SEMI,Poplar/tulip poplar,,,PopLirio,PopLirio
-SMI,POP,Poplar/tulip poplar,Indiana v2.0,PopLirio,PopLirio
-SMI,pop,Poplar/tulip poplar,Indiana v2.0,PopLirio,PopLirio
-SMI,POPL,Poplar/tulip poplar,Indiana v2.0,PopLirio,PopLirio
-SMI,popl,Poplar/tulip poplar,Indiana v2.0,PopLirio,PopLirio
-SMI,poplar,Poplar/tulip poplar,Illinois v2.0,PopLirio,PopLirio
-SMI,popular,Poplar/tulip poplar,Indiana v2.0,PopLirio,PopLirio
-NMI,Poplar,Poplar/tulip poplar,Illinois v2.0,Populus,Populus
-WI,WJ,Poplar,Upper Midwest,Populus,Populus
-NMI,BG,Poplar,Upper Midwest,Populus,Populus balsamifera
-WI,BG,Poplar,Upper Midwest,Populus,Populus balsamifera
-NMI,CO, Cotton,Poplar,Populus,Populus deltoides
-OH,cottonwood,Poplar,Illinois v2.0,Populus,Populus deltoides
-SMI,cot,Poplar,Southern MI v1.6,Populus,Populus deltoides
-SMI,COTN,Poplar,Southern MI v1.6,Populus,Populus deltoides
-SMI,cotn,Poplar,Southern MI v1.6,Populus,Populus deltoides
-WI,CO, Cotton,Poplar,Populus,Populus deltoides
-NMI,AS,Poplar,Upper Midwest,Populus,Populus tremuloides
-NMI,asp,Poplar,Illinois v2.0,Populus,Populus tremuloides
-OH,ash,Ash,Illinois v2.0,Populus,Populus tremuloides
-OH,aspen,Poplar,Illinois v2.0,Populus,Populus tremuloides
-SMI,asg,Poplar,Southern MI v1.6,Populus,Populus tremuloides
-SMI,asp,Poplar,Illinois v2.0,Populus,Populus tremuloides
-SMI,ASP,Poplar,Illinois v2.0,Populus,Populus tremuloides
-SMI,aspen,Poplar,Illinois v2.0,Populus,Populus tremuloides
-WI,AS,Poplar,Upper Midwest,Populus,Populus tremuloides
-OH,trembling aspen,,,Populus,Populus tremuloides
-SMI,q.asp,Poplar,Southern MI v1.6,Populus,Populus tremuloides
-SMI,qasp,Poplar,Southern MI v1.6,Populus,Populus tremuloides
-WI,RC,Cherry,Upper Midwest,Prunus,Prunus
-IL,Cherry,Cherry,Illinois v2.0,Prunus,Prunus serotina
-IN,Cherry,Cherry,Illinois v2.0,Prunus,Prunus serotina
-NMI,CH, B cherry, Blk cherry,Prunus,Prunus serotina
-NMI,Cherry,Cherry,Illinois v2.0,Prunus,Prunus serotina
-OH,cherry,Cherry,Illinois v2.0,Prunus,Prunus serotina
-SEMI,Cherry,Cherry,Illinois v2.0,Prunus,Prunus serotina
-SMI,b ch,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,BCHER,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,bcher,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,chcr,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,CHER,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,cher,Cherry,Southern MI v1.6,Prunus,Prunus serotina
-SMI,chest,Chestnut,Indiana v2.0,Prunus,Prunus serotina
-WI,CH, B cherry, Blk cherry,Prunus,Prunus serotina
-IL,Oak,Oak,Illinois v2.0,Quercus,Quercus
-IN,Oak,Oak,Illinois v2.0,Quercus,Quercus
-NMI,JO, J oak Jk oak, Yellow oak,Quercus,Quercus
-NMI,OA,Oak,Upper Midwest,Quercus,Quercus
-NMI,oak,Oak,Illinois v2.0,Quercus,Quercus
-NMI,UO, Shrub oak,Oak,Quercus,Quercus
-OH,jack oak,Oak,Illinois v2.0,Quercus,Quercus
-OH,oak,Oak,Illinois v2.0,Quercus,Quercus
-OH,pin oak,Oak,Illinois v2.0,Quercus,Quercus
-SEMI,Oak,Oak,Illinois v2.0,Quercus,Quercus
-SMI,jack,Oak,Illinois v2.0,Quercus,Quercus
-SMI,jack oak,Oak,Illinois v2.0,Quercus,Quercus
-SMI,o,Oak,Southern MI v1.6,Quercus,Quercus
-SMI,OAK,Oak,Illinois v2.0,Quercus,Quercus
-SMI,oak,Oak,Illinois v2.0,Quercus,Quercus
-SMI,ord,Oak,Southern MI v1.6,Quercus,Quercus
-SMI,pin,Oak,Illinois v2.0,Quercus,Quercus
-SMI,pin oak,Oak,Illinois v2.0,Quercus,Quercus
-SMI,pino,Oak,Southern MI v1.6,Quercus,Quercus
-SMI,scrub oak,Oak,Illinois v2.0,Quercus,Quercus
-SMI,soak,Oak,Southern MI v1.6,Quercus,Quercus
-SMI,w0,Oak,Southern MI v1.6,Quercus,Quercus
-WI,JO, J oak Jk oak, Yellow oak,Quercus,Quercus
-WI,LJ,Oak,Upper Midwest,Quercus,Quercus
-WI,OA,Oak,Upper Midwest,Quercus,Quercus
-WI,PK,Oak,Upper Midwest,Quercus,Quercus
-WI,SO, S oak,Oak,Quercus,Quercus
-WI,SW,Oak,Upper Midwest,Quercus,Quercus
-WI,TO,Oak,Upper Midwest,Quercus,Quercus
-WI,UO, Shrub oak,Oak,Quercus,Quercus
-NMI,WO, W oak, Wht oak,Quercus,Quercus alba
-NMI,wo, W oak, Wht oak,Quercus,Quercus alba
-OH,white oak,Oak,Illinois v2.0,Quercus,Quercus alba
-SMI,dblwo,Oak,Southern MI v1.6,Quercus,Quercus alba
-SMI,WO, W oak, Wht oak,Quercus,Quercus alba
-SMI,wo, W oak, Wht oak,Quercus,Quercus alba
-SMI,woak,Oak,Illinois v2.0,Quercus,Quercus alba
-WI,WO, W oak, Wht oak,Quercus,Quercus alba
-OH,swamp oak,Oak,Illinois v2.0,Quercus,Quercus bicolor
-SMI,SWO,Oak,Southern MI v1.6,Quercus,Quercus bicolor
-SMI,swo,Oak,Southern MI v1.6,Quercus,Quercus bicolor
-OH,spanish oak,Oak,Illinois v2.0,Quercus,Quercus falcata
-OH,shingle oak,,,Quercus,Quercus imbricaria
-OH,bur oak,Oak,Illinois v2.0,Quercus,Quercus macrocarpa
-SMI,BUR,Oak,Illinois v2.0,Quercus,Quercus macrocarpa
-SMI,bur,Oak,Illinois v2.0,Quercus,Quercus macrocarpa
-SMI,BURO,Oak,Southern MI v1.6,Quercus,Quercus macrocarpa
-SMI,buro,Oak,Southern MI v1.6,Quercus,Quercus macrocarpa
-OH,black jack,Oak,Illinois v2.0,Quercus,Quercus marilandica
-OH,chestnut oak,Oak,Indiana v2.0,Quercus,Quercus montana
-OH,yellow oak,Oak,Illinois v2.0,Quercus,Quercus muehlenbergii
-SMI,YO,Oak,Southern MI v1.6,Quercus,Quercus muehlenbergii
-SMI,yo,Oak,Southern MI v1.6,Quercus,Quercus muehlenbergii
-SMI,yoak,Oak,Southern MI v1.6,Quercus,Quercus muehlenbergii
-SMI,yohk,Oak,Southern MI v1.6,Quercus,Quercus muehlenbergii
-NMI,RO, R oak,Oak,Quercus,Quercus rubra
-OH,red oak,Oak,Illinois v2.0,Quercus,Quercus rubra
-SMI,ro, R oak,Oak,Quercus,Quercus rubra
-SMI,RO, R oak,Oak,Quercus,Quercus rubra
-WI,RO, R oak,Oak,Quercus,Quercus rubra
-OH,post oak,Oak,Illinois v2.0,Quercus,Quercus stellata
-NMI,BO,Oak,Illinois v2.0,Quercus,Quercus velutina
-NMI,bo,Oak,Illinois v2.0,Quercus,Quercus velutina
-OH,black oak,Oak,Illinois v2.0,Quercus,Quercus velutina
-SMI,BO,Oak,Illinois v2.0,Quercus,Quercus velutina
-SMI,bo,Oak,Illinois v2.0,Quercus,Quercus velutina
-WI,BO,Oak,Illinois v2.0,Quercus,Quercus velutina
-WI,LO, B oak, Blk oak,Quercus,Quercus velutina
-OH,honey locust,Locust,Illinois v2.0,RobiniaGleditsia,Gleditsia
-OH,black locust,Locust,Indiana v2.0,RobiniaGleditsia,Robinia
-IL,Locust,Locust,Eastern Townships,RobiniaGleditsia,RobiniaGleditsia
-IN,Locust,Locust,Eastern Townships,RobiniaGleditsia,RobiniaGleditsia
-OH,locust,Locust,Eastern Townships,RobiniaGleditsia,RobiniaGleditsia
-SEMI,Locust,Locust,Eastern Townships,RobiniaGleditsia,RobiniaGleditsia
-NMI,BD, rock (large stone used as a witness tree),No tree,rock,rock
-WI,BD, rock (large stone used as a witness tree),No tree,rock,rock
-IL,Willow,Willow,Illinois v2.0,Salix,Salix
-IN,Willow,Willow,Illinois v2.0,Salix,Salix
-NMI,WI,Willow,Upper Midwest,Salix,Salix
-OH,willow,Willow,Illinois v2.0,Salix,Salix
-SEMI,Willow,Willow,Illinois v2.0,Salix,Salix
-SMI,wil,Willow,Southern MI v1.6,Salix,Salix
-SMI,WIL,Willow,Southern MI v1.6,Salix,Salix
-WI,KW,Willow,Upper Midwest,Salix,Salix
-WI,OW, roze willow,Willow,Salix,Salix
-WI,RW,Willow,Upper Midwest,Salix,Salix
-WI,WI,Willow,Upper Midwest,Salix,Salix
-WI,WV,Willow,Upper Midwest,Salix,Salix
-WI,YW,Willow,Upper Midwest,Salix,Salix
-OH,sassafras,Other hardwood,Illinois v2.0,Sassafras,Sassafras
-SMI,sas,Other hardwood,Southern MI v1.6,Sassafras,Sassafras
-IL,Bald cypress,,,Taxodium,Taxodium
-NMI,WC,Cedar/juniper,Upper Midwest,Thuja,Thuja
-WI,WC,Cedar/juniper,Upper Midwest,Thuja,Thuja
-IL,Basswood,Basswood,Eastern Townships,Tilia,Tilia
-IN,Basswood,Basswood,Eastern Townships,Tilia,Tilia
-NMI,LI, Bass, Linden,Tilia,Tilia
-NMI,lyn,Basswood,Illinois v2.0,Tilia,Tilia
-OH,basswood,Basswood,Eastern Townships,Tilia,Tilia
-OH,linden,Basswood,Illinois v2.0,Tilia,Tilia
-OH,lynn,Basswood,Illinois v2.0,Tilia,Tilia
-SEMI,Basswood,Basswood,Eastern Townships,Tilia,Tilia
-SMI,BASS,Basswood,Southern MI v1.6,Tilia,Tilia
-SMI,bass,Basswood,Southern MI v1.6,Tilia,Tilia
-SMI,lin,Basswood,Illinois v2.0,Tilia,Tilia
-SMI,LYN,Basswood,Illinois v2.0,Tilia,Tilia
-SMI,lyn,Basswood,Illinois v2.0,Tilia,Tilia
-WI,BP,Basswood,Upper Midwest,Tilia,Tilia
-WI,LI, Bass, Linden,Tilia,Tilia
-IN,Hemlock,Hemlock,Eastern Townships,Tsuga,Tsuga
-NMI,HE,Hemlock,Upper Midwest,Tsuga,Tsuga
-NMI,hem,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-OH,hemlock,Hemlock,Eastern Townships,Tsuga,Tsuga
-SMI,hcm,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,heem,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,HEM,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,hem,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,Hem,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,her,Hemlock,Southern MI v1.6,Tsuga,Tsuga
-SMI,HM, House,No tree,Tsuga,Tsuga
-WI,HE,Hemlock,Upper Midwest,Tsuga,Tsuga
-IL,Elm,Elm,Illinois v2.0,Ulmus,Ulmus
-IN,Elm,Elm,Illinois v2.0,Ulmus,Ulmus
-NMI,EL,Elm,Upper Midwest,Ulmus,Ulmus
-OH,elm,Elm,Illinois v2.0,Ulmus,Ulmus
-OH,red elm,Elm,Illinois v2.0,Ulmus,Ulmus
-SEMI,Elm,Elm,Illinois v2.0,Ulmus,Ulmus
-SMI,blm,Elm,Southern MI v1.6,Ulmus,Ulmus
-SMI,ELM,Elm,Illinois v2.0,Ulmus,Ulmus
-SMI,elm,Elm,Illinois v2.0,Ulmus,Ulmus
-SMI,Elm,Elm,Illinois v2.0,Ulmus,Ulmus
-SMI,eln,Elm,Southern MI v1.6,Ulmus,Ulmus
-SMI,em,Elm,Southern MI v1.6,Ulmus,Ulmus
-SMI,r.elm,Elm,Southern MI v1.6,Ulmus,Ulmus
-SMI,relm,Elm,Southern MI v1.6,Ulmus,Ulmus
-WI,AE,Elm,Upper Midwest,Ulmus,Ulmus
-WI,EL,Elm,Upper Midwest,Ulmus,Ulmus
-WI,ES,Elm,Upper Midwest,Ulmus,Ulmus
-WI,LE,Elm,Upper Midwest,Ulmus,Ulmus
-WI,RE,Elm,Upper Midwest,Ulmus,Ulmus
-WI,RK,Elm,Upper Midwest,Ulmus,Ulmus
-WI,SE,Elm,Upper Midwest,Ulmus,Ulmus
-WI,WE, W elm,Elm,Ulmus,Ulmus
-IL,Other hardwood,,,unk,unk
-IL,Unknown tree,,,unk,unk
-IN,Other hardwood,,,unk,unk
-IN,Unknown tree,,,unk,unk
-NMI,AM,Unknown tree,Upper Midwest,unk,unk
-NMI,DA,Missing,Upper Midwest,unk,unk
-NMI,DB,Missing,Upper Midwest,unk,unk
-NMI,DC,Missing,Upper Midwest,unk,unk
-NMI,GB,Unknown tree,Upper Midwest,unk,unk
-NMI,WD,Unknown tree,Southern MI v1.6,unk,unk
-NMI,XX,Missing,Upper Midwest,unk,unk
-NMI,zron,Unknown tree,Upper Midwest,unk,unk
-SEMI,Other hardwood,,,unk,unk
-SEMI,Unknown tree,,,unk,unk
-SMI,9999,Unknown tree,Southern MI v1.6,unk,unk
-SMI,creek,Unknown tree,Southern MI v1.6,unk,unk
-SMI,w,Unknown tree,Illinois v2.0,unk,unk
-SMI,wd,Unknown tree,Southern MI v1.6,unk,unk
-WI,0,Unknown tree,Upper Midwest,unk,unk
-WI,HM, House,No tree,unk,unk
-WI,XA, ie pages missing from notebook,No data,unk,unk
-WI,XB, ie irregular township,No data,unk,unk
+dataset,tname,Level2,Species
+NMI,BF,Abies,Abies
+NMI,FI,Abies,Abies
+NMI,fir,Abies,Abies
+SMI,bals,Abies,Abies
+SMI,fir,Abies,Abies
+WI,FI,Abies,Abies
+IL,3-pronged maple,Acer,Acer
+IL,another maple,Acer,Acer
+IL,forked maple,Acer,Acer
+IL,mapel,Acer,Acer
+IL,Maple,Acer,Acer
+IL,mapo,Acer,Acer
+IL,mapole,Acer,Acer
+IL,mayple,Acer,Acer
+IL,maypole,Acer,Acer
+IL,maypoll,Acer,Acer
+IL,s maple,Acer,Acer
+IL,s. maple,Acer,Acer
+IL,soft maple,Acer,Acer
+IL,w maple,Acer,Acer
+IN,Double maple,Acer,Acer
+IN,Forked Maple,Acer,Acer
+IN,Maple,Acer,Acer
+IN,Maypole,Acer,Acer
+IN,s maple,Acer,Acer
+IN,s. maple,Acer,Acer
+IN,soft maple,Acer,Acer
+IN,swp maple,Acer,Acer
+IN,w maple,Acer,Acer
+IN,W. Maple,Acer,Acer
+IN,white maple,Acer,Acer
+NMI,MA,Acer,Acer
+NMI,map,Acer,Acer
+NMI,mapl,Acer,Acer
+OH,maple,Acer,Acer
+OH,soft maple,Acer,Acer
+OH,white maple,Acer,Acer
+SEMI,Maple,Acer,Acer
+SEMI,swamp maple,Acer,Acer
+SMI,MAP,Acer,Acer
+SMI,MAPL,Acer,Acer
+SMI,maple,Acer,Acer
+SMI,SMAPL,Acer,Acer
+SMI,w.mapl,Acer,Acer
+SMI,wm,Acer,Acer
+SMI,wmap,Acer,Acer
+SMI,wmapl,Acer,Acer
+WI,MA,Acer,Acer
+WI,SL,Acer,Acer
+WI,WM,Acer,Acer
+IL,b elder,Acer,Acer negundo
+IL,box alder,Acer,Acer negundo
+IL,box elder,Acer,Acer negundo
+IL,boxelder,Acer,Acer negundo
+IL,elder,Acer,Acer negundo
+IN,b elder,Acer,Acer negundo
+IN,Box Elder,Acer,Acer negundo
+IN,Boxelder,Acer,Acer negundo
+IN,boxwood,Acer,Acer negundo
+IN,Elder,Acer,Acer negundo
+NMI,BX,Acer,Acer negundo
+OH,box elder,Acer,Acer negundo
+OH,box elder maple,Acer,Acer negundo
+SMI,box,Acer,Acer negundo
+SMI,boxwd,Acer,Acer negundo
+SMI,bxwd,Acer,Acer negundo
+WI,BX,Acer,Acer negundo
+NMI,RM,Acer,Acer rubra
+SMI,rm,Acer,Acer rubra
+WI,RM,Acer,Acer rubra
+OH,silver maple,Acer,Acer saccharinum
+WI,RV,Acer,Acer saccharinum
+IL,hard maple,Acer,Acer saccharum
+IL,shugar,Acer,Acer saccharum
+IL,shugar tree,Acer,Acer saccharum
+IL,shugartree,Acer,Acer saccharum
+IL,shugurtree,Acer,Acer saccharum
+IL,sug,Acer,Acer saccharum
+IL,sug maple,Acer,Acer saccharum
+IL,sug tree,Acer,Acer saccharum
+IL,sug. tree,Acer,Acer saccharum
+IL,sugar,Acer,Acer saccharum
+IL,sugar maple,Acer,Acer saccharum
+IL,sugar tree,Acer,Acer saccharum
+IL,sugartree,Acer,Acer saccharum
+IL,sugr,Acer,Acer saccharum
+IL,sugtree,Acer,Acer saccharum
+IL,white sugar tree,Acer,Acer saccharum
+IN,sug,Acer,Acer saccharum
+IN,sug tree,Acer,Acer saccharum
+IN,Sug.,Acer,Acer saccharum
+IN,sugar,Acer,Acer saccharum
+IN,Sugar Maple,Acer,Acer saccharum
+IN,sugar tree,Acer,Acer saccharum
+IN,sugartree,Acer,Acer saccharum
+IN,Sugatree,Acer,Acer saccharum
+IN,sugr,Acer,Acer saccharum
+NMI,SM,Acer,Acer saccharum
+NMI,SU,Acer,Acer saccharum
+OH,sugar,Acer,Acer saccharum
+OH,sugar maple,Acer,Acer saccharum
+SEMI,shugar,Acer,Acer saccharum
+SEMI,sug,Acer,Acer saccharum
+SEMI,sug tree,Acer,Acer saccharum
+SEMI,sugar,Acer,Acer saccharum
+SEMI,sugar tree,Acer,Acer saccharum
+SEMI,sugr,Acer,Acer saccharum
+SEMI,sugrs,Acer,Acer saccharum
+SMI,SM,Acer,Acer saccharum
+SMI,sn,Acer,Acer saccharum
+WI,LM,Acer,Acer saccharum
+WI,SM,Acer,Acer saccharum
+WI,SR,Acer,Acer saccharum
+WI,SU,Acer,Acer saccharum
+IL,b eye,Aesculus,Aesculus
+IL,b. eye,Aesculus,Aesculus
+IL,buc-eye,Aesculus,Aesculus
+IL,buck eye,Aesculus,Aesculus
+IL,Buckeye,Aesculus,Aesculus
+IN,buck,Aesculus,Aesculus
+IN,Buck eye,Aesculus,Aesculus
+IN,Buckey,Aesculus,Aesculus
+IN,Buckeye,Aesculus,Aesculus
+IN,Buckeye sapling,Aesculus,Aesculus
+OH,buckeye,Aesculus,Aesculus
+SEMI,Buckeye,Aesculus,Aesculus
+SMI,buck,Aesculus,Aesculus
+IN,Alder,Alnus,Alnus
+IN,b alder,Alnus,Alnus
+NMI,AL,Alnus,Alnus
+SMI,ald,Alnus,Alnus
+WI,AL,Alnus,Alnus
+WI,LL,Alnus,Alnus
+IN,Service Bush,Amelanchier,Amelanchier
+IL,servicebrry,Amelanchier,Amelanchier
+NMI,shad,Amelanchier,Amelanchier
+OH,serviceberry,Amelanchier,Amelanchier
+IL,paw paw,Asimina,Asimina
+IL,peach tree,Asimina,Asimina
+IL,pecan,Asimina,Asimina
+IL,pecon,Asimina,Asimina
+IL,picann,Asimina,Asimina
+IL,piecan,Asimina,Asimina
+IL,pocon,Asimina,Asimina
+IN,paw paw,Asimina,Asimina
+IN,pawpaw,Asimina,Asimina
+IN,Pecan,Asimina,Asimina
+IN,pecon,Asimina,Asimina
+IL,Birch,Betula,Betula
+IL,burch,Betula,Betula
+IL,water birch,Betula,Betula
+IN,bastard birch,Betula,Betula
+IN,Birch,Betula,Betula
+IN,Water Birch,Betula,Betula
+NMI,BB,Betula,Betula
+NMI,BI,Betula,Betula
+NMI,Birch,Betula,Betula
+NMI,brc,Betula,Betula
+OH,birch,Betula,Betula
+SEMI,Birch,Betula,Betula
+SMI,br,Betula,Betula
+SMI,brc,Betula,Betula
+SMI,BRCH,Betula,Betula
+SMI,buch,Betula,Betula
+WI,BB,Betula,Betula
+WI,BI,Betula,Betula
+WI,WY,Betula,Betula
+IN,y birch,Betula,Betula alleghaniensis
+IN,yellow birch,Betula,Betula alleghaniensis
+NMI,YB,Betula,Betula alleghaniensis
+NMI,ybrc,Betula,Betula alleghaniensis
+SMI,y.brc,Betula,Betula alleghaniensis
+SMI,YB,Betula,Betula alleghaniensis
+SMI,ybrc,Betula,Betula alleghaniensis
+SMI,ybrch,Betula,Betula alleghaniensis
+SMI,ybrcm,Betula,Betula alleghaniensis
+WI,YB,Betula,Betula alleghaniensis
+IN,w birch,Betula,Betula papyrifera
+IN,w. birch,Betula,Betula papyrifera
+NMI,WB,Betula,Betula papyrifera
+NMI,wbrc,Betula,Betula papyrifera
+SMI,WB,Betula,Betula papyrifera
+SMI,wbrc,Betula,Betula papyrifera
+SMI,wbrch,Betula,Betula papyrifera
+WI,WB,Betula,Betula papyrifera
+IL,b hickory,Carya,Carya
+IL,b. hickory,Carya,Carya
+IL,black hickory,Carya,Carya
+IL,blk hickory,Carya,Carya
+IL,double hickory,Carya,Carya
+IL,forked hickory,Carya,Carya
+IL,h,Carya,Carya
+IL,hcko,Carya,Carya
+IL,hcok,Carya,Carya
+IL,hcy,Carya,Carya
+IL,hic,Carya,Carya
+IL,hick,Carya,Carya
+IL,hickery,Carya,Carya
+IL,hickey,Carya,Carya
+IL,hickiry,Carya,Carya
+IL,hickoey,Carya,Carya
+IL,Hickory,Carya,Carya
+IL,hickory bush,Carya,Carya
+IL,hickory sapling,Carya,Carya
+IL,hickoy,Carya,Carya
+IL,hickr,Carya,Carya
+IL,hickroy,Carya,Carya
+IL,hickry,Carya,Carya
+IL,hicky,Carya,Carya
+IL,hicory,Carya,Carya
+IL,hicy,Carya,Carya
+IL,hikery,Carya,Carya
+IL,hikory,Carya,Carya
+IL,hiky,Carya,Carya
+IL,hiy,Carya,Carya
+IL,hkry,Carya,Carya
+IL,hky,Carya,Carya
+IL,hky.,Carya,Carya
+IL,h-symbol,Carya,Carya
+IL,hy,Carya,Carya
+IL,r hickory,Carya,Carya
+IL,s. hickory,Carya,Carya
+IL,scaly bark hickory,Carya,Carya
+IL,scruby hickory,Carya,Carya
+IL,sealy bark hickory,Carya,Carya
+IL,shell bark hickory,Carya,Carya
+IL,shellbark hickory,Carya,Carya
+IL,w hky,Carya,Carya
+IL,white hickory,Carya,Carya
+IN,B Hickory,Carya,Carya
+IN,b hicky,Carya,Carya
+IN,b. hicky,Carya,Carya
+IN,blk hickory,Carya,Carya
+IN,blk hicky,Carya,Carya
+IN,Fkd Hickory,Carya,Carya
+IN,Heicky,Carya,Carya
+IN,Hick,Carya,Carya
+IN,Hickory,Carya,Carya
+IN,Hickory sapling,Carya,Carya
+IN,hickroy,Carya,Carya
+IN,hickry,Carya,Carya
+IN,hicky,Carya,Carya
+IN,hicory,Carya,Carya
+IN,hik,Carya,Carya
+IN,Red Hickory,Carya,Carya
+IN,Three small white hickories,Carya,Carya
+IN,w hickory,Carya,Carya
+IN,w hicky,Carya,Carya
+IN,W. Hickory,Carya,Carya
+IN,W. Hicky,Carya,Carya
+NMI,HI,Carya,Carya
+OH,hickory,Carya,Carya
+SEMI,hic,Carya,Carya
+SEMI,hick,Carya,Carya
+SEMI,Hickory,Carya,Carya
+SEMI,hickry,Carya,Carya
+SEMI,hicky,Carya,Carya
+SEMI,Hicky.,Carya,Carya
+SEMI,hicory,Carya,Carya
+SEMI,Hy,Carya,Carya
+SEMI,Hy.,Carya,Carya
+SMI,H,Carya,Carya
+SMI,hck,Carya,Carya
+SMI,HICK,Carya,Carya
+SMI,HIK,Carya,Carya
+SMI,hky,Carya,Carya
+WI,HI,Carya,Carya
+WI,IT,Carya,Carya
+WI,LH,Carya,Carya
+WI,WK,Carya,Carya
+OH,bitternut,Carya,Carya cordiformis
+IN,Chesnut,Castanea,Castanea
+IN,Chest,Castanea,Castanea
+IN,Chest.,Castanea,Castanea
+IN,Chestnut,Castanea,Castanea
+OH,chestnut,Castanea,Castanea
+SEMI,Chesnut,Castanea,Castanea
+SEMI,Chestnut,Castanea,Castanea
+SMI,chest,Castanea,Castanea
+IL,hack,Celtis,Celtis
+IL,hack berry,Celtis,Celtis
+IL,hack berry tree,Celtis,Celtis
+IL,hack bery,Celtis,Celtis
+IL,Hackberry,Celtis,Celtis
+IL,hackberry tree,Celtis,Celtis
+IL,hackbery,Celtis,Celtis
+IL,hackbry,Celtis,Celtis
+IL,hackby,Celtis,Celtis
+IL,hby,Celtis,Celtis
+IN,hack,Celtis,Celtis
+IN,hack bush,Celtis,Celtis
+IN,Hackberry,Celtis,Celtis
+IN,Hackbery,Celtis,Celtis
+NMI,HA,Celtis,Celtis
+OH,hackberry,Celtis,Celtis
+SMI,hack,Celtis,Celtis
+WI,HA,Celtis,Celtis
+IL,r bd,Cercis,Cercis
+IL,r bud,Cercis,Cercis
+IL,r. bud,Cercis,Cercis
+IL,rd bud,Cercis,Cercis
+IL,red bud,Cercis,Cercis
+IL,redbud,Cercis,Cercis
+IN,R Bud,Cercis,Cercis
+IN,Red Bud,Cercis,Cercis
+IN,Redbud,Cercis,Cercis
+IN,red-bud,Cercis,Cercis
+OH,red bud,Cercis,Cercis
+SMI,rbud,Cercis,Cercis
+IL,d wood,Cornus,Cornus
+IL,d. wood,Cornus,Cornus
+IL,dgw,Cornus,Cornus
+IL,dgwd,Cornus,Cornus
+IL,dgwood,Cornus,Cornus
+IL,dogw,Cornus,Cornus
+IL,dogwd,Cornus,Cornus
+IL,dogwod,Cornus,Cornus
+IL,Dogwood,Cornus,Cornus
+IL,dwd,Cornus,Cornus
+IL,dwood,Cornus,Cornus
+IN,dog wood,Cornus,Cornus
+IN,dogw,Cornus,Cornus
+IN,dogw.,Cornus,Cornus
+IN,dogwd,Cornus,Cornus
+IN,dogwod,Cornus,Cornus
+IN,Dogwood,Cornus,Cornus
+IN,dog-wood,Cornus,Cornus
+NMI,DW,Cornus,Cornus
+OH,dogwood,Cornus,Cornus
+SEMI,Dogd.,Cornus,Cornus
+SEMI,Dogwood,Cornus,Cornus
+SMI,dog,Cornus,Cornus
+SMI,dogg,Cornus,Cornus
+SMI,Dogw,Cornus,Cornus
+WI,DG,Cornus,Cornus
+IL,haw,Crataegus,Crataegus
+IL,haw tree,Crataegus,Crataegus
+IL,hawthorn,Crataegus,Crataegus
+IL,thorn,Crataegus,Crataegus
+IL,thorn tree,Crataegus,Crataegus
+IL,thornbush,Crataegus,Crataegus
+IL,thorny tree,Crataegus,Crataegus
+IL,w thorn,Crataegus,Crataegus
+IL,white thorn,Crataegus,Crataegus
+IL,white thorn bush,Crataegus,Crataegus
+IN,b haw,Crataegus,Crataegus
+IN,haw,Crataegus,Crataegus
+IN,haw bush,Crataegus,Crataegus
+IN,haw tree,Crataegus,Crataegus
+IN,Hawbush,Crataegus,Crataegus
+IN,Hawthorn,Crataegus,Crataegus
+IN,r haw,Crataegus,Crataegus
+IN,Red Hawthorn,Crataegus,Crataegus
+IN,Sweet Thorn,Crataegus,Crataegus
+IN,Thorn,Crataegus,Crataegus
+IN,thorn bush,Crataegus,Crataegus
+IN,Thornbrush,Crataegus,Crataegus
+IN,thornbush,Crataegus,Crataegus
+IN,W haw,Crataegus,Crataegus
+IN,w thorn,Crataegus,Crataegus
+IN,w. thorn,Crataegus,Crataegus
+IN,white haw,Crataegus,Crataegus
+IN,White Thorn,Crataegus,Crataegus
+NMI,TH,Crataegus,Crataegus
+SMI,THORN,Crataegus,Crataegus
+SMI,THORN?,Crataegus,Crataegus
+WI,HW,Crataegus,Crataegus
+WI,LA,Crataegus,Crataegus
+WI,RH,Crataegus,Crataegus
+WI,TH,Crataegus,Crataegus
+WI,TN,Crataegus,Crataegus
+WI,WT,Crataegus,Crataegus
+IN,r cedar,Cupressaceae,Juniperus
+WI,JU,Cupressaceae,Juniperus
+IL,cedar,Cupressaceae,JuniThuja
+IL,Cedar/juniper,Cupressaceae,JuniThuja
+IN,Cedar,Cupressaceae,JuniThuja
+IN,Cedar/juniper,Cupressaceae,JuniThuja
+NMI,CE,Cupressaceae,JuniThuja
+NMI,ced,Cupressaceae,JuniThuja
+OH,cedar,Cupressaceae,JuniThuja
+SMI,CED,Cupressaceae,JuniThuja
+SMI,cedar,Cupressaceae,JuniThuja
+WI,CE,Cupressaceae,JuniThuja
+SMI,crd,Cupressaceae,Thuja
+NMI,DA,dead,dead
+NMI,DB,dead,dead
+NMI,DC,dead,dead
+NMI,DF,dead,dead
+NMI,DH,dead,dead
+NMI,DI,dead,dead
+NMI,DK,dead,dead
+NMI,DM,dead,dead
+NMI,DR,dead,dead
+NMI,DS,dead,dead
+NMI,DT,dead,dead
+NMI,DU,dead,dead
+SMI,dead pine,dead,dead
+IL,percimon,Diospyros,Diospyros
+IL,persemon,Diospyros,Diospyros
+IL,persimin,Diospyros,Diospyros
+IL,persimmen,Diospyros,Diospyros
+IL,persimmon,Diospyros,Diospyros
+IL,persimon,Diospyros,Diospyros
+IL,persimon tree,Diospyros,Diospyros
+IL,persinamon,Diospyros,Diospyros
+IL,persinomon,Diospyros,Diospyros
+IL,pissimon,Diospyros,Diospyros
+IL,possimmon,Diospyros,Diospyros
+IL,possimon,Diospyros,Diospyros
+IL,presimen,Diospyros,Diospyros
+IL,simin,Diospyros,Diospyros
+IL,simmon,Diospyros,Diospyros
+IL,simmon tree,Diospyros,Diospyros
+IN,parsimon,Diospyros,Diospyros
+IN,percimmon,Diospyros,Diospyros
+IN,Persimmon,Diospyros,Diospyros
+IN,persimon,Diospyros,Diospyros
+OH,persimmon,Diospyros,Diospyros
+IL,beach,Fagus,Fagus
+IL,Beech,Fagus,Fagus
+IN,Bastard Beech,Fagus,Fagus
+IN,Bech,Fagus,Fagus
+IN,Beech,Fagus,Fagus
+IN,beech (double),Fagus,Fagus
+IN,beech sapling,Fagus,Fagus
+IN,beech stump,Fagus,Fagus
+IN,beech tree,Fagus,Fagus
+IN,beeh,Fagus,Fagus
+IN,Black Beech,Fagus,Fagus
+IN,double beech,Fagus,Fagus
+IN,Elm and beech twisted together,Fagus,Fagus
+IN,forked beech,Fagus,Fagus
+IN,Ground Beech,Fagus,Fagus
+IN,Red Beech,Fagus,Fagus
+IN,s beech,Fagus,Fagus
+IN,Stooping beech,Fagus,Fagus
+IN,swamp beech,Fagus,Fagus
+IN,Swp Beech,Fagus,Fagus
+IN,Wh Beech,Fagus,Fagus
+IN,White Beech,Fagus,Fagus
+NMI,bch,Fagus,Fagus
+NMI,BE,Fagus,Fagus
+OH,beech,Fagus,Fagus
+SEMI,Beech,Fagus,Fagus
+SMI,BCH,Fagus,Fagus
+WI,BE,Fagus,Fagus
+IL,Ash,Fraxinus,Fraxinus
+IL,b ash,Fraxinus,Fraxinus
+IL,forked ash,Fraxinus,Fraxinus
+IL,s ash,Fraxinus,Fraxinus
+IL,swamp ash,Fraxinus,Fraxinus
+IL,w ash,Fraxinus,Fraxinus
+IL,w. ash,Fraxinus,Fraxinus
+IN,Ash,Fraxinus,Fraxinus
+IN,ash bush,Fraxinus,Fraxinus
+IN,B Ash,Fraxinus,Fraxinus
+IN,B.Ash,Fraxinus,Fraxinus
+IN,Bl Ash,Fraxinus,Fraxinus
+IN,Bl. Ash,Fraxinus,Fraxinus
+IN,Gray Ash,Fraxinus,Fraxinus
+IN,gray-ash,Fraxinus,Fraxinus
+IN,grey ash,Fraxinus,Fraxinus
+IN,North b ash,Fraxinus,Fraxinus
+IN,s ash,Fraxinus,Fraxinus
+IN,s. ash,Fraxinus,Fraxinus
+IN,swamp ash,Fraxinus,Fraxinus
+IN,Swp ash,Fraxinus,Fraxinus
+IN,Swp. Ash,Fraxinus,Fraxinus
+IN,w ash,Fraxinus,Fraxinus
+IN,W. Ash,Fraxinus,Fraxinus
+IN,Water Ash,Fraxinus,Fraxinus
+IN,y ash,Fraxinus,Fraxinus
+NMI,AH,Fraxinus,Fraxinus
+NMI,SA,Fraxinus,Fraxinus
+OH,ash,Fraxinus,Fraxinus
+OH,swamp ash,Fraxinus,Fraxinus
+SEMI,Ash,Fraxinus,Fraxinus
+SEMI,b ash,Fraxinus,Fraxinus
+SEMI,double ash,Fraxinus,Fraxinus
+SEMI,w ash,Fraxinus,Fraxinus
+SEMI,w. ash,Fraxinus,Fraxinus
+SMI,ASH,Fraxinus,Fraxinus
+SMI,b.ash,Fraxinus,Fraxinus
+SMI,bl ash,Fraxinus,Fraxinus
+SMI,swash,Fraxinus,Fraxinus
+SMI,w.ash,Fraxinus,Fraxinus
+SMI,waterash,Fraxinus,Fraxinus
+WI,AA,Fraxinus,Fraxinus
+WI,AH,Fraxinus,Fraxinus
+WI,GY,Fraxinus,Fraxinus
+WI,SA,Fraxinus,Fraxinus
+IL,wh ash,Fraxinus,Fraxinus americana
+IL,white ash,Fraxinus,Fraxinus americana
+IN,wh ash,Fraxinus,Fraxinus americana
+IN,White Ash,Fraxinus,Fraxinus americana
+NMI,WA,Fraxinus,Fraxinus americana
+NMI,wash,Fraxinus,Fraxinus americana
+OH,white ash,Fraxinus,Fraxinus americana
+SMI,WASH,Fraxinus,Fraxinus americana
+WI,WA,Fraxinus,Fraxinus americana
+IL,black ash,Fraxinus,Fraxinus nigra
+IL,hoop ash,Fraxinus,Fraxinus nigra
+IL,hoopash,Fraxinus,Fraxinus nigra
+IL,hoopwood,Fraxinus,Fraxinus nigra
+IN,bk ash,Fraxinus,Fraxinus nigra
+IN,Black ash,Fraxinus,Fraxinus nigra
+IN,blk ash,Fraxinus,Fraxinus nigra
+IN,Blk. Ash,Fraxinus,Fraxinus nigra
+IN,Hoop Ash,Fraxinus,Fraxinus nigra
+IN,hoopwood,Fraxinus,Fraxinus nigra
+NMI,BA,Fraxinus,Fraxinus nigra
+NMI,bash,Fraxinus,Fraxinus nigra
+OH,black ash,Fraxinus,Fraxinus nigra
+OH,hoop ash,Fraxinus,Fraxinus nigra
+SEMI,hoop ash,Fraxinus,Fraxinus nigra
+SMI,ba,Fraxinus,Fraxinus nigra
+SMI,BASH,Fraxinus,Fraxinus nigra
+SMI,bl.ash,Fraxinus,Fraxinus nigra
+WI,BA,Fraxinus,Fraxinus nigra
+IL,r. ash,Fraxinus,Fraxinus pennsylvanica
+IL,red ash,Fraxinus,Fraxinus pennsylvanica
+IN,g ash,Fraxinus,Fraxinus pennsylvanica
+IN,g. ash,Fraxinus,Fraxinus pennsylvanica
+IN,red ash,Fraxinus,Fraxinus pennsylvanica
+NMI,RA,Fraxinus,Fraxinus pennsylvanica
+WI,RA,Fraxinus,Fraxinus pennsylvanica
+IL,blue ash,Fraxinus,Fraxinus quadrangulata
+IN,blue ash,Fraxinus,Fraxinus quadrangulata
+IN,Blue Ash Sapling,Fraxinus,Fraxinus quadrangulata
+OH,blue ash,Fraxinus,Fraxinus quadrangulata
+SEMI,blue ash,Fraxinus,Fraxinus quadrangulata
+SMI,blash,Fraxinus,Fraxinus quadrangulata
+SMI,blus ash,Fraxinus,Fraxinus quadrangulata
+WI,UA,Fraxinus,Fraxinus quadrangulata
+IL,b. ash,Fraxinus nigra,Fraxinus nigra
+IN,B. Ash,Fraxinus nigra,Fraxinus nigra
+SEMI,B. ash,Fraxinus nigra,Fraxinus nigra
+IL,coffee,Gymnocladus,Gymnocladus
+IL,coffee bean,Gymnocladus,Gymnocladus
+IL,coffee nut,Gymnocladus,Gymnocladus
+IL,coffeenut,Gymnocladus,Gymnocladus
+IL,coffenut,Gymnocladus,Gymnocladus
+IN,Coffee nut,Gymnocladus,Gymnocladus
+IN,Coffee tree,Gymnocladus,Gymnocladus
+IN,coffeenut,Gymnocladus,Gymnocladus
+IN,Coffeetree,Gymnocladus,Gymnocladus
+OH,coffeetree,Gymnocladus,Gymnocladus
+IL,Walnut,Juglans,Juglans
+IL,walt,Juglans,Juglans
+IN,Walnut,Juglans,Juglans
+IN,Walnut bush,Juglans,Juglans
+OH,walnut,Juglans,Juglans
+SEMI,Walnut,Juglans,Juglans
+SEMI,watt,Juglans,Juglans
+SMI,wal,Juglans,Juglans
+SMI,waln,Juglans,Juglans
+SMI,walnut,Juglans,Juglans
+IL,butter nut,Juglans,Juglans cinerea
+IL,butternut,Juglans,Juglans cinerea
+IL,w walnt,Juglans,Juglans cinerea
+IL,w walnut,Juglans,Juglans cinerea
+IL,w. nut,Juglans,Juglans cinerea
+IL,w. walnut,Juglans,Juglans cinerea
+IL,white walnut,Juglans,Juglans cinerea
+IN,Butternut,Juglans,Juglans cinerea
+IN,w walnut,Juglans,Juglans cinerea
+IN,W Walt,Juglans,Juglans cinerea
+IN,w. walnut,Juglans,Juglans cinerea
+IN,wh walnut,Juglans,Juglans cinerea
+IN,Wh. Walnut,Juglans,Juglans cinerea
+IN,White Walnut,Juglans,Juglans cinerea
+NMI,BU,Juglans,Juglans cinerea
+OH,white walnut,Juglans,Juglans cinerea
+SEMI,butternut,Juglans,Juglans cinerea
+SEMI,W Walnut,Juglans,Juglans cinerea
+SEMI,W. Walnut,Juglans,Juglans cinerea
+SMI,but,Juglans,Juglans cinerea
+SMI,w.waln,Juglans,Juglans cinerea
+SMI,wwal,Juglans,Juglans cinerea
+SMI,wwalm,Juglans,Juglans cinerea
+SMI,wwaln,Juglans,Juglans cinerea
+SMI,wwrln,Juglans,Juglans cinerea
+WI,BU,Juglans,Juglans cinerea
+IL,b wal,Juglans,Juglans nigra
+IL,b walnut,Juglans,Juglans nigra
+IL,b walt,Juglans,Juglans nigra
+IL,b watt,Juglans,Juglans nigra
+IL,b. walnut,Juglans,Juglans nigra
+IL,balnut,Juglans,Juglans nigra
+IL,bl walnut,Juglans,Juglans nigra
+IL,black walnut,Juglans,Juglans nigra
+IL,blk walnut,Juglans,Juglans nigra
+IL,bw,Juglans,Juglans nigra
+IL,bwalnut,Juglans,Juglans nigra
+IN,B Walnut,Juglans,Juglans nigra
+IN,B. Walnut,Juglans,Juglans nigra
+IN,bk walnut,Juglans,Juglans nigra
+IN,bl walnut,Juglans,Juglans nigra
+IN,Bl. Walnut,Juglans,Juglans nigra
+IN,Black Walnut,Juglans,Juglans nigra
+IN,blk walnut,Juglans,Juglans nigra
+IN,forked B Walnut,Juglans,Juglans nigra
+NMI,BW,Juglans,Juglans nigra
+OH,black walnut,Juglans,Juglans nigra
+SEMI,b walnut,Juglans,Juglans nigra
+SEMI,b walt,Juglans,Juglans nigra
+SEMI,B. walt,Juglans,Juglans nigra
+SEMI,B. Walt.,Juglans,Juglans nigra
+SEMI,Black walt.,Juglans,Juglans nigra
+SMI,b.waln,Juglans,Juglans nigra
+SMI,blwaln,Juglans,Juglans nigra
+SMI,BW,Juglans,Juglans nigra
+SMI,bwal,Juglans,Juglans nigra
+SMI,BWALN,Juglans,Juglans nigra
+WI,BW,Juglans,Juglans nigra
+IN,dead tam hump,Larix,Larix
+IN,Swp. Tamarack,Larix,Larix
+IN,tam,Larix,Larix
+IN,Tamarac,Larix,Larix
+IN,Tamarack,Larix,Larix
+IN,tamarak,Larix,Larix
+IN,Tamerac,Larix,Larix
+IN,tamerach,Larix,Larix
+IN,tamerack,Larix,Larix
+IN,tamk,Larix,Larix
+NMI,TA,Larix,Larix
+NMI,tam,Larix,Larix
+SEMI,Cypress,Larix,Larix
+SEMI,cyprus,Larix,Larix
+SEMI,Tamarack,Larix,Larix
+SEMI,tamerack,Larix,Larix
+SEMI,tamk,Larix,Larix
+SMI,"ta,",Larix,Larix
+SMI,tam,Larix,Larix
+WI,TA,Larix,Larix
+IL,cucumber,Magnolia,Magnolia
+IL,crab,Malus,Malus
+IL,crab app,Malus,Malus
+IL,crab apple,Malus,Malus
+IL,crab apple tree,Malus,Malus
+IL,crab tree,Malus,Malus
+IL,crabapple,Malus,Malus
+IL,crabbtree,Malus,Malus
+IN,crab aple,Malus,Malus
+IN,crab apple,Malus,Malus
+IN,crab apple tree,Malus,Malus
+IN,Crabapple,Malus,Malus
+IN,crabapple tree,Malus,Malus
+WI,CR,Malus,Malus
+IL,mul,Morus,Morus
+IL,Mulberry,Morus,Morus
+IL,mulberry tree,Morus,Morus
+IL,mulbery,Morus,Morus
+IL,mulbury,Morus,Morus
+IL,mulby,Morus,Morus
+IN,Mulberry,Morus,Morus
+IN,mullberry,Morus,Morus
+OH,mulberry,Morus,Morus
+SMI,mul,Morus,Morus
+IL,No data,no data,no data
+IN,No data,no data,no data
+SEMI,No data,no data,no data
+WI,XC,no data,no data
+IL,No tree,no tree,no tree
+IL,Water,no tree,no tree
+IL,wet,no tree,no tree
+IN,No tree,no tree,no tree
+IN,Water,no tree,no tree
+IN,Wet,no tree,no tree
+NMI,NO,no tree,no tree
+OH,no tree,no tree,no tree
+SEMI,No tree,no tree,no tree
+SEMI,Water,no tree,no tree
+SEMI,Wet,no tree,no tree
+WI,MD,no tree,no tree
+WI,ML,no tree,no tree
+WI,NL,no tree,no tree
+WI,NO,no tree,no tree
+WI,PT,no tree,no tree
+WI,QQ,no tree,no tree
+WI,SG,no tree,no tree
+IL,s gum,NyssaLiquidambar,Liquidambar
+IL,s. gum,NyssaLiquidambar,Liquidambar
+IL,sw gum,NyssaLiquidambar,Liquidambar
+IL,Sweet gum,NyssaLiquidambar,Liquidambar
+IN,s gum,NyssaLiquidambar,Liquidambar
+IN,S. Gum,NyssaLiquidambar,Liquidambar
+IN,Sweet gum,NyssaLiquidambar,Liquidambar
+IN,Swt Gum,NyssaLiquidambar,Liquidambar
+IN,swt. gum,NyssaLiquidambar,Liquidambar
+IL,b gum,NyssaLiquidambar,Nyssa
+IL,b. gum,NyssaLiquidambar,Nyssa
+IL,Black gum,NyssaLiquidambar,Nyssa
+IL,blk gum,NyssaLiquidambar,Nyssa
+IN,B Gum,NyssaLiquidambar,Nyssa
+IN,B Gum Stump,NyssaLiquidambar,Nyssa
+IN,B. Gum,NyssaLiquidambar,Nyssa
+IN,Bl Gum,NyssaLiquidambar,Nyssa
+IN,Black gum,NyssaLiquidambar,Nyssa
+IN,Blk Gum,NyssaLiquidambar,Nyssa
+IN,Pepperage,NyssaLiquidambar,Nyssa
+IN,pepperidge,NyssaLiquidambar,Nyssa
+IN,peprage or b gum,NyssaLiquidambar,Nyssa
+NMI,BM,NyssaLiquidambar,Nyssa
+OH,black gum,NyssaLiquidambar,Nyssa
+OH,pepperidge,NyssaLiquidambar,Nyssa
+SEMI,Black gum/sweet gum,NyssaLiquidambar,Nyssa
+SEMI,gum,NyssaLiquidambar,Nyssa
+SMI,gum,NyssaLiquidambar,Nyssa
+SMI,PEP,NyssaLiquidambar,Nyssa
+SMI,pepr,NyssaLiquidambar,Nyssa
+IL,Black gum/sweet gum,NyssaLiquidambar,NyssaLiquidambar
+IL,gum,NyssaLiquidambar,NyssaLiquidambar
+IL,gumb,NyssaLiquidambar,NyssaLiquidambar
+IN,Black gum/sweet gum,NyssaLiquidambar,NyssaLiquidambar
+IN,gum,NyssaLiquidambar,NyssaLiquidambar
+OH,gum,NyssaLiquidambar,NyssaLiquidambar
+IL,w beech,OstryaCarpinus,Carpinus
+IN,b beech,OstryaCarpinus,Carpinus
+IN,blue beech,OstryaCarpinus,Carpinus
+IN,W Beech,OstryaCarpinus,Carpinus
+IN,waterbeech,OstryaCarpinus,Carpinus
+NMI,BL,OstryaCarpinus,Carpinus
+SMI,bl.bch,OstryaCarpinus,Carpinus
+WI,BL,OstryaCarpinus,Carpinus
+WI,UB,OstryaCarpinus,Carpinus
+WI,WU,OstryaCarpinus,Carpinus
+SMI,hop,OstryaCarpinus,Ostrya
+IL,hardhack,OstryaCarpinus,OstryaCarpinus
+IL,horn beam,OstryaCarpinus,OstryaCarpinus
+IL,hornbeam,OstryaCarpinus,OstryaCarpinus
+IL,iron wood,OstryaCarpinus,OstryaCarpinus
+IL,ironwd,OstryaCarpinus,OstryaCarpinus
+IL,Ironwood,OstryaCarpinus,OstryaCarpinus
+IL,iron-wood,OstryaCarpinus,OstryaCarpinus
+IL,w. beech,OstryaCarpinus,OstryaCarpinus
+IL,water beech,OstryaCarpinus,OstryaCarpinus
+IN,forked ironwood,OstryaCarpinus,OstryaCarpinus
+IN,h beam,OstryaCarpinus,OstryaCarpinus
+IN,horn,OstryaCarpinus,OstryaCarpinus
+IN,horn beam,OstryaCarpinus,OstryaCarpinus
+IN,Hornbeam,OstryaCarpinus,OstryaCarpinus
+IN,Irnwd,OstryaCarpinus,OstryaCarpinus
+IN,iron,OstryaCarpinus,OstryaCarpinus
+IN,iron wood,OstryaCarpinus,OstryaCarpinus
+IN,IronD,OstryaCarpinus,OstryaCarpinus
+IN,ironw,OstryaCarpinus,OstryaCarpinus
+IN,ironwd,OstryaCarpinus,OstryaCarpinus
+IN,ironwd.,OstryaCarpinus,OstryaCarpinus
+IN,Ironwod,OstryaCarpinus,OstryaCarpinus
+IN,Ironwood,OstryaCarpinus,OstryaCarpinus
+IN,Ironwood sapling,OstryaCarpinus,OstryaCarpinus
+IN,w. beech,OstryaCarpinus,OstryaCarpinus
+IN,Water Beech,OstryaCarpinus,OstryaCarpinus
+IN,White Ironwood,OstryaCarpinus,OstryaCarpinus
+NMI,IR,OstryaCarpinus,OstryaCarpinus
+NMI,IW,OstryaCarpinus,OstryaCarpinus
+OH,hornbeam,OstryaCarpinus,OstryaCarpinus
+OH,ironwood,OstryaCarpinus,OstryaCarpinus
+SEMI,hornbeam,OstryaCarpinus,OstryaCarpinus
+SEMI,iron,OstryaCarpinus,OstryaCarpinus
+SEMI,iron.wood,OstryaCarpinus,OstryaCarpinus
+SEMI,irond,OstryaCarpinus,OstryaCarpinus
+SEMI,Irond.,OstryaCarpinus,OstryaCarpinus
+SEMI,ironwd,OstryaCarpinus,OstryaCarpinus
+SEMI,Ironwood,OstryaCarpinus,OstryaCarpinus
+SEMI,Irowd,OstryaCarpinus,OstryaCarpinus
+SMI,hornb,OstryaCarpinus,OstryaCarpinus
+SMI,hrm,OstryaCarpinus,OstryaCarpinus
+SMI,IRON,OstryaCarpinus,OstryaCarpinus
+SMI,ironwood,OstryaCarpinus,OstryaCarpinus
+SMI,lever wood,OstryaCarpinus,OstryaCarpinus
+SMI,water beech,OstryaCarpinus,OstryaCarpinus
+WI,HO,OstryaCarpinus,OstryaCarpinus
+WI,IR,OstryaCarpinus,OstryaCarpinus
+IL,apple tree,other hardwood,other hardwood
+IL,iron wood birch,other hardwood,other hardwood
+IL,plum,other hardwood,other hardwood
+IL,plumb,other hardwood,other hardwood
+IL,plumb bush,other hardwood,other hardwood
+IL,plumb tree,other hardwood,other hardwood
+IL,thorn plum,other hardwood,other hardwood
+IN,box elm,other hardwood,other hardwood
+IN,buckhorn,other hardwood,other hardwood
+IN,mahogany,other hardwood,other hardwood
+IN,nine bark,other hardwood,other hardwood
+IN,plum,other hardwood,other hardwood
+IN,Plum Bush,other hardwood,other hardwood
+IN,plum tree,other hardwood,other hardwood
+IN,Plumb,other hardwood,other hardwood
+IN,Plumb Bush,other hardwood,other hardwood
+IN,plumb tree,other hardwood,other hardwood
+IN,plumbtree,other hardwood,other hardwood
+IN,plumbush,other hardwood,other hardwood
+IN,W. Mulberry,other hardwood,other hardwood
+NMI,PL,other hardwood,other hardwood
+SEMI,plum tree,other hardwood,other hardwood
+SMI,appl,other hardwood,other hardwood
+SMI,hazel,other hardwood,other hardwood
+SMI,plum,other hardwood,other hardwood
+SMI,quack apple,other hardwood,other hardwood
+WI,AP,other hardwood,other hardwood
+WI,BC,other hardwood,other hardwood
+WI,HF,other hardwood,other hardwood
+WI,HL,other hardwood,other hardwood
+WI,PL,other hardwood,other hardwood
+WI,YC,other hardwood,other hardwood
+OH,sourwood,Oxydendrum,Oxydendrum
+NMI,SP,Picea,Picea
+NMI,spr,Picea,Picea
+SMI,SP,Picea,Picea
+SMI,SPR,Picea,Picea
+SMI,spruce,Picea,Picea
+WI,SP,Picea,Picea
+WI,WS,Picea glauca,Picea glauca
+NMI,BS,Picea mariana,Picea mariana
+IL,Pine,Pinus,Pinus
+IN,Pine,Pinus,Pinus
+IN,Pitch Pine,Pinus,Pinus
+IN,y pine,Pinus,Pinus
+IN,Yellow Pine,Pinus,Pinus
+NMI,PI,Pinus,Pinus
+NMI,Pine,Pinus,Pinus
+NMI,PS,Pinus,Pinus
+NMI,YP,Pinus,Pinus
+OH,pine,Pinus,Pinus
+OH,pitch pine,Pinus,Pinus
+SMI,p,Pinus,Pinus
+SMI,pine,Pinus,Pinus
+SMI,pitch pine,Pinus,Pinus
+SMI,YP,Pinus,Pinus
+SMI,ypine,Pinus,Pinus
+WI,GP,Pinus,Pinus
+WI,HP,Pinus,Pinus
+WI,PI,Pinus,Pinus
+WI,PN,Pinus,Pinus
+WI,PP,Pinus,Pinus
+WI,PS,Pinus,Pinus
+WI,QP,Pinus,Pinus
+WI,SZ,Pinus,Pinus
+WI,TP,Pinus,Pinus
+WI,YP,Pinus,Pinus
+NMI,DP,Pinus,Pinus banksiana
+NMI,JP,Pinus,Pinus banksiana
+SMI,cyn,Pinus,Pinus banksiana
+SMI,cyp,Pinus,Pinus banksiana
+WI,DP,Pinus,Pinus banksiana
+WI,JP,Pinus,Pinus banksiana
+WI,SC,Pinus,Pinus banksiana
+NMI,n pine,Pinus,Pinus resinosa
+NMI,np,Pinus,Pinus resinosa
+NMI,RP,Pinus,Pinus resinosa
+WI,RP,Pinus,Pinus resinosa
+IN,w pine,Pinus,Pinus strobus
+NMI,WP,Pinus,Pinus strobus
+SMI,WP,Pinus,Pinus strobus
+WI,WP,Pinus,Pinus strobus
+IL,button wood,Platanus,Platanus
+IL,buttonwood,Platanus,Platanus
+IL,sicamore,Platanus,Platanus
+IL,sickamore,Platanus,Platanus
+IL,syc.,Platanus,Platanus
+IL,sycam,Platanus,Platanus
+IL,Sycamore,Platanus,Platanus
+IL,sychamore,Platanus,Platanus
+IL,syck,Platanus,Platanus
+IL,syckamor,Platanus,Platanus
+IL,syckamore,Platanus,Platanus
+IL,syckomory,Platanus,Platanus
+IN,buttonwood,Platanus,Platanus
+IN,Sycamore,Platanus,Platanus
+NMI,SY,Platanus,Platanus
+OH,sycamore,Platanus,Platanus
+SEMI,syc,Platanus,Platanus
+SEMI,Syc.,Platanus,Platanus
+SEMI,Sycamore,Platanus,Platanus
+SEMI,sychimore,Platanus,Platanus
+SEMI,sycmore,Platanus,Platanus
+SEMI,Sycr.,Platanus,Platanus
+SMI,SYC,Platanus,Platanus
+WI,YS,Platanus,Platanus
+IL,Tulip poplar,PopLirio,Liriodendron
+IL,w wood,PopLirio,Liriodendron
+IL,w. wood,PopLirio,Liriodendron
+IN,Tulip poplar,PopLirio,Liriodendron
+IN,w wood,PopLirio,Liriodendron
+IN,w. wood,PopLirio,Liriodendron
+IN,W.wood,PopLirio,Liriodendron
+IN,white wood,PopLirio,Liriodendron
+IN,whitewood,PopLirio,Liriodendron
+SEMI,Tulip poplar,PopLirio,Liriodendron
+SEMI,whitewood,PopLirio,Liriodendron
+SMI,wtwd,PopLirio,Liriodendron
+SMI,ww,PopLirio,Liriodendron
+IL,Poplar,PopLirio,PopLirio
+IL,Poplar/tulip poplar,PopLirio,PopLirio
+IL,popler,PopLirio,PopLirio
+IL,popplar,PopLirio,PopLirio
+IL,w poplar,PopLirio,PopLirio
+IN,pop,PopLirio,PopLirio
+IN,Popl,PopLirio,PopLirio
+IN,Poplar,PopLirio,PopLirio
+IN,Poplar/tulip poplar,PopLirio,PopLirio
+IN,Popr,PopLirio,PopLirio
+IN,popular,PopLirio,PopLirio
+OH,poplar,PopLirio,PopLirio
+SEMI,Poplar,PopLirio,PopLirio
+SEMI,Poplar/tulip poplar,PopLirio,PopLirio
+SEMI,Poplr,PopLirio,PopLirio
+SMI,POP,PopLirio,PopLirio
+SMI,POPL,PopLirio,PopLirio
+SMI,poplar,PopLirio,PopLirio
+SMI,popular,PopLirio,PopLirio
+IL,popple,PopLirio,Populus
+IN,Black poplar,PopLirio,Populus
+IN,North poplar,PopLirio,Populus
+NMI,Poplar,PopLirio,Populus
+WI,WJ,PopLirio,Populus
+WI,WW,PopLirio,Populus
+NMI,BG,PopLirio,Populus balsamifera
+WI,BG,PopLirio,Populus balsamifera
+IL,cotenwood,PopLirio,Populus deltoides
+IL,coten-wood,PopLirio,Populus deltoides
+IL,coton wood,PopLirio,Populus deltoides
+IL,cotonwood,PopLirio,Populus deltoides
+IL,cottenwood,PopLirio,Populus deltoides
+IL,cotton,PopLirio,Populus deltoides
+IL,cotton tree,PopLirio,Populus deltoides
+IL,cotton wood,PopLirio,Populus deltoides
+IL,cotton wood tree,PopLirio,Populus deltoides
+IL,cottonwood,PopLirio,Populus deltoides
+IN,cotton,PopLirio,Populus deltoides
+IN,Cotton tree,PopLirio,Populus deltoides
+IN,cottond,PopLirio,Populus deltoides
+IN,Cottontree,PopLirio,Populus deltoides
+IN,cottonw,PopLirio,Populus deltoides
+IN,cottonwd,PopLirio,Populus deltoides
+IN,Cottonwood,PopLirio,Populus deltoides
+IN,Cottowd,PopLirio,Populus deltoides
+NMI,CO,PopLirio,Populus deltoides
+OH,cottonwood,PopLirio,Populus deltoides
+SEMI,cotton,PopLirio,Populus deltoides
+SEMI,Cotton Tree,PopLirio,Populus deltoides
+SEMI,cotton wood,PopLirio,Populus deltoides
+SEMI,Cottond,PopLirio,Populus deltoides
+SEMI,Cottond.,PopLirio,Populus deltoides
+SEMI,Cottonwood,PopLirio,Populus deltoides
+SMI,cot,PopLirio,Populus deltoides
+SMI,COTN,PopLirio,Populus deltoides
+WI,CO,PopLirio,Populus deltoides
+IL,asp,PopLirio,Populus tremuloides
+IL,aspen,PopLirio,Populus tremuloides
+IL,aspin,PopLirio,Populus tremuloides
+IL,quakeing asp,PopLirio,Populus tremuloides
+IL,quaking asp,PopLirio,Populus tremuloides
+IN,apsen,PopLirio,Populus tremuloides
+IN,Aspen,PopLirio,Populus tremuloides
+IN,aspen or quaking asp,PopLirio,Populus tremuloides
+IN,aspentree,PopLirio,Populus tremuloides
+IN,Aspin,PopLirio,Populus tremuloides
+IN,Q ash,PopLirio,Populus tremuloides
+IN,Q. ash,PopLirio,Populus tremuloides
+IN,Quaking ash,PopLirio,Populus tremuloides
+IN,quaking asp,PopLirio,Populus tremuloides
+IN,quaking aspen,PopLirio,Populus tremuloides
+NMI,AS,PopLirio,Populus tremuloides
+NMI,asp,PopLirio,Populus tremuloides
+OH,aspen,PopLirio,Populus tremuloides
+OH,trembling aspen,PopLirio,Populus tremuloides
+SEMI,aspan,PopLirio,Populus tremuloides
+SEMI,aspen,PopLirio,Populus tremuloides
+SEMI,aspin,PopLirio,Populus tremuloides
+SMI,asg,PopLirio,Populus tremuloides
+SMI,asp,PopLirio,Populus tremuloides
+SMI,aspen,PopLirio,Populus tremuloides
+SMI,q.asp,PopLirio,Populus tremuloides
+SMI,qasp,PopLirio,Populus tremuloides
+WI,AS,PopLirio,Populus tremuloides
+IN,Cherry bush,Prunus,Prunus
+WI,RC,Prunus,Prunus
+IL,b cherry,Prunus,Prunus serotina
+IL,black cherry,Prunus,Prunus serotina
+IL,cherritree,Prunus,Prunus serotina
+IL,Cherry,Prunus,Prunus serotina
+IL,cherry tree,Prunus,Prunus serotina
+IL,cherrytree,Prunus,Prunus serotina
+IL,chirry tree,Prunus,Prunus serotina
+IL,s. cherry,Prunus,Prunus serotina
+IL,wild cherry,Prunus,Prunus serotina
+IN,B Cherry,Prunus,Prunus serotina
+IN,black cherry,Prunus,Prunus serotina
+IN,Cherry,Prunus,Prunus serotina
+IN,cherry tree,Prunus,Prunus serotina
+IN,Cherrytree,Prunus,Prunus serotina
+IN,chery,Prunus,Prunus serotina
+IN,forked cherry,Prunus,Prunus serotina
+IN,s. cherry,Prunus,Prunus serotina
+IN,w cherry,Prunus,Prunus serotina
+IN,wild cherry,Prunus,Prunus serotina
+NMI,CH,Prunus,Prunus serotina
+NMI,Cherry,Prunus,Prunus serotina
+OH,cherry,Prunus,Prunus serotina
+SEMI,cherritree,Prunus,Prunus serotina
+SEMI,Cherry,Prunus,Prunus serotina
+SEMI,cherry tree,Prunus,Prunus serotina
+SEMI,cherrytree,Prunus,Prunus serotina
+SMI,b ch,Prunus,Prunus serotina
+SMI,BCHER,Prunus,Prunus serotina
+SMI,chcr,Prunus,Prunus serotina
+SMI,CHER,Prunus,Prunus serotina
+WI,CH,Prunus,Prunus serotina
+IL,88888 o,Quercus,Quercus
+IL,88888 oak,Quercus,Quercus
+IL,b o,Quercus,Quercus
+IL,b oa,Quercus,Quercus
+IL,b oak,Quercus,Quercus
+IL,b oak bush,Quercus,Quercus
+IL,b oak sapling,Quercus,Quercus
+IL,b ok,Quercus,Quercus
+IL,b oke,Quercus,Quercus
+IL,b. o,Quercus,Quercus
+IL,b. o.,Quercus,Quercus
+IL,b. oak,Quercus,Quercus
+IL,b. oak bush,Quercus,Quercus
+IL,b.o,Quercus,Quercus
+IL,b.o.,Quercus,Quercus
+IL,black or red oak,Quercus,Quercus
+IL,bo,Quercus,Quercus
+IL,bo bush,Quercus,Quercus
+IL,bo.,Quercus,Quercus
+IL,boak,Quercus,Quercus
+IL,double b oak,Quercus,Quercus
+IL,double oak,Quercus,Quercus
+IL,double pin oak,Quercus,Quercus
+IL,forked b oak,Quercus,Quercus
+IL,forked bo,Quercus,Quercus
+IL,forked pin oak,Quercus,Quercus
+IL,g oak,Quercus,Quercus
+IL,lonely p oak,Quercus,Quercus
+IL,m oak,Quercus,Quercus
+IL,Oak,Quercus,Quercus
+IL,ok,Quercus,Quercus
+IL,p o,Quercus,Quercus
+IL,p oak,Quercus,Quercus
+IL,p. oak,Quercus,Quercus
+IL,p.o,Quercus,Quercus
+IL,p.o.,Quercus,Quercus
+IL,pin,Quercus,Quercus
+IL,pin o,Quercus,Quercus
+IL,pin o.,Quercus,Quercus
+IL,pin oak,Quercus,Quercus
+IL,pin ok,Quercus,Quercus
+IL,po,Quercus,Quercus
+IL,po.,Quercus,Quercus
+IL,r or b oak,Quercus,Quercus
+IL,red pin oak,Quercus,Quercus
+IL,s oak,Quercus,Quercus
+IL,s. oak,Quercus,Quercus
+IL,s.o.,Quercus,Quercus
+IL,scrub oak,Quercus,Quercus
+IL,scrubb oak,Quercus,Quercus
+IL,scrubby oak,Quercus,Quercus
+IL,so,Quercus,Quercus
+IL,swamp w oak,Quercus,Quercus
+IL,turkey oak,Quercus,Quercus
+IL,water oak,Quercus,Quercus
+IL,willow oak,Quercus,Quercus
+IN,88888 oak,Quercus,Quercus
+IN,b o,Quercus,Quercus
+IN,b oak,Quercus,Quercus
+IN,b oak bush,Quercus,Quercus
+IN,b ok,Quercus,Quercus
+IN,B. O,Quercus,Quercus
+IN,B. O.,Quercus,Quercus
+IN,B. Oak,Quercus,Quercus
+IN,B.Oak,Quercus,Quercus
+IN,black or yellow oak,Quercus,Quercus
+IN,boak,Quercus,Quercus
+IN,Double P oak,Quercus,Quercus
+IN,Fkd B. Oak,Quercus,Quercus
+IN,forked b oak,Quercus,Quercus
+IN,g oak,Quercus,Quercus
+IN,J. Oak,Quercus,Quercus
+IN,J? oak,Quercus,Quercus
+IN,Oak,Quercus,Quercus
+IN,p oak,Quercus,Quercus
+IN,P. Oak,Quercus,Quercus
+IN,p.oak,Quercus,Quercus
+IN,pigeon oak,Quercus,Quercus
+IN,pin oak,Quercus,Quercus
+IN,pin or r oak,Quercus,Quercus
+IN,pinoak,Quercus,Quercus
+IN,s oak,Quercus,Quercus
+IN,s. oak,Quercus,Quercus
+IN,s.oak,Quercus,Quercus
+IN,s___ oak,Quercus,Quercus
+IN,sand oak,Quercus,Quercus
+IN,scrub oak,Quercus,Quercus
+IN,shrub oak,Quercus,Quercus
+IN,Solitary Oak,Quercus,Quercus
+IN,sweet oak,Quercus,Quercus
+IN,water oak,Quercus,Quercus
+NMI,BO,Quercus,Quercus
+NMI,JO,Quercus,Quercus
+NMI,OA,Quercus,Quercus
+NMI,oak,Quercus,Quercus
+NMI,UO,Quercus,Quercus
+OH,jack oak,Quercus,Quercus
+OH,oak,Quercus,Quercus
+OH,pin oak,Quercus,Quercus
+SEMI,B O,Quercus,Quercus
+SEMI,b oak,Quercus,Quercus
+SEMI,B. O.,Quercus,Quercus
+SEMI,B.O,Quercus,Quercus
+SEMI,B.O.,Quercus,Quercus
+SEMI,bo,Quercus,Quercus
+SEMI,Double BO,Quercus,Quercus
+SEMI,jk. oak,Quercus,Quercus
+SEMI,Oak,Quercus,Quercus
+SMI,BO,Quercus,Quercus
+SMI,jack oak,Quercus,Quercus
+SMI,o,Quercus,Quercus
+SMI,OAK,Quercus,Quercus
+SMI,ord,Quercus,Quercus
+SMI,pin,Quercus,Quercus
+SMI,pin oak,Quercus,Quercus
+SMI,pino,Quercus,Quercus
+SMI,scrub oak,Quercus,Quercus
+SMI,soak,Quercus,Quercus
+WI,BO,Quercus,Quercus
+WI,JO,Quercus,Quercus
+WI,LJ,Quercus,Quercus
+WI,OA,Quercus,Quercus
+WI,SO,Quercus,Quercus
+WI,TO,Quercus,Quercus
+WI,UO,Quercus,Quercus
+IL,double w oak,Quercus,Quercus alba
+IL,double white oak,Quercus,Quercus alba
+IL,double wo,Quercus,Quercus alba
+IL,forked w oak,Quercus,Quercus alba
+IL,forked white oak,Quercus,Quercus alba
+IL,forked wo,Quercus,Quercus alba
+IL,w  o,Quercus,Quercus alba
+IL,w (slightly covered by finger) oak,Quercus,Quercus alba
+IL,w o,Quercus,Quercus alba
+IL,w o.,Quercus,Quercus alba
+IL,w oak,Quercus,Quercus alba
+IL,w oaks,Quercus,Quercus alba
+IL,w ok,Quercus,Quercus alba
+IL,w oke,Quercus,Quercus alba
+IL,w. o.,Quercus,Quercus alba
+IL,w. oak,Quercus,Quercus alba
+IL,w.o,Quercus,Quercus alba
+IL,w.o.,Quercus,Quercus alba
+IL,wh. oak,Quercus,Quercus alba
+IL,whi oak,Quercus,Quercus alba
+IL,whit oak,Quercus,Quercus alba
+IL,white o,Quercus,Quercus alba
+IL,white o.,Quercus,Quercus alba
+IL,white oak,Quercus,Quercus alba
+IL,whoak,Quercus,Quercus alba
+IL,wo,Quercus,Quercus alba
+IL,wo.,Quercus,Quercus alba
+IL,woak,Quercus,Quercus alba
+IL,wok,Quercus,Quercus alba
+IN,Dead white oak,Quercus,Quercus alba
+IN,double w oak,Quercus,Quercus alba
+IN,Double W. Oak,Quercus,Quercus alba
+IN,dry w oak,Quercus,Quercus alba
+IN,Fkd W oak,Quercus,Quercus alba
+IN,Fked W Oak,Quercus,Quercus alba
+IN,Post W. Oak,Quercus,Quercus alba
+IN,scrubby wh oak,Quercus,Quercus alba
+IN,W O,Quercus,Quercus alba
+IN,w oak,Quercus,Quercus alba
+IN,W Oak stump,Quercus,Quercus alba
+IN,w ok,Quercus,Quercus alba
+IN,W. O.,Quercus,Quercus alba
+IN,w. oak,Quercus,Quercus alba
+IN,W.O.,Quercus,Quercus alba
+IN,W.Oak,Quercus,Quercus alba
+IN,Wh Oak,Quercus,Quercus alba
+IN,wh ok,Quercus,Quercus alba
+IN,wh. o,Quercus,Quercus alba
+IN,wh. oak,Quercus,Quercus alba
+IN,white o,Quercus,Quercus alba
+IN,white oak,Quercus,Quercus alba
+IN,wht o,Quercus,Quercus alba
+IN,wo,Quercus,Quercus alba
+NMI,WO,Quercus,Quercus alba
+OH,white oak,Quercus,Quercus alba
+SEMI,double wo,Quercus,Quercus alba
+SEMI,W O,Quercus,Quercus alba
+SEMI,W O.,Quercus,Quercus alba
+SEMI,w oak,Quercus,Quercus alba
+SEMI,W. O,Quercus,Quercus alba
+SEMI,W. O.,Quercus,Quercus alba
+SEMI,W. Oak,Quercus,Quercus alba
+SEMI,W.O,Quercus,Quercus alba
+SEMI,W.O.,Quercus,Quercus alba
+SEMI,white o,Quercus,Quercus alba
+SEMI,wo,Quercus,Quercus alba
+SMI,dblwo,Quercus,Quercus alba
+SMI,w0,Quercus,Quercus alba
+SMI,WO,Quercus,Quercus alba
+SMI,woak,Quercus,Quercus alba
+WI,WO,Quercus,Quercus alba
+IL,swamp oak,Quercus,Quercus bicolor
+IN,swamp oak,Quercus,Quercus bicolor
+IN,swp oak,Quercus,Quercus bicolor
+IN,Swp. Oak,Quercus,Quercus bicolor
+OH,swamp oak,Quercus,Quercus bicolor
+SEMI,swamp oak,Quercus,Quercus bicolor
+SMI,SWO,Quercus,Quercus bicolor
+WI,SW,Quercus,Quercus bicolor
+IL,sp oak,Quercus,Quercus falcata
+IL,sp. oak,Quercus,Quercus falcata
+IL,span o,Quercus,Quercus falcata
+IL,span oak,Quercus,Quercus falcata
+IL,span. oak,Quercus,Quercus falcata
+IL,spanis oak,Quercus,Quercus falcata
+IL,spanish o,Quercus,Quercus falcata
+IL,spanish oak,Quercus,Quercus falcata
+IL,span-oak,Quercus,Quercus falcata
+IL,sph o,Quercus,Quercus falcata
+IL,spn o,Quercus,Quercus falcata
+IN,sp oak,Quercus,Quercus falcata
+IN,Sp. Oak,Quercus,Quercus falcata
+IN,spa oak,Quercus,Quercus falcata
+IN,Span Oak,Quercus,Quercus falcata
+IN,Span. Oak,Quercus,Quercus falcata
+IN,spanish oak,Quercus,Quercus falcata
+IN,sph oak,Quercus,Quercus falcata
+IN,spn. oak,Quercus,Quercus falcata
+OH,spanish oak,Quercus,Quercus falcata
+OH,shingle oak,Quercus,Quercus imbricaria
+IL,cup oak,Quercus,Quercus lyrata
+IL,o cup oak,Quercus,Quercus lyrata
+IL,o oak,Quercus,Quercus lyrata
+IL,o. cup oak,Quercus,Quercus lyrata
+IL,o. oak,Quercus,Quercus lyrata
+IL,ocp oak,Quercus,Quercus lyrata
+IL,ocup oak,Quercus,Quercus lyrata
+IL,over cup,Quercus,Quercus lyrata
+IL,over cup oak,Quercus,Quercus lyrata
+IL,overcup,Quercus,Quercus lyrata
+IL,overcup o,Quercus,Quercus lyrata
+IL,overcup oak,Quercus,Quercus lyrata
+IL,br oak,Quercus,Quercus macrocarpa
+IL,bu[r] oak,Quercus,Quercus macrocarpa
+IL,bur,Quercus,Quercus macrocarpa
+IL,bur o,Quercus,Quercus macrocarpa
+IL,bur oak,Quercus,Quercus macrocarpa
+IL,burr,Quercus,Quercus macrocarpa
+IL,burr  oak,Quercus,Quercus macrocarpa
+IL,burr o,Quercus,Quercus macrocarpa
+IL,burr o.,Quercus,Quercus macrocarpa
+IL,burr oak,Quercus,Quercus macrocarpa
+IL,burr oke,Quercus,Quercus macrocarpa
+IL,double bur oak,Quercus,Quercus macrocarpa
+IL,double burr oak,Quercus,Quercus macrocarpa
+IL,forked bur oak,Quercus,Quercus macrocarpa
+IL,forked burr oak,Quercus,Quercus macrocarpa
+IN,br oak,Quercus,Quercus macrocarpa
+IN,br. oak,Quercus,Quercus macrocarpa
+IN,bur oak,Quercus,Quercus macrocarpa
+IN,Bur. O.,Quercus,Quercus macrocarpa
+IN,burr o,Quercus,Quercus macrocarpa
+IN,burr o.,Quercus,Quercus macrocarpa
+IN,burr oak,Quercus,Quercus macrocarpa
+IN,burroak,Quercus,Quercus macrocarpa
+IN,dbl br oak,Quercus,Quercus macrocarpa
+IN,Double br oak,Quercus,Quercus macrocarpa
+OH,bur oak,Quercus,Quercus macrocarpa
+SMI,BUR,Quercus,Quercus macrocarpa
+SMI,BURO,Quercus,Quercus macrocarpa
+WI,PK,Quercus,Quercus macrocarpa
+IL,b jack,Quercus,Quercus marilandica
+IL,b jack bush,Quercus,Quercus marilandica
+IL,b jack oak,Quercus,Quercus marilandica
+IL,b jak,Quercus,Quercus marilandica
+IL,b. jack,Quercus,Quercus marilandica
+IL,bj,Quercus,Quercus marilandica
+IL,bj oak,Quercus,Quercus marilandica
+IL,bl jack oak,Quercus,Quercus marilandica
+IL,black jack,Quercus,Quercus marilandica
+IL,blackjack,Quercus,Quercus marilandica
+IL,blk jack,Quercus,Quercus marilandica
+IL,blk. jack,Quercus,Quercus marilandica
+IL,double b jack,Quercus,Quercus marilandica
+IL,j oak,Quercus,Quercus marilandica
+IL,jack,Quercus,Quercus marilandica
+IL,jack o,Quercus,Quercus marilandica
+IL,jack oak,Quercus,Quercus marilandica
+IL,jo,Quercus,Quercus marilandica
+IN,B jack,Quercus,Quercus marilandica
+IN,B. Jack,Quercus,Quercus marilandica
+IN,BJack,Quercus,Quercus marilandica
+IN,bl jack,Quercus,Quercus marilandica
+IN,black jack,Quercus,Quercus marilandica
+IN,blk jack,Quercus,Quercus marilandica
+IN,j oak,Quercus,Quercus marilandica
+IN,jack oak,Quercus,Quercus marilandica
+OH,black jack,Quercus,Quercus marilandica
+OH,jack oak,Quercus,Quercus marilandica
+SMI,jack,Quercus,Quercus marilandica
+IL,c oak,Quercus,Quercus montana
+IL,chesn oak,Quercus,Quercus montana
+IL,chesnut oak,Quercus,Quercus montana
+IN,C Oak,Quercus,Quercus montana
+IN,C. Oak,Quercus,Quercus montana
+IN,Ches Oak,Quercus,Quercus montana
+IN,ches. oak,Quercus,Quercus montana
+IN,Chesnut Oak,Quercus,Quercus montana
+IN,chest oak,Quercus,Quercus montana
+IN,Chest. Oak,Quercus,Quercus montana
+IN,Chestnut Oak,Quercus,Quercus montana
+OH,chestnut oak,Quercus,Quercus montana
+IL,yellow oak,Quercus,Quercus muehlenbergii
+IN,double y oak,Quercus,Quercus muehlenbergii
+IN,y oak,Quercus,Quercus muehlenbergii
+IN,Y. Oak,Quercus,Quercus muehlenbergii
+IN,yellow oak,Quercus,Quercus muehlenbergii
+OH,yellow oak,Quercus,Quercus muehlenbergii
+SMI,YO,Quercus,Quercus muehlenbergii
+SMI,yoak,Quercus,Quercus muehlenbergii
+SMI,yohk,Quercus,Quercus muehlenbergii
+IL,r o,Quercus,Quercus rubra
+IL,r oack,Quercus,Quercus rubra
+IL,r oak,Quercus,Quercus rubra
+IL,r ok,Quercus,Quercus rubra
+IL,r. oak,Quercus,Quercus rubra
+IL,r.o.,Quercus,Quercus rubra
+IL,rd oak,Quercus,Quercus rubra
+IL,red o,Quercus,Quercus rubra
+IL,red o.,Quercus,Quercus rubra
+IL,red oak,Quercus,Quercus rubra
+IL,red ok,Quercus,Quercus rubra
+IL,red. oak,Quercus,Quercus rubra
+IL,ro,Quercus,Quercus rubra
+IL,ro oak,Quercus,Quercus rubra
+IL,ro: oak,Quercus,Quercus rubra
+IL,roak,Quercus,Quercus rubra
+IN,double r oak,Quercus,Quercus rubra
+IN,dry r oak,Quercus,Quercus rubra
+IN,forked r oak,Quercus,Quercus rubra
+IN,forked r. oak,Quercus,Quercus rubra
+IN,R Oak,Quercus,Quercus rubra
+IN,R. Oak,Quercus,Quercus rubra
+IN,rd oak,Quercus,Quercus rubra
+IN,red o,Quercus,Quercus rubra
+IN,red oak,Quercus,Quercus rubra
+IN,red ok,Quercus,Quercus rubra
+NMI,RO,Quercus,Quercus rubra
+OH,red oak,Quercus,Quercus rubra
+SEMI,R O,Quercus,Quercus rubra
+SEMI,r oak,Quercus,Quercus rubra
+SEMI,R.O.,Quercus,Quercus rubra
+SEMI,red o,Quercus,Quercus rubra
+SEMI,red ok,Quercus,Quercus rubra
+SEMI,ro,Quercus,Quercus rubra
+SMI,ro,Quercus,Quercus rubra
+WI,RO,Quercus,Quercus rubra
+IL,post,Quercus,Quercus stellata
+IL,post o,Quercus,Quercus stellata
+IL,post o.,Quercus,Quercus stellata
+IL,post oak,Quercus,Quercus stellata
+IL,post ok,Quercus,Quercus stellata
+IL,post oke,Quercus,Quercus stellata
+IN,post oak,Quercus,Quercus stellata
+OH,post oak,Quercus,Quercus stellata
+IL,bk o,Quercus,Quercus velutina
+IL,bk oak,Quercus,Quercus velutina
+IL,bl oak,Quercus,Quercus velutina
+IL,black o,Quercus,Quercus velutina
+IL,black o.,Quercus,Quercus velutina
+IL,black oak,Quercus,Quercus velutina
+IL,black oak stump,Quercus,Quercus velutina
+IL,blak oak,Quercus,Quercus velutina
+IL,blck oak,Quercus,Quercus velutina
+IL,blk o,Quercus,Quercus velutina
+IL,blk oak,Quercus,Quercus velutina
+IL,blk. oak,Quercus,Quercus velutina
+IL,double black oak,Quercus,Quercus velutina
+IL,forked black oak,Quercus,Quercus velutina
+IL,swamp black oak,Quercus,Quercus velutina
+IN,bk oak,Quercus,Quercus velutina
+IN,bl oak,Quercus,Quercus velutina
+IN,bl ok,Quercus,Quercus velutina
+IN,Bl. Oak,Quercus,Quercus velutina
+IN,Black Oak,Quercus,Quercus velutina
+IN,Black Oak Tree,Quercus,Quercus velutina
+IN,black ok,Quercus,Quercus velutina
+IN,blk O,Quercus,Quercus velutina
+IN,Blk Oak,Quercus,Quercus velutina
+IN,Blk. Oak,Quercus,Quercus velutina
+IN,forked bl oak,Quercus,Quercus velutina
+OH,black oak,Quercus,Quercus velutina
+WI,LO,Quercus,Quercus velutina
+IN,Sumack,Rhus,Rhus
+IL,h locus,RobiniaGleditsia,Gleditsia
+IL,h locust,RobiniaGleditsia,Gleditsia
+IL,h. locus,RobiniaGleditsia,Gleditsia
+IL,h. locust,RobiniaGleditsia,Gleditsia
+IL,honey locis,RobiniaGleditsia,Gleditsia
+IL,honey locus,RobiniaGleditsia,Gleditsia
+IL,honey locust,RobiniaGleditsia,Gleditsia
+IL,honeylocust,RobiniaGleditsia,Gleditsia
+IL,honey-locust,RobiniaGleditsia,Gleditsia
+IL,hony locust,RobiniaGleditsia,Gleditsia
+IN,h locust,RobiniaGleditsia,Gleditsia
+IN,H. Locust,RobiniaGleditsia,Gleditsia
+IN,hon locust,RobiniaGleditsia,Gleditsia
+IN,Hon. Locust,RobiniaGleditsia,Gleditsia
+IN,Honey Locus,RobiniaGleditsia,Gleditsia
+IN,honey locust,RobiniaGleditsia,Gleditsia
+OH,honey locust,RobiniaGleditsia,Gleditsia
+IL,b locust,RobiniaGleditsia,Robinia
+IN,black locust,RobiniaGleditsia,Robinia
+OH,black locust,RobiniaGleditsia,Robinia
+IL,locas,RobiniaGleditsia,RobiniaGleditsia
+IL,locu,RobiniaGleditsia,RobiniaGleditsia
+IL,locus,RobiniaGleditsia,RobiniaGleditsia
+IL,Locust,RobiniaGleditsia,RobiniaGleditsia
+IL,locust tree,RobiniaGleditsia,RobiniaGleditsia
+IL,yel. locust,RobiniaGleditsia,RobiniaGleditsia
+IN,Locust,RobiniaGleditsia,RobiniaGleditsia
+IN,Red Locust,RobiniaGleditsia,RobiniaGleditsia
+OH,locust,RobiniaGleditsia,RobiniaGleditsia
+SEMI,Locust,RobiniaGleditsia,RobiniaGleditsia
+NMI,BD,rock,rock
+WI,BD,rock,rock
+IL,swamp willow,Salix,Salix
+IL,Willow,Salix,Salix
+IN,Red willow,Salix,Salix
+IN,Small Willow,Salix,Salix
+IN,swamp willow,Salix,Salix
+IN,Water Willow,Salix,Salix
+IN,Willow,Salix,Salix
+IN,Willow thicket,Salix,Salix
+NMI,WI,Salix,Salix
+OH,willow,Salix,Salix
+SEMI,Willow,Salix,Salix
+SMI,wil,Salix,Salix
+WI,KW,Salix,Salix
+WI,OW,Salix,Salix
+WI,RW,Salix,Salix
+WI,WI,Salix,Salix
+WI,WV,Salix,Salix
+WI,YW,Salix,Salix
+IL,safrfras,Sassafras,Sassafras
+IL,safsafras,Sassafras,Sassafras
+IL,safsafrass,Sassafras,Sassafras
+IL,sasafras,Sassafras,Sassafras
+IL,sasafrass,Sassafras,Sassafras
+IL,sasasfras,Sassafras,Sassafras
+IL,sasfras,Sassafras,Sassafras
+IL,sass,Sassafras,Sassafras
+IL,sassafra,Sassafras,Sassafras
+IL,sassafras,Sassafras,Sassafras
+IL,sassafras tree,Sassafras,Sassafras
+IL,sassafrass,Sassafras,Sassafras
+IL,sassfrass,Sassafras,Sassafras
+IN,safafrafs,Sassafras,Sassafras
+IN,Safsafras,Sassafras,Sassafras
+IN,Sapafas,Sassafras,Sassafras
+IN,Sapafrap,Sassafras,Sassafras
+IN,sapafras,Sassafras,Sassafras
+IN,Sapapap,Sassafras,Sassafras
+IN,sapapas,Sassafras,Sassafras
+IN,sapapras,Sassafras,Sassafras
+IN,Sasafras,Sassafras,Sassafras
+IN,sasafrass,Sassafras,Sassafras
+IN,sasfras,Sassafras,Sassafras
+IN,Sassafras,Sassafras,Sassafras
+IN,sassafrass,Sassafras,Sassafras
+IN,Sassfrass,Sassafras,Sassafras
+OH,sassafras,Sassafras,Sassafras
+SEMI,Safsafras,Sassafras,Sassafras
+SEMI,sasafras,Sassafras,Sassafras
+SEMI,sassafras,Sassafras,Sassafras
+SMI,sas,Sassafras,Sassafras
+WI,MT,Sorbus,Sorbus
+IL,Bald cypress,Taxodium,Taxodium
+IL,cypress,Taxodium,Taxodium
+IL,cypress tree,Taxodium,Taxodium
+IL,siprus,Taxodium,Taxodium
+NMI,WC,Thuja,Thuja
+WI,WC,Thuja,Thuja
+IL,Basswood,Tilia,Tilia
+IL,double lin tree,Tilia,Tilia
+IL,forked lynn,Tilia,Tilia
+IL,lin,Tilia,Tilia
+IL,lin tree,Tilia,Tilia
+IL,linden,Tilia,Tilia
+IL,linn,Tilia,Tilia
+IL,ly,Tilia,Tilia
+IL,lyme,Tilia,Tilia
+IL,lyn,Tilia,Tilia
+IL,lynn,Tilia,Tilia
+IL,lynn tree,Tilia,Tilia
+IN,Basswood,Tilia,Tilia
+IN,forked lynn,Tilia,Tilia
+IN,linn,Tilia,Tilia
+IN,Lyme,Tilia,Tilia
+IN,Lynn,Tilia,Tilia
+IN,lynn tree,Tilia,Tilia
+IN,lynne,Tilia,Tilia
+IN,Lynntree,Tilia,Tilia
+IN,lynnwood,Tilia,Tilia
+IN,red lin,Tilia,Tilia
+IN,s lynn,Tilia,Tilia
+NMI,LI,Tilia,Tilia
+NMI,lyn,Tilia,Tilia
+OH,basswood,Tilia,Tilia
+OH,linden,Tilia,Tilia
+OH,lynn,Tilia,Tilia
+SEMI,Basswood,Tilia,Tilia
+SEMI,lind,Tilia,Tilia
+SEMI,linn,Tilia,Tilia
+SEMI,lynn,Tilia,Tilia
+SEMI,Lynne,Tilia,Tilia
+SMI,BASS,Tilia,Tilia
+SMI,lin,Tilia,Tilia
+SMI,LYN,Tilia,Tilia
+WI,BP,Tilia,Tilia
+WI,LI,Tilia,Tilia
+IN,Hemlock,Tsuga,Tsuga
+NMI,HE,Tsuga,Tsuga
+NMI,hem,Tsuga,Tsuga
+OH,hemlock,Tsuga,Tsuga
+SMI,hcm,Tsuga,Tsuga
+SMI,heem,Tsuga,Tsuga
+SMI,HEM,Tsuga,Tsuga
+SMI,her,Tsuga,Tsuga
+SMI,HM,Tsuga,Tsuga
+WI,HE,Tsuga,Tsuga
+WI,HM,Tsuga,Tsuga
+IL,allim,Ulmus,Ulmus
+IL,elleim,Ulmus,Ulmus
+IL,ellem,Ulmus,Ulmus
+IL,ellim,Ulmus,Ulmus
+IL,ellum,Ulmus,Ulmus
+IL,Elm,Ulmus,Ulmus
+IL,elm sapling,Ulmus,Ulmus
+IL,elm tree,Ulmus,Ulmus
+IL,elmn,Ulmus,Ulmus
+IL,r elm,Ulmus,Ulmus
+IL,r. elm,Ulmus,Ulmus
+IL,red elm,Ulmus,Ulmus
+IL,red haw,Ulmus,Ulmus
+IL,s elm,Ulmus,Ulmus
+IL,s. elm,Ulmus,Ulmus
+IL,slippery elm,Ulmus,Ulmus
+IL,swamp elm,Ulmus,Ulmus
+IL,swp elm,Ulmus,Ulmus
+IL,w elm,Ulmus,Ulmus
+IL,white elm,Ulmus,Ulmus
+IN,(?) Elm,Ulmus,Ulmus
+IN,Allum,Ulmus,Ulmus
+IN,b elm,Ulmus,Ulmus
+IN,Bitter Elm,Ulmus,Ulmus
+IN,Elm,Ulmus,Ulmus
+IN,elm bush,Ulmus,Ulmus
+IN,fkd elm,Ulmus,Ulmus
+IN,forked Elm,Ulmus,Ulmus
+IN,H elm,Ulmus,Ulmus
+IN,H. Elm,Ulmus,Ulmus
+IN,Hic Elm,Ulmus,Ulmus
+IN,hick elm,Ulmus,Ulmus
+IN,hickory elm,Ulmus,Ulmus
+IN,hicky elm,Ulmus,Ulmus
+IN,hicky-elm,Ulmus,Ulmus
+IN,r elm,Ulmus,Ulmus
+IN,R. Elm,Ulmus,Ulmus
+IN,R. Haw,Ulmus,Ulmus
+IN,Red Elm,Ulmus,Ulmus
+IN,Red Haw,Ulmus,Ulmus
+IN,s elm,Ulmus,Ulmus
+IN,s. elm,Ulmus,Ulmus
+IN,slippery elm,Ulmus,Ulmus
+IN,Swp Elm,Ulmus,Ulmus
+IN,Swp. Elm,Ulmus,Ulmus
+IN,w elm,Ulmus,Ulmus
+IN,W Gum,Ulmus,Ulmus
+IN,W. Elm,Ulmus,Ulmus
+IN,Wh Elm,Ulmus,Ulmus
+IN,Whi Elm,Ulmus,Ulmus
+IN,white elm,Ulmus,Ulmus
+IN,White Gum,Ulmus,Ulmus
+NMI,EL,Ulmus,Ulmus
+OH,elm,Ulmus,Ulmus
+OH,red elm,Ulmus,Ulmus
+SEMI,Elm,Ulmus,Ulmus
+SEMI,Red Haw tree,Ulmus,Ulmus
+SMI,blm,Ulmus,Ulmus
+SMI,ELM,Ulmus,Ulmus
+SMI,eln,Ulmus,Ulmus
+SMI,em,Ulmus,Ulmus
+SMI,r.elm,Ulmus,Ulmus
+SMI,relm,Ulmus,Ulmus
+WI,AE,Ulmus,Ulmus
+WI,EL,Ulmus,Ulmus
+WI,ES,Ulmus,Ulmus
+WI,LE,Ulmus,Ulmus
+WI,RE,Ulmus,Ulmus
+WI,RK,Ulmus,Ulmus
+WI,SE,Ulmus,Ulmus
+WI,WE,Ulmus,Ulmus
+IL,88888,unk,unk
+IL,99999,unk,unk
+IL,88888 nut,unk,unk
+IL,b,unk,unk
+IL,b 88888,unk,unk
+IL,black,unk,unk
+IL,black 88888,unk,unk
+IL,bottom tree,unk,unk
+IL,h sours,unk,unk
+IL,h. saures,unk,unk
+IL,hon sours,unk,unk
+IL,Other hardwood,unk,unk
+IL,precon,unk,unk
+IL,red,unk,unk
+IL,s tree,unk,unk
+IL,sc. species,unk,unk
+IL,tree,unk,unk
+IL,Unknown tree,unk,unk
+IL,w,unk,unk
+IL,w (99999),unk,unk
+IL,w 88888,unk,unk
+IL,w 99999,unk,unk
+IL,w.,unk,unk
+IL,w. (88888),unk,unk
+IL,white,unk,unk
+IL,,unk,unk
+IN,88888,unk,unk
+IN,99999,unk,unk
+IN,b,unk,unk
+IN,B 99999,unk,unk
+IN,B G,unk,unk
+IN,b.,unk,unk
+IN,B. tree,unk,unk
+IN,black,unk,unk
+IN,black 99999,unk,unk
+IN,E,unk,unk
+IN,Other hardwood,unk,unk
+IN,Packawn,unk,unk
+IN,Precon,unk,unk
+IN,Scrub,unk,unk
+IN,Unknown tree,unk,unk
+IN,W,unk,unk
+IN,W ____,unk,unk
+IN,w 99999,unk,unk
+IN,W.,unk,unk
+IN,White ___,unk,unk
+IN,white 99999,unk,unk
+NMI,AM,unk,unk
+NMI,GB,unk,unk
+NMI,WD,unk,unk
+NMI,XX,unk,unk
+NMI,zron,unk,unk
+NMI,,unk,unk
+SEMI,88888,unk,unk
+SEMI,b,unk,unk
+SEMI,Other hardwood,unk,unk
+SEMI,Unknown tree,unk,unk
+SMI,9999,unk,unk
+SMI,creek,unk,unk
+SMI,w,unk,unk
+SMI,wd,unk,unk
+SMI,,unk,unk
+WI,0,unk,unk
+WI,XA,unk,unk
+WI,XB,unk,unk
+WI,,unk,unk
+IN,p ash,Zanthoxylum,Zanthoxylum
+IN,P. ash,Zanthoxylum,Zanthoxylum
+IN,p.ash,Zanthoxylum,Zanthoxylum
+WI,PA,Zanthoxylum,Zanthoxylum
