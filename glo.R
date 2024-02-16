@@ -3,6 +3,21 @@ library(terra)
 library(sf)
 library(dplyr)
 
+# dia=20
+# dis=9
+# (dia/200)^2/(dis^2)*10000*4
+# dens <- rast('data/msb-paleon.26.1/PLS_Density_Level1_v1.0.nc')
+# basl <- rast('data/msb-paleon.26.1/PLS_BasalArea_Level1_v1.0.nc')
+# dens <- dens$Total
+# dens <- ifel(dens > 10000,NA,dens)
+# basl <- basl$Total
+# basl <- ifel(basl > 1000000,NA,basl)
+# crs(basl) <- 'EPSG:3175'
+# crs(dens) <- 'EPSG:3175'
+# writeRaster(basl, 'gis/basl.tif', overwrite=TRUE)
+# writeRaster(dens, 'gis/dens.tif', overwrite=TRUE)
+
+
 rackCorners <- function(pts, dataset, treenames, diams, dists, x, y){
   pts$id <- rownames(pts)
   ntrees = length(treenames)
@@ -102,13 +117,37 @@ pts.OH <- st_transform(pts.OH,crs=crs(pts.geo))
 pts.geo <- rbind(pts.geo, pts.OH) |> unique()
 
 pts.geo1 <- pts.geo |> mutate(dists=ifelse(is.na(tname) | dists %in% c(8888, 9999, 99999, 88888), NA, dists), dists=dists/100*66*0.3048, diam=diam*2.54) |> subset(!(is.na(tname)  & !treeseq %in% 1))
+pts.geo1 <- pts.geo1 |> mutate(tname=tolower(tname))
+# df <- unique(st_drop_geometry(subset(pts.geo1, select=c(dataset,tname))))
 
-df <- unique(st_drop_geometry(subset(pts.geo1, select=c(dataset,tname))))
-
-treelookup <- read.csv('treelookups1.csv') |> unique()
+treelookup <- read.csv('treelookups1.csv') |> unique() |> mutate(tname=tolower(tname))
 pts.geo1 <- pts.geo1 |> left_join(treelookup, by=join_by(dataset==dataset, tname==tname), multiple='first')
 pts.geo1 <- pts.geo1 |> mutate(istree = ifelse((is.na(tname) | tname %in% '' | tolower(tname) %in% c(0,'no tree')) | Level2 %in% 'no tree',0,1))
-pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(howmanytrees = sum(istree), mdist = sum(dists)) |> ungroup() |> mutate(mdist = mdist/(howmanytrees+0.0001))
+
+#filter
+#establish lat lon 
+ptsll <- pts.geo1 |> st_transform(crs='epsg:4326')
+ptsll <- ptsll |> mutate(lon = st_coordinates(ptsll)[,1],lat = st_coordinates(ptsll)[,2])|> st_drop_geometry() |> subset(select=c(id,lon,lat)) |> unique()
+pts.geo1 <- pts.geo1 |> left_join(ptsll)
+#take out northern sycamore
+pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'Platanus' & lat >= 44, 'unk',Species))
+#resolve cedar
+anyass <- pts.geo1 |> st_drop_geometry() |> subset(Species %in% c('Fraxinus', 'Fraxinus nigra','Larix') | Level2 %in% c('Betula') | lat >= 44, select=id)
+pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'JuniThuja' & id %in% anyass$id, 'Thuja',Species))
+anyass <- pts.geo1 |> st_drop_geometry() |>  subset(Level2 %in% c('Quercus') | lat < 41, select=id)
+pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'JuniThuja' & id %in% anyass$id, 'Juniperus',Species))
+anyass <- pts.geo1 |> st_drop_geometry() |> subset(lat >= 42, select=id)
+pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'JuniThuja' & id %in% anyass$id, 'Thuja',Species))
+
+anyass <- pts.geo1 |> st_drop_geometry() |> subset(lat < 36 | Species %in% 'Fagus' , select=id)
+pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'PopLirio' & id %in% anyass$id, 'Liriodendron',Species))
+
+
+pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(howmanytrees = sum(istree)) |> ungroup() 
+pts.geo1 <- pts.geo1 |> subset(!(howmanytrees > 0 & istree == 0))
+pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(mbas = sum((diam/200)^2), mdist = sum(dists^2)) |> ungroup() |> mutate(BA = 10000*mbas/(mdist+0.0001))
+pts.geo1 <- pts.geo1 |> mutate(BA = ifelse(dataset %in% "OH", NA, BA))
+
 # write.csv(df, 'treelookups.csv', row.names = F)
 saveRDS(pts.geo1, 'points/pts.geo1.RDS')
 write_sf(pts.geo1,'gis/trees.shp')
