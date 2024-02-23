@@ -116,7 +116,9 @@ pts.OH <- st_transform(pts.OH,crs=crs(pts.geo))
 
 pts.geo <- rbind(pts.geo, pts.OH) |> unique()
 
-pts.geo1 <- pts.geo |> mutate(dists=ifelse(is.na(tname) | dists %in% c(8888, 9999, 99999, 88888), NA, dists), dists=dists/100*66*0.3048, diam=diam*2.54) |> subset(!(is.na(tname)  & !treeseq %in% 1))
+pts.geo1 <- pts.geo |> mutate(dists=ifelse(is.na(tname) | dists %in% c(8888, 9999, 99999, 88888), NA, dists),
+                              diam=ifelse(is.na(tname) | diam %in% c(8888, 9999, 99999, 88888), NA, diam),
+                              dists=dists/100*66*0.3048+1, diam=diam*2.54) |> subset(!(is.na(tname)  & !treeseq %in% 1))
 pts.geo1 <- pts.geo1 |> mutate(tname=tolower(tname))
 # df <- unique(st_drop_geometry(subset(pts.geo1, select=c(dataset,tname))))
 
@@ -145,14 +147,10 @@ pts.geo1 <- pts.geo1 |> mutate(Species = ifelse(Species %in% 'PopLirio' & id %in
 
 pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(howmanytrees = sum(istree)) |> ungroup() 
 pts.geo1 <- pts.geo1 |> subset(!(howmanytrees > 0 & istree == 0))
-pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(mbas = sum((diam/200)^2), mdist = sum(dists^2)) |> ungroup() |> mutate(BA = 10000*mbas/(mdist+0.0001))
-pts.geo1 <- pts.geo1 |> mutate(BA = ifelse(dataset %in% "OH", NA, BA))
+pts.geo1 <- pts.geo1 |> group_by(id) |> mutate(mbas = sum((diam/200)^2*3.141592), mdist = sum(dists^2*3.141592)) |> ungroup() |> mutate(BA = 10000*mbas/(mdist+0.0001), DT = 10000*howmanytrees/(mdist+0.0001))
+pts.geo1 <- pts.geo1 |> mutate(BA = ifelse(dataset %in% "OH", NA, BA), DT = ifelse(dataset %in% "OH", NA, DT))
 
 # write.csv(df, 'treelookups.csv', row.names = F)
 saveRDS(pts.geo1, 'points/pts.geo1.RDS')
 write_sf(pts.geo1,'gis/trees.shp')
 
-notree <-  subset(pts.geo, grepl('no.tree', tolower(tname))| ((tname %in% '' | is.na(tname) ) & treeseq %in% 1))
-plot(vect(notree))
-
-write_sf(notree,'gis/notree.shp')
