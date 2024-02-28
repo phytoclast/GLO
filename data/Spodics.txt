@@ -1,0 +1,334 @@
+compname	taxsubgrp	Bhs
+Abram	Lithic Haplorthods	yes
+Adamant	Typic Haplorthods	No
+Adams	Typic Haplorthods	yes
+Adirondack	Typic Endoaquods	yes
+Adirondack	Typic Epiaquods	yes
+Adirondack	Typic Haplaquods	yes
+Aeric Haplaquods	Aeric Haplaquods	No
+Agawam	Typic Haplorthods	No
+Alcona	Alfic Haplorthods	no
+Alfic Haplorthods	Alfic Haplorthods	n
+Alfic Oxyaquic Haplorthods	Alfic Oxyaquic Haplorthods	n
+Allagash	Typic Haplorthods	yes
+Allendale	Alfic Epiaquods	yes
+Allendale	Alfic Haplaquods	yes
+Amadon	Lithic Haplorthods	yes
+Amasa	Typic Haplorthods	yes
+Ampersand	Typic Epiaquods	yes
+Andic Cryaquods	Andic Cryaquods	n
+Annalake	Alfic Oxyaquic Haplorthods	no
+Arenac	Typic Epiaquods	yes
+Argic Endoaquods	Alfic Haplaquods	n
+Argic Endoaquods	Argic Endoaquods	n
+Arkona	Alfic Epiaquods	no
+Arkona	Alfic Haplaquods	no
+Atsion	Aeric Alaquods	yes
+Atsion	Aeric Haplaquods	yes
+Au Gres	Typic Endoaquods	yes
+Avoca	Alfic Epiaquods	no
+Bangor	Typic Haplorthods	No
+Battlefield	Typic Endoaquods	No
+Battydoe	Typic Haplorthods	yes
+Becket	Oxyaquic Haplorthods	yes
+Becket	Typic Haplorthods	yes
+Belding	Alfic Epiaquods	no
+Belgrade	Aquic Haplorthods	No
+Benona	Entic Haplorthods	no
+Benona	Lamellic Haplorthods	no
+Benzonia	Lamellic Haplorthods	yes
+Berkshire	Typic Haplorthods	yes
+Berryland	Typic Alaquods	yes
+Berryland	Typic Haplaquods	yes
+Berryland Variant	Typic Haplaquods	yes
+Biscuit	Alfic Epiaquods	no
+Blue Lake	Alfic Haplorthods	no
+Blue Lake	Lamellic Haplorthods	no
+Bohemian	Alfic Haplorthods	No
+Borgstrom	Typic Durorthods	yes
+Brethren	Oxyaquic Haplorthods	yes
+Brimley	Argic Endoaquods	no
+Buckland	Entic Fragiorthods	no
+Calais	Typic Fragiorthods	No
+Canaan	Lithic Haplorthods	No
+Caribou	Typic Haplorthods	No
+Charlevoix	Argic Endoaquods	no
+Charlton	Typic Haplorthods	No
+Cheboygan	Alfic Haplorthods	No
+Chesuncook	Aquic Haplorthods	yes
+Chinwhisker	Lamellic Oxyaquic Haplorthods	no
+Chinwhisker	Oxyaquic Haplorthods	no
+Colonel	Aquic Haplorthods	yes
+Colosse	Entic Haplorthods	no
+Colrain	Entic Haplorthods	no
+Colton	Typic Haplorthods	yes
+Conant	Aquic Haplorthods	No
+Constable	Typic Haplorthods	yes
+Copemish	Entic Haplorthods	no
+Coral	Argic Endoaquods	No
+Couchsachraga	Lithic Humicryods	yes
+Covert	Entic Haplorthods	no
+Covert	Oxyaquic Haplorthods	no
+Covertfalls	Aquentic Haplorthods	no
+Cozy	Oxyaquic Haplorthods	yes
+Crary	Aquic Haplorthods	no
+Creasey	Lithic Haplorthods	No
+Croghan	Aquic Haplorthods	yes
+Croswell	Oxyaquic Haplorthods	no
+Crowell	Entic Haplorthods	no
+Cublake	Oxyaquic Haplorthods	no
+Daigle	Aquic Haplorthods	No
+Danforth	Typic Haplorthods	yes
+Deep	Typic Haplorthods	No
+Deerfield	Aquentic Haplorthods	No
+Deerfield	Aquic Haplorthods	No
+Deerton	Entic Haplorthods	no
+Dixmont	Aquic Haplorthods	No
+Duane	Aquic Haplorthods	yes
+Duane	Typic Haplorthods	yes
+Duel	Entic Haplorthods	no
+Dutchess	Entic Haplorthods	no
+Duxbury	Typic Haplorthods	yes
+East Lake	Entic Haplorthods	no
+Elliottsville	Typic Haplorthods	no
+Elmwood	Aquentic Haplorthods	No
+Empeyville	Aquic Fragiorthods	yes
+Enchanted	Typic Humicryods	yes
+Engadine	Alfic Epiaquods	yes
+Entic Haplorthods	Entic Haplorthods	no
+Epworth	Entic Haplorthods	no
+Esther	Aquandic Humicryods	yes
+Fahey	Aquentic Haplorthods	No
+Fernlake	Entic Haplorthods	no
+Fibre	Alfic Epiaquods	no
+Finch	Typic Duraquods	yes
+Finch	Typic Endoaquods	yes
+Flackville	Aquic Haplorthods	yes
+Flink	Typic Epiaquods	yes
+Fogg	Alfic Haplorthods	yes
+Furlong	Typic Haplorthods	yes
+Gaastra	Argic Endoaquods	no
+Gladwin	Alfic Haplaquods	no
+Gladwin	Argic Endoaquods	no
+Glebe	Humic Cryorthods	yes
+Glebe	Typic Humicryods	yes
+Glover	Entic Lithic Haplorthods	No
+Glover	Lithic Haplorthods	No
+Grattan	Entic Haplorthods	no
+Graveraet	Alfic Oxyaquic Fragiorthods	yes
+Greylock	Alfic Haplorthods	yes
+Groveton	Typic Haplorthods	yes
+Guardlake	Typic Haplorthods	yes
+Halfaday	Oxyaquic Haplorthods	yes
+Hartland	Entic Haplorthods	No
+Hartland	Typic Haplorthods	No
+Hartwick	Entic Haplorthods	no
+Healylake	Oxyaquic Haplorthods	yes
+Heinz	Oxyaquic Haplorthods	yes
+Hermon	Typic Haplorthods	yes
+Hinckley	Entic Haplorthods	No
+Hinckley	Typic Haplorthods	No
+Hogback	Lithic Haplohumods	yes
+Hogback	Lithic Haplorthods	yes
+Hollis	Entic Lithic Haplorthods	No
+Hollis	Lithic Haplorthods	No
+Houghtonville	Typic Haplorthods	yes
+Howland	Aquic Haplorthods	yes
+Ingalls	Typic Endoaquods	yes
+Iosco	Alfic Haplaquods	yes
+Iosco	Argic Endoaquods	yes
+Iosco	Typic Endoaquods	yes
+Irasburg	Typic Haplorthods	No
+Isabella	Alfic Haplorthods	No
+Islandlake	Lamellic Haplorthods	yes
+Jebavy	Aeric Haplaquods	yes
+Jebavy	Typic Duraquods	yes
+Kaleva	Typic Haplorthods	yes
+Kalkaska	Typic Haplorthods	yes
+Kanotin	Histic Epiaquods	yes
+Karlin	Entic Haplorthods	no
+Kellogg	Alfic Oxyaquic Haplorthods	no
+Keweenaw	Alfic Haplorthods	yes
+Killington	Lithic Haplorthods	yes
+Kinross	Typic Endoaquods	yes
+Kinross	Typic Haplaquods	yes
+Kinsman	Aeric Haplaquods	yes
+Kinsman	Typic Endoaquods	yes
+Kiva	Entic Haplorthods	no
+Lamellic Haplorthods	Lamellic Haplorthods	n
+Leelanau	Alfic Haplorthods	yes
+Leetonia	Entic Haplorthods	no
+Liminga	Entic Haplorthods	no
+Lindquist	Lamellic Haplorthods	no
+Londonderry	Humic Lithic Cryorthods	No
+Longrie	Typic Haplorthods	yes
+Lyman	Lithic Haplorthods	yes
+Machias	Aquic Haplorthods	No
+Mackinac	Alfic Haplaquods	no
+Madawaska	Aquic Haplorthods	No
+Mancelona	Alfic Haplorthods	no
+Manido	Lamellic Oxyaquic Haplorthods	yes
+Manistee	Alfic Haplorthods	no
+Mapleton	Lithic Haplorthods	No
+Marlow	Oxyaquic Haplorthods	no
+Masardis	Typic Haplorthods	No
+Masardis variant	Typic Haplorthods	No
+Mashpee	Typic Endoaquods	yes
+Massasoit	Typic Duraquods	yes
+Mattapoisett	Typic Duraquods	yes
+Mattix	Oxyaquic Haplorthods	yes
+McBride	Alfic Fragiorthods	yes
+Mcivor	Typic Duraquods	yes
+Melita	Alfic Haplorthods	yes
+Melrose	Entic Haplorthods	no
+Menominee	Alfic Haplorthods	no
+Merrimac	Typic Haplorthods	No
+Metea	Alfic Haplorthods	No
+Millecoquins	Alfic Oxyaquic Haplorthods	yes
+Milnichol	Typic Epiaquods	yes
+Missisquoi	Entic Haplorthods	no
+Moira	Aquic Fragiorthods	No
+Mollineaux	Lamellic Haplorthods	no
+Monadnock	Typic Haplorthods	yes
+Monson	Lithic Haplorthods	yes
+Montcalm	Alfic Haplorthods	no
+Morganlake	Alfic Oxyaquic Haplorthods	no
+Mundal	Aquic Haplorthods	yes
+Mundal	Oxyaquic Haplorthods	yes
+Mundal	Typic Haplorthods	yes
+Mundalite	Oxyaquic Haplorthods	yes
+Mundalite	Typic Haplorthods	yes
+Naskeag	Typic Endoaquods	yes
+Naumburg	Aeric Haplaquods	yes
+Naumburg	Typic Endoaquods	yes
+Neconish	Oxyaquic Haplorthods	no
+Nessen	Typic Haplorthods	yes
+Newaygo	Alfic Haplorthods	no
+Nicholville	Aquic Haplorthods	no
+Ninigret	Aquic Haplorthods	yes
+Northway	Typic Epiaquods	No
+Occur	Aquentic Haplorthods	No
+Ocqueoc	Entic Haplorthods	no
+Ogemaw	Aquic Haplorthods	No
+Ogemaw	Typic Durorthods	No
+Oldman	Alfic Oxyaquic Fragiorthods	yes
+Otisco	Alfic Haplaquods	no
+Otisco	Argic Endoaquods	no
+Oxyaquic Haplorthods	Oxyaquic Haplorthods	n
+Paquin	Typic Durorthods	yes
+Parishville	Typic Fragiorthods	No
+Paxton	Entic Fragiorthods	No
+Paxton	Oxyaquic Haplorthods	No
+Paxton	Typic Haplorthods	No
+Pence	Typic Haplorthods	yes
+Penquis	Typic Haplorthods	No
+Perham	Aquic Haplorthods	No
+Perham	Typic Haplorthods	No
+Peru	Aquic Fragiorthods	no
+Peru	Aquic Haplorthods	no
+Pipestone	Typic Endoaquods	yes
+Plaisted	Oxyaquic Haplorthods	yes
+Plaisted	Typic Haplorthods	yes
+Pomfret	Entic Haplorthods	no
+Potsdam	Typic Haplorthods	yes
+Proper	Oxyaquic Haplorthods	no
+Pullup	Typic Durorthods	no
+Ragmuff	Aquic Haplorthods	no
+Rainberry	Typic Endoaquods	yes
+Rapson	Typic Endoaquods	yes
+Rawsonville	Typic Haplohumods	yes
+Rawsonville	Typic Haplorthods	yes
+Redstone	Typic Haplorthods	yes
+Richter	Alfic Haplaquods	no
+Richter	Argic Endoaquods	no
+Riggsville	Alfic Epiaquods	No
+Rousseau	Entic Haplorthods	no
+Rubicon	Alfic Haplorthods	no
+Rubicon	Entic Haplorthods	no
+Saddleback	Humic Lithic Cryorthods	yes
+Saddleback	Lithic Humicryods	yes
+Salmon	Typic Haplorthods	no
+Sanilac	Alfic Haplaquods	No
+Santanoni	Typic Humicryods	yes
+Saugatuck	Aeric Haplaquods	yes
+Saugatuck	Typic Duraquods	yes
+Saugatuck	Typic Endoaquods	yes
+Scio	Aquic Haplorthods	No
+Scio	Typic Haplorthods	No
+Searsport	Histic Endoaquods	No
+Sheddenbrook	Aquentic Haplorthods	No
+Sheepscot	Aquic Haplorthods	yes
+Sheepscot	Typic Haplorthods	yes
+Shoepac	Alfic Oxyaquic Haplorthods	no
+Sisk	Humic Cryorthods	yes
+Sisk	Oxyaquic Humicryods	yes
+Sisk	Typic Humicryods	yes
+Skeel	Alfic Oxyaquic Haplorthods	no
+Skerry	Aquic Haplorthods	yes
+Skowhegan	Aquic Haplorthods	No
+Skylight	Lithic Cryorthods	yes
+Skylight	Lithic Humicryods	yes
+Southwells	Alfic Haplorthods	no
+Spot	Typic Duraquods	yes
+Springlake	Typic Haplorthods	yes
+Squamscott	Aeric Alaquods	yes
+Stetson	Typic Haplorthods	yes
+Stockholm	Typic Epiaquods	yes
+Stockholm	Typic Haplaquods	yes
+Stowe	Entic Fragiorthods	no
+Stratton	Humic Cryorthods	yes
+Stratton	Humic Lithic Cryorthods	yes
+Stratton	Lithic Humicryods	yes
+Success	Typic Haplorthods	yes
+Suffield	Entic Haplorthods	no
+Sugar	Alfic Oxyaquic Haplorthods	no
+Sunapee	Aquic Haplorthods	yes
+Superior	Alfic Haplorthods	no
+Surplus	Aquic Haplocryods	yes
+Surplus	Typic Cryorthods	yes
+Sutton	Aquic Haplorthods	No
+Tacoda	Typic Epiaquods	no
+Telos	Aquic Haplorthods	no
+Thompsonville	Alfic Oxyaquic Haplorthods	no
+Thorndike	Lithic Haplorthods	No
+Trout River	Entic Haplorthods	no
+Tunbridge	Typic Haplorthods	yes
+Twining	Aqualfic Haplorthods	No
+Typic Duraquods	Typic Duraquods	yes
+Typic Endoaquods	Typic Endoaquods	yes
+Typic Haplaquods	Typic Haplaquods	No
+Typic Haplorthods	Typic Haplorthods	yes
+Ubly	Alfic Haplorthods	no
+Unnamed	Lithic Haplorthods	n
+Velvet	Oxyaquic Fragiorthods	no
+Vershire	Entic Haplorthods	no
+Wainola	Typic Endoaquods	no
+Waiska	Typic Haplorthods	yes
+Wallace	Oxyaquic Haplorthods	yes
+Wallace	Typic Durorthods	yes
+Wallace	Typic Haplorthods	yes
+Wallface	Andic Humicryods	yes
+Waumbek	Aquic Haplorthods	yes
+Westbury	Typic Fragiaquods	yes
+Westminster	Lithic Haplorthods	No
+Whittemore	Alfic Epiaquods	yes
+Wilmington	Typic Endoaquods	yes
+Wilmington	Typic Epiaquods	yes
+Wilmington	Typic Haplaquods	yes
+Windsor	Typic Haplorthods	No
+Winnecook	Typic Haplorthods	yes
+Wixom	Alfic Epiaquods	no
+Wixom	Alfic Haplaquods	no
+Woodbridge	Aquic Haplorthods	No
+Woodstock	Entic Lithic Haplorthods	No
+Woodstock	Typic Haplorthods	No
+Worden	Aquic Haplorthods	yes
+Worth	Typic Fragiorthods	yes
+Endoaquods		
+Fryeburg		no
+Haplorthods		
+Manitowish	Oxyaquic Haplorthods	no
+Padus	Alfic Haplorthods	no
+Pelissier	Entic Haplorthods	no
+Sayner	Entic Haplorthods	no
+Wormet	Typic Endoaquods	yes
