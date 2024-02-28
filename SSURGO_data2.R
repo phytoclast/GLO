@@ -5,9 +5,10 @@ library(mapview)
 library(vegnasis)
 #set working directory to folder where this R file is saved
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
+spodics <- read.delim('data/Spodics.txt')
+spodics <- subset(spodics, Bhs %in% c('yes','Yes'))
 #identify location of geodatabase
-states <- c("MI", "IL", "IN", "OH")
+states <- c("MI", "IL", "IN", "OH", "WI")
 for (i in 1:length(states)){#i=1
 mi0 = fetchGDB(dsn = paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
 mu0 = get_mapunit_from_GDB(dsn = paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
@@ -43,14 +44,15 @@ h <- h |> mutate(h50 = ifelse(hzdepb_r > 50, 50, hzdepb_r) - ifelse(hzdept_r > 5
 
 
 soil <- h |> group_by(cokey) |> summarise(sand50 = weighted.mean(sandtotal_r, h50, na.rm = T),
-                                       sand150 = weighted.mean(sandtotal_r, h150, na.rm = T),
-                                       pH50 = weighted.mean(pH, h50, na.rm = T),
-                                       OM150 = weighted.mean(om_r, h150, na.rm = T),
-                                       rockdepth = min(rock, na.rm = T),
-                                       carbdepth = min(carb, na.rm = T),
-                                       humicdepth = max(ahor, na.rm = T),
-                                       ksatdepth = min(ksr, na.rm = T), #depth to restricted saturated conductivity
-                                       Bh = max(Bh, na.rm = T))
+                                          sand150 = weighted.mean(sandtotal_r, h150, na.rm = T),
+                                          clay150 = weighted.mean(claytotal_r, h150, na.rm = T),
+                                          pH50 = weighted.mean(pH, h50, na.rm = T),
+                                          OM150 = weighted.mean(om_r, h150, na.rm = T),
+                                          rockdepth = min(rock, na.rm = T),
+                                          carbdepth = min(carb, na.rm = T),
+                                          humicdepth = max(ahor, na.rm = T),
+                                          ksatdepth = min(ksr, na.rm = T), #depth to restricted saturated conductivity
+                                          Bh = max(Bh, na.rm = T))
 soil <- subset(mu, select=c(muname, mukey)) |> left_join(subset(s, select=c(mukey, cokey, comppct_r, majcompflag, compname, taxclname, taxorder, taxsubgrp, hydricrating, drainagecl, geomdesc))) |> left_join(soil, by=join_by(cokey==cokey)) |> left_join(comonth, by=join_by(cokey==cokey)) 
 
 
@@ -65,6 +67,19 @@ soil <- soil |> mutate(
                    grepl('alf|oll',tolower(taxsubgrp)) ~ 'euic',
                    pH50 < 5.5 ~ 'dysic',
                    TRUE ~ 'euic'),
+  spodic = case_when(tolower(taxorder) %in% 'spodosols' ~ 1,
+                     TRUE ~ 0),
+  Bhs = case_when(!tolower(taxorder) %in% 'spodosols' ~ 0,
+                  Bh == 1 ~ 1,
+                  tolower(compname) %in% tolower(spodics$compname) ~ 1,
+                  TRUE ~ 0),
+  humic = case_when(tolower(taxorder) %in% 'mollisols' ~ 1,
+                    grepl('hum',tolower(taxsubgrp))  ~ 1,
+                    grepl('ultic',tolower(taxsubgrp)) & humicdepth >= 25  ~ 1,
+                    TRUE ~ 0),
+  histic = case_when(tolower(taxorder) %in% 'histosols' ~ 1,
+                    grepl('hist',tolower(taxsubgrp))  ~ 1,
+                    TRUE ~ 0),
   text = case_when(rockdepth < 100 ~ 'rocky',
                    sand50 >= 70 & sand150 >= 80 | sand50 >= 80 ~ 'sandy',
                    grepl('ist', tolower(taxsubgrp)) | grepl('ist', tolower(taxorder)) |  OM150 > 20 ~ 'mucky',
@@ -85,6 +100,7 @@ forraster <- soil |> subset(majcompflag %in% 'Yes') |>
   group_by(mukey) |> 
   summarise(sand50 = weighted.mean(sand50, comppct_r, na.rm=T),
             sand150 = weighted.mean(sand150, comppct_r, na.rm=T),
+            clay150 = weighted.mean(clay150, comppct_r, na.rm=T),
             pH50 = weighted.mean(pH50, comppct_r, na.rm=T),
             OM150 = weighted.mean(OM150, comppct_r, na.rm=T),
             hydric = weighted.mean(hydric, comppct_r, na.rm=T),
@@ -93,23 +109,44 @@ forraster <- soil |> subset(majcompflag %in% 'Yes') |>
             rockdepth = weighted.mean(rockdepth, comppct_r, na.rm=T),
             ksatdepth = weighted.mean(ksatdepth, comppct_r, na.rm=T),
             humicdepth = weighted.mean(humicdepth, comppct_r, na.rm=T),
+            humic = weighted.mean(humic, comppct_r, na.rm=T),
+            histic = weighted.mean(histic, comppct_r, na.rm=T),
+            spodic = weighted.mean(spodic, comppct_r, na.rm=T),
+            Bhs = weighted.mean(Bhs, comppct_r, na.rm=T),
             floodfrq = weighted.mean(floodfrq, comppct_r, na.rm=T)) |> 
-  subset(select=c(mukey, sand50, sand150, pH50, OM150, watertable, hydric, rockdepth, ksatdepth, humicdepth, carbdepth, floodfrq))
+  subset(select=c(mukey, sand50, sand150, clay150, pH50, OM150, watertable, hydric, rockdepth, ksatdepth, humicdepth, humic, histic, spodic, Bhs, carbdepth, floodfrq))
 
 forraster$mukey <- as.numeric(forraster$mukey)
 
-write.csv(forraster, 'forraster.csv', na='', row.names = F)
+write.csv(forraster, 'forraster.csv', row.names = F)
+foreign::write.dbf(as.data.frame(forraster), 'forraster.dbf')
 
+# 
+# 
+# library(terra)
+# mirast <- rast('D:/GIS/SOIL/2023/MI.Soil.30.tif')
+# # mirast <- rast('D:/GIS/SOIL/2023/Soil_30.tif')
+# milev <- mirast
+# # milev <- as.factor(mirast)
+# levs <- levels(milev)
+# df <- levs[[1]] |> left_join(forraster, by=join_by(Value==mukey), multiple='first') |> subset(select=c(Value, sand50, sand150, pH50, watertable, hydric, OM150, rockdepth, ksatdepth, humicdepth, humic, histic, spodic, Bhs, carbdepth, floodfrq))
+# levels(milev) <- df
+# milev <- catalyze(milev)
+# plot(milev)
+# writeRaster(milev, 'milev.tif', overwrite=T)
+# miph50 <- as.numeric(milev, index=3)
+# 
+# library(terra)
+# soilrast <- rast('D:/GIS/SOIL/2023/Soil_30.tif')
+# soillev <- soilrast
+# soillev <- as.factor(soillev)
+# levs <- levels(soillev)
+# df <- levs[[1]] |> left_join(forraster, by=join_by(ID==mukey), multiple='first') |> subset(select=c(ID, sand50, sand150, pH50, watertable, hydric, OM150, rockdepth, ksatdepth, humicdepth, humic, histic, spodic, Bhs, carbdepth, floodfrq))
+# levels(soillev) <- df
+# plot(soillev)
+# writeRaster(soillev, 'soillev.tif', overwrite=T)
 
-
-
-
-library(terra)
-mirast <- rast('D:/GIS/SOIL/2023/MI.Soil.30.tif')
-mirast <- rast('D:/GIS/SOIL/2023/Soil_30.tif')
-milev <- as.factor(mirast)
-levs <- levels(milev)
-df <- levs[[1]] |> left_join(forraster, by=join_by(ID==mukey), multiple='first') |> subset(select=c(ID, sand50, sand150, pH50, watertable, hydric, OM150, rockdepth, ksatdepth, humicdepth, carbdepth, floodfrq))
-levels(milev) <- df
-plot(milev)
-writeRaster(milev, 'milev.tif', overwrite=T)
+wisoil <- rast('gis/Wi.pH50.tif')
+misoil <- rast('gis/mi.pH50.tif')
+wisoil <- catalyze(wisoil)
+plot(misoil)
