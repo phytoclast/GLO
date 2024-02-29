@@ -82,14 +82,49 @@ latlon[,3] <- latlon[,1];
 lon = rast(x=latlon, type="xyz", crs=crs(t01));  names(lon) <- 'lon'
 usadem <- rast('C:/a/Ecological_Sites/GIS/Climate/PRISM2010/PRISM_us_dem_800m_bil/PRISM_us_dem_800m_bil.bil');names(usadem) <- 'elev'
 lat <- project(lat, t01);lon <- project(lon, t01)
-prism <- c(lat,lon, usadem)
-for (i in 1:12){
-  prism <- c(prism, get(paste0('th',month[i])))
-}
-for (i in 1:12){
-  prism <- c(prism, get(paste0('tl',month[i])))
-}
-for (i in 1:12){
-  prism <- c(prism, get(paste0('p',month[i])))
-}
+# prism <- c(lat,lon, usadem)
+# for (i in 1:12){
+#   prism <- c(prism, get(paste0('th',month[i])))
+# }
+# for (i in 1:12){
+#   prism <- c(prism, get(paste0('tl',month[i])))
+# }
+# for (i in 1:12){
+#   prism <- c(prism, get(paste0('p',month[i])))
+# }
+prism <- c(lat,lon, usadem, th01,th02,th03,th04,th05,th06,th07,th08,th09,th10,th11,th12,
+           tl01,tl02,tl03,tl04,tl05,tl06,tl07,tl08,tl09,tl10,tl11,tl12,
+           p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12)
+writeRaster(prism, 'gis/climate/prism.tif', overwrite=T)
+###load
+library(climatools)
+library(soilDB)
+library(aqp)
+library(sf)
+library(mapview)
+library(vegnasis)
+library(terra)
+#set working directory to folder where this R file is saved
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+prism <- rast('gis/climate/prism.tif')
 
+e01 <- GetPET.block(1,prism)
+e02 <- GetPET.block(2,prism)
+e03 <- GetPET.block(3,prism)
+
+e04 <- GetPET.block(4,prism)
+e05 <- GetPET.block(5,prism)
+e06 <- GetPET.block(6,prism)
+
+e07 <- GetPET.block(7,prism)
+e08 <- GetPET.block(8,prism)
+e09 <- GetPET.block(9,prism)
+
+e10 <- GetPET.block(10,prism)
+e11 <- GetPET.block(11,prism)
+e12 <- GetPET.block(12,prism)
+
+pet <- sum(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12)
+writeRaster(pet, 'gis/climate/pet.tif')
+
+plot(e07)
