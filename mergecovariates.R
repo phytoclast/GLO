@@ -96,7 +96,9 @@ prism <- c(lat,lon, usadem, th01,th02,th03,th04,th05,th06,th07,th08,th09,th10,th
            tl01,tl02,tl03,tl04,tl05,tl06,tl07,tl08,tl09,tl10,tl11,tl12,
            p01,p02,p03,p04,p05,p06,p07,p08,p09,p10,p11,p12)
 writeRaster(prism, 'gis/climate/prism.tif', overwrite=T)
-###load
+
+
+###load ----
 library(climatools)
 library(soilDB)
 library(aqp)
@@ -124,7 +126,30 @@ e10 <- GetPET.block(10,prism)
 e11 <- GetPET.block(11,prism)
 e12 <- GetPET.block(12,prism)
 
-pet <- sum(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12)
-writeRaster(pet, 'gis/climate/pet.tif')
+pet <- sum(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12); names(pet) <- 'e'
+writeRaster(pet, 'gis/climate/pet.tif', overwrite=T)
+#----
+pet <- rast('gis/climate/pet.tif')
+names(pet) <- 'e'
 
-plot(e07)
+p <- ApplyClim.rast(prism, name='p')
+p1 <- ApplyClim.rast(prism, jan='p01', mons=c(12,1,2), fun='sum', name='pq1')
+p2 <- ApplyClim.rast(prism, jan='p01', mons=c(3,4,5), fun='sum', name='pq2')
+p3 <- ApplyClim.rast(prism, jan='p01', mons=c(6,7,8), fun='sum', name='pq3')
+p4 <- ApplyClim.rast(prism, jan='p01', mons=c(9,10,11), fun='sum', name='pq4')
+
+tblock <- climatools::meanT.rast(prism)
+
+Twh <- ApplyClim.rast(prism, jan='th01', fun='max', name='Twh')
+Tw <- ApplyClim.rast(tblock, jan='t01', fun='max', name='Tw')
+Tcl <- ApplyClim.rast(prism, jan='tl01', fun='min', name='Tcl')
+Tc <- ApplyClim.rast(tblock, jan='t01', fun='min', name='Tc')
+
+btblock <- ifel(tblock > 0, tblock, 0)
+
+Tg1 <- ApplyClim.rast(btblock, jan='t01', mons=c(12,1,2,3,4), fun='mean')
+Tg2 <- ApplyClim.rast(btblock, jan='t01', mons=c(5,6,7,8,9,10), fun='mean')
+Tg <- max(Tg1, Tg2);names(Tg) <- 'Tg'
+m <- p/(p+pet+0.0001); names(m) <- 'm'
+prism2 <- c(p,p1,p2,p3,p4,Twh,Tw,Tc,Tcl,Tg,pet,m)
+writeRaster(prism2, 'gis/climate/prism2.tif', overwrite=T)
