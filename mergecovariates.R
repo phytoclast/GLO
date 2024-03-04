@@ -117,8 +117,10 @@ e10 <- GetPET.block(10,prism)
 e11 <- GetPET.block(11,prism)
 e12 <- GetPET.block(12,prism)
 Sys.time() - timeA
+timeA <-  Sys.time()
 pet <- sum(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12); names(pet) <- 'e'
 Sys.time() - timeA
+timeA <-  Sys.time()
 writeRaster(pet, 'gis/climate/pet.tif', overwrite=T)
 Sys.time() - timeA
 #----
