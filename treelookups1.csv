@@ -132,8 +132,8 @@ NMI,AL,Alnus,Alnus
 SMI,ald,Alnus,Alnus
 WI,AL,Alnus,Alnus
 WI,LL,Alnus,Alnus
-IN,Service Bush,Amelanchier,Amelanchier
 IL,servicebrry,Amelanchier,Amelanchier
+IN,Service Bush,Amelanchier,Amelanchier
 NMI,shad,Amelanchier,Amelanchier
 OH,serviceberry,Amelanchier,Amelanchier
 IL,paw paw,Asimina,Asimina
@@ -500,10 +500,12 @@ NMI,wash,Fraxinus,Fraxinus americana
 OH,white ash,Fraxinus,Fraxinus americana
 SMI,WASH,Fraxinus,Fraxinus americana
 WI,WA,Fraxinus,Fraxinus americana
+IL,b. ash,Fraxinus,Fraxinus nigra
 IL,black ash,Fraxinus,Fraxinus nigra
 IL,hoop ash,Fraxinus,Fraxinus nigra
 IL,hoopash,Fraxinus,Fraxinus nigra
 IL,hoopwood,Fraxinus,Fraxinus nigra
+IN,B. Ash,Fraxinus,Fraxinus nigra
 IN,bk ash,Fraxinus,Fraxinus nigra
 IN,Black ash,Fraxinus,Fraxinus nigra
 IN,blk ash,Fraxinus,Fraxinus nigra
@@ -514,6 +516,7 @@ NMI,BA,Fraxinus,Fraxinus nigra
 NMI,bash,Fraxinus,Fraxinus nigra
 OH,black ash,Fraxinus,Fraxinus nigra
 OH,hoop ash,Fraxinus,Fraxinus nigra
+SEMI,B. ash,Fraxinus,Fraxinus nigra
 SEMI,hoop ash,Fraxinus,Fraxinus nigra
 SMI,ba,Fraxinus,Fraxinus nigra
 SMI,BASH,Fraxinus,Fraxinus nigra
@@ -534,9 +537,6 @@ SEMI,blue ash,Fraxinus,Fraxinus quadrangulata
 SMI,blash,Fraxinus,Fraxinus quadrangulata
 SMI,blus ash,Fraxinus,Fraxinus quadrangulata
 WI,UA,Fraxinus,Fraxinus quadrangulata
-IL,b. ash,Fraxinus nigra,Fraxinus nigra
-IN,B. Ash,Fraxinus nigra,Fraxinus nigra
-SEMI,B. ash,Fraxinus nigra,Fraxinus nigra
 IL,coffee,Gymnocladus,Gymnocladus
 IL,coffee bean,Gymnocladus,Gymnocladus
 IL,coffee nut,Gymnocladus,Gymnocladus
@@ -810,12 +810,11 @@ WI,YC,other hardwood,other hardwood
 OH,sourwood,Oxydendrum,Oxydendrum
 NMI,SP,Picea,Picea
 NMI,spr,Picea,Picea
-SMI,SP,Picea,Picea
 SMI,SPR,Picea,Picea
 SMI,spruce,Picea,Picea
 WI,SP,Picea,Picea
-WI,WS,Picea glauca,Picea glauca
-NMI,BS,Picea mariana,Picea mariana
+WI,WS,Picea,Picea glauca
+NMI,BS,Picea,Picea mariana
 IL,Pine,Pinus,Pinus
 IN,Pine,Pinus,Pinus
 IN,Pitch Pine,Pinus,Pinus
@@ -846,6 +845,7 @@ NMI,DP,Pinus,Pinus banksiana
 NMI,JP,Pinus,Pinus banksiana
 SMI,cyn,Pinus,Pinus banksiana
 SMI,cyp,Pinus,Pinus banksiana
+SMI,SP,Pinus,Pinus banksiana
 WI,DP,Pinus,Pinus banksiana
 WI,JP,Pinus,Pinus banksiana
 WI,SC,Pinus,Pinus banksiana
