@@ -7,18 +7,19 @@ library(terra)
 #set working directory to folder where this R file is saved
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 #dem
-# solar1 <- rast('gis/dem/tifs/mi_dem_30_solar.tif')
+# solar1 <- rast('gis/dem/tifs/mi_dem_30_solar.tif')#SAGA solar radiation 14 steps 
 # solar <- mean(solar1) 
 # names(solar) <- 'solar'
 # writeRaster(solar, 'gis/dem/tifs/solar.tif')
-solar <- rast('gis/dem/tifs/solar.tif')
-openess <- rast('gis/dem/tifs/mi_dem_30_layers.tif')
+solar <- rast('gis/dem/tifs/solar.tif') 
+openess <- rast('gis/dem/tifs/mi_dem_30_layers.tif') #SAGA topographic openess to 10000 m
 names(openess) <- c('shade','popen','nopen')
-slope <- rast('gis/dem/tifs/mi_dem_30_slope.tif')
+slope <- rast('gis/dem/tifs/mi_dem_30_slope.tif') #slope SAGA radians
 names(slope) <- c('slope','aspect')
-dem <- rast('gis/dem/tifs/mi_dem_30.tif')
+dem <- rast('gis/dem/tifs/mi_dem_30.tif')#DEM from USGS Feb 2024
+slope500 <- rast('gis/dem/tifs/slope500.tif');names(slope500) <- 'slope500' #mean slope 500 m radius
 names(dem) <- c('elev')
-dem <- c(dem, slope, openess, solar)
+dem <- c(dem, slope, slope500, openess, solar)
 
 #soil
 misoil <- rast(paste0('gis/soilcov/','MI','soil.tif'))
@@ -148,3 +149,30 @@ Tg <- max(Tg1, Tg2);names(Tg) <- 'Tg'
 m <- p/(p+pet+0.0001); names(m) <- 'm'
 prism2 <- c(p,p1,p2,p3,p4,Twh,Tw,Tc,Tcl,Tg,pet,m)
 writeRaster(prism2, 'gis/climate/prism2.tif', overwrite=T)
+
+#project to project area ---- 
+library(climatools)
+library(soilDB)
+library(aqp)
+library(sf)
+library(mapview)
+library(vegnasis)
+library(terra)
+#set working directory to folder where this R file is saved
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+prism <- rast('gis/climate/prism.tif')
+prism2 <- rast('gis/climate/prism2.tif')
+solar <- rast('gis/dem/tifs/solar.tif')
+openess <- rast('gis/dem/tifs/mi_dem_30_layers.tif')
+names(openess) <- c('shade','popen','nopen')
+slope <- rast('gis/dem/tifs/mi_dem_30_slope.tif')
+names(slope) <- c('slope','aspect')
+dem <- rast('gis/dem/tifs/mi_dem_30.tif')
+names(dem) <- c('elev')
+dem <- c(dem, slope, openess, solar)
+
+prism.repro <- project(prism2, dem, method='bilinear')
+writeRaster(prism.repro, 'gis/climate/prism.repro.tif', overwrite=T)
+Tg30 <- enhanceRast(prism2$Tg, prism$elev, dem$elev); names(Tg30) <- 'Tg30'
+writeRaster(Tg30, 'gis/climate/Tg30.tif', overwrite=T)
+
