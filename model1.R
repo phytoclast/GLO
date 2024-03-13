@@ -50,6 +50,20 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 pts.vars <- readRDS('pts.vars.RDS')
 vars90 <- rast('gis/vars90.tif')
 ttt <- pts.vars |> group_by(Level2) |> summarize(npts = length(Level2))
+# 
+# ggplot(subset(pts.vars, diam > 0), aes(x=diam))+
+#   geom_density(fill='red', alpha=0.5)+
+#   scale_x_sqrt(breaks=c((0:9)*5,(5:30)*10), name='diameter (cm)')+
+#   scale_y_continuous(name='relative frequency')+
+#   coord_cartesian(xlim=c(0,150))
+# ggplot(subset(pts.vars, dists > 0), aes(x=dists))+
+#   geom_density(fill='red', alpha=0.5)+
+#   scale_x_sqrt(breaks=c(0:9,c(1:20)*10), name='distance (m)')+
+#   scale_y_continuous(name='relative frequency')+
+#   coord_cartesian(xlim=c(0,100))
+# 
+# median(subset(pts.vars, diam > 0)$diam)
+# median(subset(pts.vars, dists > 0)$dists)
 
 #Taxa ----
 taxon = 'Tsuga'
