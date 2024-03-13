@@ -42,6 +42,8 @@ library(dplyr)
 library(ggplot2)
 library(ranger)
 library(gam)
+library(biomod2)
+
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
@@ -50,7 +52,7 @@ vars90 <- rast('gis/vars90.tif')
 ttt <- pts.vars |> group_by(Level2) |> summarize(npts = length(Level2))
 
 #Taxa ----
-taxon = 'Thuja'
+taxon = 'Tsuga'
 pts.pos <- pts.vars |> mutate(pos= ifelse(Species %in% taxon, 1,0)) |> st_drop_geometry()
 
 poss <- subset(pts.pos,pos %in% 1) 
@@ -73,6 +75,26 @@ rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
+# library(randomForest)
+# rf <- randomForest(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+#                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+#                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+#                slope+slope500+popen+nopen+solar, 
+#              data=train0, sampsize = 0.333*nrow(train0), ntree=200,  importance = TRUE)
+# 
+# varImpPlot(rf)
+
+gm <- gam(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+s(m)+s(Tg30)+
+               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+               hydric+ksatdepth+OM150+s(pH50)+rockdepth+s(sand150)+sand50+spodic+s(watertable)+
+               slope+slope500+popen+nopen+solar+spodic:watertable, 
+             data=train0)
+
+summary.Gam(gm)
+
+test <- test |> mutate(pred = (predict.Gam(gm, test)))
+corr <- cor(test$pos, test$pred)
+corr
 
 test <- test |> mutate(pred = predictions(predict(rf, test)))
 corr <- cor(test$pos, test$pred)
@@ -102,6 +124,23 @@ BA <- rast('gis/models/basalarea.tif')
 
 Trees <- c(Acer, Fagus, Tilia, Tsuga, Betula, Fraxinus, Ulmus, Carya, Quercus, Pinus, Abies, Picea, Thuja, Larix, BA)
 writeRaster(Trees, 'gis/models/Trees.tif', overwrite=T)
+
+
+Fagus2 <- (Fagus/(minmax(Fagus)[2]))
+Tsuga2 <- (Tsuga/(minmax(Tsuga)[2]))^0.5
+Acer2 <- (Acer/(minmax(Acer)[2]))^0.5
+plot(Tsuga2 > 0.5)
+
+northmesicforest <- c(Acer2, Fagus2, Tsuga2)
+writeRaster(northmesicforest,'gis/models/northmesicforest.tif', overwrite=T)
+
+Picea2 <- (Picea/(minmax(Picea)[2]))^0.333
+Abies2 <- (Abies/(minmax(Abies)[2]))^0.333
+Thuja2 <- (Thuja/(minmax(Thuja)[2]))^0.333
+plot(Abies2 > 0.5)
+
+borealforest <- c(Abies2, Picea2, Thuja2)
+writeRaster(borealforest,'gis/models/borealforest.tif', overwrite=T)
 
 #gam ----
 gm.full <- gam(pos ~ s(p)+
