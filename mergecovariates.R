@@ -173,6 +173,11 @@ dem <- c(dem, slope, openess, solar)
 
 prism.repro <- project(prism2, dem, method='bilinear')
 writeRaster(prism.repro, 'gis/climate/prism.repro.tif', overwrite=T)
+prism.repro <- rast('gis/climate/prism.repro.tif')
 Tg30 <- enhanceRast(prism2$Tg, prism$elev, dem$elev); names(Tg30) <- 'Tg30'
 writeRaster(Tg30, 'gis/climate/Tg30.tif', overwrite=T)
+# Tg30 <- rast('gis/climate/Tg30.tif')
+# Tg500 <- climatools::focalmed(Tg30, 500)
+# plot(Tg500)
+# writeRaster(Tg500, 'gis/climate/Tg500.tif', overwrite=T)
 
