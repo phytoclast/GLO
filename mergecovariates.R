@@ -46,6 +46,7 @@ if(file.exists('gis/soilcov/allsoilcrop.tif')){
 plot(allsoil$spodic)
 
 #climate 
+# remotes::install_github("phytoclast/climatools", dependencies = FALSE)
 library(climatools)
 prismTpath <- 'C:/a/Ecological_Sites/GIS/Climate/PRISM2010/CorrectedT/'
 prismPpath <- 'C:/a/Ecological_Sites/GIS/Climate/PRISM2010/P/'
