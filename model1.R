@@ -32,7 +32,7 @@ names(vars)
 # pts.vars <- extract(vars,pts.vars)
 # pts.vars <- pts |> cbind(pts.vars)
 # saveRDS(pts.vars, 'pts.vars.RDS')
-# vars90 <- aggregate(vars, 3)
+# vars90 <- aggregate(vars, 3, na.rm=T)
 # writeRaster(vars90,'gis/vars90.tif', overwrite=T)
 
 #Load data ----
@@ -66,8 +66,8 @@ ttt <- pts.vars |> group_by(Level2) |> summarize(npts = length(Level2))
 # median(subset(pts.vars, dists > 0)$dists)
 
 #Taxa ----
-taxon = 'Tsuga'
-pts.pos <- pts.vars |> mutate(pos= ifelse(Species %in% taxon, 1,0)) |> st_drop_geometry()
+taxon = 'Carya'
+pts.pos <- pts.vars |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
 
 poss <- subset(pts.pos,pos %in% 1) 
 neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id) 
@@ -85,7 +85,7 @@ rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train0, sample.fraction = 0.333, num.trees=200,  importance = 'impurity',
+             data=train0, sample.fraction = 0.333, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
@@ -98,17 +98,17 @@ vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variab
 # 
 # varImpPlot(rf)
 
-gm <- gam(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+s(m)+s(Tg30)+
-               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
-               hydric+ksatdepth+OM150+s(pH50)+rockdepth+s(sand150)+sand50+spodic+s(watertable)+
-               slope+slope500+popen+nopen+solar+spodic:watertable, 
-             data=train0)
-
-summary.Gam(gm)
-
-test <- test |> mutate(pred = (predict.Gam(gm, test)))
-corr <- cor(test$pos, test$pred)
-corr
+# gm <- gam(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+s(m)+s(Tg30)+
+#                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+#                hydric+ksatdepth+OM150+s(pH50)+rockdepth+s(sand150)+sand50+spodic+s(watertable)+
+#                slope+slope500+popen+nopen+solar+spodic:watertable, 
+#              data=train0)
+# 
+# summary.Gam(gm)
+# 
+# test <- test |> mutate(pred = (predict.Gam(gm, test)))
+# corr <- cor(test$pos, test$pred)
+# corr
 
 test <- test |> mutate(pred = predictions(predict(rf, test)))
 corr <- cor(test$pos, test$pred)
@@ -117,9 +117,18 @@ corr
 prediction <-  predict(vars90, rf, na.rm=T);  names(prediction) <- taxon
 plot(prediction)
 writeRaster(prediction, paste0('gis/models/',taxon,'.tif'), overwrite=T)
+#rpart ----
+library(rpart)
+library(rpart.plot)
+rp <- rpart(pos ~ Twh+Tw+Tc+Tcl+Tg+m+Tg30+
+               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+               hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+               slope+slope500+popen+nopen+solar, 
+             data=train0, control =  rpart.control(maxdepth = 5, cp=0.001, minsplit=10))
+rpart.plot(rp, digits = 3)
 
 
-
+#bring together ----
 Acer <- rast('gis/models/Acer.tif')
 Fagus <- rast('gis/models/Fagus.tif')
 Tsuga <- rast('gis/models/Tsuga.tif')
@@ -261,4 +270,53 @@ writeRaster(basalarea,'gis/model/basalarea.tif', overwrite=T)
 # basalarea <-  predict(vars90, gm, na.rm=T);  names(basalarea) <- 'basalarea'
 # plot(basalarea)
 # writeRaster(basalarea, paste0('gis/model/basalarea.glm.tif'), overwrite=T)
+#rpart ----
+library(rpart)
+library(rpart.plot)
+rp <- rpart(BA ~ Twh+Tw+Tc+Tcl+Tg+m+Tg30+
+              Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+              hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+              slope+slope500+popen+nopen+solar, 
+            data=train0, control =  rpart.control(maxdepth = 5, cp=0.001, minsplit=10))
+rpart.plot(rp, digits = 3)
 
+#sample multi models ----
+library(sf)
+library(terra)
+library(dplyr)
+library(ggplot2)
+library(ranger)
+library(gam)
+library(biomod2)
+library(vegan)
+
+vars90 <- rast('gis/vars90.tif')
+trees <- rast('gis/models/Trees.tif')
+mlra <- st_read('C:/a/Ecological_Sites/GIS/Ecoregion/MLRA_2017.shp')
+mlra <- st_transform(mlra, crs(vars90))
+selectedmlra <- mlra |> subset(MLRA %in% c('97','98','99')) |> vect()
+sampts <- terra::spatSample(selectedmlra, size=10000, "random")
+
+env0 <- extract(vars90, sampts)
+spp0 <- extract(trees, sampts)
+
+#move basal area to environment
+env <- env0 |> cbind(subset(spp0, select = c(basalarea)))
+spp <- subset(spp0, select = -c(basalarea))
+comb <- cbind(env, spp)
+
+#remove na rows
+keep <- !is.na(comb$Tg) & !is.na(comb$Tsuga)
+env <- env[keep,] |> subset(select=-c(ID)) 
+spp <- spp[keep,] |> subset(select=-c(ID))
+keep <- spp |> apply(MARGIN = 1, FUN='sum')
+keep <- keep > 0
+spp <- spp[keep,] 
+env <- env[keep,] 
+#cca 
+mod <- vegan::cca(spp, env)
+
+plot(mod, type="n", scaling="sites")
+text(mod, dis="cn", scaling="sites")
+#points(mod, pch=21, col="red", bg="yellow", cex=1.2, scaling="sites")
+text(mod, "species", col="blue", cex=0.8, scaling="sites")
