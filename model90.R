@@ -26,6 +26,8 @@ vars90 <- rast('gis/vars90.tif')
 # pts.vars270 <- extract(vars270,pts.vars270)
 # pts.vars270 <- pts |> cbind(pts.vars270)
 # saveRDS(pts.vars270, 'pts.vars270.RDS')
+vars270 <- rast('gis/vars270.tif')
+
 pts.vars90 <- readRDS('pts.vars90.RDS')
 pts.vars270 <- readRDS('pts.vars270.RDS')
 pts.vars90 <- pts.vars90 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
@@ -33,9 +35,16 @@ pts.vars270 <- pts.vars270 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Speci
 ttt <- pts.vars90 |> group_by(Level2) |> summarize(npts = length(Level2))
 ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10000)
 ttt <- ttt$Level2
+
+
+# pca <- princomp(vars270)
+
+ttt[14]
+
+
 #Taxa ----
 #
-for (i in 1:length(ttt)){ #i=1
+for (i in 1:length(ttt)){ #i=14
 taxon = ttt[i]
 pts.pos <- pts.vars270 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
 
@@ -55,7 +64,7 @@ rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train0, sample.fraction = 0.333, num.trees=200, max.depth = NULL, importance = 'impurity',
+             data=train, sample.fraction = 0.333, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
