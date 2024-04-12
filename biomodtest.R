@@ -45,20 +45,25 @@ neg$pos = 0
 train0 <- rbind(poss,neg)
 train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
 
-prob = mean(train0$pos)
+positives <- subset(train0, pos %in% 1)
+negatives <- subset(train0, pos %in% 0)
+ntest = 0.95
+takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
+takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
+train.p <- positives[-takeout.p,]
+test.p <- positives[takeout.p,]
+train.n <- negatives[-takeout.n,]
+test.n <- negatives[takeout.n,]
+train <- rbind(train.p,train.n)
+test <- rbind(test.p,test.n)
 
-
-takeout <- sample(1:nrow(train0), nrow(train0)*0.05)
-train <- train0[-takeout,]
-test <- train0[takeout,]
-
-spts <- st_as_sf(train0, coords	= c(x='lon', y='lat'), crs='EPSG: 4326')
+spts <- st_as_sf(train, coords	= c(x='lon', y='lat'), crs='EPSG: 4326')
 spts_trans <- st_transform(spts, crs=crs(vars270))
-train0 <- train0 |> mutate(X = st_coordinates(spts_trans)[,1], Y = st_coordinates(spts_trans)[,2])
+train <- train |> mutate(X = st_coordinates(spts_trans)[,1], Y = st_coordinates(spts_trans)[,2])
 # Format Data with true absences
-myBiomodData <- BIOMOD_FormatingData(resp.var = train0$pos,
+myBiomodData <- BIOMOD_FormatingData(resp.var = train$pos,
                                      expl.var = vars270,
-                                     resp.xy = train0[,c('X','Y')],
+                                     resp.xy = train[,c('X','Y')],
                                      resp.name = ttt[i])
 
 
@@ -73,50 +78,37 @@ plot(myBiomodData)
 
 
 
-# Transform true absences into potential pseudo-absences
-myResp.PA <- ifelse(myResp == 1, 1, NA)
-
-# Format Data with pseudo-absences : random method
-myBiomodData.r <- BIOMOD_FormatingData(resp.var = myResp.PA,
-                                       expl.var = myExpl,
-                                       resp.xy = myRespXY,
-                                       resp.name = myRespName,
-                                       PA.nb.rep = 4,
-                                       PA.nb.absences = 1000,
-                                       PA.strategy = 'random')
-
-myBiomodData.r
-plot(myBiomodData.r)
-
+# # Transform true absences into potential pseudo-absences
+# myResp.PA <- ifelse(myResp == 1, 1, NA)
+# 
+# # Format Data with pseudo-absences : random method
+# myBiomodData.r <- BIOMOD_FormatingData(resp.var = myResp.PA,
+#                                        expl.var = myExpl,
+#                                        resp.xy = myRespXY,
+#                                        resp.name = myRespName,
+#                                        PA.nb.rep = 4,
+#                                        PA.nb.absences = 1000,
+#                                        PA.strategy = 'random')
+# 
+# myBiomodData.r
+# plot(myBiomodData.r)
+# 
 
 
 # k-fold selection
-cv.k <- bm_CrossValidation(bm.format = myBiomodData,
-                           strategy = "kfold",
-                           nb.rep = 2,
-                           k = 3)
-
-# stratified selection (geographic)
-cv.s <- bm_CrossValidation(bm.format = myBiomodData,
-                           strategy = "strat",
-                           k = 2,
-                           balance = "presences",
-                           strat = "x")
-head(cv.k)
-head(cv.s)
-
-
-
-
-
-
-
-
-
-
-
-
-
+# cv.k <- bm_CrossValidation(bm.format = myBiomodData,
+#                            strategy = "kfold",
+#                            nb.rep = 2,
+#                            k = 3)
+# 
+# # stratified selection (geographic)
+# cv.s <- bm_CrossValidation(bm.format = myBiomodData,
+#                            strategy = "strat",
+#                            k = 2,
+#                            balance = "presences",
+#                            strat = "x")
+# head(cv.k)
+# head(cv.s)
 
 
 
@@ -125,7 +117,9 @@ head(cv.s)
 
 # Model single models
 myBiomodModelOut <- BIOMOD_Modeling(bm.format = myBiomodData,
-                                    modeling.id = 'AllModels',
+                                    
+                                    models = c("MAXNET", "RF",
+                                               "SRE", "XGBOOST", "ANN", "CTA", "FDA", "GAM", "GBM", "GLM"),#, "MAXENT", "MARS"),
                                     CV.strategy = 'random',
                                     CV.nb.rep = 2,
                                     CV.perc = 0.8,
