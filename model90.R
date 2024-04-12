@@ -36,6 +36,10 @@ ttt <- pts.vars90 |> group_by(Level2) |> summarize(npts = length(Level2))
 ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10000)
 ttt <- ttt$Level2
 
+tts <- pts.vars90 |> group_by(Level2,Species) |> summarize(npts = length(Level2))
+tts <- subset(tts, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10)
+
+
 
 # pca <- princomp(vars270)
 
@@ -55,9 +59,19 @@ poss$pos = 1
 neg$pos = 0
 train0 <- rbind(poss,neg)
 train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
-takeout <- sample(1:nrow(train0), nrow(train0)*0.05)
-train <- train0[-takeout,]
-test <- train0[takeout,]
+
+positives <- subset(train0, pos %in% 1)
+negatives <- subset(train0, pos %in% 0)
+ntest = 0.1
+takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
+takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
+train.p <- positives[-takeout.p,]
+test.p <- positives[takeout.p,]
+train.n <- negatives[-takeout.n,]
+test.n <- negatives[takeout.n,]
+train <- rbind(train.p,train.n)
+test <- rbind(test.p,test.n)
+
 #random forest
 
 rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
@@ -93,8 +107,28 @@ test <- test |> mutate(pred = predictions(predict(rf, test)))
 corr <- cor(test$pos, test$pred)
 corr
 
+#loop to find probability with maximum kappa ----
+# df=data.frame(ii=0,kappa=0)
+# for(i in 1:99){#i=1
+#   ii=i/100
+# test2 <- test[,c('pos','pred')]
+# test2 <- test2 |> mutate(obs =  factor(ifelse(pos %in% 1, 'present','absent')), pred1 =  factor(ifelse(pred >= ii, 'present','absent')))
+# if(length(unique(test2$pred1))>1){
+# xtab <- table(test2$obs, test2$pred1)
+# agree <- xtab[1,1]/sum(xtab)+xtab[2,2]/sum(xtab)
+# chance <- sum(xtab[1,])/sum(xtab[,])*sum(xtab[,1])/sum(xtab[,])+
+#   sum(xtab[2,])/sum(xtab[,])*sum(xtab[,2])/sum(xtab[,])
+# kappa = (agree-chance)/(1-chance)
+# df0=data.frame(ii=ii,kappa=kappa)
+# df=rbind(df,df0)}
+# }
+
+#generate prediction raster
 prediction <-  predict(vars270, rf, na.rm=T);  names(prediction) <- taxon
 plot(prediction)
+# p2 <- ifel(prediction >= 0.26,1,0)
+# plot(p2)
+# writeRaster(p2, paste0('gis/models270/p2.tif'), overwrite=T)
 writeRaster(prediction, paste0('gis/models270/',taxon,'.tif'), overwrite=T)
 }
 
