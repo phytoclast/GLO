@@ -1,3 +1,4 @@
+# devtools::install_github("biomodhub/biomod2", dependencies = TRUE)
 library(biomod2)
 library(sf)
 library(terra)
@@ -47,7 +48,7 @@ train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!i
 
 positives <- subset(train0, pos %in% 1)
 negatives <- subset(train0, pos %in% 0)
-ntest = 0.95
+ntest = 0.8
 takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
 takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
 train.p <- positives[-takeout.p,]
@@ -76,59 +77,51 @@ plot(myBiomodData)
 
 
 
-
-
-# # Transform true absences into potential pseudo-absences
-# myResp.PA <- ifelse(myResp == 1, 1, NA)
-# 
-# # Format Data with pseudo-absences : random method
-# myBiomodData.r <- BIOMOD_FormatingData(resp.var = myResp.PA,
-#                                        expl.var = myExpl,
-#                                        resp.xy = myRespXY,
-#                                        resp.name = myRespName,
-#                                        PA.nb.rep = 4,
-#                                        PA.nb.absences = 1000,
-#                                        PA.strategy = 'random')
-# 
-# myBiomodData.r
-# plot(myBiomodData.r)
-# 
-
-
-# k-fold selection
-# cv.k <- bm_CrossValidation(bm.format = myBiomodData,
-#                            strategy = "kfold",
-#                            nb.rep = 2,
-#                            k = 3)
-# 
-# # stratified selection (geographic)
-# cv.s <- bm_CrossValidation(bm.format = myBiomodData,
-#                            strategy = "strat",
-#                            k = 2,
-#                            balance = "presences",
-#                            strat = "x")
-# head(cv.k)
-# head(cv.s)
-
-
-
-
-
-
 # Model single models
 myBiomodModelOut <- BIOMOD_Modeling(bm.format = myBiomodData,
-                                    
-                                    models = c("MAXNET", "RF",
-                                               "SRE", "XGBOOST", "ANN", "CTA", "FDA", "GAM", "GBM", "GLM"),#, "MAXENT", "MARS"),
+                                    models = c("MAXNET", "RF","GAM"),#"GBM", "GLM", "SRE", "XGBOOST", "ANN", "CTA", "FDA","MAXENT", "MARS"),
                                     CV.strategy = 'random',
                                     CV.nb.rep = 2,
                                     CV.perc = 0.8,
                                     OPT.strategy = 'bigboss',
                                     var.import = 3,
-                                    metric.eval = c('TSS','ROC'))
+                                    metric.eval = c('KAPPA','ROC'))
 # seed.val = 123)
 # nb.cpu = 8)
-myBiomodModelOut
+myBiomodModelOut@models.evaluation
+
+
+
+myBiomodProj <- BIOMOD_Projection(bm.mod = myBiomodModelOut,
+                                  proj.name = 'Current',
+                                  new.env = vars270,
+                                  models.chosen = 'all',
+                                  metric.binary = 'all',
+                                  metric.filter = 'all',
+                                  build.clamping.mask = TRUE)
+myBiomodProj
+plot(myBiomodProj)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Get evaluation scores & variables importance
 get_evaluations(myBiomodModelOut)
