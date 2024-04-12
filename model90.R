@@ -62,7 +62,7 @@ train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!i
 
 positives <- subset(train0, pos %in% 1)
 negatives <- subset(train0, pos %in% 0)
-ntest = 0.1
+ntest = 0.5
 takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
 takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
 train.p <- positives[-takeout.p,]
@@ -104,26 +104,38 @@ vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variab
 # corr
 
 test <- test |> mutate(pred = predictions(predict(rf, test)))
-corr <- cor(test$pos, test$pred)
-corr
+roc <- pROC::roc(test$pos,test$pred)
+roc$auc#area under curve
+1-2*sum((test$pos-(test$pred))^2)/nrow(test)#reverse brier score
+# corr <- cor(test$pos, test$pred)
+# corr
 
 #loop to find probability with maximum kappa ----
-# df=data.frame(ii=0,kappa=0)
-# for(i in 1:99){#i=1
-#   ii=i/100
-# test2 <- test[,c('pos','pred')]
-# test2 <- test2 |> mutate(obs =  factor(ifelse(pos %in% 1, 'present','absent')), pred1 =  factor(ifelse(pred >= ii, 'present','absent')))
-# if(length(unique(test2$pred1))>1){
-# xtab <- table(test2$obs, test2$pred1)
-# agree <- xtab[1,1]/sum(xtab)+xtab[2,2]/sum(xtab)
-# chance <- sum(xtab[1,])/sum(xtab[,])*sum(xtab[,1])/sum(xtab[,])+
-#   sum(xtab[2,])/sum(xtab[,])*sum(xtab[,2])/sum(xtab[,])
-# kappa = (agree-chance)/(1-chance)
-# df0=data.frame(ii=ii,kappa=kappa)
-# df=rbind(df,df0)}
-# }
+df=data.frame(ii=0,kappa=0)
+for(i in 1:99){#i=1
+  ii=i/100
+test2 <- test[,c('pos','pred')]
+test2 <- test2 |> mutate(obs =  factor(ifelse(pos %in% 1, 'present','absent')), pred1 =  factor(ifelse(pred >= ii, 'present','absent')))
+if(length(unique(test2$pred1))>1){
+xtab <- table(test2$obs, test2$pred1)
+agree <- xtab[1,1]/sum(xtab)+xtab[2,2]/sum(xtab)
+chance <- sum(xtab[1,])/sum(xtab[,])*sum(xtab[,1])/sum(xtab[,])+
+  sum(xtab[2,])/sum(xtab[,])*sum(xtab[,2])/sum(xtab[,])
+kappa = (agree-chance)/(1-chance)
+df0=data.frame(ii=ii,kappa=kappa)
+df=rbind(df,df0)}
+}
+maxkappa <- subset(df, kappa == max(kappa))
+maxkappa$ii; maxkappa$kappa
 
-#generate prediction raster
+# #brier score ----
+# 2*sum((test$pos-(test$pred>=maxkappa$ii))^2)/nrow(test)#multiplied by 2 as it is both presence and absence are the same
+# 2*sum((test$pos-(test$pred>=0.5))^2)/nrow(test)
+
+
+
+
+#generate prediction raster ----
 prediction <-  predict(vars270, rf, na.rm=T);  names(prediction) <- taxon
 plot(prediction)
 # p2 <- ifel(prediction >= 0.26,1,0)
