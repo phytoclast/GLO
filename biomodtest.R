@@ -26,7 +26,7 @@ vars90 <- rast('gis/vars90.tif')
 # pts.vars270 <- pts |> cbind(pts.vars270)
 # saveRDS(pts.vars270, 'pts.vars270.RDS')
 vars270 <- rast('gis/vars270.tif')
-
+pcagrid <- rast('gis/pca.tif')
 pts.vars90 <- readRDS('pts.vars90.RDS')
 pts.vars270 <- readRDS('pts.vars270.RDS')
 pts.vars90 <- pts.vars90 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
@@ -36,7 +36,10 @@ ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10
 ttt <- ttt$Level2
 i=14
 taxon = ttt[i]
+# taxon = 'Liriodendron'
+
 pts.pos <- pts.vars270 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
+# pts.pos <- pts.vars270 |> mutate(pos= ifelse(Species %in% taxon, 1,0)) |> st_drop_geometry()
 
 poss <- subset(pts.pos,pos %in% 1) 
 neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id) 
@@ -51,7 +54,10 @@ negatives <- subset(train0, pos %in% 0)
 ntest = 0.8
 takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
 takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
+
+# takeout.n <- sample(1:nrow(negatives), nrow(negatives)*0.90)
 train.p <- positives[-takeout.p,]
+# train.p <- positives[,]
 test.p <- positives[takeout.p,]
 train.n <- negatives[-takeout.n,]
 test.n <- negatives[takeout.n,]
@@ -63,9 +69,9 @@ spts_trans <- st_transform(spts, crs=crs(vars270))
 train <- train |> mutate(X = st_coordinates(spts_trans)[,1], Y = st_coordinates(spts_trans)[,2])
 # Format Data with true absences
 myBiomodData <- BIOMOD_FormatingData(resp.var = train$pos,
-                                     expl.var = vars270,
+                                     expl.var = pcagrid,
                                      resp.xy = train[,c('X','Y')],
-                                     resp.name = ttt[i])
+                                     resp.name = taxon)
 
 
 
