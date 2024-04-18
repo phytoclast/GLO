@@ -100,7 +100,7 @@ myBiomodModelOut@models.evaluation
 
 myBiomodProj <- BIOMOD_Projection(bm.mod = myBiomodModelOut,
                                   proj.name = 'Current',
-                                  new.env = vars270,
+                                  new.env = pcagrid,
                                   models.chosen = 'all',
                                   metric.binary = 'all',
                                   metric.filter = 'all',
@@ -110,151 +110,44 @@ plot(myBiomodProj)
 
 
 
+x1 <- load('D:/scripts/GLO/Tsuga/Tsuga.1712953122.models.out')
+x2 <- load('D:/scripts/GLO/Tsuga/Tsuga.1713214456.models.out')
+load('D:/scripts/GLO/Tsuga/Tsuga.1712953122.models.out')
+load('D:/scripts/GLO/Tsuga/Tsuga.1713214456.models.out')
+x1 <- get(x1)
+x2 <- get(x2)
 
 
+get_evaluations(x1)
+get_evaluations(x2)
+
+myBiomodDataRAW <- BIOMOD_FormatingData(resp.var = train$pos,
+                                     expl.var = vars270,
+                                     resp.xy = train[,c('X','Y')],
+                                     resp.name = taxon)
+myBiomodDataPCA <- BIOMOD_FormatingData(resp.var = train$pos,
+                                     expl.var = pcagrid,
+                                     resp.xy = train[,c('X','Y')],
+                                     resp.name = taxon)
+
+myBiomodModelRaw <- BIOMOD_Modeling(bm.format = myBiomodDataRAW,
+                                    models = c("MAXNET", "RF","GAM"),
+                                    CV.strategy = 'random',
+                                    CV.nb.rep = 1,
+                                    CV.perc = 0.8,
+                                    OPT.strategy = 'bigboss',
+                                    var.import = 1,
+                                    metric.eval = c('KAPPA','ROC'))
+myBiomodModelPCA <- BIOMOD_Modeling(bm.format = myBiomodDataPCA,
+                                    models = c("MAXNET", "RF","GAM"),
+                                    CV.strategy = 'random',
+                                    CV.nb.rep = 1,
+                                    CV.perc = 0.8,
+                                    OPT.strategy = 'bigboss',
+                                    var.import = 1,
+                                    metric.eval = c('KAPPA','ROC'))
+
+get_evaluations(myBiomodModelRaw)
+get_evaluations(myBiomodModelPCA)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Get evaluation scores & variables importance
-get_evaluations(myBiomodModelOut)
-get_variables_importance(myBiomodModelOut)
-
-# Represent evaluation scores & variables importance
-bm_PlotEvalMean(bm.out = myBiomodModelOut)
-bm_PlotEvalBoxplot(bm.out = myBiomodModelOut, group.by = c('algo', 'algo'))
-bm_PlotEvalBoxplot(bm.out = myBiomodModelOut, group.by = c('algo', 'run'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodModelOut, group.by = c('expl.var', 'algo', 'algo'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodModelOut, group.by = c('expl.var', 'algo', 'run'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodModelOut, group.by = c('algo', 'expl.var', 'run'))
-
-# Represent response curves
-bm_PlotResponseCurves(bm.out = myBiomodModelOut, 
-                      models.chosen = get_built_models(myBiomodModelOut)[c(1:3, 12:14)],
-                      fixed.var = 'median')
-bm_PlotResponseCurves(bm.out = myBiomodModelOut, 
-                      models.chosen = get_built_models(myBiomodModelOut)[c(1:3, 12:14)],
-                      fixed.var = 'min')
-bm_PlotResponseCurves(bm.out = myBiomodModelOut, 
-                      models.chosen = get_built_models(myBiomodModelOut)[3],
-                      fixed.var = 'median',
-                      do.bivariate = TRUE)
-
-
-
-
-# Model ensemble models
-myBiomodEM <- BIOMOD_EnsembleModeling(bm.mod = myBiomodModelOut,
-                                      models.chosen = 'all',
-                                      em.by = 'all',
-                                      em.algo = c('EMmean', 'EMcv', 'EMci', 'EMmedian', 'EMca', 'EMwmean'),
-                                      metric.select = c('TSS'),
-                                      metric.select.thresh = c(0.7),
-                                      metric.eval = c('TSS', 'ROC'),
-                                      var.import = 3,
-                                      EMci.alpha = 0.05,
-                                      EMwmean.decay = 'proportional')
-myBiomodEM
-
-# Get evaluation scores & variables importance
-get_evaluations(myBiomodEM)
-get_variables_importance(myBiomodEM)
-
-# Represent evaluation scores & variables importance
-bm_PlotEvalMean(bm.out = myBiomodEM, group.by = 'full.name')
-bm_PlotEvalBoxplot(bm.out = myBiomodEM, group.by = c('full.name', 'full.name'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodEM, group.by = c('expl.var', 'full.name', 'full.name'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodEM, group.by = c('expl.var', 'algo', 'merged.by.run'))
-bm_PlotVarImpBoxplot(bm.out = myBiomodEM, group.by = c('algo', 'expl.var', 'merged.by.run'))
-
-# Represent response curves
-bm_PlotResponseCurves(bm.out = myBiomodEM, 
-                      models.chosen = get_built_models(myBiomodEM)[c(1, 6, 7)],
-                      fixed.var = 'median')
-bm_PlotResponseCurves(bm.out = myBiomodEM, 
-                      models.chosen = get_built_models(myBiomodEM)[c(1, 6, 7)],
-                      fixed.var = 'min')
-bm_PlotResponseCurves(bm.out = myBiomodEM, 
-                      models.chosen = get_built_models(myBiomodEM)[7],
-                      fixed.var = 'median',
-                      do.bivariate = TRUE)
-
-
-
-# Project single models
-myBiomodProj <- BIOMOD_Projection(bm.mod = myBiomodModelOut,
-                                  proj.name = 'Current',
-                                  new.env = myExpl,
-                                  models.chosen = 'all',
-                                  metric.binary = 'all',
-                                  metric.filter = 'all',
-                                  build.clamping.mask = TRUE)
-myBiomodProj
-plot(myBiomodProj)
-
-
-
-
-# Project ensemble models (from single projections)
-myBiomodEMProj <- BIOMOD_EnsembleForecasting(bm.em = myBiomodEM, 
-                                             bm.proj = myBiomodProj,
-                                             models.chosen = 'all',
-                                             metric.binary = 'all',
-                                             metric.filter = 'all')
-
-# Project ensemble models (building single projections)
-myBiomodEMProj <- BIOMOD_EnsembleForecasting(bm.em = myBiomodEM,
-                                             proj.name = 'CurrentEM',
-                                             new.env = myExpl,
-                                             models.chosen = 'all',
-                                             metric.binary = 'all',
-                                             metric.filter = 'all')
-myBiomodEMProj
-plot(myBiomodEMProj)
-
-
-
-# Load environmental variables extracted from BIOCLIM (bio_3, bio_4, bio_7, bio_11 & bio_12)
-data("bioclim_future")
-myExplFuture = rast(bioclim_future)
-
-# Project onto future conditions
-myBiomodProjectionFuture <- BIOMOD_Projection(bm.mod = myBiomodModelOut,
-                                              proj.name = 'Future',
-                                              new.env = myExplFuture,
-                                              models.chosen = 'all',
-                                              metric.binary = 'TSS',
-                                              build.clamping.mask = TRUE)
-
-# Load current and future binary projections
-CurrentProj <- get_predictions(myBiomodProj, metric.binary = "TSS")
-FutureProj <- get_predictions(myBiomodProjectionFuture, metric.binary = "TSS")
-
-# Compute differences
-myBiomodRangeSize <- BIOMOD_RangeSize(proj.current = CurrentProj, 
-                                      proj.future = FutureProj)
-
-myBiomodRangeSize$Compt.By.Models
-plot(myBiomodRangeSize$Diff.By.Pixel)
-
-# Represent main results 
-gg = bm_PlotRangeSize(bm.range = myBiomodRangeSize, 
-                      do.count = TRUE,
-                      do.perc = TRUE,
-                      do.maps = TRUE,
-                      do.mean = TRUE,
-                      do.plot = TRUE,
-                      row.names = c("Species", "Dataset", "Run", "Algo"))
