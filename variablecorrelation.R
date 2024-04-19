@@ -42,5 +42,36 @@ cors <- as.data.frame(cor(corvars))
 c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')
 ggplot(subset(pts.vars90, Level2 %in% c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')))+
   geom_density(aes(x=Twh, fill=Level2), alpha=0.2)
+
+cors <- cors |> mutate(column = rownames(cors))
+
+saveRDS(cors,'output/cors.RDS')
+
+
+ggplot(subset(pts.vars90, Level2 %in% c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')))+
+  geom_boxplot(aes(y=hydric, x=Level2), alpha=0.2)
+ggplot(subset(pts.vars90, Level2 %in% c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')))+
+  geom_boxplot(aes(y=hydric, x=Level2), alpha=0.2)
+
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=hydric, x=column))
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=watertable*-1, x=column))
+
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=pH50, x=column))
+
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=Tg30, x=column))
+
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=sand150, x=column))
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=clay150, x=column))
+ggplot(subset(cors, column %in% ttt))+
+  geom_col(aes(y=floodfrq, x=column))
+
+
+
   
   
