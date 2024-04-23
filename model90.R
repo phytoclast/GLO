@@ -53,7 +53,7 @@ ttt[14]
 #
 for (i in 1:length(ttt)){ #i=14
 taxon = ttt[i]
-pts.pos <- pts.vars270 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
+pts.pos <- pts.vars90 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
 
 poss <- subset(pts.pos,pos %in% 1) 
 neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id) 
@@ -65,7 +65,7 @@ train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!i
 
 positives <- subset(train0, pos %in% 1)
 negatives <- subset(train0, pos %in% 0)
-ntest = 0.5
+ntest = 0.1
 takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
 takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
 train.p <- positives[-takeout.p,]
@@ -81,7 +81,7 @@ rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.333, num.trees=200, max.depth = NULL, importance = 'impurity',
+             data=train, sample.fraction = 0.75, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
@@ -139,18 +139,18 @@ maxkappa$ii; maxkappa$kappa
 
 
 #generate prediction raster ----
-prediction <-  predict(vars270, rf, na.rm=T);  names(prediction) <- taxon
+prediction <-  predict(vars90, rf, na.rm=T);  names(prediction) <- taxon
 plot(prediction)
 # p2 <- ifel(prediction >= 0.26,1,0)
 # plot(p2)
 # writeRaster(p2, paste0('gis/models270/p2.tif'), overwrite=T)
-writeRaster(prediction, paste0('gis/models270/',taxon,'.tif'), overwrite=T)
+writeRaster(prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
 }
 
 
 #ba ----
 #
-pts.pos <- pts.vars270 |> st_drop_geometry()
+pts.pos <- pts.vars90 |> st_drop_geometry()
 
 train <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(BA = ifelse(BA > 20,20,BA)) 
 
@@ -160,11 +160,11 @@ rf <- ranger(BA ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.333, num.trees=200,  importance = 'impurity',
+             data=train, sample.fraction = 0.75, num.trees=200,  importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 
-basalarea <- predict(vars270, rf, na.rm=T);  names(basalarea) <- 'basalarea'
+basalarea <- predict(vars90, rf, na.rm=T);  names(basalarea) <- 'basalarea'
 plot(basalarea)
-writeRaster(basalarea,'gis/models270/basalarea.tif', overwrite=T)
+writeRaster(basalarea,'gis/models90/basalarea.tif', overwrite=T)
