@@ -26,7 +26,7 @@ ttt <- ttt$Level2
 cors <- readRDS('output/cors.RDS')
 
 for(i in 1:length(ttt)){
-x <- rast(paste0('gis/models270/',ttt[i],'.tif'))
+x <- rast(paste0('gis/models90/',ttt[i],'.tif'))
 assign(ttt[i], x)         };rm(x)
 
 fire <- ifel(Acer+Fagus+Tsuga+Tilia+Abies+Picea+Thuja >= Pinus+Quercus, 0,1)
@@ -110,7 +110,7 @@ plot(pineoakmix)
 pinebeech <- (Pinus+Fagus)/all
 plot((fire > 0.333)+(fire > 0.667))
 
-boreal <- (vars270$hydric < 0.333)*1+((Abies+Picea+Thuja)/all >= 0.333)*10
-boreal <- ((vars270$watertable >= 50) & (vars270$hydric < 0.333))*1+((Abies+Picea+Thuja)/all >= 0.333)*10
-
-writeRaster(boreal, 'gis/boreal2.tif', overwrite=T)
+boreal <- (vars90$hydric < 0.333)*1+((Abies+Picea+Thuja)/all >= 0.333)*10
+writeRaster(boreal, 'gis/boreal.tif', overwrite=T)
+boreal2 <- ((vars90$watertable >= 50) & (vars270$hydric < 0.333))*1+((Abies+Picea+Thuja)/all >= 0.333)*10
+writeRaster(boreal2, 'gis/boreal2.tif', overwrite=T)
