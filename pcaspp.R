@@ -8,9 +8,9 @@ library(gam)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 dirlst <- list.files('gis/models90')
-dirlstnms <- stringr::str_split_fixed(dirlst, pattern='\\.',  n=2)[,1]
-for(i in 1:length(dirlst)){#i=1
-x <- rast(paste0('gis/models90/',dirlst[i]))
+dirlstnms <- stringr::str_split_fixed(dirlst, pattern='\\.',  n=2)[,1] |> unique()
+for(i in 1:length(dirlstnms)){#i=1
+x <- rast(paste0('gis/models90/',dirlstnms[i],'.tif'))
 assign(dirlstnms[i],x)
 }
 
