@@ -15,19 +15,31 @@ pts <- readRDS('points/pts.geo1.RDS')
 
 pts.vars <- readRDS('pts.vars.RDS')
 vars90 <- rast('gis/vars90.tif')
-
-
 # vars270 <- vars90 |> aggregate(fact=3, fun="mean", na.rm=T)
 # writeRaster(vars270,'gis/vars270.tif', overwrite=T)
-# pts.vars90 <- pts |> vect() |> project(vars)
+vars270 <- rast('gis/vars270.tif')
+#supplement MNFI openings and extract variables
+# mnfi <- read_sf('C:/a/Ecological_Sites/GIS/Vegetation/Veg1800/MichLP_1800veg.shp')
+# mnfi <- mnfi |> subset(COVERTYPE %in% c('EXPOSED BEDROCK', 'SHRUB SWAMP/EMERGENT MARSH', 'WET PRAIRIE', 'GRASSLAND','SAND DUNE'))
+# mnfi <- st_transform(mnfi, crs(pts))
+# openarea <- st_area(mnfi) |> sum() |> as.numeric()
+# nopenpoints <- 3*openarea/1600^2
+# mnfi.vect <- vect(mnfi)
+# openpoints <- spatSample(mnfi.vect, nopenpoints)
+# openpoints <- st_as_sf(openpoints)
+# openpoints <- openpoints[,'geometry']
+# openpoints <- openpoints |> mutate(Level2 = 'open', Species = 'open', BA = 0, DT= 0)
+# pts <- pts |> bind_rows(openpoints)
+# 
+# pts.vars90 <- pts |> vect() |> project(vars90)
 # pts.vars90 <- extract(vars90,pts.vars90)
 # pts.vars90 <- pts |> cbind(pts.vars90)
 # saveRDS(pts.vars90, 'pts.vars90.RDS')
-# pts.vars270 <- pts |> vect() |> project(vars)
+# pts.vars270 <- pts |> vect() |> project(vars270)
 # pts.vars270 <- extract(vars270,pts.vars270)
 # pts.vars270 <- pts |> cbind(pts.vars270)
 # saveRDS(pts.vars270, 'pts.vars270.RDS')
-vars270 <- rast('gis/vars270.tif')
+
 # pca90 <- princomp(vars270, cor = T, maxcell=ncell(vars270)*0.1)
 # pca90grid <- predict(pca90, pca90)
 # writeRaster(pca90grid,'gis/pca90grid.tif', overwrite=T)
@@ -106,30 +118,30 @@ vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variab
 # corr <- cor(test$pos, test$pred)
 # corr
 
-test <- test |> mutate(pred = predictions(predict(rf, test)))
-roc <- pROC::roc(test$pos,test$pred)
-roc$auc#area under curve
-1-2*sum((test$pos-(test$pred))^2)/nrow(test)#reverse brier score
-# corr <- cor(test$pos, test$pred)
-# corr
-
-#loop to find probability with maximum kappa ----
-df=data.frame(ii=0,kappa=0)
-for(i in 1:99){#i=1
-  ii=i/100
-test2 <- test[,c('pos','pred')]
-test2 <- test2 |> mutate(obs =  factor(ifelse(pos %in% 1, 'present','absent')), pred1 =  factor(ifelse(pred >= ii, 'present','absent')))
-if(length(unique(test2$pred1))>1){
-xtab <- table(test2$obs, test2$pred1)
-agree <- xtab[1,1]/sum(xtab)+xtab[2,2]/sum(xtab)
-chance <- sum(xtab[1,])/sum(xtab[,])*sum(xtab[,1])/sum(xtab[,])+
-  sum(xtab[2,])/sum(xtab[,])*sum(xtab[,2])/sum(xtab[,])
-kappa = (agree-chance)/(1-chance)
-df0=data.frame(ii=ii,kappa=kappa)
-df=rbind(df,df0)}
-}
-maxkappa <- subset(df, kappa == max(kappa))
-maxkappa$ii; maxkappa$kappa
+# test <- test |> mutate(pred = predictions(predict(rf, test)))
+# roc <- pROC::roc(test$pos,test$pred)
+# roc$auc#area under curve
+# 1-2*sum((test$pos-(test$pred))^2)/nrow(test)#reverse brier score
+# # corr <- cor(test$pos, test$pred)
+# # corr
+# 
+# #loop to find probability with maximum kappa ----
+# df=data.frame(ii=0,kappa=0)
+# for(i in 1:99){#i=1
+#   ii=i/100
+# test2 <- test[,c('pos','pred')]
+# test2 <- test2 |> mutate(obs =  factor(ifelse(pos %in% 1, 'present','absent')), pred1 =  factor(ifelse(pred >= ii, 'present','absent')))
+# if(length(unique(test2$pred1))>1){
+# xtab <- table(test2$obs, test2$pred1)
+# agree <- xtab[1,1]/sum(xtab)+xtab[2,2]/sum(xtab)
+# chance <- sum(xtab[1,])/sum(xtab[,])*sum(xtab[,1])/sum(xtab[,])+
+#   sum(xtab[2,])/sum(xtab[,])*sum(xtab[,2])/sum(xtab[,])
+# kappa = (agree-chance)/(1-chance)
+# df0=data.frame(ii=ii,kappa=kappa)
+# df=rbind(df,df0)}
+# }
+# maxkappa <- subset(df, kappa == max(kappa))
+# maxkappa$ii; maxkappa$kappa
 
 # #brier score ----
 # 2*sum((test$pos-(test$pred>=maxkappa$ii))^2)/nrow(test)#multiplied by 2 as it is both presence and absence are the same
@@ -150,9 +162,10 @@ writeRaster(prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
 
 #ba ----
 #
+#
 pts.pos <- pts.vars90 |> st_drop_geometry()
 
-train <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(BA = ifelse(BA > 20,20,BA)) 
+train <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(BA = ifelse(BA > 50,50,BA)) 
 
 train <- subset(train, !is.na(BA)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
 
