@@ -160,7 +160,7 @@ writeRaster(prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
 }
 
 
-#ba ----
+#BA############################
 #
 #
 pts.pos <- pts.vars90 |> st_drop_geometry()
@@ -181,3 +181,68 @@ vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variab
 basalarea <- predict(vars90, rf, na.rm=T);  names(basalarea) <- 'basalarea'
 plot(basalarea)
 writeRaster(basalarea,'gis/models90/basalarea.tif', overwrite=T)
+
+
+#openings###################
+#
+pts.pos <- pts.vars90 |> mutate(pos= ifelse(BA < 3, 1,0)) |> st_drop_geometry()
+pts.pos <- subset(pts.pos, !is.na(BA) & !dataset %in% 'OH')
+
+poss <- subset(pts.pos,pos %in% 1) 
+neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id) 
+
+poss$pos = 1
+neg$pos = 0
+train0 <- rbind(poss,neg)
+train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+
+positives <- subset(train0, pos %in% 1)
+negatives <- subset(train0, pos %in% 0)
+ntest = 0.1
+takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
+takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
+train.p <- positives[-takeout.p,]
+test.p <- positives[takeout.p,]
+train.n <- negatives[-takeout.n,]
+test.n <- negatives[takeout.n,]
+train <- rbind(train.p,train.n)
+test <- rbind(test.p,test.n)
+
+#random forest
+
+rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+               hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+               slope+slope500+popen+nopen+solar, 
+             data=train, sample.fraction = 0.75, num.trees=200, max.depth = NULL, importance = 'impurity',
+             classification=FALSE,  write.forest = TRUE)
+
+vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
+opening <- predict(vars90, rf, na.rm=T);  names(opening) <- 'opening'
+plot(opening)
+writeRaster(opening,'gis/models90/opening.tif', overwrite=T)
+
+
+#Density############################
+#
+#
+pts.pos <- pts.vars90 |> st_drop_geometry()
+
+train <- subset(pts.pos, !is.na(DT)  & !dataset %in% 'OH') 
+
+train <- subset(train, !is.na(DT)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+
+rf <- ranger(DT ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+               hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+               slope+slope500+popen+nopen+solar, 
+             data=train, sample.fraction = 0.75, num.trees=200,  importance = 'impurity',
+             classification=FALSE,  write.forest = TRUE)
+
+vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
+
+density <- predict(vars90, rf, na.rm=T);  names(density) <- 'density'
+plot(density)
+writeRaster(density,'gis/models90/density.tif', overwrite=T)
+
+
