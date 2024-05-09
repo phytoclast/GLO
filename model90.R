@@ -41,8 +41,9 @@ vars270 <- rast('gis/vars270.tif')
 # saveRDS(pts.vars270, 'pts.vars270.RDS')
 
 # pca90 <- princomp(vars270, cor = T, maxcell=ncell(vars270)*0.1)
-# pca90grid <- predict(pca90, pca90)
+# pca90grid <- predict(vars270, pca90)
 # writeRaster(pca90grid,'gis/pca90grid.tif', overwrite=T)
+
 pts.vars90 <- readRDS('pts.vars90.RDS')
 pts.vars270 <- readRDS('pts.vars270.RDS')
 pts.vars90 <- pts.vars90 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
@@ -66,6 +67,8 @@ ttt[14]
 for (i in 1:length(ttt)){ #i=14
 taxon = ttt[i]
 pts.pos <- pts.vars90 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
+# taxon = "Liriodendron"
+# pts.pos <- pts.vars90 |> mutate(pos= ifelse(Species %in% taxon, 1,0)) |> st_drop_geometry()
 
 poss <- subset(pts.pos,pos %in% 1) 
 neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id) 
@@ -74,6 +77,8 @@ poss$pos = 1
 neg$pos = 0
 train0 <- rbind(poss,neg)
 train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+#weights ----
+train0 <- train0 |> group_by(pos) |> mutate(wts = 100000/length(pos)) |> ungroup()
 
 positives <- subset(train0, pos %in% 1)
 negatives <- subset(train0, pos %in% 0)
@@ -89,12 +94,12 @@ test <- rbind(test.p,test.n)
 
 #random forest
 
-rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
              data=train, sample.fraction = 0.75, num.trees=200, max.depth = NULL, importance = 'impurity',
-             classification=FALSE,  write.forest = TRUE)
+             classification=FALSE, case.weights = train$wts,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 # library(randomForest)
@@ -153,9 +158,6 @@ vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variab
 #generate prediction raster ----
 prediction <-  predict(vars90, rf, na.rm=T);  names(prediction) <- taxon
 plot(prediction)
-# p2 <- ifel(prediction >= 0.26,1,0)
-# plot(p2)
-# writeRaster(p2, paste0('gis/models270/p2.tif'), overwrite=T)
 writeRaster(prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
 }
 
@@ -169,7 +171,7 @@ train <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(
 
 train <- subset(train, !is.na(BA)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
 
-rf <- ranger(BA ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+rf <- ranger(BA ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
@@ -210,7 +212,7 @@ test <- rbind(test.p,test.n)
 
 #random forest
 
-rf <- ranger(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
