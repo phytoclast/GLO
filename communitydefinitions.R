@@ -25,9 +25,12 @@ ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10
 ttt <- ttt$Level2
 cors <- readRDS('output/cors.RDS')
 
+
 for(i in 1:length(ttt)){
 x <- rast(paste0('gis/models90/',ttt[i],'.tif'))
 assign(ttt[i], x)         };rm(x)
+
+opening = rast('gis/models90/opening.tif')
 
 fire <- ifel(Acer+Fagus+Tsuga+Tilia+Abies+Picea+Thuja >= Pinus+Quercus, 0,1)
 fire <- (Pinus+Quercus)/(Acer+Fagus+Tsuga+Tilia+Abies+Picea+Thuja+Pinus+Quercus+0.001)
@@ -100,6 +103,24 @@ northvsouth <- (Tsuga+Pinus+Abies+Thuja)-(Carya+Tilia+Quercus)
 plot(northvsouth>0)
 hardwoods <- (wetness >= 0)*100 + (fire >= 0.50)*10 + (northvsouth >= 0)
 plot(hardwoods)
+
+c1 <- ifel(wetness >= 0, ifel(opening >= 0.75, 1,2),0)
+v1 <- ifel(c1 == 1, 1,0)
+v23 <- ifel(c1 == 2, ifel(northvsouth >= 0, 2,3),0)
+c2 <- ifel(c1 == 0, ifel(opening >= 0.75, 4,5),0)
+v4 <- ifel(c2 == 4, 4,0)
+c3 <- ifel(c2 == 5, ifel(fire  >= 0.50, 5,6),0)
+v56 <- ifel(c3 == 5, ifel(northvsouth >= 0, 5,6),0)
+v78 <- ifel(c3 == 6, ifel(northvsouth >= 0, 7,8),0)
+veg <- v1+v23+v4+v56+v78   
+classnum <- c(1:8)
+vegclass <- c('marsh','conifer swamp','hardwood swamp',
+              'prairie','pine woodland','northern mesic forest',
+              'oak woodland','central mesic forest')
+levels(veg) <- data.frame(classnum,vegclass)
+plot(veg)
+writeRaster(veg, 'gis/veg.tif', overwrite=T)
+
 writeRaster(hardwoods, 'gis/hardwoods.tif',overwrite=T)
 pine <- Pinus/all
 oak <- Quercus/all
