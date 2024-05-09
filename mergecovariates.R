@@ -120,20 +120,28 @@ e11 <- GetPET.block(11,prism)
 e12 <- GetPET.block(12,prism)
 Sys.time() - timeA
 timeA <-  Sys.time()
-pet <- sum(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12); names(pet) <- 'e'
+pet <- c(e01,e02,e03,e04,e05,e06,e07,e08,e09,e10,e11,e12)
 Sys.time() - timeA
 timeA <-  Sys.time()
 writeRaster(pet, 'gis/climate/pet.tif', overwrite=T)
 Sys.time() - timeA
 #----
 pet <- rast('gis/climate/pet.tif')
-names(pet) <- 'e'
+prism <- rast('gis/climate/prism.tif')
+prism <- c(prism, pet)
 
-p <- ApplyClim.rast(prism, name='p')
-p1 <- ApplyClim.rast(prism, jan='p01', mons=c(12,1,2), fun='sum', name='pq1')
-p2 <- ApplyClim.rast(prism, jan='p01', mons=c(3,4,5), fun='sum', name='pq2')
-p3 <- ApplyClim.rast(prism, jan='p01', mons=c(6,7,8), fun='sum', name='pq3')
-p4 <- ApplyClim.rast(prism, jan='p01', mons=c(9,10,11), fun='sum', name='pq4')
+a <- climatools::AET.rast(prism)
+plot(a)
+
+p <- ApplyClim.rast(prism, name='p', jan='p01', fun='sum')
+e <- ApplyClim.rast(prism, name='e', jan='e01', fun='sum')
+d <- (e-a)/(e+0.0001); names(d) <- 'd'
+s <- (p-a)/(p+0.0001); names(s) <- 's'
+plot(s)
+# p1 <- ApplyClim.rast(prism, jan='p01', mons=c(12,1,2), fun='sum', name='pq1')
+# p2 <- ApplyClim.rast(prism, jan='p01', mons=c(3,4,5), fun='sum', name='pq2')
+# p3 <- ApplyClim.rast(prism, jan='p01', mons=c(6,7,8), fun='sum', name='pq3')
+# p4 <- ApplyClim.rast(prism, jan='p01', mons=c(9,10,11), fun='sum', name='pq4')
 
 tblock <- climatools::meanT.rast(prism)
 
@@ -147,8 +155,8 @@ btblock <- ifel(tblock > 0, tblock, 0)
 Tg1 <- ApplyClim.rast(btblock, jan='t01', mons=c(12,1,2,3,4), fun='mean')
 Tg2 <- ApplyClim.rast(btblock, jan='t01', mons=c(5,6,7,8,9,10), fun='mean')
 Tg <- max(Tg1, Tg2);names(Tg) <- 'Tg'
-m <- p/(p+pet+0.0001); names(m) <- 'm'
-prism2 <- c(p,p1,p2,p3,p4,Twh,Tw,Tc,Tcl,Tg,pet,m)
+m <- p/(p+e+0.0001); names(m) <- 'm'
+prism2 <- c(p,m,e,s,d,Twh,Tw,Tc,Tcl,Tg)
 writeRaster(prism2, 'gis/climate/prism2.tif', overwrite=T)
 
 #project to project area ---- 
@@ -175,6 +183,7 @@ dem <- c(dem, slope, openess, solar)
 prism.repro <- project(prism2, dem, method='bilinear')
 writeRaster(prism.repro, 'gis/climate/prism.repro.tif', overwrite=T)
 prism.repro <- rast('gis/climate/prism.repro.tif')
+
 Tg30 <- enhanceRast(prism2$Tg, prism$elev, dem$elev); names(Tg30) <- 'Tg30'
 writeRaster(Tg30, 'gis/climate/Tg30.tif', overwrite=T)
 # Tg30 <- rast('gis/climate/Tg30.tif')
@@ -182,3 +191,34 @@ writeRaster(Tg30, 'gis/climate/Tg30.tif', overwrite=T)
 # plot(Tg500)
 # writeRaster(Tg500, 'gis/climate/Tg500.tif', overwrite=T)
 
+
+
+#Final Merge -----
+library(climatools)
+library(soilDB)
+library(aqp)
+library(sf)
+library(mapview)
+library(vegnasis)
+library(terra)
+#set working directory to folder where this R file is saved
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+solar <- rast('gis/dem/tifs/solar.tif')
+openess <- rast('gis/dem/tifs/mi_dem_30_layers.tif')
+names(openess) <- c('shade','popen','nopen')
+slope <- rast('gis/dem/tifs/mi_dem_30_slope.tif')
+names(slope) <- c('slope','aspect')
+dem <- rast('gis/dem/tifs/mi_dem_30.tif')
+slope500 <- rast('gis/dem/tifs/slope500.tif');names(slope500) <- 'slope500' #mean slope 500 m radius
+names(dem) <- c('elev')
+dem <- c(dem, slope, slope500, openess, solar)
+
+prism <- c(rast('gis/climate/prism.repro.tif'), rast('gis/climate/Tg30.tif'))
+soil <- rast('gis/soilcov/allsoilcrop.tif')
+
+vars <- c(prism, soil, dem)
+names(vars)
+
+vars90 <- aggregate(vars, 3, na.rm=T)
+writeRaster(vars90,'gis/vars90.tif', overwrite=T)
