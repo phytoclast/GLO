@@ -50,8 +50,7 @@ saveRDS(cors,'output/cors.RDS')
 
 ggplot(subset(pts.vars90, Level2 %in% c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')))+
   geom_boxplot(aes(y=hydric, x=Level2), alpha=0.2)
-ggplot(subset(pts.vars90, Level2 %in% c('Quercus', 'Acer', 'Fagus', 'Tsuga', 'Thuja', 'Pinus', 'Abies', 'Picea', 'Carya')))+
-  geom_boxplot(aes(y=hydric, x=Level2), alpha=0.2)
+
 
 ggplot(subset(cors, column %in% ttt))+
   geom_col(aes(y=hydric, x=column))
