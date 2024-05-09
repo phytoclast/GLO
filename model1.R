@@ -32,8 +32,8 @@ names(vars)
 # pts.vars <- extract(vars,pts.vars)
 # pts.vars <- pts |> cbind(pts.vars)
 # saveRDS(pts.vars, 'pts.vars.RDS')
-# vars90 <- aggregate(vars, 3, na.rm=T)
-# writeRaster(vars90,'gis/vars90.tif', overwrite=T)
+vars90 <- aggregate(vars, 3, na.rm=T)
+writeRaster(vars90,'gis/vars90.tif', overwrite=T)
 
 #Load data ----
 library(sf)
