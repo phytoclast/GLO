@@ -3,7 +3,8 @@ library(terra)
 library(dplyr)
 library(ggplot2)
 library(ranger)
-library(gam)
+library(vegan)
+library(cluster)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 MLRA <- st_read('gis/MLRA_2017.shp')
@@ -25,10 +26,86 @@ ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10
 ttt <- ttt$Level2
 cors <- readRDS('output/cors.RDS')
 
-
+#make species raster stack ----
 for(i in 1:length(ttt)){
   x <- rast(paste0('gis/models90/',ttt[i],'.tif'))
   assign(ttt[i], x)         };rm(x)
 
 Species <- rast(mget(ttt))
 
+#make and extract sample points
+MLRA <- st_transform(MLRA, crs(Species))
+MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
+plot(MLRA94)
+MLRA94.vect <- vect(MLRA94)
+spts <- terra::spatSample(MLRA94.vect, size = 1000)
+spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
+spts.spp <- terra::extract(Species, spts)
+spts.env <- terra::extract(vars90, spts)
+
+spts.es <- cbind(spts.spp, spts.env[,-1], spts.mlra) |> subset(!is.na(pH50) & !is.na(Tsuga)) 
+
+#ES site key ---
+
+spts.es <- spts.es |> mutate(ES = case_when(rockdepth < 150 ~ 'Limestone',
+                                            floodfrq > 0 ~ 'Floodplain',
+                                            histic > 0.5 ~ 'Mucks',
+                                            sand150 >= 80 & sand50 >= 70 | sand50 >80 ~ 'Sandy',
+                                            TRUE ~'Loamy'))
+  
+spts.es <- spts.es |> mutate(ES = case_when(ES %in%  'Floodplain' & hydric >= 0.5 ~ 'Wet Floodplain',
+                                            ES %in%  'Floodplain' ~ 'Moist Floodplain',
+                                            ES %in% 'Mucks' & pH50 >= 5 ~ "Euic Muck",
+                                            ES %in% 'Mucks'  ~ "Acidic Peat",
+                                            ES %in% 'Sandy' &  watertable > 100 ~ 'Dry Sand',
+                                            ES %in% 'Sandy' &  hydric < 0.5 ~ 'Moist Sand',
+                                            ES %in% 'Sandy' ~ 'Wet Sand',
+                                            ES %in% 'Loamy' &  watertable > 100 ~ 'Dry Loam',
+                                            ES %in% 'Loamy' &  hydric < 0.5 ~ 'Moist Loam',
+                                            ES %in% 'Loamy' ~ 'Wet Loam',
+                                            TRUE ~ ES))
+
+spts.es <- spts.es |> mutate(ES = case_when(ES %in%  'Dry Sand' & LRU %in% '94AA' & Bhs >= 0.5 & spodic >= 0.5 ~ 'Rich Sand',
+                                            ES %in%  'Dry Sand' & LRU %in% '94AA'  ~ 'Dry Sand',
+                                            ES %in%  'Dry Sand' & (spodic >= 0.5 | pH50 >= 5 | carbdepth < 100) ~ 'Rich Sand',
+                                            ES %in%  'Dry Sand'  ~ 'Dry Sand',
+                                            ES %in%  'Moist Sand'  & (spodic >= 0.5 | pH50 <= 5) ~ 'Acidic Moist Sand',
+                                            ES %in%  'Moist Sand'   ~ 'Euic Moist Sand',
+                                            ES %in%  'Wet Sand'  & (spodic >= 0.5 | pH50 <= 5.5) ~ 'Acidic Wet Sand',
+                                            ES %in%  'Wet Sand'   ~ 'Euic Wet Sand',
+                                            TRUE ~ ES))
+spts.es <- spts.es |> mutate(ESD = paste(LRU, ES))
+                                            
+table(spts.es$ESD)
+
+#silhouette index ----
+spts.es.spp <- spts.es |> select(all_of(ttt))
+spts.es.dist <- vegan::vegdist(spts.es.spp, method = 'bray', binary = F)
+spts.es.groups <- spts.es |> mutate(group = as.integer(as.factor(ESD))) |> select(c(ID, group, ESD))
+
+
+silindex <- cluster::silhouette(spts.es.groups$group, spts.es.dist)
+summary(silindex)
+
+#simple clustering
+spts.es.sum <- spts.es |> group_by(ESD) |> summarise(across(all_of(ttt), mean)) |> as.data.frame()
+rownames(spts.es.sum) <-  spts.es.sum$ESD          
+spts.es.sum <- spts.es.sum[,-1]
+spts.es.dist2 <- vegan::vegdist(spts.es.sum, method = 'bray', binary = F)
+spts.es.t <- cluster::agnes(spts.es.dist2, method = 'ward')|> as.hclust()
+plot(spts.es.t)
+
+#NMDS
+#
+ES.mds <- metaMDS(spts.es[,ttt], distance = "bray", autotransform = F)
+ES.envfit <- envfit(dune.mds, spts.es[,(length(ttt)+2):(length(colnames(spts.es))-3)], permutations = 999) # this fits environmental vectors
+ES.spp.fit <- envfit(dune.mds, spts.es[,ttt], permutations = 999) # this fits species vectors
+plot(ES.mds)
+plot(ES.envfit)
+
+library(visreg)
+
+# ggpairs
+# partial effects of dichotomous key variables
+# #http://pbreheny.github.io/visreg/index.html
+                                                   
