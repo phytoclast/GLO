@@ -98,8 +98,9 @@ rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.75, num.trees=200, max.depth = NULL, importance = 'impurity',
+             data=train, sample.fraction = 1, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE, case.weights = train$wts,  write.forest = TRUE)
+saveRDS(rf, paste0('models/',ttt[i],'.RDS'))
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 # library(randomForest)
