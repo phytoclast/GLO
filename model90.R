@@ -65,6 +65,7 @@ ttt[14]
 #Taxa ----
 #
 for (i in 1:length(ttt)){ #i=14
+set.seed(4345)# for reproducability
 taxon = ttt[i]
 pts.pos <- pts.vars90 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
 # taxon = "Liriodendron"
@@ -91,7 +92,7 @@ train.n <- negatives[-takeout.n,]
 test.n <- negatives[takeout.n,]
 train <- rbind(train.p,train.n)
 test <- rbind(test.p,test.n)
-
+saveRDS(test, paste0('test/',ttt[i],'.RDS'))
 #random forest
 
 rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
