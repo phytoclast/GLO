@@ -35,10 +35,15 @@ Species <- rast(mget(ttt))
 
 #make and extract sample points
 MLRA <- st_transform(MLRA, crs(Species))
+MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~ '98A',
+                                       LRU %in% c('97A1','97A2') ~ '97A',
+                                       LRU %in% c('97B1','97B2') ~ '97B',
+                                       TRUE ~ LRU))
+                                       
 MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
 plot(MLRA94)
 MLRA94.vect <- vect(MLRA94)
-spts <- terra::spatSample(MLRA94.vect, size = 1000)
+spts <- terra::spatSample(MLRA94.vect, size = 10000)
 spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
 spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
@@ -49,7 +54,7 @@ spts.es <- cbind(spts.spp, spts.env[,-1], spts.mlra) |> subset(!is.na(pH50) & !i
 
 spts.es <- spts.es |> mutate(ES = case_when(rockdepth < 150 ~ 'Limestone',
                                             floodfrq > 0 ~ 'Floodplain',
-                                            histic > 0.5 ~ 'Mucks',
+                                            histic > 0.5 &  hydric >= 0.5 ~ 'Mucks',
                                             sand150 >= 80 & sand50 >= 70 | sand50 >80 ~ 'Sandy',
                                             TRUE ~'Loamy'))
   
@@ -74,18 +79,28 @@ spts.es <- spts.es |> mutate(ES = case_when(ES %in%  'Dry Sand' & LRU %in% '94AA
                                             ES %in%  'Wet Sand'  & (spodic >= 0.5 | pH50 <= 5.5) ~ 'Acidic Wet Sand',
                                             ES %in%  'Wet Sand'   ~ 'Euic Wet Sand',
                                             TRUE ~ ES))
+spts.es <- spts.es |> mutate(ES = ifelse(tan(slope)*100 >= 15 &  watertable > 100 & floodfrq <= 0 &  hydric < 0.5, paste(ES, "Slopes"), paste(ES, "Plains")))
+
 spts.es <- spts.es |> mutate(ESD = paste(LRU, ES))
-                                            
+
+spts.es <- spts.es |> mutate(ESD = ifelse(rockdepth < 150, 'MLRA 94C Limestone Plains', ESD))
+
+
 table(spts.es$ESD)
 
 #silhouette index ----
 spts.es.spp <- spts.es |> select(all_of(ttt))
 spts.es.dist <- vegan::vegdist(spts.es.spp, method = 'bray', binary = F)
 spts.es.groups <- spts.es |> mutate(group = as.integer(as.factor(ESD))) |> select(c(ID, group, ESD))
-
+groups <- spts.es.groups |> select(c(group, ESD)) |> unique()
 
 silindex <- cluster::silhouette(spts.es.groups$group, spts.es.dist)
 summary(silindex)
+
+si <- silindex |> as.data.frame()
+si <- si |> left_join(data.frame(cluster=groups$group, cname = groups$ESD)) |> 
+  left_join(data.frame(neighbor=groups$group, nname = groups$ESD))
+
 
 #simple clustering
 spts.es.sum <- spts.es |> group_by(ESD) |> summarise(across(all_of(ttt), mean)) |> as.data.frame()
