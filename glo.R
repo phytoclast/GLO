@@ -122,7 +122,7 @@ pts.geo1 <- pts.geo |> mutate(dists=ifelse(is.na(tname) | dists %in% c(8888, 999
 pts.geo1 <- pts.geo1 |> mutate(tname=tolower(tname))
 # df <- unique(st_drop_geometry(subset(pts.geo1, select=c(dataset,tname))))
 
-treelookup <- read.csv('treelookups1.csv') |> unique() |> mutate(tname=tolower(tname))
+treelookup <- read.csv('data/treelookups1.csv') |> unique() |> mutate(tname=tolower(tname))
 pts.geo1 <- pts.geo1 |> left_join(treelookup, by=join_by(dataset==dataset, tname==tname), multiple='first')
 pts.geo1 <- pts.geo1 |> mutate(istree = ifelse((is.na(tname) | tname %in% '' | tolower(tname) %in% c(0,'no tree')) | Level2 %in% 'no tree',0,1))
 
