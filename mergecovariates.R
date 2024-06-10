@@ -11,11 +11,14 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # solar <- mean(solar1) 
 # names(solar) <- 'solar'
 # writeRaster(solar, 'gis/dem/tifs/solar.tif')
+
 solar <- rast('gis/dem/tifs/solar.tif') 
 openess <- rast('gis/dem/tifs/mi_dem_30_layers.tif') #SAGA topographic openess to 10000 m
 names(openess) <- c('shade','popen','nopen')
 slope <- rast('gis/dem/tifs/mi_dem_30_slope.tif') #slope SAGA radians
 names(slope) <- c('slope','aspect')
+# slope500 <- climatools::focalmed(slope$slope, 500)
+# writeRaster(slope500, 'gis/dem/tifs/slope500.tif')
 dem <- rast('gis/dem/tifs/mi_dem_30.tif')#DEM from USGS Feb 2024
 slope500 <- rast('gis/dem/tifs/slope500.tif');names(slope500) <- 'slope500' #mean slope 500 m radius
 names(dem) <- c('elev')
