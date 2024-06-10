@@ -48,6 +48,7 @@ pts.vars90 <- readRDS('pts.vars90.RDS')
 pts.vars270 <- readRDS('pts.vars270.RDS')
 pts.vars90 <- pts.vars90 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
 pts.vars270 <- pts.vars270 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
+#extract a list of taxon names
 ttt <- pts.vars90 |> group_by(Level2) |> summarize(npts = length(Level2))
 ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10000)
 ttt <- ttt$Level2
@@ -56,14 +57,11 @@ tts <- pts.vars90 |> group_by(Level2,Species) |> summarize(npts = length(Level2)
 tts <- subset(tts, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10)
 
 
-
-# pca <- princomp(vars270)
-
 ttt[14]
 
 
 #Taxa ----
-#
+#loop through each taxon producing a model for each
 for (i in 1:length(ttt)){ #i=14
 set.seed(4345)# for reproducability
 taxon = ttt[i]
@@ -102,7 +100,7 @@ rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
              data=train, sample.fraction = 1, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE, case.weights = train$wts,  write.forest = TRUE)
 saveRDS(rf, paste0('models/',ttt[i],'.RDS'))
-
+#variable importance 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 # library(randomForest)
 # rf <- randomForest(pos ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
@@ -169,17 +167,24 @@ writeRaster(prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
 #
 pts.pos <- pts.vars90 |> st_drop_geometry()
 
-train <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(BA = ifelse(BA > 50,50,BA)) 
+train0 <- subset(pts.pos, !is.na(BA)  & BA < 600 & !dataset %in% 'OH') |> mutate(BA = ifelse(BA > 50,50,BA)) 
+set.seed(4345)# for reproducability
+train0 <- subset(train0, !is.na(BA)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+#separate out testing data
+ntest = 0.1
+takeout <- sample(1:nrow(train), nrow(train)*ntest)
 
-train <- subset(train, !is.na(BA)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+train <- train0[-takeout,]
+test <- train0[takeout,]
+saveRDS(test, paste0('test/basalarea.RDS'))
 
 rf <- ranger(BA ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.75, num.trees=200,  importance = 'impurity',
+             data=train, sample.fraction = 1, num.trees=200,  importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
-
+saveRDS(rf, paste0('models/basalarea.RDS'))
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 
 basalarea <- predict(vars90, rf, na.rm=T);  names(basalarea) <- 'basalarea'
@@ -211,6 +216,7 @@ train.n <- negatives[-takeout.n,]
 test.n <- negatives[takeout.n,]
 train <- rbind(train.p,train.n)
 test <- rbind(test.p,test.n)
+saveRDS(test, paste0('test/opening.RDS'))
 
 #random forest
 
@@ -218,9 +224,9 @@ rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.75, num.trees=200, max.depth = NULL, importance = 'impurity',
+             data=train, sample.fraction = 1, num.trees=200, max.depth = NULL, importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
-
+saveRDS(rf, paste0('models/opening.RDS'))
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
 opening <- predict(vars90, rf, na.rm=T);  names(opening) <- 'opening'
 plot(opening)
@@ -240,7 +246,7 @@ rf <- ranger(DT ~ p+pq1+pq2+pq3+pq4+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
                slope+slope500+popen+nopen+solar, 
-             data=train, sample.fraction = 0.75, num.trees=200,  importance = 'impurity',
+             data=train, sample.fraction = 1, num.trees=200,  importance = 'impurity',
              classification=FALSE,  write.forest = TRUE)
 
 vimp <- data.frame(imp = rf$variable.importance) |> mutate(var = names(rf$variable.importance))  |> arrange(by=imp) 
