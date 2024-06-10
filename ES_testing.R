@@ -39,7 +39,7 @@ MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~
                                        LRU %in% c('97A1','97A2') ~ '97A',
                                        LRU %in% c('97B1','97B2') ~ '97B',
                                        TRUE ~ LRU))
-                                       
+
 MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
 plot(MLRA94)
 MLRA94.vect <- vect(MLRA94)
@@ -48,7 +48,7 @@ spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
 spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
 
-spts.es <- cbind(spts.spp, spts.env[,-1], spts.mlra) |> subset(!is.na(pH50) & !is.na(Tsuga)) 
+spts.es <- cbind(spts.spp, spts.env[,-1], spts.mlra) |> subset(!is.na(pH50) & !is.na(Tsuga))
 
 #ES site key ---
 
@@ -57,7 +57,7 @@ spts.es <- spts.es |> mutate(ES = case_when(rockdepth < 150 ~ 'Limestone',
                                             histic > 0.5 &  hydric >= 0.5 ~ 'Mucks',
                                             sand150 >= 80 & sand50 >= 70 | sand50 >80 ~ 'Sandy',
                                             TRUE ~'Loamy'))
-  
+
 spts.es <- spts.es |> mutate(ES = case_when(ES %in%  'Floodplain' & hydric >= 0.5 ~ 'Wet Floodplain',
                                             ES %in%  'Floodplain' ~ 'Moist Floodplain',
                                             ES %in% 'Mucks' & pH50 >= 5 ~ "Euic Muck",
@@ -98,20 +98,35 @@ silindex <- cluster::silhouette(spts.es.groups$group, spts.es.dist)
 summary(silindex)
 
 si <- silindex |> as.data.frame()
-si <- si |> left_join(data.frame(cluster=groups$group, cname = groups$ESD)) |> 
+si <- si |> left_join(data.frame(cluster=groups$group, cname = groups$ESD)) |>
   left_join(data.frame(neighbor=groups$group, nname = groups$ESD))
 
 
 #simple clustering
 spts.es.sum <- spts.es |> group_by(ESD) |> summarise(across(all_of(ttt), mean)) |> as.data.frame()
-rownames(spts.es.sum) <-  spts.es.sum$ESD          
+rownames(spts.es.sum) <-  spts.es.sum$ESD
 spts.es.sum <- spts.es.sum[,-1]
 spts.es.dist2 <- vegan::vegdist(spts.es.sum, method = 'bray', binary = F)
 spts.es.t <- cluster::agnes(spts.es.dist2, method = 'ward')|> as.hclust()
 plot(spts.es.t)
+#PCA composition
 
-#NMDS
-#
+treepca <- terra::prcomp(Species, maxcell=100000)
+treepcarast <- predict(Species, treepca)
+plot(treepcarast)
+treepca$rotation
+writeRaster(treepcarast, 'gis/treepcarast.tif')
+treepca3 <- terra::princomp(Species, cor=T, maxcell=100000)
+treepcarast3 <- predict(Species, treepca3)
+plot(treepcarast3)
+
+writeRaster(treepcarast3, 'gis/treepcarast3.tif')
+treepca2 <- terra::princomp(Species, maxcell=Inf)
+treepcarast2 <- predict(Species, treepca2)
+plot(treepcarast2)
+treepca2$scores
+writeRaster(treepcarast2, 'gis/treepcarast2.tif')
+
 ES.mds <- metaMDS(spts.es[,ttt], distance = "bray", autotransform = F)
 ES.envfit <- envfit(dune.mds, spts.es[,(length(ttt)+2):(length(colnames(spts.es))-3)], permutations = 999) # this fits environmental vectors
 ES.spp.fit <- envfit(dune.mds, spts.es[,ttt], permutations = 999) # this fits species vectors
@@ -123,4 +138,3 @@ library(visreg)
 # ggpairs
 # partial effects of dichotomous key variables
 # #http://pbreheny.github.io/visreg/index.html
-                                                   
