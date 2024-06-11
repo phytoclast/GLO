@@ -117,7 +117,7 @@ spts.es.env <- spts.es |> select(c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg
 
 
 nmds <- metaMDS(spts.es.spp)
-en <- envfit(mds, spts.es.env, na.rm = TRUE)
+en <- envfit(nmds, spts.es.env, na.rm = TRUE)
 
 scores(nmds)
 plot(en)
