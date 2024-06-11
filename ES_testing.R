@@ -109,6 +109,15 @@ spts.es.sum <- spts.es.sum[,-1]
 spts.es.dist2 <- vegan::vegdist(spts.es.sum, method = 'bray', binary = F)
 spts.es.t <- cluster::agnes(spts.es.dist2, method = 'ward')|> as.hclust()
 plot(spts.es.t)
+
+
+#K means clustering
+kclusters <- terra::k_means(Species, centers=10, maxcell=100000)
+
+plot(kclusters)
+
+writeRaster(kclusters, 'gis/kclustersrast.tif', overwrite=T)
+
 #PCA composition
 
 treepca <- terra::prcomp(Species, maxcell=100000)
@@ -127,11 +136,6 @@ plot(treepcarast2)
 treepca2$scores
 writeRaster(treepcarast2, 'gis/treepcarast2.tif')
 
-ES.mds <- metaMDS(spts.es[,ttt], distance = "bray", autotransform = F)
-ES.envfit <- envfit(dune.mds, spts.es[,(length(ttt)+2):(length(colnames(spts.es))-3)], permutations = 999) # this fits environmental vectors
-ES.spp.fit <- envfit(dune.mds, spts.es[,ttt], permutations = 999) # this fits species vectors
-plot(ES.mds)
-plot(ES.envfit)
 
 library(visreg)
 
