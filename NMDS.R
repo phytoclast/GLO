@@ -54,6 +54,7 @@ spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
 
 spts.es <- cbind(spts.spp, spts.env[,-1], spts.mlra) |> subset(!is.na(pH50) & !is.na(Tsuga))
+spts.es <- spts.es |> mutate(spptotal = apply(spts.es[,ttt], MARGIN=1, FUN='sum')) |> subset(spptotal > 0)
 
 #ES site key ---
 
@@ -103,12 +104,12 @@ groups <- spts.es.groups |> select(c(group, ESD)) |> unique()
 dist_tbl <- as_tibble(spts.es.dist, rownames="samples")
 
 
-mds <- metaMDS(spts.es.dist)
-
-scores(mds) |> as_tibble(rownames='sample') |> mutate(sample=as.numeric(sample)) |>
-  inner_join(spts.es, by=join_by(sample==ID)) |> #mutate(class=ifelse(Quercus>0.5,1,0)) |>
-  ggplot(aes(x=NMDS1,y=NMDS2, color=LRU)) +
-  geom_point()
+# mds <- metaMDS(spts.es.dist)
+# 
+# scores(mds) |> as_tibble(rownames='sample') |> mutate(sample=as.numeric(sample)) |>
+#   inner_join(spts.es, by=join_by(sample==ID)) |> #mutate(class=ifelse(Quercus>0.5,1,0)) |>
+#   ggplot(aes(x=NMDS1,y=NMDS2, color=LRU)) +
+#   geom_point()
 
 
 nmds <- metaMDS(spts.es.spp)
@@ -117,6 +118,7 @@ en <- envfit(mds, spts.es.env, na.rm = TRUE)
 scores(nmds)
 plot(en)
 
+pt.df <- scores(nmds, display='sites') |> as_tibble(rownames='sites') |> mutate(sites=as.numeric(sites)) |> inner_join(spts.es, by=join_by(sites==ID)) 
 sp.df <- scores(nmds, display='species') |> as_tibble(rownames='species')
 en.df <- scores(en, display='vectors')|> as_tibble(rownames='vectors')
 
@@ -126,4 +128,12 @@ ggplot() +
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
   geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
 
+library(plotly)
+gp <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2), alpha=0.1)+
+  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
 
+ggplotly(gp)
