@@ -136,10 +136,6 @@ gp <- ggplot() +
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
   geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
 
-ggplotly(gp)
-png('MNDS_biplot_MLRA94AC.png', width = 800, height = 800)
-gp
-dev.off()
 
 kc1 <- pt.df[,c('NMDS1', 'NMDS2')] |> kmeans(3) 
 kc1 <- kc1$cluster
@@ -149,9 +145,15 @@ plot(as.hclust(htree))
 hc1 <- cutree(htree, 3)
 pt.df <- pt.df |> mutate(hc = as.factor(paste0('cluster',hc1)))
 
-ggplot() +
+gp <- ggplot() +
   geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=hc), alpha=0.5, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
   geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
+
+
+png('MNDS_biplot_MLRA94AC.png', width = 800, height = 800)
+gp
+dev.off()
+
