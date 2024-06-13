@@ -48,7 +48,7 @@ MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~
 MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
 plot(MLRA94)
 MLRA94.vect <- vect(MLRA94)
-spts <- terra::spatSample(MLRA94.vect, size = 1000)
+spts <- terra::spatSample(MLRA94.vect, size = 2000)
 spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
 spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
@@ -146,7 +146,7 @@ hc1 <- cutree(htree, 3)
 pt.df <- pt.df |> mutate(hc = as.factor(paste0('cluster',hc1)))
 
 gp <- ggplot() +
-  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=hc), alpha=0.5, size=2)+
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=kc), alpha=0.5, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
@@ -155,5 +155,19 @@ gp <- ggplot() +
 
 png('MNDS_biplot_MLRA94AC.png', width = 800, height = 800)
 gp
+dev.off()
+
+
+library(rpart)
+library(rpart.plot)
+
+rp <- rpart(hc ~ p+e+Twh+Tw+Tc+Tcl+Tg+Tg30+
+              s+d+m+
+              Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+              hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+              slope+slope500+popen+nopen+solar, data = subset(pt.df, hc %in% c('cluster1', 'cluster2', 'cluster3')),
+            method="class", control = list(maxdepth = 4, cp=0.002, minsplit=100))
+png(filename="nmds_rpart.png",width = 10, height = 3, units = 'in', res = 600)
+rpart.plot(rp, extra=108,legend.cex=0.5, digits=2)
 dev.off()
 
