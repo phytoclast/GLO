@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(ranger)
 library(gam)
-
+library(Metrics)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
@@ -102,9 +102,12 @@ for (i in 1:length(ttt)){ #i=14
                data=train)
 
   summary.Gam(gm)
-
   
+  train <- train |> mutate(prediction = gam::predict.Gam(gm, train, na.rm=T))
+  test <- test |> mutate(prediction = gam::predict.Gam(gm, test, na.rm=T))
   
+  Metrics::auc(actual=train$pos, predicted=train$prediction)
+  Metrics::auc(actual=test$pos, predicted=test$prediction)
   
   #generate prediction raster ----
   prediction <-  predict(vars90, gm, na.rm=T);  names(prediction) <- taxon
