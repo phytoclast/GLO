@@ -45,7 +45,8 @@ MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~
                                        LRU %in% c('97B1','97B2') ~ '97B',
                                        TRUE ~ LRU))
 
-MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
+MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C","96","97","98","99","111C") | LRU %in% "111BA", select="LRU")
+# MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
 plot(MLRA94)
 MLRA94.vect <- vect(MLRA94)
 spts <- terra::spatSample(MLRA94.vect, size = 2000)
@@ -91,67 +92,70 @@ spts.es <- spts.es |> mutate(ESD = paste(LRU, ES))
 
 spts.es <- spts.es |> mutate(ESD = ifelse(rockdepth < 150, 'MLRA 94C Limestone Plains', ESD))
 
+#subset of non wet sites
+spts.es2 <- spts.es #|> subset(hydric < 0.15 & watertable > 100 & sand150 >= 80)
+
 colnames(spts.es)
-spts.es.spp <- spts.es |> select(all_of(ttt))
-spts.es.env <- spts.es |> select(c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
+spts.es.spp <- spts.es2 |> select(all_of(ttt))
+spts.es.env <- spts.es2 |> select(c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
                                    "Tg30","Bhs","carbdepth","clay150","floodfrq","histic",
                                    "humic","humicdepth","hydric","ksatdepth","OM150","pH50","rockdepth","sand150",
                                    "sand50","spodic","watertable","elev","slope","aspect",
                                    "slope500","shade","popen","nopen","solar"))
 spts.es.dist <- vegan::vegdist(spts.es.spp, method = 'bray', binary = F)
-spts.es.groups <- spts.es |> mutate(group = as.integer(as.factor(ESD))) |> select(c(ID, group, ESD))
+spts.es.groups <- spts.es2 |> mutate(group = as.integer(as.factor(ESD))) |> select(c(ID, group, ESD))
 groups <- spts.es.groups |> select(c(group, ESD)) |> unique()
 dist_tbl <- as_tibble(spts.es.dist, rownames="samples")
 
-
-# mds <- metaMDS(spts.es.dist)
-# 
-# scores(mds) |> as_tibble(rownames='sample') |> mutate(sample=as.numeric(sample)) |>
-#   inner_join(spts.es, by=join_by(sample==ID)) |> #mutate(class=ifelse(Quercus>0.5,1,0)) |>
-#   ggplot(aes(x=NMDS1,y=NMDS2, color=LRU)) +
-#   geom_point()
-
-
-nmds <- metaMDS(spts.es.spp)
-en <- envfit(nmds, spts.es.env, na.rm = TRUE)
+#considering a north-south, pyro-mesic, and wet-dry gradients, should have 3 or more dimensions (4)
+ndim <- 4
+nmds <- metaMDS(spts.es.spp, k=ndim)
+en <- envfit(nmds, spts.es.env, na.rm = TRUE, choices=c(1:ndim))
 
 scores(nmds)
-plot(en)
+
 
 pt.df <- scores(nmds, display='sites') |> as_tibble(rownames='sites') |> mutate(sites=as.numeric(sites)) |> inner_join(spts.es, by=join_by(sites==ID)) 
 sp.df <- scores(nmds, display='species') |> as_tibble(rownames='species')
 en.df <- scores(en, display='vectors')|> as_tibble(rownames='vectors')
+print(en.df, n=nrow(en.df))
 
-ggplot() +
-  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2))+
-  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
-  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
-  geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
+# library(plotly)
+# gp <- ggplot() +
+#   geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2), alpha=0.1)+
+#   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
+#   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+#   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+#   geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
 
-library(plotly)
-gp <- ggplot() +
-  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2), alpha=0.1)+
-  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
-  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
-  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
-  geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
-
-
-kc1 <- pt.df[,c('NMDS1', 'NMDS2')] |> kmeans(3) 
+#kmeans of 6 classes for all Lower Michigan MLRAs corresponds with northern hardwoods, Oaks, pines, southern hardwoods, southern swamp, and northern swamp.
+nclust <- 6
+kc1 <- pt.df[,2:(ndim+1)] |> kmeans(nclust) 
 kc1 <- kc1$cluster
 pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',kc1)))
-htree <- vegdist(pt.df[,c('NMDS1', 'NMDS2')], method='euclidean') |> agnes(method = 'ward') 
+htree <- vegdist(pt.df[,2:(ndim+1)], method='euclidean') |> agnes(method = 'ward') 
 plot(as.hclust(htree))
-hc1 <- cutree(htree, 3)
+hc1 <- cutree(htree, nclust)
 pt.df <- pt.df |> mutate(hc = as.factor(paste0('cluster',hc1)))
 
+clustersummary <- pt.df |> group_by(kc) |> summarise(across(.fns=mean))
+groups <- unique(pt.df$kc) |> as.character()
+clustercorr <- pt.df
+for(i in 1:length(groups)){
+clustercorr <- clustercorr |> mutate(x = ifelse(kc %in% groups[i],1,0))
+colnames(clustercorr)[colnames(clustercorr) %in% 'x'] <- groups[i]
+}
+clustercorr <- clustercorr |> select_if(is.numeric) |>  cor(use = 'pairwise.complete.obs') |> as.data.frame() 
+clustercorr <- clustercorr[,(ncol(clustercorr)-nclust+1):ncol(clustercorr)]
+
 gp <- ggplot() +
-  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=kc), alpha=0.5, size=2)+
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=hc), alpha=0.5, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
   geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
 
+gp
 
 png('MNDS_biplot_MLRA94AC.png', width = 800, height = 800)
 gp
@@ -171,3 +175,24 @@ png(filename="nmds_rpart.png",width = 10, height = 3, units = 'in', res = 600)
 rpart.plot(rp, extra=108,legend.cex=0.5, digits=2)
 dev.off()
 
+
+#make NMDSclusters on map
+#hierarchical
+pt.df$hc2 <- as.numeric(pt.df$hc)
+
+formular <- as.formula(paste("hc2",paste(names(Species), collapse = " + ", sep = ""), sep = " ~ "))
+rf <-  ranger(formular, data = pt.df, classification = T)
+named <- 'NMDSClusters.hierarchical'
+rf.prediction <-  predict(Species, rf, na.rm=T);  names(rf.prediction) <- named
+plot(rf.prediction)
+writeRaster(rf.prediction, paste0('gis/',named,'.tif'), overwrite=T)
+#kmeans
+pt.df$kc2 <- as.numeric(pt.df$kc)
+
+formular <- as.formula(paste("kc2",paste(names(Species), collapse = " + ", sep = ""), sep = " ~ "))
+
+rf <-  ranger(formular, data = pt.df, classification = T)
+named <- 'NMDSClusters.kmeans'
+rf.prediction <-  predict(Species, rf, na.rm=T);  names(rf.prediction) <- named
+plot(rf.prediction)
+writeRaster(rf.prediction, paste0('gis/',named,'.tif'), overwrite=T)
