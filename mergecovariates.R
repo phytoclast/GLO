@@ -51,8 +51,8 @@ plot(allsoil$spodic)
 #climate 
 # remotes::install_github("phytoclast/climatools", dependencies = FALSE)
 library(climatools)
-prismTpath <- 'C:/a/Ecological_Sites/GIS/Climate/PRISM2010/CorrectedT/'
-prismPpath <- 'C:/a/Ecological_Sites/GIS/Climate/PRISM2010/P/'
+prismTpath <- 'C:/GIS/Climate/PRISM2010/CorrectedT/'
+prismPpath <- 'C:/GIS/Climate/PRISM2010/P/'
 
 month <- c('01','02','03','04','05','06','07','08','09','10','11','12')
 #load basic files ----
