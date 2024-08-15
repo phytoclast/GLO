@@ -10,10 +10,10 @@ spodics <- subset(spodics, Bhs %in% c('yes','Yes'))
 #identify location of geodatabase
 states <- c("MI", "IL", "IN", "OH", "WI")
 for (i in 1:length(states)){#i=1
-mi0 = fetchGDB(dsn = paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
-mu0 = get_mapunit_from_GDB(dsn = paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
-co0 = get_component_from_GDB(dsn = paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
-comonth0 <- sf::st_read(paste0('D:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'), 'comonth')
+mi0 = fetchGDB(dsn = paste0('C:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
+mu0 = get_mapunit_from_GDB(dsn = paste0('C:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
+co0 = get_component_from_GDB(dsn = paste0('C:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'))
+comonth0 <- sf::st_read(paste0('C:/GIS/SOIL/2023/gSSURGO_',states[i],'.gdb'), 'comonth')
 if(i==1){
   mi=mi0;mu=mu0;co=co0;comonth1=comonth0
 }else{
