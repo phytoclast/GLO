@@ -9,6 +9,7 @@ library(ranger)
 library(gam)
 library(Metrics)
 library(maxnet)
+library(gbm)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
@@ -102,12 +103,13 @@ for (i in 1:length(ttt)){ #i=14
 
   saveRDS(test, paste0('test/',ttt[i],'.RDS'))
   #generalize additive model
-
+timeA <- Sys.time()
 
   gm <- gam(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
               hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
               slope+slope500+popen+nopen+solar,
+            family='binomial',
                data=train)
 
   rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
@@ -121,6 +123,24 @@ for (i in 1:length(ttt)){ #i=14
                                             'Bhs','carbdepth','clay150','floodfrq','histic','humic','humicdepth',
                                             'hydric','ksatdepth','OM150','pH50','rockdepth','sand150','sand50',
                                             'spodic','watertable','slope','slope500','popen','nopen','solar')])
+  
+  gb <- gbm(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+              Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+              hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+              slope+slope500+popen+nopen+solar,
+            distribution = "bernoulli",
+            n.trees = 200,
+            bag.fraction = 0.5,
+            interaction.depth=7,
+            shrinkage = 0.1,
+            data=train)
+  gl <- glm(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+              Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+              hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+              slope+slope500+popen+nopen+solar,
+            data=train)
+
+  
 
 sum(train$pos)/nrow(train)
   train.gam <- train |> mutate(prediction = gam::predict.Gam(gm, train, na.rm=T, type = "response"))
@@ -130,7 +150,11 @@ sum(train$pos)/nrow(train)
 
   train.mxnt <- train2 |> mutate(prediction = predict(mxnt, as.data.frame(train2), na.rm=T, type='logistic'))
   test.mxnt <- test |> mutate(prediction = predict(mxnt, as.data.frame(test), na.rm=T, type='logistic'))
-
+  train.gb <- train |> mutate(prediction = gbm::predict.gbm(gb, train, na.rm=T, type = "response"))
+  test.gb <- test |> mutate(prediction = gbm::predict.gbm(gb, test, na.rm=T, type = "response"))
+  train.gl <- train |> mutate(prediction = predict.glm(gl, train, na.rm=T, type = "response"))
+  test.gl <- test |> mutate(prediction = predict.glm(gl, test, na.rm=T, type = "response"))
+  
 
   Metrics::auc(actual=train.gam$pos, predicted=train.gam$prediction)
   Metrics::auc(actual=test.gam$pos, predicted=test.gam$prediction)
@@ -138,14 +162,23 @@ sum(train$pos)/nrow(train)
   Metrics::auc(actual=test.rf$pos, predicted=test.rf$prediction)
   Metrics::auc(actual=train.mxnt$pos, predicted=train.mxnt$prediction)
   Metrics::auc(actual=test.mxnt$pos, predicted=test.mxnt$prediction)
-
+  Metrics::auc(actual=train.gb$pos, predicted=train.gb$prediction)
+  Metrics::auc(actual=test.gb$pos, predicted=test.gb$prediction)
+  Metrics::auc(actual=train.gl$pos, predicted=train.gl$prediction)
+  Metrics::auc(actual=test.gl$pos, predicted=test.gl$prediction)
+  
   #generate prediction raster ----
   rf.prediction <-  predict(vars90, rf, na.rm=T);  names(rf.prediction) <- taxon
   gm.prediction <-  predict(vars90, gm, na.rm=T, type = "response");  names(gm.prediction) <- taxon
   mxnt.prediction <-  predict(vars90, mxnt, na.rm=T, type='logistic');  names(mxnt.prediction) <- taxon
+  gb.prediction <-  predict(vars90, gb, na.rm=T, type='response');  names(gb.prediction) <- taxon
+  gl.prediction <-  predict(vars90, gl, na.rm=T, type='response');  names(gl.prediction) <- taxon
   # prediction <- (prediction - minmax(prediction)[1])/(minmax(prediction)[2]-minmax(prediction)[1]+0.00001)
 
   writeRaster(rf.prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
   writeRaster(gm.prediction, paste0('gis/gam_models90/',taxon,'.tif'), overwrite=T)
   writeRaster(mxnt.prediction, paste0('gis/maxent_models90/',taxon,'.tif'), overwrite=T)
+  writeRaster(gb.prediction, paste0('gis/gb_models90/',taxon,'.tif'), overwrite=T)
+  plot(gm.prediction)
+  Sys.time() - timeA
 }
