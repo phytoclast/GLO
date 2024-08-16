@@ -49,7 +49,7 @@ MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C","96","97","98","99","111C") | LRU
 # MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C"), select="LRU")
 plot(MLRA94)
 MLRA94.vect <- vect(MLRA94)
-spts <- terra::spatSample(MLRA94.vect, size = 2000)
+spts <- terra::spatSample(MLRA94.vect, size = 3000)
 spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
 spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
@@ -107,7 +107,7 @@ spts.es.groups <- spts.es2 |> mutate(group = as.integer(as.factor(ESD))) |> sele
 groups <- spts.es.groups |> select(c(group, ESD)) |> unique()
 dist_tbl <- as_tibble(spts.es.dist, rownames="samples")
 
-#considering a north-south, pyro-mesic, and wet-dry gradients, should have 3 or more dimensions (4)
+#considering a north-south, pyro-mesic, and wet-dry gradients, should have 3 or more dimensions (4 made most logical kmeans classification with 2000 and 3000 points)
 ndim <- 4
 nmds <- metaMDS(spts.es.spp, k=ndim)
 en <- envfit(nmds, spts.es.env, na.rm = TRUE, choices=c(1:ndim))
@@ -148,6 +148,13 @@ colnames(clustercorr)[colnames(clustercorr) %in% 'x'] <- groups[i]
 clustercorr <- clustercorr |> select_if(is.numeric) |>  cor(use = 'pairwise.complete.obs') |> as.data.frame() 
 clustercorr <- clustercorr[,(ncol(clustercorr)-nclust+1):ncol(clustercorr)]
 
+clusttrans <- t(clustersummary)
+colnames(clusttrans) <- clustersummary$kc
+clusttrans <- clusttrans[rownames(clusttrans) %in% names(Species),] |> as.data.frame() 
+clusttrans <- clusttrans |> mutate(across(.fns = as.numeric)) 
+clusttrans <- clusttrans |> mutate(across(1:6,\(x).fns = round(x, 3)))
+
+
 gp <- ggplot() +
   geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=hc), alpha=0.5, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
@@ -164,16 +171,44 @@ dev.off()
 
 library(rpart)
 library(rpart.plot)
-
-rp <- rpart(hc ~ p+e+Twh+Tw+Tc+Tcl+Tg+Tg30+
+unique(pt.df$kc)
+pt.df <- pt.df |> mutate(ESG = case_when(
+  kc %in% 'cluster1' ~  'Warm Mesophytic',
+  kc %in% 'cluster2' ~  'Cool Mesophytic',
+  kc %in% 'cluster3' ~  'Warm Wet',
+  kc %in% 'cluster4' ~  'Warm Pyrophytic',
+  kc %in% 'cluster5' ~  'Cool Pyrophytic',
+  kc %in% 'cluster6' ~  'Cool Wet',
+  TRUE ~ 'other'))
+    
+rp <- rpart(ESG ~ p+e+Twh+Tw+Tc+Tcl+Tg+Tg30+
               s+d+m+
               Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
               hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
-              slope+slope500+popen+nopen+solar, data = subset(pt.df, hc %in% c('cluster1', 'cluster2', 'cluster3')),
-            method="class", control = list(maxdepth = 4, cp=0.002, minsplit=100))
+              slope+slope500+popen+nopen+solar, data = subset(pt.df),
+            method="class", control = list(maxdepth = 5, cp=0.01, minsplit=100))
 png(filename="nmds_rpart.png",width = 10, height = 3, units = 'in', res = 600)
 rpart.plot(rp, extra=108,legend.cex=0.5, digits=2)
 dev.off()
+
+
+gp <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=ESG), alpha=0.5, size=2)+
+  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='blue')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
+
+gp
+
+gp <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS2,y=NMDS4, color=ESG), alpha=0.5, size=2)+
+  geom_point(data=sp.df, aes(x=NMDS2,y=NMDS4), color='blue')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS2,y=NMDS4), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS2,yend=NMDS4), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS2,y=NMDS4), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red')
+
+gp
 
 
 #make NMDSclusters on map
