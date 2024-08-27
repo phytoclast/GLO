@@ -46,11 +46,13 @@ MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~
                                        LRU %in% c('97B1','97B2') ~ '97B',
                                        TRUE ~ LRU))
 
-MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C","96","97","98","99","111C") | LRU %in% "111BA", select="LRU")
-# MLRA94 <- subset(MLRA, MLRA %in% c("97","98","99","111C")| LRU %in% "111BA", select="LRU")
-plot(MLRA94)
-MLRA94.vect <- vect(MLRA94)
-spts <- terra::spatSample(MLRA94.vect, size = 2000)
+MLRAall <- subset(MLRA, MLRA %in% c("94A","94C","96","97","98","99","111C") | LRU %in% "111BA", select="LRU")
+MLRA98 <- subset(MLRA, MLRA %in% c("97","98","99","111C")| LRU %in% "111BA", select="LRU")
+MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C","96"), select="LRU")
+MLRAselect <- MLRAall
+plot(MLRAselect)
+MLRA.vect <- vect(MLRAselect)
+spts <- terra::spatSample(MLRA.vect, size = 2000)
 spts.mlra <- st_as_sf(spts) |> st_drop_geometry()
 spts.spp <- terra::extract(Species, spts)
 spts.env <- terra::extract(vars90, spts)
@@ -117,12 +119,16 @@ dist_tbl <- as_tibble(spts.es.dist, rownames="samples")
 #scree plot to show stress by number of dimensions
 # scrplt <- screeplot_NMDS(spts.es.spp,
 #                          distance = "bray",
-#                          k = 6,
+#                          k = 10,
 #                          trymax = 20,
 #                          autotransform = TRUE)
 # scrplt
+# ndim <- 8
+# for  (fc in 2:ndim){
+# score <- 100-(scrplt[fc])/scrplt[1]*100 ; names(score) <- fc
+#   print(score)}
 #considering a north-south, pyro-mesic, and wet-dry gradients, should have 3 or more dimensions (4 made most logical kmeans classification with 2000 and 3000 points)
-ndim <- 6
+ndim <- 4
 nmds <- metaMDS(spts.es.spp, k=ndim)
 en <- envfit(nmds, spts.es.env, na.rm = TRUE, choices=c(1:ndim))
 
@@ -148,6 +154,9 @@ print(en.df, n=nrow(en.df))
 
 mtx <- pt.df[,2:(ndim+1)]
 dst <- dist(mtx)
+mtx2 <- pt.df[,names(Species)]^0.5
+dst2 <- vegan::vegdist(mtx2, method = 'bray')
+htree0 <- dst2 |> agnes(method = 'ward')
 htree1 <- dst |> agnes(method = 'ward')
 htree2 <- dst |> agnes(method = 'average') 
 htree3 <- dst |> diana()
@@ -155,16 +164,24 @@ for(i in 2:10){
 set.seed(0)
 nclust <- i
 
+
+kc0 <- mtx2 |> kmeans(nclust) 
+kc0 <- kc0$cluster
+silscor <- cluster::silhouette(kc0, dist = dst)
+msilscor0 <- mean(silscor[,3])
+
 kc1 <- mtx |> kmeans(nclust) 
 kc1 <- kc1$cluster
-
 silscor <- cluster::silhouette(kc1, dist = dst)
-msilscor <- mean(silscor[,3])
+msilscor1 <- mean(silscor[,3])
 
+hc0 <- cutree(htree0, nclust)
+hsilscor <- cluster::silhouette(hc0, dist = dst)
+hmsilscor0 <- mean(hsilscor[,3])
 
 hc1 <- cutree(htree1, nclust)
 hsilscor <- cluster::silhouette(hc1, dist = dst)
-hmsilscor <- mean(hsilscor[,3])
+hmsilscor1 <- mean(hsilscor[,3])
 
 
 hc1 <- cutree(htree2, nclust)
@@ -177,8 +194,10 @@ hsilscor <- cluster::silhouette(hc1, dist = dst)
 hmsilscor3 <- mean(hsilscor[,3])
 
 scdf0 <- data.frame(nclust = nclust, 
-                    kmeans = msilscor, 
-                    ward = hmsilscor, 
+                    kmeansraw = msilscor0, 
+                    kmeans = msilscor1, 
+                    wardraw = hmsilscor0, 
+                    ward = hmsilscor1, 
                     upgma = hmsilscor2,
                     diana = hmsilscor3)
 if(i==2){scdf <- scdf0}else{scdf <- rbind(scdf,scdf0)}
@@ -186,21 +205,25 @@ if(i==2){scdf <- scdf0}else{scdf <- rbind(scdf,scdf0)}
 
 ggplot(scdf)+
   geom_line(aes(x=nclust, y=kmeans, color='kmeans'))+
+  geom_line(aes(x=nclust, y=kmeansraw, color='kmeansraw'))+
   geom_line(aes(x=nclust, y=ward, color='ward'))+
+  geom_line(aes(x=nclust, y=wardraw, color='wardraw'))+
   geom_line(aes(x=nclust, y=upgma, color='upgma'))+
   geom_line(aes(x=nclust, y=diana, color='diana'))+
   geom_point(aes(x=nclust, y=kmeans, color='kmeans'))+
+  geom_point(aes(x=nclust, y=kmeansraw, color='kmeansraw'))+
   geom_point(aes(x=nclust, y=ward, color='ward'))+
+  geom_point(aes(x=nclust, y=wardraw, color='wardraw'))+
   geom_point(aes(x=nclust, y=upgma, color='upgma'))+
   geom_point(aes(x=nclust, y=diana, color='diana'))+
   scale_y_continuous(name='mean silhouette')+
   scale_x_continuous(name='number of clusters', breaks = c(1:10), minor_breaks = NULL)+
   scale_color_manual(name='method',
-                     labels =c('kmeans','ward','upgma','diana'), 
-                     values =c('black','red','green','blue'))
+                     labels =c('kmeans','kmeansraw','wardraw','ward','upgma','diana'), 
+                     values =c('black','orange','magenta','red','green','blue'))
 set.seed(0)
 nclust <- 9
-kc1 <- pt.df[,2:(ndim+1)] |> kmeans(nclust) 
+kc1 <- mtx2 |> kmeans(nclust) 
 kc1 <- kc1$cluster
 pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',kc1)))
 # htree <- dst |> agnes(method = 'ward')
