@@ -94,12 +94,31 @@ for (i in 1:length(ttt)){ #i=14
   saveRDS(test, paste0('test/',ttt[i],'.RDS'))
   #generalize additive model
 
+  TimeA <- Sys.time()
+  smoothvars <- c('p','s','d','Twh','Tw','Tc','Tcl','Tg','e','m',
+                  'Bhs','carbdepth','clay150','floodfrq','histic','humic','humicdepth',
+                  'hydric','ksatdepth','OM150','pH50','rockdepth','sand150','sand50',
+                  'spodic','watertable','slope','slope500','popen','nopen','solar')
   
-  gm <- gam(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
-              Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
-              hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
-              slope+slope500+popen+nopen+solar, 
-               data=train)
+  
+  formular <- as.formula(paste(paste("pos",paste("s(",smoothvars,",4)", collapse = " + ", sep = ""), sep = " ~ "), 
+                               "+e:p+watertable:spodic+s:sand50+s:watertable"))
+ 
+  gm <- gam(formular,
+            family='binomial',
+            data=train)
+  summary(gm)
+  Sys.time() - TimeA
+  train.gam <- train |> mutate(prediction = gam::predict.Gam(gm, train, na.rm=T, type = "response"))
+  test.gam <- test |> mutate(prediction = gam::predict.Gam(gm, test, na.rm=T, type = "response"))
+  Metrics::auc(actual=train.gam$pos, predicted=train.gam$prediction)
+  Metrics::auc(actual=test.gam$pos, predicted=test.gam$prediction)
+  
+  # gm <- gam(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+e+m+Tg30+
+  #             Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
+  #             hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
+  #             slope+slope500+popen+nopen+solar, 
+  #              data=train)
 
   summary.Gam(gm)
   
