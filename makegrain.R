@@ -1,0 +1,153 @@
+#############################
+#acquire topographic covariates
+#############################
+library(sf)
+library(terra)
+library(dplyr)
+library(ggplot2)
+library(ranger)
+library(gam)
+library(Metrics)
+library(maxnet)
+library(gbm)
+maxKappa <- function(actual, predicted){ for(i in 1:99){
+  k <- i/100
+  Kappa0 <- ModelMetrics::kappa(actual=actual, predicted=predicted, cutoff = k)
+  if(i == 1){ maxkappa = k}else{maxkappa = max(Kappa0, maxkappa)}
+}
+  return(maxkappa)}
+makegrain <- function(x, scale=10){ #Function to create a coarse geographic grid assuming lat lon coordinates
+  x <- mutate(x, grain = 1:nrow(x), lat=ifelse(is.na(lat),0,lat), lon=ifelse(is.na(lon),0,lon))
+  x <- mutate(x, latm = floor((lat/90*10000)/scale), lonm = floor(lon/90*10000*cos(mean(lat)/360*2*3.141592/scale)))
+  x <- x |> group_by(latm,lonm) |> mutate(grain = min(grain)) |> ungroup()
+  return(x$grain)
+}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+pts <- readRDS('points/pts.geo1.RDS')
+
+
+pts.vars <- readRDS('pts.vars.RDS')
+vars90 <- rast('gis/vars90.tif')
+vars270 <- rast('gis/vars270.tif')
+
+
+pts.vars90 <- readRDS('pts.vars90.RDS')
+pts.vars270 <- readRDS('pts.vars270.RDS')
+pts.vars90 <- pts.vars90 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
+pts.vars270 <- pts.vars270 |> mutate(Level2 = ifelse(Species %in% 'Thuja', Species, Level2))
+#extract a list of taxon names
+ttt <- pts.vars90 |> group_by(Level2) |> summarize(npts = length(Level2))
+ttt <- subset(ttt, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10000)
+ttt <- ttt$Level2
+
+tts <- pts.vars90 |> group_by(Level2,Species) |> summarize(npts = length(Level2))
+tts <- subset(tts, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10)
+
+
+ttt[14]
+set.seed(4345)# for predictability
+
+n <- 25000 #total number of positive samples
+maxkeep <-  5000 #total number of positive samples for maxent that runs more slowly
+ntest = 0.2
+i=14
+
+taxon = "Liriodendron"; pts.pos <- pts.vars90 |> mutate(pos= ifelse(Species %in% taxon, 1,0)) |> st_drop_geometry()
+poss <- subset(pts.pos,pos %in% 1)
+neg <- subset(pts.pos,pos %in% 0 & !id %in% poss$id)
+poss$pos = 1
+neg$pos = 0
+train0 <- rbind(poss,neg)
+train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
+#weights ----
+train0 <- train0 |> group_by(pos) |> mutate(wts = 100000/length(pos)) |> ungroup()
+train0 <- train0 |> mutate(grain = makegrain(train0, scale = 20))
+uniquegrain <-  unique(train0$grain)
+positives <- subset(train0, pos %in% 1)
+negatives <- subset(train0, pos %in% 0)
+start.p <- positives[sample(1:nrow(positives), n, replace = TRUE),]
+start.n <- negatives[sample(1:nrow(negatives), n, replace = TRUE),]
+#alternative removal of testing data in larger blocks
+takeout.grain <- uniquegrain[sample(1:length(uniquegrain), length(uniquegrain)*ntest)]
+takeout.p <- which(start.p$grain %in% takeout.grain)
+takeout.n <- which(start.n$grain %in% takeout.grain)
+# normal random small grain removal of blocks for testing
+# takeout.p <- sample(1:nrow(start.p), nrow(start.p)*ntest)
+# takeout.n <- sample(1:nrow(start.n), nrow(start.n)*ntest)
+train.p <- start.p[-takeout.p,]
+train.n <- start.n[-takeout.n,]
+test.p <- start.p[takeout.p,]
+test.n <- start.n[takeout.n,]
+train <- rbind(train.p,train.n)
+test <- rbind(test.p,test.n)
+#reduce data further for Maxnet models
+train2 <- train
+if(nrow(train2) > maxkeep*2){
+  keep.p2 <- sample(1:nrow(train.p), maxkeep)
+  keep.n2 <- sample(1:nrow(train.n), maxkeep)
+  train.p2 <- train.p[keep.p2,]
+  train.n2 <- train.n[keep.n2,]
+  train2 <- rbind(train.p2,train.n2)}
+#models
+timeA <- Sys.time()
+smoothvars <- c('p','e','s','d','Twh','Tw','Tc','Tcl','Tg','m',
+                'Bhs','carbdepth','clay150','floodfrq','histic','humic','humicdepth',
+                'hydric','ksatdepth','OM150','pH50','rockdepth','sand150','sand50',
+                'spodic','watertable','slope','slope500','popen','nopen','solar')
+formular.gam <- as.formula(paste(paste("pos",paste(paste("s(",smoothvars,")", collapse = " + ", sep = ""),""), sep = " ~ ")
+))
+formular.glm <- as.formula(paste(paste("pos",paste(paste("I(",smoothvars,"^2)", collapse = " + ", sep = ""),""), sep = " ~ ")
+))
+formular.rf <- as.formula(paste(paste("pos",paste(paste(smoothvars, collapse = " + ", sep = ""),""), sep = " ~ ")
+))
+rf <- ranger(formular.rf,
+             data=train)
+gm <- gam(formular.gam,
+          family='binomial',
+          data=train)
+summary(gm)
+gl <- glm(formular.glm,
+          family='binomial',
+          data=train)
+summary(gl)
+mxnt <- maxnet(p=train2$pos, data= train2[,smoothvars])
+gb <- gbm(formular.rf,
+          distribution = "bernoulli",
+          n.trees = 200,
+          bag.fraction = 0.5,
+          interaction.depth=7,
+          shrinkage = 0.1,
+          data=train)
+sum(train$pos)/nrow(train)
+train.gam <- train |> mutate(prediction = gam::predict.Gam(gm, train, na.rm=T, type = "response"))
+test.gam <- test |> mutate(prediction = gam::predict.Gam(gm, test, na.rm=T, type = "response"))
+train.rf <- train |> mutate(prediction = predictions(predict(rf, train, na.rm=T)))
+test.rf <- test |> mutate(prediction = predictions(predict(rf, test, na.rm=T)))
+train.gb <- train |> mutate(prediction = gbm::predict.gbm(gb, train, na.rm=T, type = "response"))
+test.gb <- test |> mutate(prediction = gbm::predict.gbm(gb, test, na.rm=T, type = "response"))
+train.mxnt <- train |> mutate(prediction = predict(mxnt, as.data.frame(train), na.rm=T, type='logistic'))
+test.mxnt <- test |> mutate(prediction = predict(mxnt, as.data.frame(test), na.rm=T, type='logistic'))
+train.gl <- train |> mutate(prediction = predict.glm(gl, train, na.rm=T, type = "response"))
+test.gl <- test |> mutate(prediction = predict.glm(gl, test, na.rm=T, type = "response"))
+modmets <- data.frame(model = c("GAM", "RF","GBM", "MAXNET","GLM"),
+                      AUCtrain = c(Metrics::auc(actual=train.gam$pos, predicted=train.gam$prediction),
+                                   Metrics::auc(actual=train.rf$pos, predicted=train.rf$prediction),
+                                   Metrics::auc(actual=train.gb$pos, predicted=train.gb$prediction),
+                                   Metrics::auc(actual=train.mxnt$pos, predicted=train.mxnt$prediction),
+                                   Metrics::auc(actual=train.gl$pos, predicted=train.gl$prediction)),
+                      AUCtest = c(Metrics::auc(actual=test.gam$pos, predicted=test.gam$prediction),
+                                  Metrics::auc(actual=test.rf$pos, predicted=test.rf$prediction),
+                                  Metrics::auc(actual=test.gb$pos, predicted=test.gb$prediction),
+                                  Metrics::auc(actual=test.mxnt$pos, predicted=test.mxnt$prediction),
+                                  Metrics::auc(actual=test.gl$pos, predicted=test.gl$prediction)),
+                      maxKappatrain = c(maxKappa(actual=train.gam$pos, predicted=train.gam$prediction),
+                                        maxKappa(actual=train.rf$pos, predicted=train.rf$prediction),
+                                        maxKappa(actual=train.gb$pos, predicted=train.gb$prediction),
+                                        maxKappa(actual=train.mxnt$pos, predicted=train.mxnt$prediction),
+                                        maxKappa(actual=train.gl$pos, predicted=train.gl$prediction)),
+                      maxKappatest = c(maxKappa(actual=test.gam$pos, predicted=test.gam$prediction),
+                                       maxKappa(actual=test.rf$pos, predicted=test.rf$prediction),
+                                       maxKappa(actual=test.gb$pos, predicted=test.gb$prediction),
+                                       maxKappa(actual=test.mxnt$pos, predicted=test.mxnt$prediction),
+                                       maxKappa(actual=test.gl$pos, predicted=test.gl$prediction)))
