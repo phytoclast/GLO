@@ -42,11 +42,13 @@ tts <- subset(tts, !is.na(Level2) & !Level2 %in% c('unk','no tree') & npts >= 10
 
 ttt[14]
 
-n <- 2000 #total number of positive samples
+n <- 25000 #total number of positive samples
+maxkeep <-  5000 #total number of positive samples for maxent that runs more slowly
 ntest = 0.2
+i=14
 #Taxa ----
 #loop through each taxon producing a model for each
-for (i in 1:length(ttt)){ #i=14
+# for (i in 1:length(ttt)){ #i=14
   set.seed(4345)# for predictability
   taxon = ttt[i]
   pts.pos <- pts.vars90 |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
@@ -74,18 +76,16 @@ for (i in 1:length(ttt)){ #i=14
   test.n <- start.n[takeout.n,]
   train <- rbind(train.p,train.n)
   test <- rbind(test.p,test.n)
-  # takeout.p2 <- sample(1:nrow(train.p), nrow(train.p)*0.7)
-  # takeout.n2 <- sample(1:nrow(train.n), nrow(train.n)*0.7)
-  # train.p2 <- train.p[-takeout.p2,]
-  # train.n2 <- train.n[-takeout.n2,]
-  # train2 <- rbind(train.p2,train.n2)
-  # test <- test |> group_by(pos) |> mutate(wts = 1/length(pos)) |> ungroup()
-  # overtest <- test[sample(x = 1:nrow(test), size = nrow(test)*10, replace=TRUE, prob = test$wts),]
-  # overtrain <- train[sample(x = 1:nrow(train), size = nrow(train)*5, replace=TRUE, prob = train$wts),]
-  # overtrain2 <- train[sample(x = 1:nrow(train), size = 25000, replace=TRUE, prob = train$wts),]
-  
-  # saveRDS(test, paste0('test/',ttt[i],'.RDS'))
-  #generalize additive model
+  #reduce data further for Maxnet models
+  train2 <- train
+  if(nrow(train2) > maxkeep*2){
+  keep.p2 <- sample(1:nrow(train.p), maxkeep)
+  keep.n2 <- sample(1:nrow(train.n), maxkeep)
+  train.p2 <- train.p[keep.p2,]
+  train.n2 <- train.n[keep.n2,]
+  train2 <- rbind(train.p2,train.n2)}
+ 
+  #models
   timeA <- Sys.time()
   
   smoothvars <- c('p','e','s','d','Twh','Tw','Tc','Tcl','Tg','m',
@@ -120,7 +120,7 @@ for (i in 1:length(ttt)){ #i=14
             data=train)
   summary(gl)
 
-  mxnt <- maxnet(p=train$pos, data= train[,smoothvars])
+  mxnt <- maxnet(p=train2$pos, data= train2[,smoothvars])
   
 
   gb <- gbm(formular.rf,
@@ -131,24 +131,6 @@ for (i in 1:length(ttt)){ #i=14
             shrinkage = 0.1,
             data=train)
   
-  
-  # rf <- ranger(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+m+
-  #                Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
-  #                hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
-  #                slope+slope500+popen+nopen+solar,
-  #              data=train, sample.fraction = 1, num.trees=200, max.depth = NULL, importance = 'impurity',
-  #              classification=FALSE,  write.forest = TRUE)#, case.weights = train$wts)
-  # 
-  # mxnt <- maxnet(p=overtrain2$pos, data= overtrain2[c('p','e','s','d','Twh','Tw','Tc','Tcl','Tg','m',
-  #                                             'Bhs','carbdepth','clay150','floodfrq','histic','humic','humicdepth',
-  #                                             'hydric','ksatdepth','OM150','pH50','rockdepth','sand150','sand50',
-  #                                             'spodic','watertable','slope','slope500','popen','nopen','solar')])
-  
-  # gl <- glm(pos ~ p+e+s+d+Twh+Tw+Tc+Tcl+Tg+m+
-  #             Bhs+carbdepth+clay150+floodfrq+histic+humic+humicdepth+
-  #             hydric+ksatdepth+OM150+pH50+rockdepth+sand150+sand50+spodic+watertable+
-  #             slope+slope500+popen+nopen+solar,
-  #           data=train)#, weights = train$wts)
   
 
 sum(train$pos)/nrow(train)
@@ -203,12 +185,13 @@ sum(train$pos)/nrow(train)
   mxnt.prediction <-  predict(vars90, mxnt, na.rm=T, type='logistic');  names(mxnt.prediction) <- taxon
   gb.prediction <-  predict(vars90, gb, na.rm=T, type='response');  names(gb.prediction) <- taxon
   gl.prediction <-  predict(vars90, gl, na.rm=T, type='response');  names(gl.prediction) <- taxon
-  # prediction <- (prediction - minmax(prediction)[1])/(minmax(prediction)[2]-minmax(prediction)[1]+0.00001)
 
-  writeRaster(rf.prediction, paste0('gis/models90/',taxon,'.tif'), overwrite=T)
-  writeRaster(gm.prediction, paste0('gis/gam_models90/',taxon,'splines2.tif'), overwrite=T)
-  writeRaster(mxnt.prediction, paste0('gis/maxent_models90/',taxon,'.tif'), overwrite=T)
-  writeRaster(gb.prediction, paste0('gis/gb_models90/',taxon,'.tif'), overwrite=T)
+  writeRaster(rf.prediction, paste0('gis/modelcompare/',taxon,'_rf.tif'), overwrite=T)
+  writeRaster(gm.prediction, paste0('gis/modelcompare/',taxon,'_gam.tif'), overwrite=T)
+  writeRaster(gl.prediction, paste0('gis/modelcompare/',taxon,'_glm.tif'), overwrite=T)
+  writeRaster(gb.prediction, paste0('gis/modelcompare/',taxon,'_gb.tif'), overwrite=T)
+  writeRaster(mxnt.prediction, paste0('gis/modelcompare/',taxon,'_mxnt.tif'), overwrite=T)
+  
   plot(gm.prediction)
   Sys.time() - timeA
 }
