@@ -1,11 +1,12 @@
 
 #NMDS ----
 library(vegan)
-set.seed(0)
 
+library(climatools)
 library(sf)
 library(terra)
 library(dplyr)
+
 library(ggplot2)
 library(ranger)
 library(vegan)
@@ -16,7 +17,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 MLRA <- st_read('gis/MLRA_2017.shp')
 pts <- readRDS('points/pts.geo1.RDS')
 
-
+set.seed(0)
 pts.vars <- readRDS('pts.vars.RDS')
 vars90 <- rast('gis/vars90.tif')
 vars270 <- rast('gis/vars270.tif')
@@ -49,7 +50,7 @@ MLRA <- MLRA |> mutate(LRU = case_when(LRU %in% c('98A1','98A3','98A4','98A5') ~
 MLRAall <- subset(MLRA, MLRA %in% c("94A","94C","96","97","98","99","111C") | LRU %in% "111BA", select="LRU")
 MLRA98 <- subset(MLRA, MLRA %in% c("97","98","99","111C")| LRU %in% "111BA", select="LRU")
 MLRA94 <- subset(MLRA, MLRA %in% c("94A","94C","96"), select="LRU")
-MLRAselect <- MLRAall
+MLRAselect <- MLRA94
 plot(MLRAselect)
 MLRA.vect <- vect(MLRAselect)
 spts <- terra::spatSample(MLRA.vect, size = 2000)
@@ -222,7 +223,7 @@ ggplot(scdf)+
                      labels =c('kmeans','kmeansraw','wardraw','ward','upgma','diana'), 
                      values =c('black','orange','magenta','red','green','blue'))
 set.seed(0)
-nclust <- 9
+nclust <- 3
 kc1 <- mtx2 |> kmeans(nclust) 
 kc1 <- kc1$cluster
 pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',kc1)))
@@ -257,9 +258,233 @@ gp <- ggplot() +
 
 gp
 
-png('MNDS_biplot_MLRA94AC.png', width = 800, height = 800)
+png('plots/MNDS_biplot_MLRA9694AC.png', width = 800, height = 800)
 gp
 dev.off()
+
+
+#Variable Importance
+pt.df -> x
+x$pyrophytic <- ifelse(x$kc %in% 'cluster2',1,0)
+x$mesophytic <- ifelse(x$kc %in% 'cluster3',1,0)
+x$hydrophytic <- ifelse(x$kc %in% 'cluster1',1,0)
+x$upland <- ifelse(x$kc %in% c('cluster2','cluster3'),1,0)
+
+
+checkvars <- c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
+               "Tg30","Bhs","carbdepth","clay150","floodfrq","histic",
+               "humic","humicdepth","hydric","ksatdepth","OM150","pH50","rockdepth","sand150",
+               "sand50","spodic","watertable","elev","slope","aspect",
+               "slope500","shade","popen","nopen","solar")
+
+tableofvars <- find.multithreshold(x=x, class1='mesophytic',class2='pyrophytic',variables=checkvars)
+
+
+checkvars <- names(Species)
+tableofspp <- find.multithreshold(x=x, class1='mesophytic',class2='pyrophytic',variables=checkvars)
+
+checkvars <- c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
+               "Tg30","Bhs","carbdepth","clay150","floodfrq","histic",
+               "humic","humicdepth","hydric","ksatdepth","OM150","pH50","rockdepth","sand150",
+               "sand50","spodic","watertable","elev","slope","aspect",
+               "slope500","shade","popen","nopen","solar")
+
+tableofvars2 <- find.multithreshold(x=x, class1='hydrophytic',class2='upland',variables=checkvars)
+
+
+checkvars <- names(Species)
+tableofspp2 <- find.multithreshold(x=x, class1='hydrophytic',class2='upland',variables=checkvars)
+
+tableall <- rbind(tableofvars, tableofspp)
+tableall2 <- rbind(tableofvars2, tableofspp2)
+
+var.nfogain.meso <- 
+  ggplot(data=tableofvars, aes(x=infogain,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Information Gain')
+var.cor.meso <- 
+  ggplot(data=tableofvars, aes(x=class1cor,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Correlation with mesophytic (relative to pyrophytic)')
+spp.infogain.meso <- 
+  ggplot(data=tableofspp, aes(x=infogain,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Taxon')+
+  scale_x_continuous(name='Information Gain')
+spp.cor.meso <- 
+  ggplot(data=tableofspp, aes(x=class1cor,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Taxon')+
+  scale_x_continuous(name='Correlation with mesophytic (relative to pyrophytic)')
+var.gini.meso <- 
+  ggplot(data=tableofvars, aes(x=gini,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Gini')
+var.entropy.meso <- 
+  ggplot(data=tableofvars, aes(x=entropy,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Entropy')
+
+var.infogain.hydro <- 
+  ggplot(data=tableofvars2, aes(x=infogain,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Information Gain')
+spp.infogain.hydro <- 
+  ggplot(data=tableofspp2, aes(x=infogain,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Taxon')+
+  scale_x_continuous(name='Information Gain')
+var.cor.hydro <- 
+  ggplot(data=tableofvars2, aes(x=class1cor,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Variable')+
+  scale_x_continuous(name='Correlation with hydrophytic (relative to upland)')
+spp.cor.hydro <- 
+  ggplot(data=tableofspp2, aes(x=class1cor,y=reorder(variable, infogain)))+
+  geom_bar(stat="identity")+
+  scale_y_discrete(name='Taxon')+
+  scale_x_continuous(name='Correlation with hydrophytic (relative to upland)')
+
+
+png('plots/var.nfogain.meso.png', width = 800, height = 800)
+var.nfogain.meso
+dev.off()
+png('plots/var.cor.meso.png', width = 800, height = 800)
+var.cor.meso
+dev.off()
+png('plots/spp.infogain.meso.png', width = 800, height = 800)
+spp.infogain.meso
+dev.off()
+png('plots/var.entropy.meso.png', width = 800, height = 800)
+var.entropy.meso
+dev.off()
+
+png('plots/var.gini.meso.png', width = 800, height = 800)
+var.gini.meso
+dev.off()
+png('plots/spp.cor.meso.png', width = 800, height = 800)
+spp.cor.meso
+dev.off()
+
+png('plots/var.infogain.hydro.png', width = 800, height = 800)
+var.infogain.hydro
+dev.off()
+png('plots/spp.infogain.hydro.png', width = 800, height = 800)
+spp.infogain.hydro
+dev.off()
+png('plots/var.cor.hydro.png', width = 800, height = 800)
+var.cor.hydro
+dev.off()
+png('plots/spp.cor.hydro.png', width = 800, height = 800)
+spp.cor.hydro
+dev.off()
+
+
+
+
+
+
+# 
+# #Information gain
+# g1 = 'g1'
+# g2 = 'g2'
+# v1 = 'Tc'
+# 
+# x <- pt.df |> as.data.frame()
+# x$g1 <- ifelse(x$kc %in% 'cluster2',1,0)
+# x$g2 <- ifelse(x$kc %in% 'cluster3',1,0)
+# 
+# 
+# find.threshold <- function(x, class1, class2, variable){
+#   x <- as.data.frame(x)
+#   g1 <- x[,class1]
+#   g2 <- x[,class2]
+#   v1 <- x[,variable]
+# 
+#   x <- data.frame(v1=v1,g1=g1,g2=g2)
+#   x <- subset(x, g1 > 0|g2 > 0)
+#   rm(v1,g1,g2)
+#   vmax <- max(x$v1)
+#   vmin <- min(x$v1)
+#   class1cor <- cor(x$g1, x$v1)
+#   class2cor <- cor(x$g2, x$v1)
+#     for(i in 0:100){#i=0
+#     ip <- i/100  
+#     thr <- ip*(vmax-vmin)+vmin
+#     x <- x |> mutate(reclass = ifelse(v1 >= thr,1,0))
+#     sign <- var(x$g1,x$reclass)-var(x$g2,x$reclass)
+#     xp <- x |> summarise(g1 = sum(g1), g2 = sum(g2), all = g1+g2, p1 = g1/all, p2 = g2/all, 
+#                          gini=1-p1^2-p2^2, 
+#                          ent = -p1*log(ifelse(p1 <= 0, 0.001,p1))-p2*log(ifelse(p2 <= 0, 0.001,p2)))
+#     xs <- x |> group_by(reclass) |> summarise(g1 = sum(g1), g2 = sum(g2), all = g1+g2, p1 = g1/all, p2 = g2/all, 
+#     gini=1-p1^2-p2^2, ent = -p1*log(ifelse(p1 <= 0, 1E-50,p1))-p2*log(ifelse(p2 == 0, 1E-50,p2))) |>
+#       mutate(gini0 = all/sum(all)*gini, ent0 = all/sum(all)*ent)
+#     xs <- xs |> summarize(gini = sum(gini0), ent = sum(ent0))
+#     
+#     gini_gain = xp$gini - xs$gini
+#     ent_gain = xp$ent - xs$ent
+#     if(i==0){
+#       maxinfo = ent_gain
+#       finalentropy = xs$ent
+#       finalgini = xs$gini
+#       finalsign = sign
+#       finalthr = thr
+#     }else if(ent_gain >= maxinfo){
+#       maxinfo=ent_gain
+#       finalentropy = xs$ent
+#       finalgini = xs$gini
+#       finalsign = sign
+#       finalthr = thr}
+#   }
+#   return(result = list(entropy=finalentropy, gini=finalgini, infogain = maxinfo, sign = ifelse(finalsign >= 0, "class1 positive", "class1 negative"), class1 = class1, class2=class2, class1cor = class1cor, class2cor = class2cor, variable = variable, threshold = finalthr, narrative = paste(
+#     class1,": ", variable, ifelse(finalsign >= 0, " >= ", " < "),finalthr," | ",
+#     class2,": ", variable, ifelse(finalsign >= 0, " < ", " >= "),finalthr))
+#   )}
+# 
+# pt.df -> x
+# x$pyrophytic <- ifelse(x$kc %in% 'cluster2',1,0)
+# x$mesophytic <- ifelse(x$kc %in% 'cluster3',1,0)
+# thisvar <- find.threshold(x=x, class1='mesophytic',class2='pyrophytic',variable='m')
+# thisvar$sign
+# thisvar$narrative
+# 
+# checkvars <- c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
+#                "Tg30","Bhs","carbdepth","clay150","floodfrq","histic",
+#                "humic","humicdepth","hydric","ksatdepth","OM150","pH50","rockdepth","sand150",
+#                "sand50","spodic","watertable","elev","slope","aspect",
+#                "slope500","shade","popen","nopen","solar")
+# variables=checkvars
+# find.multithreshold <- function(x, class1, class2, variables){
+#   n = length(variables)
+#   for(i in 1:n){
+#     thisvar <- find.threshold(x, class1, class2, variables[i])
+#     df0=data.frame(
+#       variable = thisvar$variable,
+#       threshold = thisvar$threshold,
+#       class1 = thisvar$class1,
+#       class2 = thisvar$class2,
+#       sign = thisvar$sign,
+#       infogain = thisvar$infogain,
+#       gini = thisvar$gini,
+#       entropy = thisvar$entropy,
+#       class1cor = thisvar$class1cor,
+#       class2cor = thisvar$class2cor,
+#       narrative = thisvar$narrative)
+#     if(i==1){df=df0}else{df=rbind(df,df0)}
+#   }
+#   return(df)}
+# 
+# pt.df -> x
+# x$pyrophytic <- ifelse(x$kc %in% 'cluster2',1,0)
+# x$mesophytic <- ifelse(x$kc %in% 'cluster3',1,0)
+# 
+# tableofvars <- find.multithreshold(x=x, class1='mesophytic',class2='pyrophytic',variables=checkvars)
+
 
 
 library(rpart)
