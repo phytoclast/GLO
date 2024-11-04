@@ -10,6 +10,7 @@ library(gam)
 library(Metrics)
 library(maxnet)
 library(gbm)
+# library(ubl)
 maxKappa <- function(actual, predicted){ for(i in 1:99){
   k <- i/100
   Kappa0 <- ModelMetrics::kappa(actual=actual, predicted=predicted, cutoff = k)
@@ -46,6 +47,8 @@ n <- 25000 #total number of positive samples
 maxkeep <-  5000 #total number of positive samples for maxent that runs more slowly
 ntest = 0.2
 i=14
+#Should Random Oversampling (ROF) be employed?
+ROF = F
 #Taxa ----
 #loop through each taxon producing a model for each
 # for (i in 1:length(ttt)){ #i=14
@@ -63,28 +66,49 @@ i=14
   train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
   #weights ----
   train0 <- train0 |> group_by(pos) |> mutate(wts = 100000/length(pos)) |> ungroup()
+  posrate <- mean(train0$pos)
+  
   # train0 <- train0 |> group_by(pos) |> mutate(wts = 1) |> ungroup()#use for unweighted
   positives <- subset(train0, pos %in% 1)
   negatives <- subset(train0, pos %in% 0)
-  start.p <- positives[sample(1:nrow(positives), n, replace = TRUE),]
-  start.n <- negatives[sample(1:nrow(negatives), n, replace = TRUE),]
-  takeout.p <- sample(1:nrow(start.p), nrow(start.p)*ntest)
-  takeout.n <- sample(1:nrow(start.n), nrow(start.n)*ntest)
-  train.p <- start.p[-takeout.p,]
-  test.p <- start.p[takeout.p,]
-  train.n <- start.n[-takeout.n,]
-  test.n <- start.n[takeout.n,]
-  train <- rbind(train.p,train.n)
+  takeout.p <- sample(1:nrow(positives), nrow(positives)*ntest)
+  takeout.n <- sample(1:nrow(negatives), nrow(negatives)*ntest)
+  train.p <- positives[-takeout.p,]
+  test.p <- positives[takeout.p,]
+  train.n <- negatives[-takeout.n,]
+  test.n <- negatives[takeout.n,]
+  if(ROF){#Random Over Sample
+    start.p <- positives[sample(1:nrow(train.p), n, replace = TRUE),]
+    start.n <- negatives[sample(1:nrow(train.n), n, replace = TRUE),]
+  }else{
+    start.p <- positives
+    start.n <- negatives
+  }
+  train <- rbind(start.p,start.n)
   test <- rbind(test.p,test.n)
+  #reduce data while avoiding fewer than 50 positives if model is not already resampled
+  if(nrow(train) > n*3){
+    train.p <- subset(train, pos %in% 1)
+    train.n <- subset(train, pos %in% 0)
+    keep.p <- sample(1:nrow(train.p), pmax(n*3*(posrate), 50),replace = TRUE)
+    keep.n <- sample(1:nrow(train.n), pmax(n*3*(1-posrate),50), replace = TRUE)
+    train.p <- train.p[keep.p,]
+    train.n <- train.n[keep.n,]
+    train <- rbind(train.p, train.n)
+  }
   #reduce data further for Maxnet models
   train2 <- train
   if(nrow(train2) > maxkeep*2){
-  keep.p2 <- sample(1:nrow(train.p), maxkeep)
-  keep.n2 <- sample(1:nrow(train.n), maxkeep)
-  train.p2 <- train.p[keep.p2,]
-  train.n2 <- train.n[keep.n2,]
-  train2 <- rbind(train.p2,train.n2)}
- 
+    train2.p <- subset(train2, pos %in% 1)
+    train2.n <- subset(train2, pos %in% 0)
+    keep.p <- sample(1:nrow(train2.p), pmax(maxkeep*2*(posrate), 50),replace = TRUE)
+    keep.n <- sample(1:nrow(train2.n), pmax(maxkeep*2*(1-posrate),50), replace = TRUE)
+    train2.p <- train2.p[keep.p,]
+    train2.n <- train2.n[keep.n,]
+    train2 <- rbind(train2.p, train2.n)
+  }
+  
+  
   #models
   timeA <- Sys.time()
   
@@ -170,14 +194,12 @@ sum(train$pos)/nrow(train)
   
   
   
-  ppp <- pdp::partial(rf, pred.var = 'spodic')
-  pdp::plotPartial(ppp)
-  
-  caret::confusionMatrix(reference=train.rf$pos, data=train.rf$prediction)
-  
-  
+  # ppp <- pdp::partial(gm, pred.var = 'spodic')
+  # pdp::plotPartial(ppp)
 
   
+
+  correction = log(posrate)/log(0.5)#exponent to raise the predicted outcome to adjust the overall abundance to match unweighted model
   
   #generate prediction raster ----
   rf.prediction <-  predict(vars90, rf, na.rm=T);  names(rf.prediction) <- taxon
@@ -194,4 +216,4 @@ sum(train$pos)/nrow(train)
   
   plot(gm.prediction)
   Sys.time() - timeA
-}
+
