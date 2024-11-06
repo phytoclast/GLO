@@ -46,9 +46,13 @@ ttt[14]
 n <- 25000 #total number of positive samples
 maxkeep <-  5000 #total number of positive samples for maxent that runs more slowly
 ntest = 0.2
-i=14
+i=1
 #Should Random Oversampling (ROF) be employed?
-ROF = F
+ROF = T
+#Should linear models be weighted back to original prevalence>
+WT = F
+#Should Testing data be class balanced?
+ROFTEST = T
 #Taxa ----
 #loop through each taxon producing a model for each
 # for (i in 1:length(ttt)){ #i=14
@@ -66,7 +70,7 @@ ROF = F
   train0 <- subset(train0, !is.na(pos)&!is.na(solar)&!is.na(popen)&!is.na(Tg30)&!is.na(watertable)&!is.na(rockdepth)&!is.na(OM150)&!is.na(sand50)&!is.na(slope)&!is.na(slope500)&!is.na(aspect))
   #weights ----
   train0 <- train0 |> group_by(pos) |> mutate(wts = 100000/length(pos)) |> ungroup()
-  posrate <- mean(train0$pos)
+  positivity <- mean(train0$pos)
   
   # train0 <- train0 |> group_by(pos) |> mutate(wts = 1) |> ungroup()#use for unweighted
   positives <- subset(train0, pos %in% 1)
@@ -78,31 +82,35 @@ ROF = F
   train.n <- negatives[-takeout.n,]
   test.n <- negatives[takeout.n,]
   if(ROF){#Random Over Sample
-    start.p <- positives[sample(1:nrow(train.p), n, replace = TRUE),]
-    start.n <- negatives[sample(1:nrow(train.n), n, replace = TRUE),]
-  }else{
-    start.p <- positives
-    start.n <- negatives
+    train.p <- train.p[sample(1:nrow(train.p), n, replace = TRUE),]
+    train.n <- train.n[sample(1:nrow(train.n), n, replace = TRUE),]
   }
-  train <- rbind(start.p,start.n)
+  if(ROFTEST){#Random Over Sample
+    test.p <- test.p[sample(1:nrow(test.p), n, replace = TRUE),]
+    test.n <- test.n[sample(1:nrow(test.n), n, replace = TRUE),]
+  }
+  train <- rbind(train.p,train.n)
   test <- rbind(test.p,test.n)
   #reduce data while avoiding fewer than 50 positives if model is not already resampled
   if(nrow(train) > n*3){
     train.p <- subset(train, pos %in% 1)
     train.n <- subset(train, pos %in% 0)
-    keep.p <- sample(1:nrow(train.p), pmax(n*3*(posrate), 50),replace = TRUE)
-    keep.n <- sample(1:nrow(train.n), pmax(n*3*(1-posrate),50), replace = TRUE)
+    keep.p <- sample(1:nrow(train.p), pmax(n*3*(positivity), 50),replace = TRUE)
+    keep.n <- sample(1:nrow(train.n), pmax(n*3*(1-positivity),50), replace = TRUE)
     train.p <- train.p[keep.p,]
     train.n <- train.n[keep.n,]
     train <- rbind(train.p, train.n)
+  }
+  if(WT){
+    train <- train |> group_by(pos) |> mutate(wts = ifelse(pos %in% 1, positivity/length(pos), (1-positivity)/length(pos))) |> ungroup()
   }
   #reduce data further for Maxnet models
   train2 <- train
   if(nrow(train2) > maxkeep*2){
     train2.p <- subset(train2, pos %in% 1)
     train2.n <- subset(train2, pos %in% 0)
-    keep.p <- sample(1:nrow(train2.p), pmax(maxkeep*2*(posrate), 50),replace = TRUE)
-    keep.n <- sample(1:nrow(train2.n), pmax(maxkeep*2*(1-posrate),50), replace = TRUE)
+    keep.p <- sample(1:nrow(train2.p), pmax(maxkeep*2*(positivity), 50),replace = TRUE)
+    keep.n <- sample(1:nrow(train2.n), pmax(maxkeep*2*(1-positivity),50), replace = TRUE)
     train2.p <- train2.p[keep.p,]
     train2.n <- train2.n[keep.n,]
     train2 <- rbind(train2.p, train2.n)
@@ -133,15 +141,27 @@ ROF = F
   rf <- ranger(formular.rf,
 
                data=train)
-
-  gm <- gam(formular.gam,
-            family='binomial',
-            data=train)
-  summary(gm)
+  if(WT){
+    gm <- gam(formular.gam,
+              family='binomial',
+              data=train, weights = train$wts)
+  }else{
+    gm <- gam(formular.gam,
+              family='binomial',
+              data=train)
+  }
+  if(WT){
+    gl <- glm(formular.glm,
+              family='binomial',
+              data=train, weights = train$wts)
+  }else{
+    gl <- glm(formular.glm,
+              family='binomial',
+              data=train)
+  }
   
-  gl <- glm(formular.glm,
-            family='binomial',
-            data=train)
+  
+
   summary(gl)
 
   mxnt <- maxnet(p=train2$pos, data= train2[,smoothvars])
@@ -199,7 +219,7 @@ sum(train$pos)/nrow(train)
 
   
 
-  correction = log(posrate)/log(0.5)#exponent to raise the predicted outcome to adjust the overall abundance to match unweighted model
+  correction = log(positivity)/log(0.5)#exponent to raise the predicted outcome to adjust the overall abundance to match unweighted model
   
   #generate prediction raster ----
   rf.prediction <-  predict(vars90, rf, na.rm=T);  names(rf.prediction) <- taxon
