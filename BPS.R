@@ -14,9 +14,9 @@ BPS <- rast("C:/GIS/Vegetation/BPS_general.tif")
 BPSrat <- cats(BPS)[[1]]
 
 BPSsample <- spatSample(BPS,25000,xy=T)
-BPSsample <- BPSsample |> subset(!is.na(VALUE_1) & !VALUE_1 %in% -9999) |> mutate(VALUE = as.numeric(as.character(VALUE_1)), VALUE_1 = NULL) |> left_join(BPSrat, by = join_by(VALUE == VALUE)) 
+BPSsample <- BPSsample |> subset(!is.na(VALUE_1) & !VALUE_1 %in% -9999) |> mutate(VALUE = as.numeric(as.character(VALUE_1)), VALUE_1 = NULL) |> left_join(BPSrat, by = join_by(VALUE == VALUE))
 BPSsample <- st_as_sf(BPSsample, coords = c(x='x',y='y'), crs=crs(BPS))
-BPSsample <- st_transform(BPSsample, crs = crs(prism)) 
+BPSsample <- st_transform(BPSsample, crs = crs(prism))
 
 BPSprism <- extract(prism2, BPSsample)
 
@@ -27,10 +27,10 @@ BPSsummary <- BPSsample |> subset(!is.na(Tg) & !is.na(m)) |> group_by(BPS_NAME) 
 
 #https://chelsa-climate.org/downloads/
 month <- c('01','02','03','04','05','06','07','08','09','10','11','12')
-dem1km <- rast("C:/GIS/Climate/dem_latlong.nc")  
-tmax <- rast("C:/GIS/Climate/CHELSA_tasmax_1981-2010_V.2.1.nc")  
-tmin <- rast("C:/GIS/Climate/CHELSA_tasmin_1981-2010_V.2.1.nc")    
-ppt <- rast("C:/GIS/Climate/CHELSA_pr_1981-2010_V.2.1.nc")    
+dem1km <- rast("C:/GIS/Climate/dem_latlong.nc")
+tmax <- rast("C:/GIS/Climate/CHELSA_tasmax_1981-2010_V.2.1.nc")
+tmin <- rast("C:/GIS/Climate/CHELSA_tasmin_1981-2010_V.2.1.nc")
+ppt <- rast("C:/GIS/Climate/CHELSA_pr_1981-2010_V.2.1.nc")
 th <- tmax*10
 tl <- tmin*10
 p <- ppt*100
@@ -65,24 +65,24 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 month <- c('01','02','03','04','05','06','07','08','09','10','11','12')
 for (i in 1:12){#i=1
   x = rast(paste0('chelsa2.1/th',month[i],'.tif'))
-  
+
   assign(paste0('th',month[i]), x)
 }
 for (i in 1:12){
   x = rast(paste0('chelsa2.1/tl',month[i],'.tif'))
-  
+
   assign(paste0('tl',month[i]),x)
 }
 for (i in 1:12){
   x = rast(paste0('chelsa2.1/p',month[i],'.tif'))
-  
+
   assign(paste0('p',month[i]),x)
 }
 dem <- rast('chelsa2.1/dem.tif')
 latlon <- as.data.frame(th01, xy=T); colnames(latlon) <- c('x','y','z')
-latlon[,3] <- latlon[,2]; 
+latlon[,3] <- latlon[,2];
 lat = rast(x=latlon, type="xyz", crs=crs(th01)); names(lat) <- 'lat'
-latlon[,3] <- latlon[,1]; 
+latlon[,3] <- latlon[,1];
 lon = rast(x=latlon, type="xyz", crs=crs(th01));  names(lon) <- 'lon'
 
 lat <- project(lat, th01);lon <- project(lon, th01)
@@ -124,9 +124,9 @@ library(terra)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 pet <- rast('chelsa2.1/pet.tif')
 chelsa <- rast('chelsa2.1/chelsa.tif')
-
+dem1km <- rast('chelsa2.1/dem1km.tif')
 chelsa <- c(chelsa, pet)
-
+dem <- chelsa$dem
 a <- climatools::AET.rast(chelsa)
 plot(a)
 
@@ -142,7 +142,9 @@ Twh <- ApplyClim.rast(chelsa, jan='th01', fun='max', name='Twh')
 Tw <- ApplyClim.rast(tblock, jan='t01', fun='max', name='Tw')
 Tcl <- ApplyClim.rast(chelsa, jan='tl01', fun='min', name='Tcl')
 Tc <- ApplyClim.rast(tblock, jan='t01', fun='min', name='Tc')
-
+a <- AET.rast.monthly(block=chelsa, jan.p='p01', jan.e='e01')
+max3aet <- AET.rast.max(block=a, jan.a='a01', nmonth = 3)
+plot(max3aet)
 btblock <- ifel(tblock > 0, tblock, 0)
 
 Tg1 <- ApplyClim.rast(btblock, jan='t01', mons=c(12,1,2,3,4), fun='mean')
@@ -152,10 +154,10 @@ m <- p/(p+e+0.0001); names(m) <- 'm'
 
 Tclx <- XtremLow(Tcl,Lat=chelsa$lat,Lon=chelsa$lon,Elev = chelsa$dem); names(Tclx) <- 'Tclx'
 plot(Tclx)
-chelsa2 <- c(p,m,e,s,d,Twh,Tw,Tc,Tcl,Tclx,Tg)
-writeRaster(chelsa2, 'chelsa2.1/chelsa2.tif', overwrite=T)
-
+chelsa2 <- c(p,m,e,s,d,max3aet,Twh,Tw,Tc,Tcl,Tclx,Tg)
+writeRaster(chelsa2, 'chelsa2.1/chelsa2a.tif', overwrite=T)
+chelsa2 <- rast('chelsa2.1/chelsa2.tif')
 dem.amp <- climatools::RestoreMaxMin(dem1km, dem)
 Tg.amp <- climatools::enhanceRast(Tg, dem, dem.amp)
 writeRaster(Tg.amp, 'chelsa2.1/Tg.tif')
-writeRaster(dem.amp, 'chelsa2.1/dem.amp.tif')
+writeRaster(dem.amp, 'chelsa2.1/dem.amp.tif', overwrite=T)
