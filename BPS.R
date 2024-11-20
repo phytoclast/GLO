@@ -9,21 +9,28 @@ library(terra)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 prism <- rast('gis/climate/prism.tif')
 prism2 <- rast('gis/climate/prism2.tif')
-
+pet <- rast('gis/climate/pet.tif')
+prism <- c(prism, pet)
+Tclx <- climatools::XtremLow(prism2$Tcl, prism$lat, prism$lon, prism$elev); names(Tclx) <- 'Tclx'
+writeRaster(Tclx, 'gis/climate/Tclx.tif', overwrite=T)
+a <- AET.rast.monthly(block=prism, jan.p='p01', jan.e='e01')
+max3aet <- AET.rast.max(block=a, jan.a='a01', nmonth = 3)
+writeRaster(max3aet, 'gis/climate/max3aet.tif', overwrite=T)
+prism2 <- c(prism2,Tclx,max3aet)
 BPS <- rast("C:/GIS/Vegetation/BPS_general.tif")
 BPSrat <- cats(BPS)[[1]]
-
-BPSsample <- spatSample(BPS,25000,xy=T)
+prism3 <- c(prism2,prism)
+BPSsample <- spatSample(BPS,250000,xy=T)
 BPSsample <- BPSsample |> subset(!is.na(VALUE_1) & !VALUE_1 %in% -9999) |> mutate(VALUE = as.numeric(as.character(VALUE_1)), VALUE_1 = NULL) |> left_join(BPSrat, by = join_by(VALUE == VALUE))
 BPSsample <- st_as_sf(BPSsample, coords = c(x='x',y='y'), crs=crs(BPS))
 BPSsample <- st_transform(BPSsample, crs = crs(prism))
 
-BPSprism <- extract(prism2, BPSsample)
+BPSprism <- extract(prism3, BPSsample)
 
 BPSsample <- cbind(BPSsample,BPSprism)
 BPSsample <- BPSsample |> mutate(M = p/(e+0.0001))
-BPSsummary <- BPSsample |> subset(!is.na(Tg) & !is.na(m)) |> group_by(BPS_NAME) |> summarise(Tg = median(Tg), Tc=median(Tc), m=median(m),M=median(M))
-
+BPSsummary <- BPSsample |> subset(!is.na(Tg) & !is.na(m)) |> group_by(BPS_NAME) |> summarise(lat=median(lat), lon=median(lon), elev=median(elev),  Tg.90th = quantile(Tg,0.9), Tg.10th = quantile(Tg,0.1), Tg = median(Tg),Tw=median(Tw), Tc=median(Tc), Tclx=median(Tclx), p=median(p), e=median(e), M.90 = quantile(M,0.9), M.10 = quantile(M,0.1), M=median(M), m=median(m), md = 1-median(d), max3aet = median(max3aet), n=length(BPS_NAME)) |> st_drop_geometry()
+write.csv(BPSsummary,'bpsclimate.csv', row.names = F)
 
 #https://chelsa-climate.org/downloads/
 month <- c('01','02','03','04','05','06','07','08','09','10','11','12')
