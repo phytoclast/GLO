@@ -237,7 +237,6 @@ for (i in 1:length(ttt)){
 write.csv(Kfold, 'kfold.csv', row.names = FALSE)
 
 
-
 correction = log(positivity)/log(0.5)#exponent to raise the predicted outcome to adjust the overall abundance to match unweighted model
 
 #generate prediction raster ----
@@ -256,3 +255,133 @@ writeRaster(mxnt.prediction, paste0('gis/modelcompare/',taxon,'_mxnt.tif'), over
 plot(gm.prediction)
 Sys.time() - timeA
 
+library(ggplot2)
+kfold <- read.csv('kfold.csv')
+kfold <- kfold  |> group_by(taxon, seed) |> mutate(MaxKappaRankbySeed = rank(maxKappatest), KappaMaxbySeed = maxKappatest/max(maxKappatest), AUCMaxbySeed = AUCtest/max(AUCtest)) |> ungroup() |> mutate(tax = as.factor(taxon), mod = as.factor(model)) |> group_by(taxon) |> mutate(MaxKappabyTaxon = maxKappatest/max(maxKappatest)) |> ungroup()
+
+ggplot(kfold)+
+  geom_boxplot(aes(y=MaxKappaRankbySeed, x=model))
+ggplot(kfold)+
+  geom_boxplot(aes(y=KappaMaxbySeed, x=model))
+ggplot(kfold)+
+  geom_boxplot(aes(y=AUCMaxbySeed, x=model))
+ggplot(kfold)+
+  geom_boxplot(aes(y=KappaMaxbySeed, x=model))
+ggplot(kfold)+
+  geom_boxplot(aes(y=MaxKappabyTaxon, x=model))
+
+
+ggplot(kfold)+
+  geom_boxplot(aes(y=maxKappatest, x=taxon))
+
+ggplot(subset(kfold, model %in% 'RF'))+
+  geom_boxplot(aes(y=maxKappatest, x=taxon))
+
+ggplot(subset(kfold, taxon %in% 'Tsuga'))+
+  geom_boxplot(aes(y=maxKappatest, x=model))
+
+ggplot(subset(kfold, model %in% 'RF'))+
+  geom_boxplot(aes(y=MaxKappaRankbySeed, x=taxon))
+
+#---- Stepwise Variable selection GAM
+smoothvars <- c('p','e','s','d','Twh','Tw','Tc','Tcl','Tg','m',
+                'Bhs','carbdepth','clay150','floodfrq','histic','humic','humicdepth',
+                'hydric','ksatdepth','OM150','pH50','rockdepth','sand150','sand50',
+                'spodic','watertable','slope','slope500','popen','nopen','solar')
+
+step23 <- c('p','d','Tw','Tcl','Tg',
+                'Bhs','carbdepth','humic','sand150','sand50',
+                'spodic','watertable','solar')
+
+
+formular.gam <- as.formula(paste(paste("pos",paste(paste("s(",smoothvars,")", collapse = " + ", sep = ""),""), sep = " ~ ")
+))
+
+
+formular1 <- as.formula(pos ~ 1)
+formular23 <- as.formula(paste(paste("pos",paste(paste("s(",step23,")", collapse = " + ", sep = ""),""), sep = " ~ ")
+))
+
+formular23 <- as.formula(pos ~ s(p) + s(d) + s(Tw) + s(Tcl) + s(Tg) + s(Bhs) + s(carbdepth) + 
+  humic + sand150 + s(sand50) + s(spodic) + s(watertable) + 
+  solar)
+
+gm <- gam(formular.gam,
+          family='binomial',
+          data=train)
+gmx <- gam(formular23,
+          family='binomial',
+          data=train)
+
+scope_list <- gam.scope(train[,c("pos",smoothvars)])
+gm1 <- step.Gam(gm,scope = scope_list, direction = 'both')
+saveRDS(gm1,'stepGAM1.RDS')
+
+summary(gm1)
+
+gm2 <- step.Gam(gmx,scope = scope_list, direction = 'forward')
+saveRDS(gm2,'stepGAM2.RDS')
+
+#test models from stepwise selection
+
+gm.backward <- readRDS('stepGAM1.RDS')
+gm.forward <- readRDS('stepGAM2.RDS')
+gm.all <- gam(formular.gam,
+              family='binomial',
+              data=train)
+gm.top3 <- gam(pos~s(Tg)+s(spodic)+s(watertable),
+              family='binomial',
+              data=train)
+summary(gm.backward)
+gm.backward$aic
+gm.forward$aic
+gm.all$aic
+gm.top3$aic
+rf.top3 <- ranger(pos~Tg+spodic+watertable,
+             data=train)
+
+rf <- ranger(formular.rf,
+             data=train)
+
+
+train.gam1 <- train |> mutate(prediction = gam::predict.Gam(gm.backward, train, na.rm=T, type = "response"))
+test.gam1 <- test |> mutate(prediction = gam::predict.Gam(gm.backward, test, na.rm=T, type = "response"))
+train.gam2 <- train |> mutate(prediction = gam::predict.Gam(gm.forward, train, na.rm=T, type = "response"))
+test.gam2 <- test |> mutate(prediction = gam::predict.Gam(gm.forward, test, na.rm=T, type = "response"))
+train.gam3 <- train |> mutate(prediction = gam::predict.Gam(gm.all, train, na.rm=T, type = "response"))
+test.gam3 <- test |> mutate(prediction = gam::predict.Gam(gm.all, test, na.rm=T, type = "response"))
+train.gam4 <- train |> mutate(prediction = gam::predict.Gam(gm.top3, train, na.rm=T, type = "response"))
+test.gam4 <- test |> mutate(prediction = gam::predict.Gam(gm.top3, test, na.rm=T, type = "response"))
+train.rf <- train |> mutate(prediction = predictions(predict(rf, train, na.rm=T)))
+test.rf <- test |> mutate(prediction = predictions(predict(rf, test, na.rm=T)))
+train.rf1 <- train |> mutate(prediction = predictions(predict(rf.top3, train, na.rm=T)))
+test.rf1 <- test |> mutate(prediction = predictions(predict(rf.top3, test, na.rm=T)))
+
+
+modmets <- data.frame(taxon = ttt[i],
+                      model = c("GAM.backward", "GAM.forward","GAM.all", "GAM.top3","RF","RF.top3"),
+                      seed = seed[k],
+                      AUCtrain = c(Metrics::auc(actual=train.gam1$pos, predicted=train.gam1$prediction),
+                                   Metrics::auc(actual=train.gam2$pos, predicted=train.gam2$prediction),
+                                   Metrics::auc(actual=train.gam3$pos, predicted=train.gam3$prediction),
+                                   Metrics::auc(actual=train.gam4$pos, predicted=train.gam4$prediction),
+                                   Metrics::auc(actual=train.rf$pos, predicted=train.rf$prediction),
+                                   Metrics::auc(actual=train.rf1$pos, predicted=train.rf1$prediction)),
+                      AUCtest = c(Metrics::auc(actual=test.gam1$pos, predicted=test.gam1$prediction),
+                                  Metrics::auc(actual=test.gam2$pos, predicted=test.gam2$prediction),
+                                  Metrics::auc(actual=test.gam3$pos, predicted=test.gam3$prediction),
+                                  Metrics::auc(actual=test.gam4$pos, predicted=test.gam4$prediction),
+                                  Metrics::auc(actual=test.rf$pos, predicted=test.rf$prediction),
+                                  Metrics::auc(actual=test.rf1$pos, predicted=test.rf1$prediction)),
+                      maxKappatrain =  c(maxKappa(actual=train.gam1$pos, predicted=train.gam1$prediction),
+                                         maxKappa(actual=train.gam2$pos, predicted=train.gam2$prediction),
+                                         maxKappa(actual=train.gam3$pos, predicted=train.gam3$prediction),
+                                         maxKappa(actual=train.gam4$pos, predicted=train.gam4$prediction),
+                                         maxKappa(actual=train.rf$pos, predicted=train.rf$prediction),
+                                         maxKappa(actual=train.rf1$pos, predicted=train.rf1$prediction)),
+                      maxKappatest = c(maxKappa(actual=test.gam1$pos, predicted=test.gam1$prediction),
+                                       maxKappa(actual=test.gam2$pos, predicted=test.gam2$prediction),
+                                       maxKappa(actual=test.gam3$pos, predicted=test.gam3$prediction),
+                                       maxKappa(actual=test.gam4$pos, predicted=test.gam4$prediction),
+                                       maxKappa(actual=test.rf$pos, predicted=test.rf$prediction),
+                                       maxKappa(actual=test.rf1$pos, predicted=test.rf1$prediction)))
