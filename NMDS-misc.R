@@ -541,12 +541,53 @@ gp
 
 
 #make NMDSclusters on map
+#
+#
+#
+#
+#
 pt.df$kc2 <- as.numeric(pt.df$kc)
+clss <- unique(pt.df$kc2)
+nClasses = length(clss)
+# class labels
+lev = data.frame(Value=1:nClasses, class=clss)
 
-formular <- as.formula(paste("kc2",paste(names(Species), collapse = " + ", sep = ""), sep = " ~ "))
 
-rf <-  ranger(formular, data = pt.df, classification = T)
-named <- 'NMDSClusters.kmeans'
-rf.prediction <-  predict(Species, rf, na.rm=T);  names(rf.prediction) <- named
+
+
+
+
+Species2 <- resample(Species, aggregate(Species$Abies, fact=5), method='near')
+
+formular <- as.formula(paste("pos",paste(names(Species), collapse = " + ", sep = ""), sep = " ~ "))
+for (i in 1:length(clss)){#i=1
+pt.df$pos <- ifelse(pt.df$kc2 %in% clss[i], 1,0)
+
+
+set.seed(1)
+rf <-  ranger(formular, data = pt.df, classification = F)
+named <- paste0('class',clss[i])
+rf.prediction <-  predict(Species2, rf, na.rm=T);  names(rf.prediction) <- named
 plot(rf.prediction)
+assign(named, rf.prediction)
+}
+esgprobs <- rast(mget(paste0('class',clss)))
+
+# Number of probability layers (should be equal to the number of predicted classes)
+nl = nlyr(esgprobs)
+# Number of cells (pixels in probPred object)
+nc = ncell(esgprobs)
+prob1 = max(esgprobs)
+classI = which.lyr(esgprobs == prob1)
+plot(classI)
+classPred1 = classify(classI, data.frame(cbind(1:nl, lev$Value)))
+lev <- data.frame(Value=1:3, class=c('mesophytic','pyrophytic','hydrophytic'))
+levels(classI) = lev
+plot(classI, col=c('darkgreen','yellow3','cyan'))
+plot(prob1)
+esgprobs2 <- esgprobs/(sum(esgprobs))
+entropy <- -sum(esgprobs*log(esgprobs2+0.0001))
+plot(entropy)
+
+
 writeRaster(rf.prediction, paste0('gis/test',named,'.tif'), overwrite=T)
