@@ -1,5 +1,5 @@
 #############################
-#acquire topographic covariates
+#K-fold RF models
 #############################
 library(sf)
 library(terra)
@@ -154,3 +154,59 @@ writeRaster(rf.prediction, paste0('gis/finalrun/',taxon,'.',seed[k],'_rf.tif'), 
   }}
 
 Sys.time() - timeA
+
+
+#############################
+library(sf)
+library(terra)
+library(dplyr)
+library(ggplot2)
+library(ranger)
+library(gam)
+library(Metrics)
+library(maxnet)
+library(gbm)
+library(stringr)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+files <- data.frame(filename = list.files('gis/finalrun'))
+files <- files |> mutate(taxon = str_split_fixed(filename, '\\.', 2)[,1], model = str_split_fixed(filename, '\\.', 3)[,2])
+ttt = unique(files$taxon)
+for (i in 1:length(ttt)){#i=1
+  f = subset(files, taxon %in% ttt[i])
+  mmm <- f$model
+  for(k in 1:length(mmm)){#k=1
+    fn <- f$filename[k]
+     
+    r <- rast(paste0('gis/finalrun/',fn))
+    names(r) <- mmm[k]
+    assign(mmm[k], r)
+  }
+  r <- rast(mget(mmm))
+  r.sd <- stdev(r)
+  r.m <- mean(r)
+  name1 <- paste0(ttt[i],'_sd')
+  name2 <- ttt[i]
+  names(r.sd) <- name1
+  names(r.m) <- name2
+  writeRaster(r.sd, paste0('gis/finalrun_sd/', name1,'.tif'), overwrite =TRUE)
+  writeRaster(r.m, paste0('gis/finalrun_mean/', name2,'.tif'), overwrite =TRUE)
+  }
+
+
+for(i in 1:length(ttt)){
+  x <- rast(paste0('gis/finalrun_mean/',ttt[i],'.tif'))
+  assign(ttt[i], x)         };rm(x)
+
+Species <- rast(mget(ttt))
+
+for(i in 1:length(ttt)){
+  x <- rast(paste0('gis/finalrun_sd/',ttt[i],'_sd.tif'))
+  assign(paste0(ttt[i],'_sd'), x)         };rm(x)
+
+Species_sd <- rast(mget(paste0(ttt,'_sd')))
+meanSD <- mean(Species_sd)
+plot(meanSD)
+
+Entropy <- -sum(Species*log(Species+0.0001))
+plot(Entropy)
+
