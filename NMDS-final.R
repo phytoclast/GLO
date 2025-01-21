@@ -551,13 +551,32 @@ for (i in 1:length(ttt)){#i=1
   writeRaster(r.m, paste0('gis/clusters_mean/', name2,'.tif'), overwrite =TRUE)
 }
 
-
+#reassemble mean models
 for(i in 1:length(ttt)){
   x <- rast(paste0('gis/clusters_mean/',ttt[i],'.tif'))
   assign(ttt[i], x)         };rm(x)
 
 Clusters <- rast(mget(ttt))
 
+# Number of probability layers (should be equal to the number of predicted classes)
+nl = nlyr(Clusters)
+names(Clusters)
+prob1 = max(Clusters)
+classI = which.lyr(Clusters == prob1)
+plot(classI)
+
+
+lev <- data.frame(Value=1:nl, class=c('Basswood','Elm','Hemlock','Hickory','Oak','Pine','Tamarack','Whitecedar'))
+classPred1 = classify(classI, data.frame(cbind(1:nl, lev$Value)))
+levels(classI) = lev
+plot(classI, col=c('green','purple','darkcyan','orange','yellow','red','blue','cyan'))
+
+writeRaster(classI,'gis/modelstats/classI.tif')
+#total entropy of classification
+Entropy <- -sum(Clusters*log(Clusters+0.0001))
+writeRaster(Entropy,'gis/modelstats/ClassEntropy.tif')
+
+#reassemble standard deviations
 for(i in 1:length(ttt)){
   x <- rast(paste0('gis/clusters_sd/',ttt[i],'_sd.tif'))
   assign(paste0(ttt[i],'_sd'), x)         };rm(x)
@@ -565,9 +584,21 @@ for(i in 1:length(ttt)){
 Species_sd <- rast(mget(paste0(ttt,'_sd')))
 meanSD <- mean(Species_sd)
 plot(meanSD)
+writeRaster(meanSD,'gis/modelstats/ClassStDev.tif')
+#Doiminant Spp
+nl = nlyr(Species)
 
-Entropy <- -sum(Clusters*log(Clusters+0.0001))
-plot(Entropy)
+prob1 = max(Species)
+DomSpp = which.lyr(Species == prob1)
+plot(DomSpp)
+lev <- data.frame(Value=1:nl, class=names(Species))
+classPred1 = classify(DomSpp, data.frame(cbind(1:nl, lev$Value)))
+levels(DomSpp) = lev
+plot(DomSpp, col=c('green','purple','darkcyan','orange','yellow','red','blue','cyan'))
 
 
+writeRaster(DomSpp,'gis/modelstats/DomSpp.tif')
+
+SppEntropy <- -sum(Species*log(Species+0.0001))
+writeRaster(SppEntropy,'gis/modelstats/SppEntropy.tif')
 
