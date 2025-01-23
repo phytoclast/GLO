@@ -207,9 +207,12 @@ for(i in 1:length(ttt)){
 Species <- rast(mget(ttt))
 #reload nmds results
 ndim <- 4
-pt.df3 <- readRDS('output/pt.df5.RDS')
-sp.df3 <- readRDS('output/sp.df5.RDS')
-en.df3 <- readRDS('output/en.df5.RDS')
+pt.df3 <- readRDS('output/pt.df3.RDS')
+sp.df3 <- readRDS('output/sp.df3.RDS')
+en.df3 <- readRDS('output/en.df3.RDS')
+pt.df5 <- readRDS('output/pt.df5.RDS')
+sp.df5 <- readRDS('output/sp.df5.RDS')
+en.df5 <- readRDS('output/en.df5.RDS')
 pt.df <- readRDS('output/pt.df4.RDS')
 sp.df <- readRDS('output/sp.df4.RDS')
 en.df <- readRDS('output/en.df4.RDS')
@@ -220,86 +223,137 @@ en.df <- readRDS('output/en.df4.RDS')
 
 ##set up alternative cluster analyses to find optimal clusters ----
 mtx <- pt.df[,2:(ndim+1)]
-mtx3 <- pt.df3[,2:(5+1)]
+mtx3 <- pt.df3[,2:(3+1)]
+mtx5 <- pt.df5[,2:(5+1)]
 dst <- dist(mtx)
 dst3 <- dist(mtx3)
+dst5 <- dist(mtx5)
 mtx2 <- pt.df[,names(Species)]^0.5 
 dst2 <- vegan::vegdist(mtx2, method = 'bray')
 mtx2a <- pt.df3[,names(Species)]^0.5 
 dst2a <- vegan::vegdist(mtx2a, method = 'bray')
+mtx2b <- pt.df5[,names(Species)]^0.5 
+dst2b <- vegan::vegdist(mtx2b, method = 'bray')
+
+#stop here if not testing clustering methods
 htree0 <- dst2 |> agnes(method = 'ward')
 htree1 <- dst |> agnes(method = 'ward')
 htree2 <- dst |> agnes(method = 'average') 
 htree3 <- dst |> diana()
+htree4 <- dst2 |> agnes(method = 'average') 
+htree5 <- dst2 |> diana()
 for(i in 2:10){
-set.seed(seed3)
+
 nclust <- i
 
-
+set.seed(seed3)
 kc0 <- dst2 |> kmeans(nclust) 
 kc0 <- kc0$cluster
 silscor <- cluster::silhouette(kc0, dist = dst2)
-msilscor0 <- mean(silscor[,3])
+kmean_spp <- mean(silscor[,3])
 
+set.seed(seed3)
 kc1 <- mtx |> kmeans(nclust) 
 kc1 <- kc1$cluster
 silscor <- cluster::silhouette(kc1, dist = dst2)
-msilscor1 <- mean(silscor[,3])
+kmean_nmds4 <- mean(silscor[,3])
 
-kc1a <- mtx3 |> kmeans(nclust) 
-kc1a <- kc1a$cluster
-silscor <- cluster::silhouette(kc1a, dist = dst2a)
-msilscor1a <- mean(silscor[,3])
+set.seed(seed3)
+kc1 <- mtx3 |> kmeans(nclust) 
+kc1 <- kc1$cluster
+silscor <- cluster::silhouette(kc1, dist = dst2a)
+kmean_nmds3 <- mean(silscor[,3])
+
+set.seed(seed3)
+kc1 <- mtx5 |> kmeans(nclust) 
+kc1 <- kc1$cluster
+silscor <- cluster::silhouette(kc1, dist = dst2b)
+kmean_nmds5 <- mean(silscor[,3])
 
 hc0 <- cutree(htree0, nclust)
 hsilscor <- cluster::silhouette(hc0, dist = dst2)
-hmsilscor0 <- mean(hsilscor[,3])
+ward_spp <- mean(hsilscor[,3])
 
 hc1 <- cutree(htree1, nclust)
 hsilscor <- cluster::silhouette(hc1, dist = dst2)
-hmsilscor1 <- mean(hsilscor[,3])
+ward_nmds4 <- mean(hsilscor[,3])
 
 
 hc1 <- cutree(htree2, nclust)
 hsilscor <- cluster::silhouette(hc1, dist = dst2)
-hmsilscor2 <- mean(hsilscor[,3])
+upgma_nmds4 <- mean(hsilscor[,3])
 
 hc1 <- cutree(htree3, nclust)
 hsilscor <- cluster::silhouette(hc1, dist = dst2)
-hmsilscor3 <- mean(hsilscor[,3])
+diana_nmds4 <- mean(hsilscor[,3])
+
+hc1 <- cutree(htree4, nclust)
+hsilscor <- cluster::silhouette(hc1, dist = dst2)
+upgma_spp <- mean(hsilscor[,3])
+
+hc1 <- cutree(htree5, nclust)
+hsilscor <- cluster::silhouette(hc1, dist = dst2)
+diana_spp <- mean(hsilscor[,3])
 
 scdf0 <- data.frame(nclust = nclust, 
-                    kmeansraw = msilscor0, 
-                    kmeans4d = msilscor1, 
-                    kmeans3d = msilscor1a, 
-                    wardraw = hmsilscor0, 
-                    ward = hmsilscor1, 
-                    upgma = hmsilscor2,
-                    diana = hmsilscor3)
+                    kmean_spp = kmean_spp, 
+                    kmean_nmds4 = kmean_nmds4, 
+                    kmean_nmds3 = kmean_nmds3, 
+                    kmean_nmds5 = kmean_nmds5, 
+                    ward_spp = ward_spp, 
+                    ward_nmds4 = ward_nmds4,
+                    upgma_spp = upgma_spp,
+                    upgma_nmds4 = upgma_nmds4,
+                    diana_spp = diana_spp,
+                    diana_nmds4 = diana_nmds4)
 if(i==2){scdf <- scdf0}else{scdf <- rbind(scdf,scdf0)}
 };rm(scdf0)
 
 clustplot <- ggplot(scdf)+
-  geom_line(aes(x=nclust, y=kmeans4d, color='kmeans4d'))+
-  geom_line(aes(x=nclust, y=kmeans3d, color='kmeans5d'))+
-  geom_line(aes(x=nclust, y=kmeansraw, color='kmeansraw'))+
-  geom_line(aes(x=nclust, y=ward, color='ward'))+
-  geom_line(aes(x=nclust, y=wardraw, color='wardraw'))+
-  geom_line(aes(x=nclust, y=upgma, color='upgma'))+
-  geom_line(aes(x=nclust, y=diana, color='diana'))+
-  geom_point(aes(x=nclust, y=kmeans4d, color='kmeans4d'))+
-  geom_point(aes(x=nclust, y=kmeans3d, color='kmeans5d'))+
-  geom_point(aes(x=nclust, y=kmeansraw, color='kmeansraw'))+
-  geom_point(aes(x=nclust, y=ward, color='ward'))+
-  geom_point(aes(x=nclust, y=wardraw, color='wardraw'))+
-  geom_point(aes(x=nclust, y=upgma, color='upgma'))+
-  geom_point(aes(x=nclust, y=diana, color='diana'))+
+  geom_line(aes(x=nclust, y=kmean_spp, color='kmean_spp'))+
+  geom_line(aes(x=nclust, y=kmean_nmds4, color='kmean_nmds4'))+
+  geom_line(aes(x=nclust, y=kmean_nmds3, color='kmean_nmds3'))+
+  geom_line(aes(x=nclust, y=kmean_nmds5, color='kmean_nmds5'))+
+  geom_line(aes(x=nclust, y=ward_spp, color='ward_spp'))+
+  geom_line(aes(x=nclust, y=ward_nmds4, color='ward_nmds4'))+
+  geom_line(aes(x=nclust, y=upgma_nmds4, color='upgma_nmds4'))+
+  geom_line(aes(x=nclust, y=diana_nmds4, color='diana_nmds4'))+
+  geom_line(aes(x=nclust, y=upgma_spp, color='upgma_spp'))+
+  geom_line(aes(x=nclust, y=diana_spp, color='diana_spp'))+
+  geom_point(aes(x=nclust, y=kmean_spp, color='kmean_spp'))+
+  geom_point(aes(x=nclust, y=kmean_nmds4, color='kmean_nmds4'))+
+  geom_point(aes(x=nclust, y=kmean_nmds3, color='kmean_nmds3'))+
+  geom_point(aes(x=nclust, y=kmean_nmds5, color='kmean_nmds5'))+
+  geom_point(aes(x=nclust, y=ward_spp, color='ward_spp'))+
+  geom_point(aes(x=nclust, y=ward_nmds4, color='ward_nmds4'))+
+  geom_point(aes(x=nclust, y=upgma_spp, color='upgma_spp'))+
+  geom_point(aes(x=nclust, y=diana_spp, color='diana_spp'))+
+  geom_point(aes(x=nclust, y=upgma_nmds4, color='upgma_nmds4'))+
+  geom_point(aes(x=nclust, y=diana_nmds4, color='diana_nmds4'))+
   scale_y_continuous(name='mean silhouette')+
   scale_x_continuous(name='number of clusters', breaks = c(1:10), minor_breaks = NULL)+
   scale_color_manual(name='method',
-                     labels =c('kmeans4d','kmeans5d','kmeansraw','wardraw','ward','upgma','diana'), 
-                     values =c('black','blue','orange','magenta','red','green','yellow'))
+                     breaks =c("kmean_spp","kmean_nmds4",
+                               "kmean_nmds3","kmean_nmds5",
+                               "ward_spp","ward_nmds4",
+                               "upgma_spp","upgma_nmds4",
+                               "diana_spp","diana_nmds4"), 
+                     labels =c("kmean_spp","kmean_nmds4",
+                               "kmean_nmds3","kmean_nmds5",
+                               "ward_spp","ward_nmds4",
+                               "upgma_spp","upgma_nmds4",
+                               "diana_spp","diana_nmds4"), 
+                     values =c('black','red',
+                               'pink','darkred',
+                               'green','yellowgreen',
+                               'orange','yellow',
+                               'blue','cyan'))
 clustplot
+
+png(filename="plots/testclusters.png",width = 6, height = 3, units = 'in', res = 600)
+clustplot
+dev.off()
+
 
 #Implement the clustering
 set.seed(seed3)
@@ -310,7 +364,7 @@ pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',kc1)))
 # kc1 <- mtx2 |> kmeans(nclust) 
 # kc1 <- kc1$cluster
 # pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',kc1)))
-# htree <- dst2 |> agnes(method = 'ward')
+# htree <- dst2 |> diana()
 # plot(as.hclust(htree))
 # hc1 <- cutree(htree, nclust)
 # pt.df <- pt.df |> mutate(kc = as.factor(paste0('cluster',hc1)))
@@ -354,6 +408,15 @@ gp2 <- ggplot() +
 
 gp2
 
+gp3 <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS3,y=NMDS4, color=kc), alpha=0.5, size=2)+
+  geom_point(data=sp.df, aes(x=NMDS3,y=NMDS4), color='blue')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS3), arrow = arrow(length = unit(0.03, "npc")), color='black')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black')
+
+gp3
+
 
 
 
@@ -361,21 +424,16 @@ library(rpart)
 library(rpart.plot)
 unique(pt.df$kc)
 pt.df <- pt.df |> mutate(ESG = case_when(
-  kc %in% 'cluster1' ~  'Warm Mesophytic',
-  kc %in% 'cluster2' ~  'Cool Mesophytic',
-  kc %in% 'cluster3' ~  'Warm Wet',
-  kc %in% 'cluster4' ~  'Warm Pyrophytic',
-  kc %in% 'cluster5' ~  'Cool Pyrophytic',
-  kc %in% 'cluster6' ~  'Cool Wet',
+  kc %in% 'cluster2' ~  'Basswood',
+  kc %in% 'cluster4' ~  'Elm',
+  kc %in% 'cluster1' ~  'Oak',
+  kc %in% 'cluster8' ~  'Hemlock',
+  kc %in% 'cluster5' ~  'Hickory',
+  kc %in% 'cluster6' ~  'Whitecedar',
+  kc %in% 'cluster3' ~  'Pine',
+  kc %in% 'cluster7' ~  'Tamarack',
   TRUE ~ 'other'))
-pt.df <- pt.df |> mutate(ESG = case_when(
-  kc %in% 'cluster1' ~  'Cool',
-  kc %in% 'cluster2' ~  'Warm Pyrophytic',
-  kc %in% 'cluster3' ~  'Warm Mesophytic',
-  kc %in% 'cluster4' ~  'Warm Pyrophytic',
-  kc %in% 'cluster5' ~  'Cool Pyrophytic',
-  kc %in% 'cluster6' ~  'Cool Wet',
-  TRUE ~ 'other'))
+
 
 rp <- rpart(kc ~ p+e+Twh+Tw+Tc+Tcl+Tg+Tg30+
               s+d+m+
@@ -389,16 +447,44 @@ dev.off()
 
 af <- 2
 gp <- ggplot() +
-  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=ESG), alpha=0.2, size=2)+
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS2, color=ESG), alpha=0.4, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='black')+
   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
   geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1*af,yend=NMDS2*af), arrow = arrow(length = unit(0.03, "npc")), color='red')+
   geom_text(data=en.df, aes(label=vectors, x=NMDS1*af,y=NMDS2*af), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkred')+
-  scale_color_manual("ESG", values = c("Warm Mesophytic" = "#7CAE00",
-                                         "Warm Pyrophytic" = "#E68613",
-                                         "Cool" = "#00BFC4"))
+  scale_color_manual("ESG", 
+                     breaks = c('Basswood','Elm','Oak','Hemlock','Hickory','Whitecedar','Pine','Tamarack'),
+                     values = c('green','purple','orange','darkcyan','yellow','cyan','red','blue'))
 
 gp
+png('plots/MNDS_biplot_allMLRA.png', width = 800, height = 800)
+gp
+dev.off()
+
+gp2 <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS3, color=ESG), alpha=0.4, size=2)+
+  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS3), color='black')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1*af,yend=NMDS2*af), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS1*af,y=NMDS2*af), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkred')+
+  scale_color_manual("ESG", 
+                     breaks = c('Basswood','Elm','Oak','Hemlock','Hickory','Whitecedar','Pine','Tamarack'),
+                     values = c('green','purple','orange','darkcyan','yellow','cyan','red','blue'))
+
+gp2
+
+
+gp3 <- ggplot() +
+  geom_point(data=pt.df, aes(x=NMDS1,y=NMDS4, color=ESG), alpha=0.4, size=2)+
+  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS4), color='black')+
+  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='blue')+
+  geom_segment(data=en.df, aes(x=0,y=0,xend=NMDS1*af,yend=NMDS2*af), arrow = arrow(length = unit(0.03, "npc")), color='red')+
+  geom_text(data=en.df, aes(label=vectors, x=NMDS1*af,y=NMDS2*af), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkred')+
+  scale_color_manual("ESG", 
+                     breaks = c('Basswood','Elm','Oak','Hemlock','Hickory','Whitecedar','Pine','Tamarack'),
+                     values = c('green','purple','orange','darkcyan','yellow','cyan','red','blue'))
+
+gp3
 
 # library(scales) 
 # show_col(hue_pal()(16))
@@ -572,6 +658,7 @@ levels(classI) = lev
 plot(classI, col=c('green','purple','darkcyan','orange','yellow','red','blue','cyan'))
 
 writeRaster(classI,'gis/modelstats/classI.tif')
+
 #total entropy of classification
 Entropy <- -sum(Clusters*log(Clusters+0.0001))
 writeRaster(Entropy,'gis/modelstats/ClassEntropy.tif')
@@ -585,6 +672,8 @@ Species_sd <- rast(mget(paste0(ttt,'_sd')))
 meanSD <- mean(Species_sd)
 plot(meanSD)
 writeRaster(meanSD,'gis/modelstats/ClassStDev.tif')
+
+
 #Doiminant Spp
 nl = nlyr(Species)
 
@@ -601,4 +690,52 @@ writeRaster(DomSpp,'gis/modelstats/DomSpp.tif')
 
 SppEntropy <- -sum(Species*log(Species+0.0001))
 writeRaster(SppEntropy,'gis/modelstats/SppEntropy.tif')
+
+#Check variable importance ----
+checkvars <- names(Species)
+tableofspp <- find.multithreshold(x=x, class1='mesophytic',class2='pyrophytic',variables=checkvars)
+
+checkvars <- c("p","m","e","s","d","Twh","Tw","Tc","Tcl","Tg",
+               "Tg30","Bhs","carbdepth","clay150","floodfrq","histic",
+               "humic","humicdepth","hydric","ksatdepth","OM150","pH50","rockdepth","sand150",
+               "sand50","spodic","watertable","elev","slope","aspect",
+               "slope500","shade","popen","nopen","solar")
+
+
+
+hydricindicator <- cors[rownames(cors) %in% names(Species),c('hydric','pH50')]
+
+sppsum <- sum(Species)
+wetsum <- sum(Fagus,Fraxinus,Larix,Pinus)
+wetness <- Fagus*-1+
+  Fraxinus*1+
+  Larix*1+
+  Pinus*-1
+wetness <- wetness/wetsum
+
+phindex <- Abies*cors[cors$column %in% 'Abies','pH50']+
+  Acer*cors[cors$column %in% 'Acer','pH50']+
+  Betula*cors[cors$column %in% 'Betula','pH50']+
+  Carya*cors[cors$column %in% 'Carya','pH50']+
+  Fagus*cors[cors$column %in% 'Fagus','pH50']+
+  Fraxinus*cors[cors$column %in% 'Fraxinus','pH50']+
+  Larix*cors[cors$column %in% 'Larix','pH50']+
+  Picea*cors[cors$column %in% 'Picea','pH50']+
+  Pinus*cors[cors$column %in% 'Pinus','pH50']+
+  PopLirio*cors[cors$column %in% 'PopLirio','pH50']+
+  Quercus*cors[cors$column %in% 'Quercus','pH50']+
+  Thuja*cors[cors$column %in% 'Thuja','pH50']+
+  Tilia*cors[cors$column %in% 'Tilia','pH50']+
+  Tsuga*cors[cors$column %in% 'Tsuga','pH50']+
+  Ulmus*cors[cors$column %in% 'Ulmus','pH50']
+phindex <- phindex/sppsum
+
+plot(wetness)
+writeRaster(wetness,'gis/modelstats/wetness.tif', overwrite=T)
+writeRaster(phindex,'gis/modelstats/phindex.tif', overwrite=T)
+
+boreal <- (((Thuja+Abies+Picea)/sppsum) >= 0.25)*(wetness-0)
+plot(boreal)
+
+writeRaster(boreal,'gis/modelstats/boreal.tif', overwrite=T)
 
