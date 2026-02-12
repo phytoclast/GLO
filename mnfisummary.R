@@ -23,6 +23,34 @@ mlra <-  mlra |> mutate(LRU2 = case_when(grepl('AA', LRU) ~ paste0(MLRA,'A'),
                                         grepl('A', LRU) & !grepl('A', MLRA)  ~ paste0(MLRA,'A'),
                                         grepl('B', LRU) & !grepl('B', MLRA)  ~ paste0(MLRA,'B'),
                                         TRUE ~ paste0(MLRA)))
+mlrapoints <- spatSample(vect(mnfi), size = 100000)
+mlrapoints <- mlrapoints |> cbind(extract(vect(mlra), mlrapoints))
+mlrapoints <- mlrapoints |> cbind(extract(vars90, mlrapoints))
+mlrapoints <- mlrapoints |> st_as_sf()
+mpoints <- mlrapoints |> subset(!is.na(watertable) & !is.na(sand150) & !is.na(slope) & !is.na(OM150)) |> 
+  mutate(drain = case_when(watertable <= 25 ~ 'wet',
+                           watertable <= 100 ~ 'moist',
+                           TRUE ~ 'dry'),
+         text = case_when(floodfrq > 0 ~ 'alluvial',
+                          (sand150 >= 80 & sand50 > 70) | sand50 > 80 ~  'sandy',
+                          histic >= 0.5 ~ 'mucky',
+                          (sand150 < 40 | sand50 < 35) | sand50 < 40 & clay150 > 30 ~  'clayey',
+                          
+                          TRUE ~ 'loamy'),
+         chem = case_when(floodfrq > 0 ~ 'typic',
+                          Bhs >= 0.8 & spodic >= 0.8 & drain %in% 'dry' & text %in% 'sandy' ~ 'super spodic',
+                          spodic >= 0.8 & drain %in% 'dry' & text %in% 'sandy' ~ 'spodic',
+                          (pH50 >= 6 | carbdepth < 100) & drain %in% 'dry' & text %in% 'sandy' ~ 'rich',
+                          (pH50 <= 5.5 | spodic >= 0.8) & text %in% c('sandy','mucky') &
+                            !drain %in% 'dry' ~ 'dysic',
+                          text %in% c('sandy','mucky') & !drain %in% 'dry' ~ 'euic',
+                          TRUE ~ 'typic'),
+         form = case_when(floodfrq > 0 ~ 'floodplain',
+                          slope >= tan(15/100) | (slope >= tan(10/100) & slope500 >= tan(5/100)) ~ 'slopes',#needed to amplify number of sloping sites
+                          TRUE ~ 'plains'))
+mpoints <- mpoints |> mutate(site = (paste(LRU2, drain, chem, text, form)))
+mpoints <- mpoints |> st_drop_geometry() |> summarise(.by=c(site, COVERTYPE,LRU2, drain, chem, text, form), npoints = length(site)) |> mutate(.by=c(site),rarea = round(100*npoints/sum(npoints),1)) 
+
 # openarea <- st_area(mnfi) |> sum() |> as.numeric()
 # nopenpoints <- 3*openarea/1600^2
 # mnfi.vect <- vect(mnfi)
@@ -67,12 +95,14 @@ pts <- pts |> subset(!is.na(watertable) & !is.na(sand150) & !is.na(slope) & !is.
   mutate(drain = case_when(watertable <= 25 ~ 'wet',
                            watertable <= 100 ~ 'moist',
                            TRUE ~ 'dry'),
-         text = case_when((sand150 >= 80 & sand50 > 70) | sand50 > 80 ~  'sandy',
+         text = case_when(floodfrq > 0 ~ 'alluvial',
+                          (sand150 >= 80 & sand50 > 70) | sand50 > 80 ~  'sandy',
                           histic >= 0.5 ~ 'mucky',
                           (sand150 < 40 | sand50 < 35) | sand50 < 40 & clay150 > 30 ~  'clayey',
                           
                           TRUE ~ 'loamy'),
-         chem = case_when(Bhs >= 0.8 & spodic >= 0.8 & drain %in% 'dry' & text %in% 'sandy' ~ 'super spodic',
+         chem = case_when(floodfrq > 0 ~ 'typic',
+                          Bhs >= 0.8 & spodic >= 0.8 & drain %in% 'dry' & text %in% 'sandy' ~ 'super spodic',
                           spodic >= 0.8 & drain %in% 'dry' & text %in% 'sandy' ~ 'spodic',
                           (pH50 >= 6 | carbdepth < 100) & drain %in% 'dry' & text %in% 'sandy' ~ 'rich',
                           (pH50 <= 5.5 | spodic >= 0.8) & text %in% c('sandy','mucky') &
@@ -80,24 +110,25 @@ pts <- pts |> subset(!is.na(watertable) & !is.na(sand150) & !is.na(slope) & !is.
                            text %in% c('sandy','mucky') & !drain %in% 'dry' ~ 'euic',
                           TRUE ~ 'typic'),
          form = case_when(floodfrq > 0 ~ 'floodplain',
-                          slope >= tan(15/100) ~ 'slopes',
+                          slope >= tan(15/100) | (slope >= tan(10/100) & slope500 >= tan(5/100)) ~ 'slopes',#needed to amplify number of sloping sites
                           TRUE ~ 'plains'))
 
-                          
+                          #nrow(subset(pts, form %in% 'slopes'))/nrow(pts)
 pts <- pts |> mutate(site = (paste(LRU2, drain, chem, text, form)))
 
 ptssum <- pts |> st_drop_geometry() |> summarise(.by=c(site, COVERTYPE,LRU2, drain, chem, text, form), ntrees = length(Level2)) |> mutate(.by=c(site),prop = round(100*ntrees/sum(ntrees),1)) 
 
 ptssum2 <- pts |> st_drop_geometry() |> summarise(.by=c(site, COVERTYPE, Level2), abund = length(Level2)) |> mutate(.by=c(site,COVERTYPE),abund = round(100*abund/sum(abund),1)) 
 
-ptssum2 <- ptssum |> left_join(ptssum2) |> subset(ntrees >= 100)
-ptssum <- ptssum |> subset(ntrees >= 100)
+ptssum2 <- ptssum |> left_join(ptssum2) #|> subset(ntrees >= 50)
+#ptssum <- ptssum |> subset(ntrees >= 50)
 ptpivot <- ptssum2 |> tidyr::pivot_wider(names_from=Level2, values_from = abund, names_sort = TRUE)
 cortab0 <- subset(ptpivot, select=c(sporder)) 
 freplace <- function(x){
   x <- ifelse(is.na(x),0,x)
   return(x)
 }
+(sporder)[!(sporder) %in% colnames(ptpivot)]
 #correlation
 cortab0 <- sapply(cortab0, FUN=freplace) 
 cortab <- cortab0 |> cor() |> as.data.frame()
@@ -110,9 +141,20 @@ ptpivotx <- ptpivot |> mutate(across(all_of(sporder), freplace) )
 # compsum <- sptab |> group_by(clust) |> summarise(across(unique(ptssum2$Level2), mean))
 # compsum <- compsum |>  mutate(across(unique(ptssum2$Level2), function(x){(1-x)}))
 d <-vegan::vegdist(cortab0,  method="bray")
-c1 <- pam(d,5, nstart=20)
-ptpivotx <- ptpivotx |> mutate(clust = c1$clustering)
+t <- cluster::agnes(d, method = 'ward')|> as.hclust()
 
-compsum <- ptpivotx |> group_by(clust) |> summarise(across(unique(all_of(sporder)), mean))
+# c1 <- pam(d,6, nstart=20)
+c1 <- cutree(t, k = 6)
+#This function rearranges the branchs and groups so that the tree is always oriented with most nested branches to the bottom of the plot (when tree oriented vertically with branches to the right).
+# c1 <- dendrogrouporder(t, c1)
+# a = 'Vegetation of Michigan'
+# plot.dendro(a,d,t,c1)
+# 
+# 
+# ptpivotx <- ptpivotx |> mutate(clust = c1)
+# 
+# compsum <- ptpivotx |> group_by(clust) |> summarise(across(unique(all_of(sporder)), mean))
+# 
+ptpivotx <- ptpivotx |> left_join(mpoints[,c("site","COVERTYPE","rarea")])
 
 write.csv(ptpivotx,'presettlementvegbysoil2.csv', row.names = F, na='')
