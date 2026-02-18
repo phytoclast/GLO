@@ -80,23 +80,23 @@ m <- mnfi[,taxa]
 m.env <- mnfi[,abiotic]
 
 #Set number of Dimensions and run Nonmetric MultiDimensional Scaling ordination
-ndim <- 3 
+ndim <- 3
 set.seed(6190)
 nmds <- vegan::metaMDS(m, k=ndim, try=50, trymax = 50)
 
 #join NMDS data components ----
 spts.es <- data.frame(plot=rownames(m)) |> cbind(m)  
 pt.df <- vegan::scores(nmds, display='sites') |> as_tibble(rownames='sites')  
-pt.df <- pt.df |> mutate(vegcode = paste(mnfi$VEGCODE,mnfi$COVERTYPE),vegtype = mnfi$COVERTYPE)
+pt.df <- pt.df |> mutate(vegcode = mnfi$VEGCODE,label = paste(mnfi$VEGCODE,mnfi$COVERTYPE),vegtype = mnfi$COVERTYPE)
 sp.df <- vegan::scores(nmds, display='species') |> as_tibble(rownames='species')
 en <- vegan::envfit(nmds, m.env, na.rm = TRUE, choices=c(1:ndim))
 en.df <- vegan::scores(en, display='vectors')|> as_tibble(rownames='vectors')
 
 #Generate Convex Hulls ----
-fromclusts <- unique(pt.df$vegcode)
+fromclusts <- unique(pt.df$label)
 for(i in 1:length(fromclusts)){#i=1
   thisclust <-fromclusts[i]
-  thishull <- pt.df |> subset(vegcode %in% thisclust)
+  thishull <- pt.df |> subset(label %in% thisclust)
   chull0 <- chull(thishull$NMDS1, thishull$NMDS2)
   thishull  <- thishull[chull0,]
   if(i==1){veghull=thishull}else{veghull=rbind(veghull,thishull)}
@@ -104,19 +104,37 @@ for(i in 1:length(fromclusts)){#i=1
 
 #convex hull for rotated axis ----
 if(ndim > 2){
-  fromclusts <- unique(pt.df$vegcode)
+  fromclusts <- unique(pt.df$label)
   for(i in 1:length(fromclusts)){#i=1
     thisclust <-fromclusts[i]
-    thishull <- pt.df |> subset(vegcode %in% thisclust)
+    thishull <- pt.df |> subset(label %in% thisclust)
     chull0 <- chull(thishull$NMDS1, thishull$NMDS3)
     thishull  <- thishull[chull0,]
     if(i==1){veghull2=thishull}else{veghull2=rbind(veghull2,thishull)}
+  };rm(thisclust,thishull,chull0)}
+if(ndim > 2){
+  fromclusts <- unique(pt.df$label)
+  for(i in 1:length(fromclusts)){#i=1
+    thisclust <-fromclusts[i]
+    thishull <- pt.df |> subset(label %in% thisclust)
+    chull0 <- chull(thishull$NMDS2, thishull$NMDS3)
+    thishull  <- thishull[chull0,]
+    if(i==1){veghull3=thishull}else{veghull3=rbind(veghull3,thishull)}
+  };rm(thisclust,thishull,chull0)}
+if(ndim > 3){
+  fromclusts <- unique(pt.df$label)
+  for(i in 1:length(fromclusts)){#i=1
+    thisclust <-fromclusts[i]
+    thishull <- pt.df |> subset(label %in% thisclust)
+    chull0 <- chull(thishull$NMDS2, thishull$NMDS4)
+    thishull  <- thishull[chull0,]
+    if(i==1){veghull4=thishull}else{veghull4=rbind(veghull4,thishull)}
   };rm(thisclust,thishull,chull0)}
 
 #Filter Data to display ----
 #these are the vegtypes  
 #pt.df$vegcode |> unique()
-# vegtypes <- c("BEECH-SUGAR MAPLE FOREST", "BEECH-SUGAR MAPLE-HEMLOCK FOREST", "CEDAR SWAMP", "WHITE PINE-MIXED HARDWOOD FOREST",
+# thisveg <- c("BEECH-SUGAR MAPLE FOREST", "BEECH-SUGAR MAPLE-HEMLOCK FOREST", "CEDAR SWAMP", "WHITE PINE-MIXED HARDWOOD FOREST",
 #              "WHITE PINE-RED PINE FOREST", "HEMLOCK-WHITE PINE FOREST", "WHITE PINE-WHITE OAK FOREST", "OAK/PINE BARRENS",
 #              "MIXED HARDWOOD SWAMP", "MIXED CONIFER SWAMP", "JACK PINE-RED PINE FOREST", "SPRUCE-FIR-CEDAR FOREST",
 #              "PINE BARRENS", "ASPEN-BIRCH FOREST", "MIXED PINE-OAK FOREST", "GRASSLAND",
@@ -125,23 +143,32 @@ if(ndim > 2){
 
 
 #filter vegtypes to display 
-thisveg <- c("OAK-HICKORY FOREST","BLACK OAK BARREN","MIXED OAK SAVANNA","BEECH-SUGAR MAPLE FOREST","JACK PINE-RED PINE FOREST", "WHITE PINE-WHITE OAK FOREST", "WHITE PINE-RED PINE FOREST", "HEMLOCK-WHITE PINE FOREST","BEECH-SUGAR MAPLE-HEMLOCK FOREST")
+thisveg <- c("BEECH-SUGAR MAPLE FOREST", "BEECH-SUGAR MAPLE-HEMLOCK FOREST", "CEDAR SWAMP", "WHITE PINE-MIXED HARDWOOD FOREST",
+             "WHITE PINE-RED PINE FOREST", "HEMLOCK-WHITE PINE FOREST", "WHITE PINE-WHITE OAK FOREST", "OAK/PINE BARRENS",
+             "MIXED HARDWOOD SWAMP", "MIXED CONIFER SWAMP", "JACK PINE-RED PINE FOREST", "SPRUCE-FIR-CEDAR FOREST",
+             "PINE BARRENS", "ASPEN-BIRCH FOREST", "MIXED PINE-OAK FOREST", "GRASSLAND",
+             "BLACK OAK BARREN","MIXED OAK SAVANNA","SHRUB SWAMP/EMERGENT MARSH", "MIXED OAK FOREST",
+             "OAK-HICKORY FOREST", "WET PRAIRIE", "BLACK ASH SWAMP")
 #filter environmental vectors to display 
 thisabiotic <- c("Tg","hydric","pH50","m","clay150","sand150","watertable","slope")
 
 selected.pt.df <- pt.df |> subset(vegtype %in% thisveg)
 selected.veghull <- veghull |> subset(vegtype %in% thisveg)
 selected.veghull2 <- veghull2 |> subset(vegtype %in% thisveg)
+selected.veghull3 <- veghull3 |> subset(vegtype %in% thisveg)
+selected.veghull4 <- veghull4 |> subset(vegtype %in% thisveg)
 selected.en.df <- en.df |> subset(vectors %in% thisabiotic)
-
-
+ptsum <- selected.pt.df |> group_by(vegcode) |> summarise(across(any_of(c('NMDS1','NMDS2','NMDS3','NMDS4')), mean))
+msum <- mnfi |> subset(COVERTYPE %in% thisveg) |> group_by(VEGCODE) |> summarise(across(all_of(taxa), mean))
+msum <- msum |> left_join(ptsum, join_by(VEGCODE==vegcode))
 #NMDS Biplots ----
 #plot axes 1 and 2
 gp <- ggplot() +
-  geom_polygon(data=selected.veghull, aes(x=NMDS1,y=NMDS2, color=vegcode, fill=vegcode), alpha=0.1, linewidth=1)+
-  geom_point(data=selected.pt.df, aes(x=NMDS1,y=NMDS2, color=vegcode), alpha=0.5, size=2)+
+  geom_polygon(data=selected.veghull, aes(x=NMDS1,y=NMDS2, color=label, fill=label), alpha=0.1, linewidth=1)+
+  geom_point(data=selected.pt.df, aes(x=NMDS1,y=NMDS2, color=label), alpha=0.5, size=2)+
   geom_point(data=sp.df, aes(x=NMDS1,y=NMDS2), color='black')+
   geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black', size=2)+
+  geom_text(data=ptsum, aes(label=vegcode, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red', size=2)+
   geom_segment(data=selected.en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS2), arrow = arrow(length = unit(0.03, "npc")), color='darkgray')+
   geom_text(data=selected.en.df, aes(label=vectors, x=NMDS1,y=NMDS2), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkgray')+
   coord_fixed()
@@ -149,14 +176,38 @@ gp
 
 #plot axes 1 and 3
 if(ndim > 2){
-gp2 <- ggplot() +
-  geom_polygon(data=selected.veghull2, aes(x=NMDS1,y=NMDS3, color=vegcode, fill=vegcode), alpha=0.1, linewidth=1)+
-  geom_point(data=selected.pt.df, aes(x=NMDS1,y=NMDS3, color=vegcode), alpha=0.5, size=2)+
-  geom_point(data=sp.df, aes(x=NMDS1,y=NMDS3), color='black')+
-  geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black', size=2)+
-  geom_segment(data=selected.en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS3), arrow = arrow(length = unit(0.03, "npc")), color='darkgray')+
-  geom_text(data=selected.en.df, aes(label=vectors, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkgray')+
-  coord_fixed()
-gp2
+  gp2 <- ggplot() +
+    geom_polygon(data=selected.veghull2, aes(x=NMDS1,y=NMDS3, color=label, fill=label), alpha=0.1, linewidth=1)+
+    geom_point(data=selected.pt.df, aes(x=NMDS1,y=NMDS3, color=label), alpha=0.5, size=2)+
+    geom_point(data=sp.df, aes(x=NMDS1,y=NMDS3), color='black')+
+    geom_text(data=sp.df, aes(label=species, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black', size=2)+
+    geom_text(data=ptsum, aes(label=vegcode, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red', size=2)+
+    geom_segment(data=selected.en.df, aes(x=0,y=0,xend=NMDS1,yend=NMDS3), arrow = arrow(length = unit(0.03, "npc")), color='darkgray')+
+    geom_text(data=selected.en.df, aes(label=vectors, x=NMDS1,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkgray')+
+    coord_fixed()
+  gp2
 }
-
+if(ndim > 2){
+  gp3 <- ggplot() +
+    geom_polygon(data=selected.veghull3, aes(x=NMDS2,y=NMDS3, color=label, fill=label), alpha=0.1, linewidth=1)+
+    geom_point(data=selected.pt.df, aes(x=NMDS2,y=NMDS3, color=label), alpha=0.5, size=2)+
+    geom_point(data=sp.df, aes(x=NMDS2,y=NMDS3), color='black')+
+    geom_text(data=sp.df, aes(label=species, x=NMDS2,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black', size=2)+
+    geom_text(data=ptsum, aes(label=vegcode, x=NMDS2,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red', size=2)+
+    geom_segment(data=selected.en.df, aes(x=0,y=0,xend=NMDS2,yend=NMDS3), arrow = arrow(length = unit(0.03, "npc")), color='darkgray')+
+    geom_text(data=selected.en.df, aes(label=vectors, x=NMDS2,y=NMDS3), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkgray')+
+    coord_fixed()
+  gp3
+}
+if(ndim > 3){
+  gp4 <- ggplot() +
+    geom_polygon(data=selected.veghull4, aes(x=NMDS2,y=NMDS4, color=label, fill=label), alpha=0.1, linewidth=1)+
+    geom_point(data=selected.pt.df, aes(x=NMDS2,y=NMDS4, color=label), alpha=0.5, size=2)+
+    geom_point(data=sp.df, aes(x=NMDS2,y=NMDS4), color='black')+
+    geom_text(data=sp.df, aes(label=species, x=NMDS2,y=NMDS4), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='black', size=2)+
+    geom_text(data=ptsum, aes(label=vegcode, x=NMDS2,y=NMDS4), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='red', size=2)+
+    geom_segment(data=selected.en.df, aes(x=0,y=0,xend=NMDS2,yend=NMDS4), arrow = arrow(length = unit(0.03, "npc")), color='darkgray')+
+    geom_text(data=selected.en.df, aes(label=vectors, x=NMDS2,y=NMDS4), vjust = 0, nudge_y = 0.02, nudge_x = 0.05, color='darkgray')+
+    coord_fixed()
+  gp4
+}
