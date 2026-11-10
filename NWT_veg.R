@@ -75,8 +75,9 @@ library(vegnasis)
 
 
 #Begin Models ----
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#Core area
 pts <- readRDS('points/pts.geo1.RDS')
 covr <- rast("newcovariates/covr.tif")
 # pts.vars <- pts |> cbind(extract(covr, project(vect(pts), covr)))
@@ -93,6 +94,54 @@ pxy <- 0.1 #relative strength of rotatedxy covs
 covwts <- c(c(1:length(names(covr)))*0+1, (c(1:length(names(xyrast)))*0+1)*length(names(xyrast))/length(names(covr))*pxy)
 covwts <- covwts/max(covwts)#ensure it doesn't exceed 1
 
+#Western New York ----
+spref <- crs('+proj=utm +zone=17 +datum=NAD83 +units=m +no_defs')
+data1 <- read.csv('data/3569064/lot_line_section_with_predictors.csv') |> mutate(fil = 'WNY_lot')
+data2 <- read.csv('data/3569064/township_bt_post_with_predictors.csv') |> mutate(fil = 'WNY_post')
+data3 <- read.csv('data/3569064/township_line_section_with_predictors.csv')|> mutate(fil = 'WNY_line')
+data.all <- rbind(data1[,colnames(data2)],data2,data3)
+taxa <- c("fag.gra","ace.sac","til.ame","tsu.can","ulm.ame","fra.ame","mag.acu","cas.den","pin.str","fra.nig","que.vel","que.alb","jug.cin","car.spp","lir.tul","bet.all","pru.ser","aln.inc","ace.rub","pla.occ","abi.bal","ost.vir","jug.nig")
+genera <- c("Fagus","Acer","Tilia","Tsuga","Ulmus","Fraxinus","Magnolia","Castanea","Pinus","Fraxinus","Quercus","Quercus","Juglans","Carya","Liriodendron","Betula","Prunus","Alnus","Acer","Platanus","Abies","Ostrya","Juglans")
+spp <- c("Fagus","Acer","Tilia","Tsuga","Ulmus","Fraxinus americana","Magnolia","Castanea","Pinus strobus","Fraxinus nigra","Quercus velutina","Quercus alba","Juglans cinerea","Carya","Liriodendron","Betula alleghaniensis","Prunus","Alnus","Acer","Platanus","Abies","Ostrya","Juglans nigra")
+for(i in 1:length(taxa)){#i=1
+  taxon=taxa[i]
+  thesecols <- c('fil','x_coord','y_coord', taxon)
+  df0 <- data.all[,thesecols]
+  colnames(df0)<- c("dataset","x","y","tname")
+  df0 <- subset(df0, tname %in% 1)
+  df0$tname <- taxon
+  df0$Level2 <- genera[i]
+  df0$Species <- spp[i]
+  if(i==1){pts.wny <- df0}else{pts.wny <- rbind(pts.wny,df0)}
+}
+covswny <-  rast("newcovariates/WNYcovr.tif")
+pts.wny <- st_as_sf(pts.wny, coords=c('x', 'y'), crs=spref) |> st_transform(crs=st_crs(covswny))
+covswny0 <- extract(covswny, vect(pts.wny))
+pts.wny <- cbind(pts.wny,covswny0)
+
+# data.all <- st_as_sf(data.all, coords=c('x_coord', 'y_coord'), crs=spref)
+# st_write(data.all, 'points/wny.shp', append = FALSE)
+
+#Monongahela ----
+covsmon <-  rast("newcovariates/Monongahela_covr.tif")
+dat1 <- st_read('data/RDS-2014-0022_Data/Data/corners_1752_1899_revised_052012.shp')|> st_transform(crs=st_crs(covsmon))
+spp1 <- read.csv('data/RDS-2014-0022_Data/Data/species_codes_witness_trees_Monongahela.csv')
+spp1$Genus <- vegnasis::extractTaxon(spp1$scientific.name, 'genus')
+spp1$Genus <- ifelse(grepl("Maclura", spp1$scientific.name), 'Maclura', spp1$Genus) 
+spp1$Genus <- ifelse(grepl("spruce-pine", spp1$common.name), 'TsugaPicea', spp1$Genus)#to resolve later
+for(i in 1:6){
+  dat0 <- dat1[c(1:3,3+i)]
+  colnames(dat0) <- c("id","DATE_","treeseq", "species.code", "geometry")
+  if(i==1){pts.mon <- dat0}else{pts.mon <- rbind(pts.mon,dat0)}
+}
+pts.mon <- pts.mon |> left_join(spp1) |> subset(!is.na(Genus))
+pts.mon$dataset <- 'Monongahela' 
+covsmon0 <- extract(covsmon, vect(pts.mon))
+pts.mon <- cbind(pts.mon,covsmon0)
+
+
+
+#continued ....----
 # covrast270 <- aggregate(covrast, 3)
 covrast270 <- rast("newcovariates/covrast270.tif")
 # writeRaster(covrast270, "newcovariates/covrast270.tif")
@@ -101,16 +150,16 @@ covrast270 <- rast("newcovariates/covrast270.tif")
 # saveRDS(pts.vars90xy,'pts.vars.xyrast.RDS')
 pts.vars90xy <- readRDS('pts.vars.xyrast.RDS')
 pts.vars90 <- pts.vars90 |> cbind(pts.vars90xy)
-#gbifdata ---- 
-gbifdata <- readRDS('data/gbifdata.RDS')
-# newcovr <- crop(covrast270, c(1100000, 1403971, 1900000, 2300000))
-# newcovr <- crop(covrast270, c(500000, 600000, 2750000, 2850000))
-gbifdata$Level2 <- extractTaxon(gbifdata$name, 'genus')
-gbifdata$Level2 <- ifelse(gbifdata$Level2 %in% c('Ostrya', 'Carpinus'),'OstryaCarpinus',gbifdata$Level2)
-gbifdata <- gbifdata |> st_as_sf(coords=c('decimalLongitude', 'decimalLatitude'), crs=crs('epsg:4326')) |> st_transform(crs(covrast))
-gbifcovs <- extract(covrast, vect(gbifdata)) 
-gbifdata <- gbifdata |> cbind(gbifcovs)
-gbifdata <- gbifdata |> subset(!is.na(sand150) & !is.na(elev) & !is.na(popen) & !is.na(lat1))
+# #gbifdata ---- 2026-11-10 stop using gbif data
+# gbifdata <- readRDS('data/gbifdata.RDS')
+# # newcovr <- crop(covrast270, c(1100000, 1403971, 1900000, 2300000))
+# # newcovr <- crop(covrast270, c(500000, 600000, 2750000, 2850000))
+# gbifdata$Level2 <- extractTaxon(gbifdata$name, 'genus')
+# gbifdata$Level2 <- ifelse(gbifdata$Level2 %in% c('Ostrya', 'Carpinus'),'OstryaCarpinus',gbifdata$Level2)
+# gbifdata <- gbifdata |> st_as_sf(coords=c('decimalLongitude', 'decimalLatitude'), crs=crs('epsg:4326')) |> st_transform(crs(covrast))
+# gbifcovs <- extract(covrast, vect(gbifdata)) 
+# gbifdata <- gbifdata |> cbind(gbifcovs)
+# gbifdata <- gbifdata |> subset(!is.na(sand150) & !is.na(elev) & !is.na(popen) & !is.na(lat1))
 # n=25000
 # taxon = 'Picea'
 # train <- gbifdata |> mutate(pos= ifelse(Level2 %in% taxon, 1,0)) |> st_drop_geometry()
@@ -210,18 +259,18 @@ pts.vars90a <- pts.vars90a |> mutate(Level2 = case_when(Species %in% "NyssaLiqui
 pts.vars90a <-  pts.vars90a |> mutate(spp=NULL)
 
 
-#merge with gbif data
-pts.vars90a$origin <- 'glo'
-gbifdata$origin <- 'gbif'
-newcols <- intersect(colnames(pts.vars90a), colnames(gbifdata))
-
-#reweigh gbif species due to increase in abundance in disturbance species
-genwts1 <- pts.vars90a|>st_drop_geometry() |> mutate(tots = length(Level2)) |> group_by(Level2, tots) |> summarise(gentots = length(Level2)) |> ungroup() |> mutate(gentots = round(100*gentots/tots,3), tots=NULL) 
-genwts2 <- gbifdata |>st_drop_geometry() |> mutate(tots = length(Level2)) |> group_by(Level2, tots) |> summarise(gentots2 = length(Level2)) |> ungroup() |> mutate(gentots2 = round(100*gentots2/tots,3), tots=NULL) 
-genwts1 <- genwts1 |> left_join(genwts2) |> mutate(gratio = gentots/gentots2)
-
-pts.vars90b <- st_drop_geometry(pts.vars90a[,newcols]) |> rbind(st_drop_geometry(gbifdata[,newcols]))
-pts.vars90b <- pts.vars90b |> left_join(genwts1[,c('Level2', 'gratio')]) 
+# #merge with gbif data; 2026-11-10: GBIF was found to create too much Populus and Prunus, even when adjusting the weights of the data sets to match the species ratios of the original dataset.
+# pts.vars90a$origin <- 'glo'
+# gbifdata$origin <- 'gbif'
+# newcols <- intersect(colnames(pts.vars90a), colnames(gbifdata))
+# 
+# #reweigh gbif species due to increase in abundance in disturbance species
+# genwts1 <- pts.vars90a|>st_drop_geometry() |> mutate(tots = length(Level2)) |> group_by(Level2, tots) |> summarise(gentots = length(Level2)) |> ungroup() |> mutate(gentots = round(100*gentots/tots,3), tots=NULL) 
+# genwts2 <- gbifdata |>st_drop_geometry() |> mutate(tots = length(Level2)) |> group_by(Level2, tots) |> summarise(gentots2 = length(Level2)) |> ungroup() |> mutate(gentots2 = round(100*gentots2/tots,3), tots=NULL) 
+# genwts1 <- genwts1 |> left_join(genwts2) |> mutate(gratio = gentots/gentots2)
+# 
+# pts.vars90b <- st_drop_geometry(pts.vars90a[,newcols]) |> rbind(st_drop_geometry(gbifdata[,newcols]))
+# pts.vars90b <- pts.vars90b |> left_join(genwts1[,c('Level2', 'gratio')]) 
 
 # st_write(pts.vars90a, 'temppts2.shp', append = F)
 ttt <- pts.vars90b |> group_by(Level2) |> summarize(npts = length(Level2))
